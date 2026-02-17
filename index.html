@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>David Gao - Business Analyst & Data Scientist</title>
+  <meta name="description" content="David Gao - Business Analyst specializing in AI, data science, and analytics. McGill MMA graduate." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwindcss.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .gradient-text {
+      background: linear-gradient(135deg, #1a73e8 0%, #6d28d9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <!-- Nav -->
+  <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="text-xl font-semibold tracking-tight">David <span class="gradient-text">Gao</span></a>
+      <div class="hidden sm:flex items-center gap-8 text-sm text-gray-600">
+        <a href="#about" class="hover:text-gray-900 transition-colors">About</a>
+        <a href="#experience" class="hover:text-gray-900 transition-colors">Experience</a>
+        <a href="#projects" class="hover:text-gray-900 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-gray-900 transition-colors">Skills</a>
+        <a href="#contact" class="hover:text-gray-900 transition-colors">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex items-center justify-center px-6 pt-20">
+    <div class="max-w-3xl text-center">
+      <p class="text-sm font-medium text-blue-600 tracking-wider uppercase mb-4">Business Analyst & Data Scientist</p>
+      <h1 class="text-5xl sm:text-7xl font-bold tracking-tight mb-6">
+        Hi, I'm <span class="gradient-text">David</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto mb-10">
+        I turn data into decisions. Business Analyst at Article, McGill MMA graduate,
+        with a passion for AI, machine learning, and building things that make work easier.
+      </p>
+      <div class="flex items-center justify-center gap-4">
+        <a href="#contact" class="px-8 py-3 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-colors">
+          Get in Touch
+        </a>
+        <a href="#experience" class="px-8 py-3 border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+          View My Work
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-24 px-6">
+    <div class="max-w-5xl mx-auto fade-in">
+      <h2 class="text-3xl font-bold mb-12 text-center">About Me</h2>
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-blue-600">Education</h3>
+          <div class="space-y-6">
+            <div class="border-l-2 border-blue-600 pl-4">
+              <p class="font-semibold">McGill University</p>
+              <p class="text-sm text-gray-500">Desautels Faculty of Management</p>
+              <p class="text-sm text-gray-600">Master of Management in Analytics</p>
+              <p class="text-xs text-gray-400 mt-1">July 2023 &ndash; Aug 2024 &middot; Montreal</p>
+            </div>
+            <div class="border-l-2 border-gray-200 pl-4">
+              <p class="font-semibold">University of British Columbia</p>
+              <p class="text-sm text-gray-600">Bachelor of Management, Finance (Honours)</p>
+              <p class="text-xs text-gray-400 mt-1">Sept 2015 &ndash; June 2019 &middot; 3.7 GPA, Dean's List</p>
+              <p class="text-xs text-gray-400">First 2 years at Fordham University, NYC</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-blue-600">What I Do</h3>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            I work at the intersection of business and technology, leveraging AI and data science
+            to drive measurable outcomes. From building ML models on Databricks to designing
+            A/B tests that save $800K+, I focus on turning complex data into clear, actionable insights.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            Outside of work, I build tools for small businesses, automate tedious processes,
+            and explore new ways to apply generative AI.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="py-24 px-6 bg-gray-50">
+    <div class="max-w-5xl mx-auto fade-in">
+      <h2 class="text-3xl font-bold mb-12 text-center">Experience</h2>
+      <div class="space-y-8">
+
+        <!-- Article - BA -->
+        <div class="bg-white rounded-2xl p-8 card-hover border border-gray-100">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
+            <div>
+              <h3 class="text-xl font-semibold">Business Analyst</h3>
+              <p class="text-blue-600 font-medium">Article</p>
+              <p class="text-sm text-gray-400">eCommerce &middot; Furniture</p>
+            </div>
+            <div class="text-sm text-gray-400 mt-2 sm:mt-0 sm:text-right">
+              <p>Aug 2024 &ndash; Present</p>
+              <p>Toronto, Canada</p>
+            </div>
+          </div>
+          <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
+            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Drive AI and data science initiatives, building generative AI and ML models on Databricks</li>
+            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Lead end-to-end A/B testing, contributing to over $800K USD in savings</li>
+            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Build predictive sales models (Linear Regression, Random Forest) quantifying product review impact</li>
+            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Develop Tableau dashboards centralizing KPIs for executive decision-making</li>
+            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Designed a cross-sell algorithm, eliminating third-party analytics dependency</li>
+          </ul>
+        </div>
+
+        <!-- Article - Payment -->
+        <div class="bg-white rounded-2xl p-8 card-hover border border-gray-100">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
+            <div>
+              <h3 class="text-xl font-semibold">Payment Analyst</h3>
+              <p class="text-blue-600 font-medium">Article</p>
+            </div>
+            <div class="text-sm text-gray-400 mt-2 sm:mt-0 sm:text-right">
+              <p>June 2021 &ndash; Aug 2024</p>
+              <p>Toronto, Canada</p>
+            </div>
+          </div>
+          <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
+            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Evaluated fraud prevention tool integration, creating detailed flow diagrams for adoption</li>
+            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Enhanced transactional data connectivity with AI, improving fraud detection accuracy</li>
+          </ul>
+        </div>
+
+        <!-- Canaccord -->
+        <div class="bg-white rounded-2xl p-8 card-hover border border-gray-100">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
+            <div>
+              <h3 class="text-xl font-semibold">Licensed Investment Advisor Assistant</h3>
+              <p class="text-blue-600 font-medium">Canaccord Genuity Wealth Management</p>
+            </div>
+            <div class="text-sm text-gray-400 mt-2 sm:mt-0 sm:text-right">
+              <p>July 2020 &ndash; May 2021</p>
+              <p>Vancouver, Canada</p>
+            </div>
+          </div>
+          <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
+            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Managed client due diligence, compliance protocols, and suspicious transaction reporting</li>
+            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Closed a $5M private placement deal, preparing 100+ personalized subscription agreements</li>
+          </ul>
+        </div>
+
+        <!-- Sun Life -->
+        <div class="bg-white rounded-2xl p-8 card-hover border border-gray-100">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h3 class="text-xl font-semibold">Administrative Assistant</h3>
+              <p class="text-blue-600 font-medium">Sun Life Financial</p>
+            </div>
+            <div class="text-sm text-gray-400 mt-2 sm:mt-0 sm:text-right">
+              <p>June 2019 &ndash; July 2020</p>
+              <p>Vancouver, Canada</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-24 px-6">
+    <div class="max-w-5xl mx-auto fade-in">
+      <h2 class="text-3xl font-bold mb-12 text-center">Projects</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="rounded-2xl border border-gray-100 p-6 card-hover">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-semibold mb-2">Insurance Fraud Detection</h3>
+          <p class="text-sm text-gray-500 mb-3">McGill Capstone Project</p>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Led a team to build ML classification models to detect undeclared smokers in insurance applications.
+            Delivered feature importance analysis and an ethical AI framework.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-gray-100 p-6 card-hover">
+          <div class="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <h3 class="font-semibold mb-2">Boba Rabbit Operations</h3>
+          <p class="text-sm text-gray-500 mb-3">Pro Bono &middot; 5 locations across Europe</p>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Built scheduling optimization for 30 employees across 8 locations. Deployed anomaly detection
+            for theft prevention. Automated payroll, saving 20 hours/month.
+          </p>
+        </div>
+
+        <a href="/marketplace/" class="rounded-2xl border border-gray-100 p-6 card-hover block group">
+          <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          </div>
+          <h3 class="font-semibold mb-2 group-hover:text-blue-600 transition-colors">Marketplace Assistant</h3>
+          <p class="text-sm text-gray-500 mb-3">Personal Tool</p>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            A quick-copy response tool for marketplace selling. Customizable templates for common buyer questions.
+          </p>
+          <p class="text-sm text-blue-600 font-medium mt-3 group-hover:underline">Try it &rarr;</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-24 px-6 bg-gray-50">
+    <div class="max-w-5xl mx-auto fade-in">
+      <h2 class="text-3xl font-bold mb-12 text-center">Skills</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white rounded-2xl p-6 border border-gray-100">
+          <h3 class="font-semibold text-sm text-gray-400 uppercase tracking-wider mb-4">Languages</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Python</span>
+            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">SQL</span>
+            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">R</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-gray-100">
+          <h3 class="font-semibold text-sm text-gray-400 uppercase tracking-wider mb-4">Platforms</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Databricks</span>
+            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">MS Azure</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-gray-100">
+          <h3 class="font-semibold text-sm text-gray-400 uppercase tracking-wider mb-4">Visualization</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Tableau</span>
+            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Power BI</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-gray-100">
+          <h3 class="font-semibold text-sm text-gray-400 uppercase tracking-wider mb-4">Focus Areas</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Gen AI</span>
+            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Machine Learning</span>
+            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">A/B Testing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 px-6">
+    <div class="max-w-xl mx-auto text-center fade-in">
+      <h2 class="text-3xl font-bold mb-4">Let's Connect</h2>
+      <p class="text-gray-500 mb-10">Open to opportunities, collaborations, and interesting conversations.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="mailto:davidgao734@gmail.com" class="px-8 py-3 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-colors w-full sm:w-auto text-center">
+          davidgao734@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/david-gao-zhongyu" target="_blank" rel="noopener noreferrer" class="px-8 py-3 border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors w-full sm:w-auto text-center">
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 border-t border-gray-100">
+    <div class="max-w-5xl mx-auto text-center text-sm text-gray-400">
+      <p>&copy; 2025 David Gao</p>
+    </div>
+  </footer>
+
+  <!-- Scroll animation -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
