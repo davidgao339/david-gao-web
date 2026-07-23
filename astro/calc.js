@@ -439,9 +439,13 @@ function calcChakra(mDateMs, fDateMs) {
   let compatCount = 0, dissonanceCount = 0;
   const compatibleKeys = [];
 
+  // Use the exact reverse-engineered Triangle Wave formula for all chakras!
+  // Val = 100 - (min(D % T, T - (D % T)) / (T / 2)) * 100
   for (const [key, T] of Object.entries(CHAKRA_PERIODS)) {
-    const raw = ((Math.cos(2 * Math.PI * datesDiff / T) + 1) / 2) * 100;
-    const val = Math.round(raw);
+    const rem = datesDiff % T;
+    const dist = Math.min(rem, T - rem);
+    const val = Math.round(100 - (dist / (T / 2)) * 100);
+    
     chart[key] = val;
     labels[`${key}-label`] = val >= 75 ? 'Высокая' : (val <= 15 ? 'Низкая' : '');
     if (val >= 55) { compatCount++; compatibleKeys.push(key); }
@@ -453,12 +457,20 @@ function calcChakra(mDateMs, fDateMs) {
     heart: 'circle-heart', creative: 'circle-creat', intuitive: 'circle-intuit', highest: 'circle-high',
   };
 
-  const balanceMale = Object.values(chart).reduce((a, v) => a + v, 0) + digitSum(mDateMs / 86400000) * 10;
-  const balanceFemale = Object.values(chart).reduce((a, v) => a + v, 0) + digitSum(fDateMs / 86400000) * 10;
-  let balanceTotal;
-  if (Math.abs(balanceMale - balanceFemale) <= 15) balanceTotal = 'Баланс ровный';
+  // Exact Balance Formula reversed from the original API:
+  const balanceMale = chart.physical + chart.intellect + chart.creative;
+  const balanceFemale = chart.emotional + chart.heart + chart.intuitive;
+  
+  let balanceTotal = '';
+  const balDiff = Math.abs(balanceMale - balanceFemale);
+  if (balDiff <= 15) balanceTotal = 'Баланс ровный';
   else if (balanceFemale > balanceMale) balanceTotal = 'Баланс «женский» — благоприятно';
   else balanceTotal = 'Баланс «мужской» — благоприятно';
+
+  // Override logic from original
+  if (chart.physical < 40 && chart.emotional < 40 && chart.intellect < 40 && (chart.heart > 60 || chart.intuitive > 60)) {
+     balanceTotal = 'Высокие отношения (без 3-х нижних чакр)';
+  }
 
   return {
     bio_result_top: {
@@ -469,7 +481,7 @@ function calcChakra(mDateMs, fDateMs) {
     },
     bio_result_chart: chart,
     bio_result_chart_labels: labels,
-    bio_result_balance: { balanceTotal, balanceFemale: Math.round(balanceFemale), balanceMale: Math.round(balanceMale) },
+    bio_result_balance: { balanceTotal, balanceFemale, balanceMale },
   };
 }
 
@@ -518,17 +530,22 @@ function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear) {
   const chakra = calcChakra(mDateMs, fDateMs);
   const zodiac = calcZodiac(mDay, mMonth, fDay, fMonth);
 
-  const numMale = calcNumerology(mDay, mMonth, mYear);
-  const numFemale = calcNumerology(fDay, fMonth, fYear);
-  const numPair = calcNumerologyPair(numMale, numFemale);
+  const zDist = Math.min(zodiac.zodiac_result_roles.positions[2], 12 - zodiac.zodiac_result_roles.positions[2]);
+  const isZodiacCompatible = (zDist === 0 || zDist === 2 || zDist === 4 || zDist === 6);
+  const isSvadhistanaPass = chakra.bio_result_chart.emotional > 60;
+  const isAnahataPass = chakra.bio_result_chart.heart > 60;
+  const isGoodSex = chakra.bio_result_chart.physical > 60;
 
-  const pifagorMale = calcPifagor(mDay, mMonth, mYear);
-  const pifagorFemale = calcPifagor(fDay, fMonth, fYear);
-
-  const fawMale = calcFaw(mDay, mMonth, mYear);
-  const fawFemale = calcFaw(fDay, fMonth, fYear);
+  let finalVerdict = 'Not a Match';
+  if (isZodiacCompatible && isSvadhistanaPass && isAnahataPass) {
+    finalVerdict = 'Perfect Match';
+    if (isGoodSex) finalVerdict += ' (Great Physical Chemistry!)';
+  } else if (isZodiacCompatible || isSvadhistanaPass || isAnahataPass) {
+    finalVerdict = 'Friends';
+  }
 
   return {
+    final_verdict: finalVerdict,
     bio_result_top: chakra.bio_result_top,
     bio_result_chart: chakra.bio_result_chart,
     bio_result_chart_labels: chakra.bio_result_chart_labels,
@@ -537,21 +554,5 @@ function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear) {
     zodiac_result_dates: zodiac.zodiac_result_dates,
     zodiac_result_signs: zodiac.zodiac_result_signs,
     zodiac_result_roles: zodiac.zodiac_result_roles,
-
-    scenario_result_male: calcScenario(mMonth),
-    scenario_result_female: calcScenario(fMonth),
-
-    arcane_result_male: calcArcana(mDay),
-    arcane_result_female: calcArcana(fDay),
-
-    numerologic_result_male: numMale,
-    numerologic_result_female: numFemale,
-    numerologic_result_pair: numPair,
-
-    pifagor_result_male: pifagorMale,
-    pifagor_result_female: pifagorFemale,
-
-    faw_result_male: fawMale,
-    faw_result_female: fawFemale,
   };
 }
