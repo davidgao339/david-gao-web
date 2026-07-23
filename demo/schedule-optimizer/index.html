@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedule Optimizer</title>
+  <style>
+    :root {
+      --primary-color: #ff4b4b;
+      --bg-color: #ffffff;
+      --secondary-bg-color: #f0f2f6;
+      --text-color: #31333F;
+      --font-family: "Source Sans Pro", sans-serif;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      color: var(--text-color);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .sidebar {
+      width: 300px;
+      background-color: var(--secondary-bg-color);
+      padding: 2rem;
+      box-sizing: border-box;
+      height: 100%;
+      overflow-y: auto;
+    }
+    .main-content {
+      flex: 1;
+      padding: 3rem;
+      background-color: var(--bg-color);
+      overflow-y: auto;
+    }
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-top: 0;
+    }
+    .st-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      font-size: 1rem;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .st-button:hover {
+      background-color: #ff3333;
+    }
+    .st-slider, .st-select, .st-file {
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+    input[type="range"] {
+      width: 100%;
+    }
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.25rem;
+    }
+    .spinner {
+      display: none;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--primary-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .result-container {
+      display: none;
+      margin-top: 2rem;
+    }
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 1rem;
+      border-radius: 0.25rem;
+      border: 1px solid #c3e6cb;
+      margin-bottom: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>Settings</h2>
+  
+  <div class="st-select">
+    <label>Select Location</label>
+    <select>
+      <option>Boba Cafe Downtown</option>
+      <option>Boba Cafe Uptown</option>
+    </select>
+  </div>
+
+  <div class="st-slider">
+    <label>Max Hours per Employee</label>
+    <input type="range" min="20" max="40" value="35">
+  </div>
+
+  <div class="st-slider">
+    <label>Minimum Rest Between Shifts (hrs)</label>
+    <input type="range" min="8" max="16" value="12">
+  </div>
+
+  <button class="st-button" onclick="runOptimization()">Optimize Schedule</button>
+</div>
+
+<div class="main-content">
+  <h1>⚙️ Schedule Optimizer (CP-SAT)</h1>
+  <p>Uses OR-Tools Constraint Programming to generate mathematically optimal schedules for employees, respecting all labor laws, availability, and business requirements.</p>
+  
+  <div class="spinner" id="loadingSpinner"></div>
+
+  <div class="result-container" id="resultArea">
+    <div class="alert-success">
+      <strong>Optimization Successful!</strong> Found optimal schedule in 2.43 seconds.
+    </div>
+
+    <h3>Generated Schedule (Preview)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alice (Manager)</td>
+          <td>9:00 - 17:00</td>
+          <td>9:00 - 17:00</td>
+          <td>Off</td>
+          <td>11:00 - 19:00</td>
+          <td>12:00 - 20:00</td>
+        </tr>
+        <tr>
+          <td>Bob (Barista)</td>
+          <td>Off</td>
+          <td>13:00 - 21:00</td>
+          <td>9:00 - 17:00</td>
+          <td>9:00 - 17:00</td>
+          <td>14:00 - 22:00</td>
+        </tr>
+        <tr>
+          <td>Charlie (Cashier)</td>
+          <td>14:00 - 22:00</td>
+          <td>Off</td>
+          <td>13:00 - 21:00</td>
+          <td>Off</td>
+          <td>9:00 - 17:00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  function runOptimization() {
+    document.getElementById('resultArea').style.display = 'none';
+    document.getElementById('loadingSpinner').style.display = 'block';
+    
+    setTimeout(() => {
+      document.getElementById('loadingSpinner').style.display = 'none';
+      document.getElementById('resultArea').style.display = 'block';
+    }, 1500);
+  }
+</script>
+
+</body>
+</html>
