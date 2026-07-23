@@ -209,18 +209,18 @@ function calcNumerologyPair(male, female) {
    ============================================================ */
 
 const ZODIAC_SIGNS = [
-  { name: 'Овен',        url: 'oven',        element: 'Огонь',  period: '21 мар - 19 апр', start: [3, 21], end: [4, 19] },
-  { name: 'Телец',       url: 'telets',      element: 'Земля',  period: '20 апр - 20 мая', start: [4, 20], end: [5, 20] },
-  { name: 'Близнецы',    url: 'bliznecy',    element: 'Воздух', period: '21 мая - 20 июн', start: [5, 21], end: [6, 20] },
-  { name: 'Рак',         url: 'rak',         element: 'Вода',   period: '21 июн - 22 июл', start: [6, 21], end: [7, 22] },
-  { name: 'Лев',         url: 'lev',         element: 'Огонь',  period: '23 июл - 22 авг', start: [7, 23], end: [8, 22] },
-  { name: 'Дева',        url: 'deva',        element: 'Земля',  period: '23 авг - 22 сен', start: [8, 23], end: [9, 22] },
-  { name: 'Весы',        url: 'vesy',        element: 'Воздух', period: '23 сен - 22 окт', start: [9, 23], end: [10, 22] },
-  { name: 'Скорпион',    url: 'skorpion',    element: 'Вода',   period: '23 окт - 21 ноя', start: [10, 23], end: [11, 21] },
-  { name: 'Стрелец',     url: 'strelets',    element: 'Огонь',  period: '22 ноя - 21 дек', start: [11, 22], end: [12, 21] },
-  { name: 'Козерог',     url: 'kozerog',     element: 'Земля',  period: '22 дек - 20 янв', start: [12, 22], end: [1, 20] },
-  { name: 'Водолей',     url: 'vodoley',     element: 'Воздух', period: '21 янв - 18 фев', start: [1, 21], end: [2, 18] },
-  { name: 'Рыбы',        url: 'riby',        element: 'Вода',   period: '19 фев - 20 мар', start: [2, 19], end: [3, 20] },
+  { name: 'Aries',       url: 'oven',        element: 'Fire',  period: 'Mar 21 - Apr 19', start: [3, 21], end: [4, 19] },
+  { name: 'Taurus',      url: 'telets',      element: 'Earth', period: 'Apr 20 - May 20', start: [4, 20], end: [5, 20] },
+  { name: 'Gemini',      url: 'bliznecy',    element: 'Air',   period: 'May 21 - Jun 20', start: [5, 21], end: [6, 20] },
+  { name: 'Cancer',      url: 'rak',         element: 'Water', period: 'Jun 21 - Jul 22', start: [6, 21], end: [7, 22] },
+  { name: 'Leo',         url: 'lev',         element: 'Fire',  period: 'Jul 23 - Aug 22', start: [7, 23], end: [8, 22] },
+  { name: 'Virgo',       url: 'deva',        element: 'Earth', period: 'Aug 23 - Sep 22', start: [8, 23], end: [9, 22] },
+  { name: 'Libra',       url: 'vesy',        element: 'Air',   period: 'Sep 23 - Oct 22', start: [9, 23], end: [10, 22] },
+  { name: 'Scorpio',     url: 'skorpion',    element: 'Water', period: 'Oct 23 - Nov 21', start: [10, 23], end: [11, 21] },
+  { name: 'Sagittarius', url: 'strelets',    element: 'Fire',  period: 'Nov 22 - Dec 21', start: [11, 22], end: [12, 21] },
+  { name: 'Capricorn',   url: 'kozerog',     element: 'Earth', period: 'Dec 22 - Jan 20', start: [12, 22], end: [1, 20] },
+  { name: 'Aquarius',    url: 'vodoley',     element: 'Air',   period: 'Jan 21 - Feb 18', start: [1, 21], end: [2, 18] },
+  { name: 'Pisces',      url: 'riby',        element: 'Water', period: 'Feb 19 - Mar 20', start: [2, 19], end: [3, 20] },
 ];
 
 function zodiacIndex(day, month) {
@@ -240,12 +240,12 @@ function zodiacIndex(day, month) {
 }
 
 const ELEMENT_HARMONY = {
-  same: 'Одна стихия — полная гармония',
+  same: 'Same element — perfect harmony',
   compatible: {
-    'Воздух-Огонь': 'Союз стихий в гармонии',
-    'Вода-Земля': 'Союз стихий в гармонии',
+    'Air-Fire': 'Elements in harmony',
+    'Earth-Water': 'Elements in harmony',
   },
-  clash: 'Союз стихий не гармоничен',
+  clash: 'Elements clash',
 };
 
 function elementHarmonyText(elA, elB) {
@@ -263,39 +263,39 @@ function elementHarmonyText(elA, elB) {
 // from observed data rather than derived from a single universal rule.
 const ROLE_INFO = [
   {
-    title: '«Я и мое зеркало»', symmetric: true, name: 'Отражение',
-    roleDifference: 'Одинаковые знаки',
-    description: 'Частая встреча одинаковых знаков происходит в юности. Они легко читают партнера как «своего человека». Им кажется, что никто их не понимает, как он. Но обратная сторона в том, что и все свои негативные черты они точно так же легко замечают друг в друге. У зрелых партнеров эти отношения выглядят более перспективными. Хотя с возрастом вероятность встреч одинаковых знаков становится реже.',
+    title: '"Me and my mirror"', symmetric: true, name: 'Reflection',
+    roleDifference: 'Same signs',
+    description: 'Frequent encounter of identical signs happens in youth. They easily read their partner as "their own person". It seems to them that no one understands them like they do. But the downside is that they also easily notice all their negative traits in each other. For mature partners, these relationships look more promising. Although with age, the probability of identical signs meeting becomes lower.',
   },
   {
-    title: '«Лучший друг и лучший враг»', names: ['Лучший друг', 'Лучший враг'],
-    roleDifference: 'Соседние знаки',
-    description: 'Соседние знаки обычно неплохо дружат. Но их взаимодействие в отношениях часто неравноценно и корыстно. Эксплуатируемая сторона — «Лучший друг». Тогда как «Лучший враг» получает выгоду от отношений и в крайних стадиях пользуется «Лучшим другом», когда хочется ему, а не партнеру. Как итог «Лучший враг» перестает ценить партнера, а «Лучший друг» обнаруживает невзаимность.',
+    title: '"Best friend and worst enemy"', names: ['Best friend', 'Worst enemy'],
+    roleDifference: 'Neighboring signs',
+    description: 'Neighboring signs usually get along well. But their interaction in relationships is often unequal and self-serving. The exploited side is the "Best friend". Whereas the "Worst enemy" benefits from the relationship and in extreme stages uses the "Best friend" when they want, not the partner. As a result, the "Worst enemy" stops valuing the partner, and the "Best friend" discovers the lack of reciprocity.',
   },
   {
-    title: '«Старший брат и младший брат»', names: ['Младший брат', 'Старший брат'],
-    roleDifference: '+2 и -2 позиции',
-    description: 'Благоприятная комбинация знаков совместимых стихий. Не важно кто выполняет какую роль — мужчина или женщина. «Старший брат» всегда готов оказать поддержку, подставить плечо и выручить младшего. «Младший» благодарен за это и ценит в старшем мудрость, особенно когда со времен видит, что «Старший» был прав в ситуациях прошлого. Обычно «Младший» более активен, но может быть капризным и проявлять непокорность. «Старшему» стоить проявить снисхождение в таких случаях.',
+    title: '"Older sibling and younger sibling"', names: ['Younger sibling', 'Older sibling'],
+    roleDifference: '+2 and -2 positions',
+    description: 'A favorable combination of compatible element signs. It does not matter who plays which role - man or woman. The "Older sibling" is always ready to support, lend a shoulder and help the younger one out. The "Younger" is grateful for this and appreciates the wisdom in the older one, especially when they later see that the "Older" was right in past situations. Usually the "Younger" is more active, but can be capricious and show disobedience. The "Older" should show leniency in such cases.',
   },
   {
-    title: '«Покровитель и советник»', names: ['Покровитель', 'Советник'],
-    roleDifference: '+3 и -3 позиции',
-    description: 'Эти знаки столь далеких друг от друга стихий находят неплохую деловую совместимость. Обычно с этого все и начинается. А потом им кажется, что отношения можно развить глубже. «Покровитель», как правило, активней и инициатива за ним. Он оказывает протекторат советнику, спонсорство, дает наставления, очерчивает общую картину действий. «Советник» хорош в анализе, оценках и реализации планов. Но в душе «Советник» чувствует свою второстепенную роль, он будто загнан в угол и не находит собственного проявления.',
+    title: '"Patron and advisor"', names: ['Patron', 'Advisor'],
+    roleDifference: '+3 and -3 positions',
+    description: 'These signs of elements so far apart find good business compatibility. Usually everything starts with this. And then it seems to them that the relationship can be developed deeper. The "Patron", as a rule, is more active and takes the initiative. They provide patronage to the advisor, sponsorship, give instructions, outline the big picture. The "Advisor" is good at analysis, assessment and plan implementation. But deep down, the "Advisor" feels their secondary role, as if they are backed into a corner and cannot find their own expression.',
   },
   {
-    title: '«Ребенок и родитель / Ученик и учитель»', names: ['Ребенок', 'Родитель'],
-    roleDifference: '+4 и -4 позиции',
-    description: 'Образцовая дружеская и семейная пара знаков одной стихии. Общение на одном языке, фундамент на одних ценностях, цели и инструменты их достижения схожи. Весьма прочные союзы при условии принятия и соблюдения своих ролей. Идеальный вариант, когда мужчина в роли «Родителя / Учителя». Если женщина окажется «Родителем», то ей следует осознать и принять партнера в его роли. Тогда она сможет быть той самой «шеей» для головы из поговорки. А мужчина станет локомотивом, несущимся на всех парах.',
+    title: '"Child and parent / Student and teacher"', names: ['Child', 'Parent'],
+    roleDifference: '+4 and -4 positions',
+    description: 'An exemplary friendship and family pair of signs of the same element. Communication in the same language, foundation on the same values, goals and tools for achieving them are similar. Very strong unions provided they accept and fulfill their roles. The ideal option is when the man is in the role of "Parent / Teacher". If the woman turns out to be the "Parent", then she should realize and accept her partner in his role. Then she can be the "neck" for the head from the proverb. And the man will become a locomotive rushing at full speed.',
   },
   {
-    title: '«Удав и кролик»', names: ['Кролик', 'Удав'],
-    roleDifference: '+5 и -5 позиций',
-    description: 'Опасная пара для «Кролика», если он не сумел сразу считать своего «Удава» и избежать взаимодействия. У многих «Кроликов» с опытом так и происходит. Но юный «Кролик» рискует поддаться словно гипнотической притягательности «Удава» и попасть в его ловушку. Признаем, что «Удав» не обязательно охотник по своему характеру — им его делает особенность этой пары. Для него это может быть просто как очередное развлечение. А для «Кролика» при возникшей глубине чувств обернется крахом надежд. Манипуляции, иллюзии, подавление, доминация — типичные особенности финишной прямой этих отношений.',
+    title: '"Boa and rabbit"', names: ['Rabbit', 'Boa'],
+    roleDifference: '+5 and -5 positions',
+    description: 'A dangerous pair for the "Rabbit" if they fail to immediately read their "Boa" and avoid interaction. Many experienced "Rabbits" have exactly this happen. But a young "Rabbit" risks giving in to the almost hypnotic attraction of the "Boa" and falling into its trap. Let us admit that the "Boa" is not necessarily a hunter by nature - the peculiarity of this pair makes them so. For them, it might just be another amusement. And for the "Rabbit", given the depth of feelings that arise, it will turn into crushed hopes. Manipulation, illusions, suppression, domination - typical features of the final stretch of these relationships.',
   },
   {
-    title: '«Противоположности притягиваются»', symmetric: true, malName: '«Янь»', femaleName: '«Инь»',
-    roleDifference: 'диаметрально противоположны на круге',
-    description: 'Эта яркая и полная бурлящей энергии совместимость не для юных неокрепших партнеров. Хотя именно в юности их так непреодолимо тянет друг к другу. И они не понимают почему: ведь они такие разные, как и их, пусть и совместимые, стихии. В юности есть риск разбить сердца и оставить об этом след на всю жизнь. Зато сколько перспектив у этой пары для взрослых осознанных партнеров. Дополнение друг друга, поддержка и обогащение, глубокий диалог. Ярчайший союз в случае благоприятного раскрытия.',
+    title: '"Opposites attract"', symmetric: true, malName: '"Yang"', femaleName: '"Yin"',
+    roleDifference: 'diametrically opposed on the wheel',
+    description: 'This bright and bubbling energy compatibility is not for young, fragile partners. Although it is in youth that they are so irresistibly drawn to each other. And they do not understand why: after all, they are so different, just like their compatible elements. In youth there is a risk of breaking hearts and leaving a mark for life. But how many prospects this pair has for mature, conscious partners. Complementing each other, supporting and enriching, deep dialogue. The brightest union in case of favorable unfolding.',
   },
 ];
 
@@ -326,7 +326,7 @@ function calcZodiacRoles(mDay, mMonth, fDay, fMonth) {
     zodiacRoleMale,
     zodiacRoleFemale,
     zodiacRoleDescription: info.description,
-    zodiacPairText: `Союз ${ZODIAC_SIGNS[mIdx].name} и ${ZODIAC_SIGNS[fIdx].name} — это сочетание «${info.title.replace(/«|»/g, '')}». ${info.description}`,
+    zodiacPairText: `The union of ${ZODIAC_SIGNS[mIdx].name} and ${ZODIAC_SIGNS[fIdx].name} is a combination of ${info.title}. ${info.description}`,
     positions: [mPos, fPos, rawDiff],
   };
 }
@@ -447,7 +447,7 @@ function calcChakra(mDateMs, fDateMs) {
     const val = Math.round(100 - (dist / (T / 2)) * 100);
     
     chart[key] = val;
-    labels[`${key}-label`] = val >= 75 ? 'Высокая' : (val <= 15 ? 'Низкая' : '');
+    labels[`${key}-label`] = val >= 75 ? 'High' : (val <= 15 ? 'Low' : '');
     if (val >= 55) { compatCount++; compatibleKeys.push(key); }
     if (val < 20) dissonanceCount++;
   }
@@ -463,20 +463,20 @@ function calcChakra(mDateMs, fDateMs) {
   
   let balanceTotal = '';
   const balDiff = Math.abs(balanceMale - balanceFemale);
-  if (balDiff <= 15) balanceTotal = 'Баланс ровный';
-  else if (balanceFemale > balanceMale) balanceTotal = 'Баланс «женский» — благоприятно';
-  else balanceTotal = 'Баланс «мужской» — благоприятно';
+  if (balDiff <= 15) balanceTotal = 'Even balance';
+  else if (balanceFemale > balanceMale) balanceTotal = '"Female" balance — favorable';
+  else balanceTotal = '"Male" balance — favorable';
 
   // Override logic from original
   if (chart.physical < 40 && chart.emotional < 40 && chart.intellect < 40 && (chart.heart > 60 || chart.intuitive > 60)) {
-     balanceTotal = 'Высокие отношения (без 3-х нижних чакр)';
+     balanceTotal = 'High relationships (without the 3 lower chakras)';
   }
 
   return {
     bio_result_top: {
       datesDiff,
-      totalCompatibility: `${compatCount} совместимост${compatCount === 1 ? 'ь' : (compatCount >= 2 && compatCount <= 4 ? 'и' : 'ей')}`,
-      totalDissonance: dissonanceCount === 0 ? 'Нет диссонансов' : `${dissonanceCount} диссонанс${dissonanceCount === 1 ? '' : (dissonanceCount <= 4 ? 'а' : 'ов')}`,
+      totalCompatibility: `${compatCount} compatibilit${compatCount === 1 ? 'y' : 'ies'}`,
+      totalDissonance: dissonanceCount === 0 ? 'No dissonances' : `${dissonanceCount} dissonance${dissonanceCount === 1 ? '' : 's'}`,
       chakreClasses: compatibleKeys.map(k => CLASS_MAP[k]),
     },
     bio_result_chart: chart,
