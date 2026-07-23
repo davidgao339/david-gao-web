@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Demos | David Gao</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --accent: #10b981;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding: 2rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 4rem;
+      margin-top: 2rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #3b82f6, #10b981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    header p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .card-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+    }
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+    .card-btn {
+      display: inline-block;
+      text-align: center;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+    .card-btn:hover {
+      background-color: var(--primary-hover);
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 4rem;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    .back-link:hover {
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>App Demos</h1>
+      <p>A collection of high-performance internal tools and business applications I've built to solve complex operations.</p>
+    </header>
+
+    <div class="grid">
+      <!-- App 1 -->
+      <div class="card">
+        <img src="assets/schedule_app.jpg" alt="Schedule App" class="card-img">
+        <div class="card-content">
+          <h2 class="card-title">Employee Scheduling</h2>
+          <p class="card-desc">A responsive React 19 application for managing complex employee shift schedules with intuitive drag-and-drop mechanics.</p>
+          <a href="schedule-app/" class="card-btn">View Demo</a>
+        </div>
+      </div>
+
+      <!-- App 2 -->
+      <div class="card">
+        <img src="assets/inventory_app.jpg" alt="Inventory App" class="card-img">
+        <div class="card-content">
+          <h2 class="card-title">Inventory Management</h2>
+          <p class="card-desc">A blazing-fast Vite React app tracking real-time stock levels, waste metrics, and reorder thresholds across multiple locations.</p>
+          <a href="inventory-app/" class="card-btn">View Demo</a>
+        </div>
+      </div>
+
+      <!-- App 3 -->
+      <div class="card">
+        <img src="assets/optimizer_app.jpg" alt="Schedule Optimizer" class="card-img">
+        <div class="card-content">
+          <h2 class="card-title">AI Schedule Optimizer</h2>
+          <p class="card-desc">An interactive Python (Streamlit) CP-SAT solver that generates mathematically optimal staff schedules based on business constraints.</p>
+          <a href="schedule-optimizer/" class="card-btn">View Interactive Mockup</a>
+        </div>
+      </div>
+
+      <!-- App 4 -->
+      <div class="card">
+        <img src="assets/bank_app.jpg" alt="Bank Statement Analyzer" class="card-img">
+        <div class="card-content">
+          <h2 class="card-title">Bank Statement Analyzer</h2>
+          <p class="card-desc">An automated BI tool that parses thousands of banking CSV rows into clean charts, categorizing income and expenses instantly.</p>
+          <a href="bank-statement/" class="card-btn">View Interactive Mockup</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <a href="/" class="back-link">← Back to Portfolio</a>
+    </div>
+  </div>
+
+</body>
+</html>
