@@ -316,7 +316,7 @@ function calculate() {
       if (clashCount > 0) {
         if (pBoth) pBoth.classList.remove('hidden');
       }
-    } else if (verdict.includes('Perfect match')) {
+    } else if (verdict.includes('Perfect Match')) {
       summaryBlock.classList.remove('hidden');
       summaryBlock.style.borderLeft = "4px solid #10b981";
       summaryBlock.style.background = "rgba(16, 185, 129, 0.05)";
