@@ -189,6 +189,9 @@ function renderFullReport(report, yourName, partnerName) {
 /* ============================================================
    MAIN CALCULATE HANDLER
    ============================================================ */
+let chartInstance = null;
+let originalSummaryHTML = null;
+
 function calculate() {
   const yourName = document.getElementById('your-name').value.trim();
   const partnerName = document.getElementById('partner-name').value.trim();
@@ -261,6 +264,17 @@ function calculate() {
 
     // Handle Low Compatibility Summary in Modal
     const summaryBlock = document.getElementById('low-compat-summary');
+    if (originalSummaryHTML === null) {
+      originalSummaryHTML = summaryBlock.innerHTML;
+    }
+    // Restore pristine HTML in case it was overwritten in a previous calculation
+    summaryBlock.innerHTML = originalSummaryHTML;
+    
+    // Reset classes
+    summaryBlock.className = 'report-section hidden';
+    summaryBlock.style.borderLeft = "4px solid #ef4444";
+    summaryBlock.style.background = "rgba(239, 68, 68, 0.05)";
+
     const pHarmony = document.getElementById('low-compat-harmony');
     const pEmotion = document.getElementById('low-compat-emotion');
     const pBoth = document.getElementById('low-compat-both');
