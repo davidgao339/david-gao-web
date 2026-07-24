@@ -162,9 +162,9 @@ function populateSelects() {
     const monthEl = document.getElementById(`${prefix}-month`);
     const yearEl  = document.getElementById(`${prefix}-year`);
 
-    const do1 = document.createElement('option'); do1.value = ""; do1.textContent = "Day"; do1.disabled = true; do1.selected = true; dayEl.appendChild(do1);
-    const mo1 = document.createElement('option'); mo1.value = ""; mo1.textContent = "Month"; mo1.disabled = true; mo1.selected = true; monthEl.appendChild(mo1);
-    const yo1 = document.createElement('option'); yo1.value = ""; yo1.textContent = "Year"; yo1.disabled = true; yo1.selected = true; yearEl.appendChild(yo1);
+    const do1 = document.createElement('option'); do1.value = ""; do1.textContent = "Day"; do1.selected = true; dayEl.appendChild(do1);
+    const mo1 = document.createElement('option'); mo1.value = ""; mo1.textContent = "Month"; mo1.selected = true; monthEl.appendChild(mo1);
+    const yo1 = document.createElement('option'); yo1.value = ""; yo1.textContent = "Year"; yo1.selected = true; yearEl.appendChild(yo1);
 
     for (let d = 1; d <= 31; d++) {
       const o = document.createElement('option'); o.value = d; o.textContent = d; dayEl.appendChild(o);
