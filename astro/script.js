@@ -151,39 +151,8 @@ function renderZodiac(data, yourName, partnerName) {
    RENDER: FULL REPORT
    ============================================================ */
 function renderFullReport(report, yourName, partnerName) {
-  const yName = yourName || "You";
-  const pName = partnerName || "Partner";
-
-  document.getElementById('report-num-male').innerHTML = `
-    <strong>${yName}'s Core Energy:</strong> ${report.maleNumerology.consText[0]} - ${report.maleNumerology.consText[1]}<br><br>
-    <strong>Positive Traits:</strong> ${report.maleNumerology.consText[2]}<br><br>
-    <strong>Negative Traits:</strong> ${report.maleNumerology.consText[3]}<br><br>
-    <strong>Relationship Profile:</strong> ${report.maleNumerology.consText[4]}
-  `;
-  document.getElementById('report-num-female').innerHTML = `
-    <strong>${pName}'s Core Energy:</strong> ${report.femaleNumerology.consText[0]} - ${report.femaleNumerology.consText[1]}<br><br>
-    <strong>Positive Traits:</strong> ${report.femaleNumerology.consText[2]}<br><br>
-    <strong>Negative Traits:</strong> ${report.femaleNumerology.consText[3]}<br><br>
-    <strong>Relationship Profile:</strong> ${report.femaleNumerology.consText[4]}
-  `;
-
-  document.getElementById('report-pair-energy').innerHTML = `
-    <strong>Matrix Destinies Pair Energy (${report.pairNumerology.cons}):</strong><br><br>${report.pairNumerology.consCharact}
-  `;
-
-  document.getElementById('report-arcana-male').innerHTML = `
-    <strong>${yName} (Arcana ${report.maleArcana.arcane[1]} - ${report.maleArcana.arcane[0]}):</strong><br><br>${report.maleArcana.arcane[4]}
-  `;
-  document.getElementById('report-arcana-female').innerHTML = `
-    <strong>${pName} (Arcana ${report.femaleArcana.arcane[1]} - ${report.femaleArcana.arcane[0]}):</strong><br><br>${report.femaleArcana.arcane[4]}
-  `;
-
-  document.getElementById('report-scenario-male').innerHTML = `
-    <strong>${yName} (Born in ${report.maleScenario.love_month}):</strong><br><br>${report.maleScenario.love_text}
-  `;
-  document.getElementById('report-scenario-female').innerHTML = `
-    <strong>${pName} (Born in ${report.femaleScenario.love_month}):</strong><br><br>${report.femaleScenario.love_text}
-  `;
+  // Extra report details (Numerology, Tarot, Scenarios) have been removed
+  // We leave this function empty so it doesn't crash, but it can be expanded later if needed.
 }
 
 /* ============================================================
@@ -254,10 +223,18 @@ function calculate() {
     if (verdict.includes('Perfect Match')) {
       verdict = verdict.replace('Perfect Match', "It's a perfect match. You found TRUE LOVE");
       finalVerdictEl.className = 'verdict-text verdict-good';
-    } else {
+      finalVerdictEl.textContent = verdict;
+    } else if (verdict.includes('Not compatible')) {
       finalVerdictEl.className = 'verdict-text verdict-bad';
+      finalVerdictEl.innerHTML = `
+        <div style="color: #ef4444; font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;">NOT COMPATIBLE</div>
+        <div style="color: #60a5fa; font-size: 1.1rem; margin-top: 5px;">(Can be friends)</div>
+      `;
+    } else {
+      // Good compatibility (but not perfect)
+      finalVerdictEl.className = 'verdict-text verdict-good';
+      finalVerdictEl.textContent = verdict;
     }
-    finalVerdictEl.textContent = verdict;
 
     // Render Full Report
     renderFullReport(data.full_report, yourName, partnerName);
