@@ -93,68 +93,68 @@ function calcPifagor(day, month, year) {
    ============================================================ */
 
 const CONS_TEXT = {
-  1: ['Солнце', 'Царь', 'Лидерство, сила духа, целеустремленность, один в поле воин, уверенность, экспансия', 'Агрессия, эгоизм, неприятие чужого мнения, твердолобость, ЧСВ, наставления другим', 'Верные, если рядом «лучший» партнер в их понимании, который умеет проявлять уважение и ценить их.'],
-  2: ['Луна', 'Дипломат', 'Партнерство, дружелюбие, доверие, вежливость, понимание деталей, гармония, чуткость', 'Сомнения, депрессия, неумение отказать, ношение внешней «маски», страдания', 'Верные, если находятся под контролем. Часто не могут найти силы для отказа предложениям извне.'],
-  3: ['Юпитер', 'Главбух', 'Мозг-нейросеть, анализ, расчет, знания, трезвый взгляд, надежность, забота, самовыражение', 'Поступки из выгоды, хитрость, советы всем вокруг, «душнила», лудомания', 'Верные, т.к. живут больше разумом, чем чувствами. Могут быть холодны и к партнеру.'],
-  4: ['Раху', 'Оппозиция', 'Генерация идей, практичность, постановка целей, вдохновение, созидательность', 'Разрушение, роль «жертвы», критика, мошенничество, неудовлетворенность', 'Риск измен, если в минусе — неудовлетворены, всегда мало. Умеют вести двойную игру с честными глазами.'],
-  5: ['Меркурий', 'Бизнесмен', 'Коммуникации, деловой склад, интеллект, гибкость змеи, изобретательность, адекватность', 'Потеря фокуса, болтовня, двуличность, холодность, эмоциональная уязвимость, обман', 'Верные, если погружены в свои проекты. Иначе бывают мимолетные связи без разбора.'],
-  6: ['Венера', 'Гедонист', 'Любовь к жизни и людям, наслаждения, красота, комфорт, мудрость, доброе сердце, творчество', 'Зависимости, соблазны, аморальность, лень, мелочность, хандра, истерики', 'Любвеобильны, могут иметь несколько партнеров в разных ролях. Идут на все ради страсти.'],
-  7: ['Кету', 'Просвещенный', 'Талант, гениальность, звездность, свой взгляд на вещи, амбиции, преодоление, темперамент', 'Непризнанность, неверие в себя, кризисы, хаос в себе и для ближних, звездная болезнь', 'Самая сильная любовная энергетика. Часто в фоновом поиске новых экспериментов.'],
-  8: ['Сатурн', 'Директор завода', 'Работа на результат, капитал, воля, управление людьми и ресурсами, дисциплина, системность', 'Жадность, бездуховность, нечуткость, пессимизм, жизнь прошлым, уход из социума', 'Верные, если между партнерами настоящая любовь. Если не находят ее, то могут оставаться одиночками.'],
-  9: ['Марс', 'Воин', 'Борец за все хорошее, помощь ближним, созидание, сильная психика, принципы, продуктивность', 'Слив энергии, болезни психики, отвержение, материализм, неоцененность', 'В целом семейные. Но прежде могут долго перебирать партнеров. Им нужен такой же темпераментный.'],
+  1: ['Sun', 'King', 'Leadership, strength of spirit, purposefulness, one man army, confidence, expansion', 'Aggression, egoism, intolerance of others opinions, stubbornness, high ego, lecturing others', 'Faithful, if they are with the "best" partner in their understanding, who knows how to show respect and appreciate them.'],
+  2: ['Moon', 'Diplomat', 'Partnership, friendliness, trust, politeness, understanding details, harmony, sensitivity', 'Doubts, depression, inability to say no, wearing an external "mask", suffering', 'Faithful, if they are under control. Often cannot find the strength to refuse outside offers.'],
+  3: ['Jupiter', 'Chief Accountant', 'Neural network brain, analysis, calculation, knowledge, sober look, reliability, care, self-expression', 'Actions out of profit, cunning, giving advice to everyone around, being a "bore", gambling addiction', 'Faithful, because they live more by reason than by feelings. Can be cold to the partner.'],
+  4: ['Rahu', 'Opposition', 'Generating ideas, practicality, setting goals, inspiration, creativity', 'Destruction, playing the "victim", criticism, fraud, dissatisfaction', 'Risk of betrayal if in the negative — dissatisfied, always not enough. Know how to play a double game with honest eyes.'],
+  5: ['Mercury', 'Businessman', 'Communications, business mindset, intellect, flexibility of a snake, resourcefulness, adequacy', 'Loss of focus, chatter, two-facedness, coldness, emotional vulnerability, deceit', 'Faithful, if immersed in their projects. Otherwise there can be fleeting connections indiscriminately.'],
+  6: ['Venus', 'Hedonist', 'Love for life and people, pleasures, beauty, comfort, wisdom, kind heart, creativity', 'Addictions, temptations, immorality, laziness, pettiness, spleen, tantrums', 'Loving, can have several partners in different roles. Will do anything for passion.'],
+  7: ['Ketu', 'Enlightened', 'Talent, genius, stardom, their own view of things, ambition, overcoming, temperament', 'Unrecognized, disbelief in themselves, crises, chaos in themselves and for loved ones, star disease', 'The strongest love energy. Often in a background search for new experiments.'],
+  8: ['Saturn', 'Factory Director', 'Working for results, capital, will, managing people and resources, discipline, consistency', 'Greed, lack of spirituality, insensitivity, pessimism, living in the past, withdrawal from society', 'Faithful, if there is true love between partners. If they do not find it, they can remain loners.'],
+  9: ['Mars', 'Warrior', 'Fighter for all things good, helping neighbors, creation, strong psyche, principles, productivity', 'Drain of energy, mental illnesses, rejection, materialism, unappreciated', 'Generally family-oriented. But first they can sort through partners for a long time. They need someone just as temperamental.'],
 };
 
 // consDoubleEnergy: keyed by "d1+d2" (tens digit + ones digit, in that
 // order) of a two-digit birth day — populated only when day >= 10.
 const CONS_DOUBLE_ENERGY = {
-  '1+0': ['Через энергии 1 и 0', 'Лидер с дополнительным нулем: либо усиление, либо обнуление. В плюсе опережает всех конкурентов на милю. В минусе рушит проекты.'],
-  '1+1': ['Через энергии 1 и 1', 'Партнерство через две лидерские единицы («11»). В плюсе инициаторы и покровители для партнеров. В минусе эгоисты и одиночки. '],
-  '1+2': ['Через энергии 1 и 2', 'В плюсе мудрый, понимающий («2») и инициативный лидер («1») в своем кругу. В минусе считающий себя самым умным эгоист и страдалец.'],
-  '1+3': ['Через энергии 1 и 3', 'Идейность с лидерством («1»), интеллектом («3») и заботой в плюсе. В минусе надо прокачать понимание, отбросить критику и самомнение.'],
-  '1+4': ['Через энергии 1 и 4', 'Самостоятельный волевой («1») креатор («4»), знающий свое дело и цели. В минусе эмоционально нестабилен, обидчив и жаждет признания.'],
-  '1+5': ['Через энергии 1 и 5', 'Возможность реализация творчества как бизнеса («5») через волю («1») и коммуникации. В минусе придется преодолеть соблазны, обиды и эгозим.'],
-  '1+6': ['Через энергии 1 и 6', 'Жизнь даст им все, если они укрепят волю («1»), разовьют мудрость («6») и творчество. Иначе риск стать эгоистом, ищущим только наслаждения.'],
-  '1+7': ['Через энергии 1 и 7', 'Гений и звезда («7») с волевыми качествами («1»). Успех придет за счет труда и системности. Риск лежит в хаосе, кризисах и раздутом эго.'],
-  '1+8': ['Через энергии 1 и 8', 'Воля («1»), системность и трудолюбие («8») укрепляют основную энергию. Чтобы не стать отшельником, слив энергию, нужно работать в партнерстве.'],
-  '1+9': ['Через энергии 1 и 9', 'Лидер («1»), воин («9») и борец за все хорошее против всего плохого. В плюсе спасет всех и работает на их благо. В минусе агрессия и деспотизм.'],
-  '2+0': ['Через энергии 2 и 0', 'Партнерство с дополнительным нулем: либо усиление, либо обнуление. В плюсе понимающие, сердечные, взаимные. В минусе обнуляют все отношения.'],
-  '2+1': ['Через энергии 2 и 1', 'В плюсе гуру с мягкой («2») силой («1»). Но без наработки понимания («2») и воли («1») не уверен в своих знаниях и сбрасывает ответственность.'],
-  '2+2': ['Через энергии 2 и 2', 'Тонкие психологи («2») и незаменимые партнеры, умеющие искать решения. Но в минусе все партнерства придут к страданию и разрушению.  '],
-  '2+3': ['Через энергии 2 и 3', 'Интеллект («3») и понимание других («2») позволят управлять проектами и передавать знания. В минусе страдальцы в вечных сомнениях.'],
-  '2+4': ['Через энергии 2 и 4', 'Партнерство («2»), генераций идей («4») и умение видеть цели принесут реализацию. Но в минусе сомнения принесут негатив и разрушение.'],
-  '2+5': ['Через энергии 2 и 5', 'Партнерство и понимание («2») отлично реализуются с коммуникациями и деловым складом («5»). В минусе это страдания, сомнения и хитрость.'],
-  '2+6': ['Через энергии 2 и 6', 'Творческая («6») и тонко понимающая («2») других личность. Высокая планка в жизни. Но успеху могут помешать сомнения и действия на поводу соблазнов.'],
-  '2+7': ['Через энергии 2 и 7', 'Ключи к успеху: партнерство, помощь («2») и решение задач, которые сломили других («7»). Неуспех в мизантропии, хаосе и постоянных кризисах.'],
-  '2+8': ['Через энергии 2 и 8', 'Лидерство через партнерство («2»), системность («8») и трудолюбие. Успех в командной работе, бизнесе. В минусе обиды и непонимание других.'],
-  '2+9': ['Через энергии 2 и 9', 'Партнер («2»), способный объединить других на борьбу («9») за правое дело, на помощь и спасение мира. В минусе борьба ради борьбы.'],
-  '3+0': ['Через энергии 3 и 0', 'Интеллект с дополнительным нулем: либо усиление, либо обнуление. В плюсе разносторонняя личность. В минусе обесценивает знания.'],
-  '3+1': ['Через энергии 3 и 1', 'Генерация идей на основе интеллекта и знаний («3») и воплощение за счет воли («1»). В минусе испытывают непонимание с другими, прогибают их.'],
+  '1+0': ['Through energies 1 and 0', 'A leader with an additional zero: either amplification or nullification. In the positive, ahead of all competitors by a mile. In the negative, ruins projects.'],
+  '1+1': ['Through energies 1 and 1', 'Partnership through two leadership units ("11"). In the positive, initiators and patrons for partners. In the negative, egoists and loners.'],
+  '1+2': ['Through energies 1 and 2', 'In the positive, a wise, understanding ("2") and proactive leader ("1") in their circle. In the negative, an egoist who considers themselves the smartest, and a sufferer.'],
+  '1+3': ['Through energies 1 and 3', 'Ideology with leadership ("1"), intellect ("3") and care in the positive. In the negative, they need to develop understanding, discard criticism and conceit.'],
+  '1+4': ['Through energies 1 and 4', 'Independent strong-willed ("1") creator ("4"), knowing their business and goals. In the negative, emotionally unstable, touchy and thirsty for recognition.'],
+  '1+5': ['Through energies 1 and 5', 'Opportunity to realize creativity as a business ("5") through will ("1") and communications. In the negative, they will have to overcome temptations, resentments and egoism.'],
+  '1+6': ['Through energies 1 and 6', 'Life will give them everything if they strengthen their will ("1"), develop wisdom ("6") and creativity. Otherwise, the risk of becoming an egoist, seeking only pleasure.'],
+  '1+7': ['Through energies 1 and 7', 'Genius and star ("7") with strong-willed qualities ("1"). Success will come through labor and consistency. The risk lies in chaos, crises and an inflated ego.'],
+  '1+8': ['Through energies 1 and 8', 'Will ("1"), consistency and hard work ("8") strengthen the main energy. So as not to become a hermit, draining energy, you need to work in partnership.'],
+  '1+9': ['Through energies 1 and 9', 'Leader ("1"), warrior ("9") and fighter for all things good against all things bad. In the positive, will save everyone and work for their benefit. In the negative, aggression and despotism.'],
+  '2+0': ['Through energies 2 and 0', 'Partnership with an additional zero: either amplification or nullification. In the positive, understanding, sincere, mutual. In the negative, nullify all relationships.'],
+  '2+1': ['Through energies 2 and 1', 'In the positive, a guru with a soft ("2") power ("1"). But without developing understanding ("2") and will ("1") is not confident in their knowledge and sheds responsibility.'],
+  '2+2': ['Through energies 2 and 2', 'Subtle psychologists ("2") and indispensable partners who know how to find solutions. But in the negative, all partnerships will lead to suffering and destruction.'],
+  '2+3': ['Through energies 2 and 3', 'Intellect ("3") and understanding of others ("2") will allow managing projects and transferring knowledge. In the negative, sufferers in eternal doubts.'],
+  '2+4': ['Through energies 2 and 4', 'Partnership ("2"), idea generation ("4") and the ability to see goals will bring realization. But in the negative, doubts will bring negativity and destruction.'],
+  '2+5': ['Through energies 2 and 5', 'Partnership and understanding ("2") are perfectly realized with communications and a business mindset ("5"). In the negative, this is suffering, doubts and cunning.'],
+  '2+6': ['Through energies 2 and 6', 'Creative ("6") and subtly understanding ("2") personality. High bar in life. But success can be hindered by doubts and actions led by temptations.'],
+  '2+7': ['Through energies 2 and 7', 'Keys to success: partnership, help ("2") and solving problems that broke others ("7"). Failure in misanthropy, chaos and constant crises.'],
+  '2+8': ['Through energies 2 and 8', 'Leadership through partnership ("2"), consistency ("8") and hard work. Success in teamwork, business. In the negative, resentments and misunderstanding of others.'],
+  '2+9': ['Through energies 2 and 9', 'Partner ("2"), capable of uniting others to fight ("9") for a just cause, to help and save the world. In the negative, fighting for the sake of fighting.'],
+  '3+0': ['Through energies 3 and 0', 'Intellect with an additional zero: either amplification or nullification. In the positive, a versatile personality. In the negative, devalues knowledge.'],
+  '3+1': ['Through energies 3 and 1', 'Generating ideas based on intellect and knowledge ("3") and embodiment through will ("1"). In the negative, experience misunderstanding with others, bend them.'],
 };
 
 // shared short "Planet. traits" table used for mission / action / result
 const PLANET_TEXT = {
-  1: 'Солнце. Лидерство, большие цели, видение пути, управление, стратегия, результат',
-  2: 'Луна. Партнерство, понимание, дипломатия, мягкость, теплота, помощь, психология',
-  3: 'Юпитер. Анализ, интеллект, знания, передача информации, расчет, организация',
-  4: 'Раху. Генерация идей, мистика, творчество, разрушение старого, постановка целей',
-  5: 'Меркурий. Коммуникации, расширение, гибкость, адекватность, бизнес, изобретательность',
-  6: 'Венера. Наслаждение жизнью, творчество, любовь, удовольствия, искусство, мудрость',
-  7: 'Кету. Гениальность, кризисы и решения, осознанность, трансформация, философия',
-  8: 'Сатурн. Системность, труд, материализм, контроль процессов, результаты, команда',
-  9: 'Марс. Борьба за благие цели, справедливость, спасение мира, сильный дух, страсть',
+  1: 'Sun. Leadership, big goals, vision of the path, management, strategy, result',
+  2: 'Moon. Partnership, understanding, diplomacy, softness, warmth, help, psychology',
+  3: 'Jupiter. Analysis, intellect, knowledge, information transfer, calculation, organization',
+  4: 'Rahu. Generating ideas, mysticism, creativity, destruction of the old, goal setting',
+  5: 'Mercury. Communications, expansion, flexibility, adequacy, business, resourcefulness',
+  6: 'Venus. Enjoying life, creativity, love, pleasures, art, wisdom',
+  7: 'Ketu. Genius, crises and solutions, awareness, transformation, philosophy',
+  8: 'Saturn. Consistency, labor, materialism, process control, results, team',
+  9: 'Mars. Fighting for good goals, justice, saving the world, strong spirit, passion',
 };
 
 // shared long paragraph table for the numerologic_result_pair fields
 const PAIR_ENERGY_TEXT = {
-  1: 'Энергия Солнца 1 одна из двух самых сложных энергий в совместимости наряду с 4. При однозначном лидерстве одного из партнеров в паре (желательно тоже с присутствием энергии 1 в личном коде) и второстепенной роли второго, такая пара может двигаться вместе к цели, установленной лидером и согласно его стратегии. Если такой расклад ролей будет комфортен обоим. В случае же, когда речь идет о равноправии и балансе, чаще эти отношения сводятся к выяснению лидерства и подавлению друг друга. Редкие случаи, когда два равнозначных «соперника» находят интерес и динамику в своей игре и долго существуют. Обычно же в минусе в паре проявляется много непонимания, нежелания слышать, своеволия и эгоизма. Что в конечном счете ведет к одиночеству в отношениях или даже откровенному соревнованию «кто кого» с желанием «задоминировать» и растоптать партнера. Отчего этапы под этой энергией называют «дальше каждый по одному».',
-  2: 'Энергия Луны 2 одна из самых благоприятных в семейной совместимости. Она про партнерство, тонкое понимание чувств и эмоций, интуицию, поддержку. Нумерологи называют союзы на энергии 2 как “этим двоим сразу в ЗАГС”. В астрологии Луна отвечает за интуицию и душевное состояние. Ключевой момент по этой энергии — наладить понимание в паре на душевном уровне. Без давления, без осуждения. Понимание друг друга такими, какие есть на самом деле. И одной интуиции будет недостаточно. Нужен диалог, в идеале как двух профессиональных психологов. В минусовом состоянии, если понимание не достигнуто, партнеры будут находиться в вечных сомнениях относительно своего выбора и отношений в целом. Это разовьет негативные иллюзии, расшатает душевный баланс, создаст любовные треугольники и приведет к расставанию.',
-  3: 'Энергия Юпитера 3 считается неплохим рациональным дополнением отношений на любом этапе. Да, она не про страсть и глубину чувств, как некоторые другие энергии. Зато про трезвый расчет, выгоды и взаимодействие на условиях договоренностей. Нумерологи называют отношения на этой энергии «браками по расчету». И самое главное, что они весьма долгосрочны. При условии, что каждый действительно видит и получает свою выгоду от данных отношений, а весь обмен «выгодами» открыт и прозрачен. И пара заключила «договор» о своих вложениях, личных и общих выгодах. Неважно в какой форме этот договор. Главное, чтобы он был понятен каждому и принят обоюдно. В идеале совместные и личные выгоды начинают умножаться в этой паре. Негативное состояние происходит, когда один из партнеров начинает обманывать или снижает свою ценность в глазах другого: был богат — стал беднее, была красива — утратила привлекательность. Причем важен именно субъективный взгляд партнера. Тогда начинается мелочность, недовольства и подсчет бухгалтерии: кто что недополучает и кто кому остался должен.',
-  4: 'Энергия Раху 4 одна из двух самых проблемных в совместимости наряду с 1. Она может сработать в бизнесе, потому что Раху генерирует идеи, создает новое и совершает открытия. Но в отношениях чаще проявляется обратная сторона: фокус на негативе, накоплении неудовлетворенности и в конечном итоге разрушении. Цикл созидание-разрушение есть проявление Раху. Партнеры с высокой осознанностью смогут жить в нем, чередуя этапы. Но гораздо чаще на этой энергии встречаются (если речь идет об Общем Сознании) те, кто подвержен деструктивным влияниям: оба с депрессией, зависимостями, желанием «ломать систему». И даже при совпадении в своих идеях у партнеров редко хватает внутреннего ресурса, чтобы все спланировать и воплотить. Отчего депрессивные настроения и неудовлетворенность только растут. Совет Нумерологов том, что общей «голове демона без тела» (так называют Раху по мифам) нужно дать ощущение физического тела для накопления энергии — например, через совместную физическую активность и спорт. Тогда разрушение будет касаться только старого, слабого и изжившего себя, а идеи забьют ключом и планы по их воплощению реализуются в жизнь.',
-  5: 'Энергия Меркурия 5 отличная в деловом сотрудничества и неплохое дополнение для совместимости пары, где общение является важной частью и есть точки соприкосновения по интеллекту. Потому что Меркурий это про коммуникации, расширение и адекватность. Он не горяч, зато конструктивен в своем проявлении. И умеет быть дипломатичным, корректным, эрудированным. В позитиве пары под этой энергией всегда развивают общие интересы, путешествуют, открывают новое, болтают обо всем без устали и открывают друг другу новые горизонты. Важно, что умеют еще и смотреть на свои отношения без розовых очков. А если они нашли какое-то дело, то непременно будут его масштабировать. В минусе же энергия 5 сделает коммуникации поверхностными и безучастными, а поиск общих сфер бесконечным перебиранием всего подряд без фокуса. Так, ни за что толком не зацепившись и не вникнув друг в друга с должной глубиной, пара может совсем охладеть и расстаться.',
-  6: 'Энергия Венеры 6 одна из самых благоприятных в совместимости. Это прямой путь к любви, к занятию ею и получение всех чувственных удовольствий. Фактически это самый быстрый успех в любви среди всех возможных энергий. Партнеры совместно обретают комфорт, наслаждения, испытывают земные радости. Но легкость успеха расслабляет, а чувственные удовольствия могут стать единственным стимулом, что в совокупности так же быстро наскучит, став обыденностью. Тогда проявится минусовое состояние: развитие отношений остановится, а кто-то даже пойдет на сторону в поиске продолжения удовольствий. Нельзя забывать о развитии отношений, о их смысловом наполнении и понимании истинной мудрости любви — вот что важно под этой энергией.',
-  7: 'Энергия Кету 7 про самую яркую страсть и ту самую искру между мужчиной и женщиной. Но подойдет не всем. Ведь стоит искре погаснуть, как на первый план выходят кризисы и хаос, создаваемые Кету. Они будут возникать буквально на ровном месте и с обеих сторон. Но их цель в том, что отношения развивались через совместную трансформацию партнеров. Скучно здесь не будет, поэтому сидеть на ровном точно месте не получится: если только один из партнеров застрянет в развитии или невозможности пройти очередной кризис, а второй партнер обгонит — на завтра их будет разделять уже пропасть. Поэтому всем важно быть в тонусе, быстро соображать, изобретать анти-кризисные меры и уметь фокусироваться в хаосе на действительно важном. Если нет упорядоченности, то из-за очередного хаоса здесь велик риск измен, потому что состояния «сегодня люблю», «завтра ненавижу», а «послезавтра мщу» меняются стремительно — безудержной страсти нужен выход. По мифологии Кету это «демон без головы». И для конструктивных отношений нужно обуздать этого демона, включив ему «голову».',
-  8: 'Энергия Сатурна 8 лучше всего проявляется в бизнесе и совместных проектах, но неплоха и для семьи тем партнерам, которые готовы к упорному труду на благо общего гнездышка. Это самая материальная энергия из всех. И Сатурн щедр на награду в виде финансового и материального благополучия тем, кто был трудолюбив в строительстве своей «системы», в которой скрупулезно просчитана каждая шестеренка в механизме и контролируется каждый шаг. Под «системой» можно понимать в случае совместимости и семью с общим бытом, домом и всеми сопутствующими благами. Но надо понимать, что Сатурн планета серьезная, фундаментальная и не быстрая. Скорого успеха ждать не стоит. Зато будет все надежно, стабильно и ровно, как по рельсам. А результат действий можно будет пощупать и посмотреть на банковском счете. В минусе по этой энергии присутствует тотальный контроль, мелочность, бесчувственность, зацикленность на материальном, а отношение к партнеру, как к инструменту и ресурсу.',
-  9: 'Энергия Марса 9 это страсть, прорывное действие, преодоление, «карма» и, конечно, война, ведь Марс бог войны. В идеале партнерам надо воевать на одной стороне и против общего врага. Этим «врагом» часто бывают какие-то серьезные проблемы у одного из партнеров, где второй приходит на помощь. Или возникающие сложные обстоятельства, которые надо совместно преодолеть. Или общий духовный путь, который слишком тернист для одного. Все эти моменты придают отношениям характер «кармических». Но, если общий враг не найден, то векторы Марса обоих партнеров легко могут быть направлены друг против друга. И от страсти и самопожертвования до противостояния с обещанием не оставить камня на камне здесь один шаг. Марсу только дай повод повоевать. Еще считается, что энергия 9, как последняя и высшая энергия в ряду чисел, содержит в себе долю от каждой энергии. Поэтому проявления отношений на энергии 9 самые разнообразные.',
+  1: 'The energy of the Sun 1 is one of the two most complex energies in compatibility along with 4. With explicit leadership of one of the partners (preferably also with the presence of energy 1 in the personal code) and a secondary role for the other, such a couple can move together towards the goal set by the leader according to their strategy. If such a distribution of roles is comfortable for both. However, when it comes to equality and balance, these relationships most often reduce to clarifying leadership and suppressing each other. Rare cases when two equal "rivals" find interest and dynamics in their game and exist for a long time. Usually, in the negative, there is a lot of misunderstanding, unwillingness to listen, self-will, and egoism. Which ultimately leads to loneliness in the relationship or even an outright competition of "who beats who" with a desire to "dominate" and trample the partner. That is why stages under this energy are called "then each on their own".',
+  2: 'The energy of the Moon 2 is one of the most favorable in family compatibility. It is about partnership, subtle understanding of feelings and emotions, intuition, and support. Numerologists call unions on energy 2 as "these two go straight to the registry office". In astrology, the Moon is responsible for intuition and state of mind. The key point on this energy is to establish understanding in the couple on a soul level. Without pressure, without judgment. Understanding each other as they really are. And intuition alone will not be enough. Dialogue is needed, ideally like two professional psychologists. In a negative state, if understanding is not achieved, partners will be in eternal doubt about their choice and the relationship as a whole. This will develop negative illusions, shake the soul balance, create love triangles, and lead to separation.',
+  3: 'The energy of Jupiter 3 is considered a good rational addition to relationships at any stage. Yes, it is not about passion and depth of feelings, like some other energies. But it is about sober calculation, benefits, and interaction on the terms of agreements. Numerologists call relationships on this energy "marriages of convenience". And the most important thing is that they are very long-term. Provided that everyone truly sees and receives their benefit from these relationships, and the entire exchange of "benefits" is open and transparent. And the couple concluded a "contract" about their investments, personal and shared benefits. The form of this contract does not matter. The main thing is that it is understandable to everyone and accepted mutually. Ideally, joint and personal benefits begin to multiply in this couple. A negative state occurs when one of the partners begins to deceive or lowers their value in the eyes of the other: was rich — became poorer, was beautiful — lost attractiveness. Moreover, the subjective view of the partner is what matters. Then pettiness, dissatisfaction, and accounting calculations begin: who is not getting what and who owes what to whom.',
+  4: 'The energy of Rahu 4 is one of the two most problematic in compatibility along with 1. It can work in business, because Rahu generates ideas, creates the new, and makes discoveries. But in relationships, the flip side is more often manifested: focus on the negative, accumulation of dissatisfaction, and ultimately destruction. The creation-destruction cycle is a manifestation of Rahu. Partners with high awareness will be able to live in it, alternating stages. But much more often on this energy there are (if we talk about the General Consciousness) those who are subject to destructive influences: both with depression, addictions, the desire to "break the system". And even if they coincide in their ideas, partners rarely have enough internal resource to plan and embody everything. Which makes depressive moods and dissatisfaction only grow. The advice of numerologists is that the common "head of a demon without a body" (as Rahu is called in myths) needs to be given the feeling of a physical body for accumulating energy — for example, through joint physical activity and sports. Then destruction will touch only the old, weak, and obsolete, and ideas will gush forth and plans for their embodiment will be realized.',
+  5: 'The energy of Mercury 5 is excellent in business cooperation and a good addition to the compatibility of a couple where communication is an important part and there is common ground in intellect. Because Mercury is about communications, expansion, and adequacy. It is not hot, but constructive in its manifestation. And it knows how to be diplomatic, correct, erudite. In the positive, couples under this energy always develop common interests, travel, discover new things, chat about everything tirelessly, and open new horizons to each other. It is important that they also know how to look at their relationship without rose-colored glasses. And if they find some business, they will certainly scale it. In the negative, energy 5 will make communications superficial and indifferent, and the search for common areas an endless sorting of everything without focus. Thus, having essentially latched onto nothing and not delved into each other with proper depth, the couple may grow completely cold and break up.',
+  6: 'The energy of Venus 6 is one of the most favorable in compatibility. This is a direct path to love, to making love, and receiving all sensual pleasures. In fact, this is the fastest success in love among all possible energies. Partners jointly gain comfort, enjoyments, experience earthly joys. But the ease of success relaxes, and sensual pleasures can become the only stimulus, which together will quickly bore, becoming routine. Then a negative state will manifest: the development of relationships will stop, and someone will even go to the side in search of continued pleasures. We must not forget about the development of relationships, about their semantic filling, and understanding the true wisdom of love — this is what is important under this energy.',
+  7: 'The energy of Ketu 7 is about the brightest passion and that very spark between a man and a woman. But it will not suit everyone. Because as soon as the spark goes out, the crises and chaos created by Ketu come to the fore. They will arise literally out of nowhere and from both sides. But their goal is for the relationship to develop through the joint transformation of partners. It will not be boring here, so sitting still will certainly not work: if only one of the partners gets stuck in development or the inability to pass another crisis, and the second partner overtakes — tomorrow they will be separated by an abyss. Therefore, it is important for everyone to stay in shape, think quickly, invent anti-crisis measures, and be able to focus in chaos on what is truly important. If there is no order, then because of another chaos there is a great risk of betrayal here, because the states "today I love", "tomorrow I hate", and "the day after tomorrow I take revenge" change rapidly — unbridled passion needs an outlet. According to mythology, Ketu is a "demon without a head". And for constructive relationships, this demon must be tamed by turning on its "head".',
+  8: 'The energy of Saturn 8 manifests best in business and joint projects, but is also not bad for family for those partners who are ready for hard work for the good of the common nest. This is the most material energy of all. And Saturn is generous with rewards in the form of financial and material well-being to those who were hardworking in building their "system", in which every gear in the mechanism is scrupulously calculated and every step is controlled. In the case of compatibility, a "system" can also be understood as a family with common life, a home, and all related benefits. But you need to understand that Saturn is a serious, fundamental, and slow planet. Quick success should not be expected. But everything will be reliable, stable, and smooth, like on rails. And the result of actions can be touched and looked at in a bank account. In the negative on this energy, there is total control, pettiness, insensitivity, fixation on the material, and treating the partner as a tool and resource.',
+  9: 'The energy of Mars 9 is passion, breakthrough action, overcoming, "karma" and, of course, war, because Mars is the god of war. Ideally, partners should fight on the same side and against a common enemy. This "enemy" is often some serious problems for one of the partners, where the second comes to the rescue. Or emerging difficult circumstances that must be overcome jointly. Or a common spiritual path that is too thorny for one. All these moments give relationships a "karmic" character. But, if a common enemy is not found, then the vectors of Mars of both partners can easily be directed against each other. And from passion and self-sacrifice to confrontation with a promise not to leave a stone unturned is one step here. Just give Mars a reason to fight. It is also believed that energy 9, as the last and highest energy in the series of numbers, contains a fraction of each energy. Therefore, the manifestations of relationships on energy 9 are the most diverse.',
 };
 
 function calcNumerology(day, month, year) {
@@ -359,28 +359,28 @@ const ROMAN = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
 // XI = "Сила" — swapped vs. Rider-Waite-Smith), confirmed against live
 // data for all 22 numbers.
 const ARCANA = {
-  1:  ['Маг', 'Сверхпособности творца. Идейный вдохновитель. Интеллект плюс интуиция. Гипнотический оратор. Настигает карма при уходе с пути. Багаж брошенных проектов.'],
-  2:  ['Верховная жрица', 'Целители для ума и души. Спасатели. Интуиты. Семейные, заботливые и чувствительные. Могут быть в роли жертвы, видеть несправедливость к себе.'],
-  3:  ['Императрица', 'Источник благополучия и любви, опора для ближних. Щедрость.Темперамент и активность. Опасность ухода в эгоистичные цели, материальность, грехи.'],
-  4:  ['Император', 'Управление, финансы и карьера. Практичны. Люди порядка. Стараются тратить время с умом. В минусе из-за лени, беспорядка и привычки только брать.'],
-  5:  ['Верховный жрец', 'Духовное лидерство. Проводник верных решений. Опора на знания, традиции и закон. Дар убеждения. На карму влияет законный брак и семья. '],
-  6:  ['Влюбленные', 'Партнерство и любовь. Располагают к себе харизмой и доброжелательностью. Ценят красоту во всем. Уходят в минус из-за стремления к наслаждениям.'],
-  7:  ['Воин (Колесница)', 'Высокий потенциал реализации. Умение падать, вставать и идти вперед. Смелость. Амбиции. За правду. Для них опасны лень, трусость, застой.'],
-  8:  ['Справедливость (Правосудие)', 'Видят суть вещей. Ответственны и надежны. Решительны, т.к. уверены в правоте. Приводят все в баланс. Могут подавлять и жаловаться на несправедливость.'],
-  9:  ['Отшельник', 'Мудрецы, философы, отрешенные и будто из космоса. Неравнодушны. Несут свет. Им нужно проявлять себя миру, не уходить в одиночество, строить правильные связи.'],
-  10: ['Колесо Фортуны', 'Искусители судьбы. В позитивном проявлении часто везет. Все зависит от целей и мыслей. Заряжают азартом и уводят от провалов. Но могут «заиграться», потеряв все и попав в долги.'],
-  11: ['Сила', 'Сила дана для достижения целей, побед, управления и раскрытия людей. Видит слабые места в людях, проектах и идеях. Утрачивает силу при трусости, бесцельности, агрессии.'],
-  12: ['Повешенный', 'Идейно, но не буквально, «жертва» себя во имя других. Приносят миру идеи, новые взгляды, спасение. Могут страдать от депрессий, зависимостей, выгорания.'],
-  13: ['Смерть', 'Разрушение старого, чтобы создать новое. В себе и в других. Путь кризисов и трансформаций. Преодолевают все, поборов страх. В страхе же слабы, держатся за прошлое.'],
-  14: ['Умеренность', 'Интеллект, чувство гармонии и прекрасного. Часто люди искусства. И даже экстрасенсы. Лечат мир своей энергией. В минусе, когда зациклены на материальном.'],
-  15: ['Дьявол', 'Гипнотическая энергетика. Страсть. Видят всю правду и ложь мира. На светлом пути им все дается легко. Могут искушать других, но и мир искушает их. '],
-  16: ['Башня', 'Их путь в том, чобы выстоять в хаосе жизни, разрушив старые оковы и отбросив негатив. Возродившись заново, показать путь другим. Силы для этого им даны.'],
-  17: ['Звезда', 'Яркие индивидуальности, полные талантов и идей. Реализовавшись, не испытывают материальных проблем. Но путь к поиску себя тернист.'],
-  18: ['Луна', 'Транс-серферы реальности: их мысли и сны могут воплощаться. Они притягивают загадочностью и магической аурой. Очень опасны на темном пути.'],
-  19: ['Солнце', 'Их путь светить другим, давать тепло и энергию. Больше дают — больше получают и становятся лидерами. В эгоизме могут сжечь все вокруг.'],
-  20: ['Страшный суд', 'Сильная интуиция. Информация будто из космоса. Философский взгляд. Проводники законов мироздания. В минусе гордыня, страхи, иллюзии.'],
-  21: ['Мир', 'Весь мир для них дом и все люди друзья. Доброе сердце. Масштабное мышление и высокие цели. При нелюбви к миру конфликтны, замкнуты, винят всех.'],
-  22: ['Шут', 'Вечно молодой и беспечный. Внутренняя свобода. Идут легко по жизни, даря радость другим. В минусе беспринципные инфантилы, теряющие смыслы.'],
+  1:  ['The Magician', 'Superpowers of a creator. Ideological inspirer. Intellect plus intuition. Hypnotic speaker. Karma catches up when leaving the path. Baggage of abandoned projects.'],
+  2:  ['The High Priestess', 'Healers for the mind and soul. Rescuers. Intuitive. Family-oriented, caring, and sensitive. Can play the victim, see injustice towards themselves.'],
+  3:  ['The Empress', 'Source of well-being and love, support for loved ones. Generosity. Temperament and activity. Danger of falling into selfish goals, materiality, sins.'],
+  4:  ['The Emperor', 'Management, finance, and career. Practical. People of order. Try to spend time wisely. In the negative due to laziness, disorder, and the habit of only taking.'],
+  5:  ['The Hierophant', 'Spiritual leadership. Guide for right decisions. Reliance on knowledge, traditions, and law. Gift of persuasion. Karma is affected by legal marriage and family.'],
+  6:  ['The Lovers', 'Partnership and love. Win over with charisma and benevolence. Value beauty in everything. Fall into the negative due to the pursuit of pleasures.'],
+  7:  ['The Chariot', 'High potential for realization. Ability to fall, get up and move forward. Courage. Ambitions. For truth. Laziness, cowardice, and stagnation are dangerous for them.'],
+  8:  ['Justice', 'See the essence of things. Responsible and reliable. Decisive, as they are sure they are right. Bring everything into balance. Can suppress and complain about injustice.'],
+  9:  ['The Hermit', 'Sages, philosophers, detached and as if from space. Not indifferent. Bring light. They need to manifest themselves to the world, not go into solitude, build the right connections.'],
+  10: ['Wheel of Fortune', 'Tempting fate. In a positive manifestation, they are often lucky. Everything depends on goals and thoughts. They charge with excitement and lead away from failures. But can "play too much", losing everything and falling into debt.'],
+  11: ['Strength', 'Strength is given to achieve goals, victories, manage and reveal people. Sees weak points in people, projects, and ideas. Loses strength with cowardice, aimlessness, aggression.'],
+  12: ['The Hanged Man', 'Ideologically, but not literally, a "sacrifice" of themselves for others. Bring ideas, new views, salvation to the world. Can suffer from depression, addictions, burnout.'],
+  13: ['Death', 'Destruction of the old to create the new. In themselves and in others. The path of crises and transformations. Overcome everything by overcoming fear. In fear they are weak, holding onto the past.'],
+  14: ['Temperance', 'Intellect, sense of harmony and beauty. Often people of art. And even psychics. Heal the world with their energy. In the negative when fixated on the material.'],
+  15: ['The Devil', 'Hypnotic energy. Passion. They see all the truth and lies of the world. On the bright path, everything comes easily to them. Can tempt others, but the world also tempts them.'],
+  16: ['The Tower', 'Their path is to stand in the chaos of life, destroying old shackles and casting away negativity. Reborn anew, show the way to others. They are given the strength for this.'],
+  17: ['The Star', 'Bright individuals, full of talents and ideas. Having realized themselves, they do not experience material problems. But the path to finding themselves is thorny.'],
+  18: ['The Moon', 'Reality trans-surfers: their thoughts and dreams can materialize. They attract with mystery and a magical aura. Very dangerous on the dark path.'],
+  19: ['The Sun', 'Their path is to shine for others, give warmth and energy. The more they give — the more they receive and become leaders. In egoism they can burn everything around.'],
+  20: ['Judgement', 'Strong intuition. Information as if from space. Philosophical look. Conductors of the laws of the universe. In the negative: pride, fears, illusions.'],
+  21: ['The World', 'The whole world is a home for them and all people are friends. Kind heart. Large-scale thinking and high goals. Without love for the world, they are conflicted, closed, blame everyone.'],
+  22: ['The Fool', 'Eternally young and carefree. Inner freedom. Walk easily through life, giving joy to others. In the negative, unprincipled infants, losing meaning.'],
 };
 
 function calcArcana(day) {
@@ -395,19 +395,19 @@ function calcArcana(day) {
    LOVE SCENARIOS
    ============================================================ */
 
-const MONTH_NAMES_RU = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+const MONTH_NAMES_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const SCENARIO_TEXT = [
-  'Ценят в первую очередь свою свободу и свои цели. Не тяготеют отношениями и не привязываются глубоко к партнеру. Могут выжидать время для расставания и делают это легко. Лучше остаться друзьями с партнером, чтобы не портить карму.',
-  'Внешне сильные и независимые от партнера, но внутренне нуждаются в нем. Им сложно выбрать себе достойного, который будет согласен быть вторым номером на фоне их сияния. Реализуют свои амбиции через партнера, будучи лидером.',
-  'В отношениях как рыба в воде. Для них это сфера реализации. Партнера любят всем сердцем. Состояние влюбленности окрыляет их. Им сложно сохранять верность: часто флиртуют и принимают знаки внимания. Решается только через понимание рисков.',
-  'Им важны реализация и статусность. Собственная реализация и через продвижение партнера, будучи его покровителем. Ищут партнеров среди амбициозных. Семья и дети это высшая ценность. Критичны уважение и умение ценить друг друга.',
-  'Их отношения как любовный роман. Их встречи судьбоносны. Каждый раз как в первый. Из-за чего переоценивают партнера. Иногда их отношения проходят в тайне от других. Главное для них быть честными с собой и перед любимым. ',
-  '«А поговорить?». Те, кто предпочитает начинать с дружбы. Важно быть на одной волне в общении с партнером. Общие темы и интересы — то, что их удерживает. В идеале партнер из общего круга. Но общительность ведет к любовным треугольникам.',
-  'Любовная энергия Венеры. Романтика, чувственность, красота ухаживаний. Но основа всему физическая близость. Потеря страсти означает конец любви. У них часто есть тайные и явные любовники. Ведь они умеют притягивать своей харизмой.',
-  'Заложники кармических отношений. Тесно связаны с партнером и будто переплетены. Но любовь часто окутана иллюзиями и бывает неразделенной. Обладатель этой энергии может быть предан одному партнеру всю жизнь даже после разрыва.',
-  'Их отношения это всегда работа. Над собой, над партнером, над общими целями. Вознаграждение будет ценным. Но придется научиться дисциплине, ограничениям и пониманию. Важно выбирать партнера не только сердцем, но и разумом.',
-  'Отношения, полные огня. В плюсе это страсть и горячее любящее сердце. Иногда даже выступают как спасатели. В минусе скандалы, интриги и битье посуды. Есть особенность: хотят яркого партнера, на которого обращают внимание другие.',
+  'Value their freedom and goals above all. Do not gravitate towards relationships and do not attach themselves deeply to a partner. Can wait for the right time to break up and do it easily. It is better to remain friends with a partner so as not to spoil karma.',
+  'Outwardly strong and independent of a partner, but internally need them. It is difficult for them to choose a worthy one who will agree to be second fiddle against the background of their radiance. Realize their ambitions through a partner, being a leader.',
+  'In relationships like a fish in water. For them, this is a sphere of realization. Love their partner with all their heart. The state of falling in love gives them wings. It is difficult for them to remain faithful: they often flirt and accept signs of attention. Solved only through understanding risks.',
+  'Realization and status are important to them. Self-realization and through promoting a partner, being their patron. Look for partners among the ambitious. Family and children are the highest value. Respect and the ability to appreciate each other are critical.',
+  'Their relationship is like a romance novel. Their meetings are fateful. Every time is like the first. Which is why they overestimate their partner. Sometimes their relationship happens in secret from others. The main thing for them is to be honest with themselves and their beloved.',
+  '"Want to talk?". Those who prefer to start with friendship. It is important to be on the same wavelength in communication with a partner. Common topics and interests are what holds them. Ideally, a partner from a common circle. But sociability leads to love triangles.',
+  'The love energy of Venus. Romance, sensuality, beauty of courtship. But the foundation of everything is physical intimacy. Loss of passion means the end of love. They often have secret and obvious lovers. After all, they know how to attract with their charisma.',
+  'Hostages of karmic relationships. Closely connected with a partner and seem intertwined. But love is often shrouded in illusions and can be unrequited. The owner of this energy can be devoted to one partner their whole life even after a breakup.',
+  'Their relationship is always work. On themselves, on a partner, on common goals. The reward will be valuable. But you will have to learn discipline, limitations, and understanding. It is important to choose a partner not only with your heart, but also with your mind.',
+  'Relationships full of fire. In the positive, this is passion and a hot loving heart. Sometimes even act as rescuers. In the negative: scandals, intrigues, and breaking dishes. There is a peculiarity: they want a bright partner who attracts the attention of others.',
 ];
 
 function calcScenario(month) {
@@ -417,7 +417,7 @@ function calcScenario(month) {
   const idx = month <= 10 ? month - 1 : month - 10;
   return {
     love_scenario: idx,
-    love_month: MONTH_NAMES_RU[month - 1],
+    love_month: MONTH_NAMES_EN[month - 1],
     love_text: SCENARIO_TEXT[idx],
   };
 }
@@ -536,13 +536,21 @@ function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear) {
   const isAnahataPass = chakra.bio_result_chart.heart > 60;
   const isGoodSex = chakra.bio_result_chart.physical > 60;
 
-  let finalVerdict = 'Not a Match';
+  let finalVerdict = 'Not compatible as partners (Can be friends)';
   if (isZodiacCompatible && isSvadhistanaPass && isAnahataPass) {
     finalVerdict = 'Perfect Match';
     if (isGoodSex) finalVerdict += ' (Great Physical Chemistry!)';
   } else if (isZodiacCompatible || isSvadhistanaPass || isAnahataPass) {
-    finalVerdict = 'Friends';
+    finalVerdict = 'Not compatible as partners (Can be friends)';
   }
+
+  const mNum = calcNumerology(mDay, mMonth, mYear);
+  const fNum = calcNumerology(fDay, fMonth, fYear);
+  const pairNum = calcNumerologyPair(mNum, fNum);
+  const mArcana = calcArcana(mDay);
+  const fArcana = calcArcana(fDay);
+  const mScenario = calcScenario(mMonth);
+  const fScenario = calcScenario(fMonth);
 
   return {
     final_verdict: finalVerdict,
@@ -554,5 +562,110 @@ function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear) {
     zodiac_result_dates: zodiac.zodiac_result_dates,
     zodiac_result_signs: zodiac.zodiac_result_signs,
     zodiac_result_roles: zodiac.zodiac_result_roles,
+
+    full_report: {
+      maleNumerology: mNum,
+      femaleNumerology: fNum,
+      pairNumerology: pairNum,
+      maleArcana: mArcana,
+      femaleArcana: fArcana,
+      maleScenario: mScenario,
+      femaleScenario: fScenario,
+    }
   };
 }
+
+const CLASH_TEXTS = {
+  'Air-Water': {
+    title: 'Elemental Alignment: Air & Water Mismatch',
+    note: "In astrology, when elements like Air and Water come together, it creates a fascinating contrast. Air operates in the realm of thoughts, logic, and perspective, while Water flows through emotions, intuition, and deep feeling. A low elemental match doesn't mean affection is missing—it just means you naturally process the world in very different languages.",
+    insights: [
+      "<strong>Logic vs. Emotion:</strong> Air tends to analyze feelings to understand them, whereas Water needs to sit with and feel them deeply. This can lead to moments where one partner feels unheard and the other feels overwhelmed.",
+      "<strong>Need for Freedom vs. Need for Depth:</strong> Air thrives on movement, variety, and mental space, while Water seeks closeness, emotional security, and deep bonding.",
+      "<strong>The Atmospheric Effect:</strong> Just like in nature, Air over Water can create unpredictable weather—ranging from light breezes of inspiration to turbulent emotional storms if expectations aren't managed carefully."
+    ],
+    meaningIntro: "An elemental clash means your relationship operates on a dynamic where balance requires constant, deliberate calibration.",
+    path1Title: "1. Navigating the Challenging Currents",
+    path1Intro: "If you choose to build on this connection, be prepared for specific recurring dynamics:",
+    path1Points: [
+      "<strong>High Emotional Heavy-Lifting:</strong> Bridging the gap between intellectual detachment (Air) and emotional depth (Water) takes immense patience, frequent translation, and deep compromise.",
+      "<strong>Risk of Exhaustion:</strong> Water may sometimes feel Air is too distant or rational, while Air may feel Water is too intense or changeable. Without high emotional maturity, this constant adjustment can feel draining over time."
+    ],
+    path2Title: "2. Looking at the Bigger Picture",
+    path2Intro: "While opposites can occasionally challenge each other to grow, true astrological harmony shouldn't feel like a constant struggle:",
+    path2Points: [
+      "<strong>You Deserve Natural Resonant Energy:</strong> Relationships feel most nourishing when your primary element finds its natural home.",
+      "<strong>A Vast Cosmos Out There:</strong> In the wider world of connections, there are partners whose elemental nature naturally nurtures yours—where Water finds grounding Earth or deep Water, and Air finds inspiring Fire or clear Air. You deserve a connection where your authentic nature is naturally understood without needing to constantly adapt who you are."
+    ],
+    nextSteps: "Take this insight as an opportunity for honest reflection. Ask yourselves if this partnership offers the natural ease and alignment you desire, or if the energy required to bridge your elemental differences is taking away from your personal peace."
+  },
+  'Air-Earth': {
+    title: 'Elemental Alignment: Air & Earth Mismatch',
+    note: "In astrology, combining Air and Earth brings together two completely different approaches to life. Air thrives on concepts, ideas, spontaneous communication, and change, while Earth is rooted in stability, practical results, routine, and tangible security. A low elemental score simply means your core motivations and paces naturally diverge.",
+    insights: [
+      "<strong>Mind vs. Matter:</strong> Air lives in the realm of 'what could be,' constantly seeking new perspectives and mental stimulation. Earth lives in the realm of 'what is,' focusing on tangible reality, structure, and physical outcomes.",
+      "<strong>Speed & Rhythm:</strong> Air moves fast, adapts quickly, and can change direction on a whim. Earth moves deliberately, values consistency, and needs time to process and build before committing to a change.",
+      "<strong>The Atmospheric Effect:</strong> In nature, too much Air can stir up dust storms, while solid Earth can feel immobile to the wind. In a relationship, Air may view Earth as overly rigid or stubborn, while Earth may see Air as unpredictable, flighty, or impractical."
+    ],
+    meaningIntro: "When Air and Earth join forces, the dynamic often feels like trying to anchor a breeze or fly a heavy kite—it requires deliberate effort to keep from pulling in opposite directions.",
+    path1Title: "1. Navigating the Challenging Landscape",
+    path1Intro: "Building a lasting bond here means navigating specific foundational differences:",
+    path1Points: [
+      "<strong>Heavy Compromise on Pace:</strong> Air will need to slow down and offer concrete reassurance, while Earth will need to step out of its comfort zone to embrace flexibility and spontaneous ideas.",
+      "<strong>Communication Friction:</strong> Discussions can easily stall when Air wants to talk through abstract possibilities and Earth just wants to know the practical bottom line. Bridging this gap requires continuous patience and translation."
+    ],
+    path2Title: "2. Looking at the Bigger Picture",
+    path2Intro: "While Earth can offer Air a soft place to land and Air can bring fresh energy to Earth, maintaining this balance can take a lot of heavy lifting:",
+    path2Points: [
+      "<strong>You Deserve Natural Flow:</strong> Love is meant to support you, not feel like an ongoing project where you constantly have to adjust your natural pace and priorities.",
+      "<strong>A Vast Cosmos Out There:</strong> There are countless people in the world whose elemental nature naturally matches yours. Air thrives effortlessly alongside Fire's passion or another Air's intellect; Earth finds deep, natural comfort with Water's emotional depth or another Earth's grounded stability. You both deserve a partnership that feels like home without requiring you to sacrifice your fundamental nature."
+    ],
+    nextSteps: "Reflect on what you need most in a relationship right now. Use this report to consider whether adjusting to these elemental differences feels inspiring, or if it is taking too much effort to keep your worlds aligned."
+  },
+  'Fire-Water': {
+    title: 'Elemental Alignment: Water & Fire Mismatch',
+    note: "In astrology, Water and Fire form one of the most intense and volatile combinations. Fire is driven by passion, direct action, enthusiasm, and impulse, while Water navigates the world through deep emotions, intuition, sensitivity, and quiet connection. A low elemental score means your natural energies can easily overwhelm or extinguish one another.",
+    insights: [
+      "<strong>Emotion vs. Impulse:</strong> Fire acts quickly on gut instincts and desires immediate momentum, whereas Water needs time to process feelings, feel emotionally safe, and move at a gentler pace.",
+      "<strong>Sensitivity & Directness:</strong> Fire’s bold, straightforward nature can inadvertently sting or overwhelm Water's deeply sensitive radar. Conversely, Water’s emotional mood shifts or need for reassurance can feel restrictive or confusing to Fire’s independent spirit.",
+      "<strong>The Atmospheric Effect:</strong> In nature, Water can extinguish Fire's natural spark, while Fire can bring Water to a scalding boil. In a relationship, this often translates to a cycle of intense passion followed by emotional burnout or frustration."
+    ],
+    meaningIntro: "When Water and Fire try to blend, the relationship dynamic often feels like managing steam—it generates high heat and drama, but keeping that energy constructive requires constant management.",
+    path1Title: "1. Navigating the Turbulent Waters",
+    path1Intro: "Sustaining this connection long-term requires awareness of these recurring challenges:",
+    path1Points: [
+      "<strong>Continuous Emotional Balancing:</strong> Fire must practice extreme patience and softness to avoid hurting Water, while Water must learn not to take Fire’s intense, blunt energy personally.",
+      "<strong>High Energy Consumption:</strong> Balancing these opposing forces takes tremendous emotional heavy-lifting. Without active, conscious compromise, the relationship can easily drift between emotional distance and heated misunderstandings."
+    ],
+    path2Title: "2. Looking at the Bigger Picture",
+    path2Intro: "While the spark between Water and Fire can feel hypnotic at first, true emotional alignment shouldn't demand that you constantly sacrifice your inner peace:",
+    path2Points: [
+      "<strong>You Deserve Natural Harmony:</strong> A great connection should feel like a safe harbor, not an unpredictable storm where you are constantly adjusting your temperature to keep the peace.",
+      "<strong>A Vast Cosmos Out There:</strong> The world is full of people whose elemental nature naturally complements yours. Water finds deep, effortless understanding with Earth's grounding stability or another Water sign's empathy; Fire thrives wildly with Air's inspiring intellect or another Fire sign's shared passion. You both deserve a relationship where your core identity is naturally celebrated, not constantly suppressed."
+    ],
+    nextSteps: "Take a moment to check in with yourself. Use this report to evaluate whether navigating this high-intensity dynamic brings genuine fulfillment, or if it is draining the energy you need to thrive."
+  },
+  'Earth-Fire': {
+    title: 'Elemental Alignment: Fire & Earth Mismatch',
+    note: "In astrology, Fire and Earth bring together two very different foundational energies. Fire is propelled by inspiration, bold risks, immediate action, and passion, while Earth relies on careful planning, stability, practical results, and routine. A low elemental score highlights a fundamental difference in how you approach life's pace, goals, and daily momentum.",
+    insights: [
+      "<strong>Impulse vs. Caution:</strong> Fire wants to leap first and figure out the details later, thriving on excitement and change. Earth prefers to measure twice, build step-by-step, and minimize risk before taking action.",
+      "<strong>Passion vs. Practicality:</strong> Fire expresses affection and drive through grand gestures, high energy, and enthusiasm. Earth shows love and security through tangible reliability, consistency, and practical support.",
+      "<strong>The Atmospheric Effect:</strong> In nature, Fire can scorch Earth if it burns too fast, while heavy Earth can smother Fire’s flame. In a relationship, Fire may begin to feel constrained or bored by Earth's routine, while Earth may feel stressed or destabilized by Fire's unpredictability."
+    ],
+    meaningIntro: "Blending Fire and Earth often feels like trying to build a bonfire on moving terrain—it takes constant, deliberate structure to keep the flame burning without consuming the foundation.",
+    path1Title: "1. Navigating the Challenging Terrain",
+    path1Intro: "Sustaining harmony between these elements requires working through specific foundational differences:",
+    path1Points: [
+      "<strong>Pacing & Priority Compromises:</strong> Fire will need to practice patience and respect Earth's need for time and safety, while Earth will need to step out of its comfort zone to allow room for Fire's spontaneous sparks.",
+      "<strong>Friction Around Friction Points:</strong> Long-term decisions—like finances, lifestyle changes, or daily routines—can easily become battlegrounds between Fire’s desire for immediate freedom and Earth’s need for careful security."
+    ],
+    path2Title: "2. Looking at the Bigger Picture",
+    path2Intro: "While Earth can offer Fire a solid foundation to build upon and Fire can inspire Earth to aim higher, keeping this dynamic balanced requires ongoing, heavy emotional lifting:",
+    path2Points: [
+      "<strong>You Deserve Natural Resonant Energy:</strong> Love should feel like a supportive wind at your back, not a constant tug-of-war between moving forward and standing still.",
+      "<strong>A Vast Cosmos Out There:</strong> There are countless people in the world whose elemental nature naturally moves at your speed. Fire ignites effortlessly alongside Air's quick intellect or another Fire sign's shared passion; Earth finds deep, peaceful harmony with Water's emotional depth or another Earth sign's grounded stability. You both deserve a connection where your natural tempo is embraced, not held back or rushed."
+    ],
+    nextSteps: "Reflect on what you need most to feel secure and fulfilled. Use this report to consider whether adjusting to these elemental differences inspires genuine growth, or if it demands more compromise than feels healthy for your long-term peace."
+  }
+};

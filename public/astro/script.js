@@ -133,10 +133,57 @@ function renderZodiac(data, yourName, partnerName) {
   document.getElementById('zodiac-sign-female').textContent    = signs.zodiacSignFemale;
   document.getElementById('zodiac-element-female').textContent = signs.zodiacElementFemale;
 
-  document.getElementById('zodiac-harmony').textContent   = signs.zodiacElementHarmony;
+  const harmonyEl = document.getElementById('zodiac-harmony');
+  const harmony = signs.zodiacElementHarmony;
+  harmonyEl.textContent = harmony;
+  if (harmony === 'Elements clash') {
+    harmonyEl.style.color = '#f87171'; // Red for clash
+  } else {
+    harmonyEl.style.color = '';
+  }
+  
   document.getElementById('zodiac-role-title').textContent = roles.zodiacRoleTitle;
   document.getElementById('zodiac-role-desc').textContent  = roles.zodiacRoleDescription;
   document.getElementById('zodiac-pair-text').textContent  = roles.zodiacPairText;
+}
+
+/* ============================================================
+   RENDER: FULL REPORT
+   ============================================================ */
+function renderFullReport(report, yourName, partnerName) {
+  const yName = yourName || "You";
+  const pName = partnerName || "Partner";
+
+  document.getElementById('report-num-male').innerHTML = `
+    <strong>${yName}'s Core Energy:</strong> ${report.maleNumerology.consText[0]} - ${report.maleNumerology.consText[1]}<br><br>
+    <strong>Positive Traits:</strong> ${report.maleNumerology.consText[2]}<br><br>
+    <strong>Negative Traits:</strong> ${report.maleNumerology.consText[3]}<br><br>
+    <strong>Relationship Profile:</strong> ${report.maleNumerology.consText[4]}
+  `;
+  document.getElementById('report-num-female').innerHTML = `
+    <strong>${pName}'s Core Energy:</strong> ${report.femaleNumerology.consText[0]} - ${report.femaleNumerology.consText[1]}<br><br>
+    <strong>Positive Traits:</strong> ${report.femaleNumerology.consText[2]}<br><br>
+    <strong>Negative Traits:</strong> ${report.femaleNumerology.consText[3]}<br><br>
+    <strong>Relationship Profile:</strong> ${report.femaleNumerology.consText[4]}
+  `;
+
+  document.getElementById('report-pair-energy').innerHTML = `
+    <strong>Matrix Destinies Pair Energy (${report.pairNumerology.cons}):</strong><br><br>${report.pairNumerology.consCharact}
+  `;
+
+  document.getElementById('report-arcana-male').innerHTML = `
+    <strong>${yName} (Arcana ${report.maleArcana.arcane[1]} - ${report.maleArcana.arcane[0]}):</strong><br><br>${report.maleArcana.arcane[4]}
+  `;
+  document.getElementById('report-arcana-female').innerHTML = `
+    <strong>${pName} (Arcana ${report.femaleArcana.arcane[1]} - ${report.femaleArcana.arcane[0]}):</strong><br><br>${report.femaleArcana.arcane[4]}
+  `;
+
+  document.getElementById('report-scenario-male').innerHTML = `
+    <strong>${yName} (Born in ${report.maleScenario.love_month}):</strong><br><br>${report.maleScenario.love_text}
+  `;
+  document.getElementById('report-scenario-female').innerHTML = `
+    <strong>${pName} (Born in ${report.femaleScenario.love_month}):</strong><br><br>${report.femaleScenario.love_text}
+  `;
 }
 
 /* ============================================================
@@ -200,11 +247,87 @@ function calculate() {
       verdict = verdict.replace(' (Great Physical Chemistry!)', '');
     }
 
+    const finalVerdictEl = document.getElementById('final-verdict');
     if (verdict.includes('Perfect Match')) {
       verdict = verdict.replace('Perfect Match', "It's a perfect match. You found TRUE LOVE");
+      finalVerdictEl.className = 'verdict-text verdict-good';
+    } else {
+      finalVerdictEl.className = 'verdict-text verdict-bad';
     }
+    finalVerdictEl.textContent = verdict;
 
-    document.getElementById('final-verdict').textContent = verdict;
+    // Render Full Report
+    renderFullReport(data.full_report, yourName, partnerName);
+
+    // Handle Low Compatibility Summary in Modal
+    const summaryBlock = document.getElementById('low-compat-summary');
+    const pHarmony = document.getElementById('low-compat-harmony');
+    const pEmotion = document.getElementById('low-compat-emotion');
+    const pBoth = document.getElementById('low-compat-both');
+    
+    pHarmony.classList.add('hidden');
+    pEmotion.classList.add('hidden');
+    pBoth.classList.add('hidden');
+
+    if (verdict.includes('Not compatible')) {
+      summaryBlock.classList.remove('hidden');
+      
+      let clashCount = 0;
+      if (data.zodiac_result_signs.zodiacElementHarmony === 'Elements clash') {
+        const sign1 = data.zodiac_result_signs.zodiac_sign1.element;
+        const sign2 = data.zodiac_result_signs.zodiac_sign2.element;
+        let clashKey = `${sign1}-${sign2}`;
+        if (!CLASH_TEXTS[clashKey]) {
+            clashKey = `${sign2}-${sign1}`;
+        }
+        
+        if (CLASH_TEXTS[clashKey]) {
+            const t = CLASH_TEXTS[clashKey];
+            summaryBlock.innerHTML = `
+              <h3 style="color: #ef4444; font-size: 1.4rem;">Relationship Compatibility Summary</h3>
+              <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">${t.title}</p>
+              
+              <p><strong>A Quick Note from Us:</strong><br>${t.note}</p>
+              
+              <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Key Findings & Insights</h4>
+              <ul style="padding-left: 20px; margin-bottom: 15px;">
+                ${t.insights.map(i => `<li style="margin-bottom: 8px;">${i}</li>`).join('')}
+              </ul>
+              
+              <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">What Does This Mean for You?</h4>
+              <p>${t.meaningIntro}</p>
+              
+              <p style="margin-top: 10px;"><strong>${t.path1Title}</strong><br>
+              ${t.path1Intro}<br>
+              <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+                ${t.path1Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
+              </ul>
+              </p>
+              
+              <p style="margin-top: 10px;"><strong>${t.path2Title}</strong><br>
+              ${t.path2Intro}<br>
+              <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+                ${t.path2Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
+              </ul>
+              </p>
+              
+              <p style="margin-top: 15px;"><strong>Next Steps</strong><br>${t.nextSteps}</p>
+            `;
+        } else {
+            pHarmony.classList.remove('hidden');
+        }
+        clashCount++;
+      }
+      if (data.bio_result_chart.emotional <= 60) {
+        if (pEmotion) pEmotion.classList.remove('hidden');
+        clashCount++;
+      }
+      if (clashCount > 0) {
+        if (pBoth) pBoth.classList.remove('hidden');
+      }
+    } else {
+      summaryBlock.classList.add('hidden');
+    }
 
     // Trigger wave animation
     const waveOverlay = document.getElementById('wave-transition');
@@ -274,5 +397,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('results-card').classList.add('hidden');
     document.getElementById('input-card').classList.remove('hidden');
     window.scrollTo(0, 0);
+  });
+
+  const modal = document.getElementById('full-report-modal');
+  document.getElementById('full-report-btn').addEventListener('click', () => {
+    modal.classList.remove('hidden');
+  });
+  document.getElementById('close-modal-btn').addEventListener('click', () => {
+    modal.classList.add('hidden');
+  });
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.add('hidden');
   });
 });
