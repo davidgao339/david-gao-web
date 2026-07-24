@@ -1,21 +1,26 @@
 /* ============================================================
-   RENDER: CHAKRAS
+   RENDER: METRICS
    ============================================================ */
-const CHAKRA_NAMES = {
-  physical:  'Muladhara (Physical/Sex)',
-  emotional: 'Svadhisthana (Emotional)',
-  heart:     'Anahata (Heart)'
+const METRIC_NAMES = {
+  heart:     'HARMONY WAVES',
+  emotional: 'EMOTIONAL RESONANCE',
+  physical:  'PHYSICAL AND INTIMATE CHEMISTRY'
+};
+
+const METRIC_DESCS = {
+  heart:     'High capacity for active listening. You share compatible lifestyle habits. There is mutual trust between partners. Great for friendships and long-term relationships.',
+  emotional: 'Empathetic conflict resolution and shared humor. You love spending time with each other and love similar activities.',
+  physical:  'Strong physical connection, complementary attachment styles, and alignment in intimacy preferences'
 };
 
 function renderChakras(data) {
   const chart   = data.bio_result_chart;
-  const labels  = data.bio_result_chart_labels;
 
   const barsEl = document.getElementById('chakra-bars');
   barsEl.innerHTML = '';
 
-  Object.entries(CHAKRA_NAMES).forEach(([key, name]) => {
-    // If Sexual Compatibility toggle is off, don't show the Muladhara bar
+  Object.entries(METRIC_NAMES).forEach(([key, name]) => {
+    // If Sexual Compatibility toggle is off, don't show the physical bar
     const includeSexCompat = document.getElementById('sex-compat-toggle').checked;
     if (key === 'physical' && !includeSexCompat) {
       return; 
@@ -23,17 +28,20 @@ function renderChakras(data) {
 
     const rawVal = chart[key] ?? 0;
     const pct    = Math.abs(rawVal);
-    const label  = labels[`${key}-label`] || '';
     const isNeg  = rawVal < 0;
+    const desc   = METRIC_DESCS[key];
 
     const row = document.createElement('div');
     row.className = 'chakra-bar-row';
     row.innerHTML = `
-      <div class="chakra-bar-label">${key === 'physical' ? 'Muladhara (Physical)' : name}</div>
+      <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+        <div class="chakra-bar-label">${name}</div>
+        <div class="chakra-bar-pct" style="margin-top:0;">${rawVal}%</div>
+      </div>
       <div class="chakra-bar-track">
         <div class="chakra-bar-fill ${isNeg ? 'negative' : ''}" style="width: 0%"></div>
       </div>
-      <div class="chakra-bar-pct">${rawVal}% <span style="color:#aaa;font-size:11px">${label}</span></div>
+      <div style="font-size:0.8rem; color:#8daed8; margin-top:8px; line-height:1.4;">${desc}</div>
     `;
     barsEl.appendChild(row);
 
@@ -68,28 +76,20 @@ function renderZodiac(data, yourName, partnerName) {
 /* ============================================================
    MAIN CALCULATE HANDLER
    ============================================================ */
-function parseDate(dateStr) {
-  const parts = dateStr.split('/');
-  if (parts.length !== 3) return null;
-  const [m, d, y] = parts.map(num => parseInt(num, 10));
-  if (isNaN(m) || isNaN(d) || isNaN(y)) return null;
-  if (m < 1 || m > 12 || d < 1 || d > 31 || y < 1900 || y > 2100) return null;
-  return { mDay: d, mMonth: m, mYear: y };
-}
-
 function calculate() {
   const yourName = document.getElementById('your-name').value.trim();
   const partnerName = document.getElementById('partner-name').value.trim();
   
-  const yourBdayStr = document.getElementById('your-birthday').value.trim();
-  const partnerBdayStr = document.getElementById('partner-birthday').value.trim();
+  const mDay   = document.getElementById('m-day').value;
+  const mMonth = document.getElementById('m-month').value;
+  const mYear  = document.getElementById('m-year').value;
+  const fDay   = document.getElementById('f-day').value;
+  const fMonth = document.getElementById('f-month').value;
+  const fYear  = document.getElementById('f-year').value;
 
   const errEl = document.getElementById('calc-error');
   
-  const yourDate = parseDate(yourBdayStr);
-  const partnerDate = parseDate(partnerBdayStr);
-
-  if (!yourDate || !partnerDate) {
+  if (!mDay || !mMonth || !mYear || !fDay || !fMonth || !fYear) {
     errEl.classList.remove('hidden');
     return;
   }
@@ -101,8 +101,8 @@ function calculate() {
 
   try {
     const data = calculateCompatibility(
-      yourDate.mDay, yourDate.mMonth, yourDate.mYear,
-      partnerDate.mDay, partnerDate.mMonth, partnerDate.mYear
+      parseInt(mDay), parseInt(mMonth), parseInt(mYear),
+      parseInt(fDay), parseInt(fMonth), parseInt(fYear)
     );
 
     // Render components
@@ -117,7 +117,7 @@ function calculate() {
     }
 
     if (verdict.includes('Perfect Match')) {
-      verdict = "It's a Perfect Match! You Found Your Lover!";
+      verdict = "Its a perfect match. You found TRUE LOVE";
     }
 
     document.getElementById('final-verdict').textContent = verdict;
@@ -154,30 +154,35 @@ function calculate() {
 /* ============================================================
    UI HELPERS
    ============================================================ */
-function formatDateInput(e) {
-  // Remove all non-digits
-  let val = e.target.value.replace(/\D/g, '');
-  if (val.length > 8) val = val.substring(0, 8);
-  
-  // Format as MM/DD/YYYY
-  if (val.length > 4) {
-    e.target.value = val.substring(0, 2) + '/' + val.substring(2, 4) + '/' + val.substring(4, 8);
-  } else if (val.length > 2) {
-    e.target.value = val.substring(0, 2) + '/' + val.substring(2, 4);
-  } else {
-    e.target.value = val;
-  }
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function populateSelects() {
+  ['m','f'].forEach(prefix => {
+    const dayEl   = document.getElementById(`${prefix}-day`);
+    const monthEl = document.getElementById(`${prefix}-month`);
+    const yearEl  = document.getElementById(`${prefix}-year`);
+
+    const do1 = document.createElement('option'); do1.value = ""; do1.textContent = "Day"; do1.disabled = true; do1.selected = true; dayEl.appendChild(do1);
+    const mo1 = document.createElement('option'); mo1.value = ""; mo1.textContent = "Month"; mo1.disabled = true; mo1.selected = true; monthEl.appendChild(mo1);
+    const yo1 = document.createElement('option'); yo1.value = ""; yo1.textContent = "Year"; yo1.disabled = true; yo1.selected = true; yearEl.appendChild(yo1);
+
+    for (let d = 1; d <= 31; d++) {
+      const o = document.createElement('option'); o.value = d; o.textContent = d; dayEl.appendChild(o);
+    }
+    MONTHS.forEach((m, i) => {
+      const o = document.createElement('option'); o.value = i + 1; o.textContent = m; monthEl.appendChild(o);
+    });
+    const currentYear = new Date().getFullYear();
+    for (let y = currentYear; y >= 1920; y--) {
+      const o = document.createElement('option'); o.value = y; o.textContent = y; yearEl.appendChild(o);
+    }
+  });
 }
 
 /* ============================================================
    INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
+  populateSelects();
   document.getElementById('calc-btn').addEventListener('click', calculate);
-  
-  // Add auto-formatting to date inputs
-  const yourBday = document.getElementById('your-birthday');
-  const partnerBday = document.getElementById('partner-birthday');
-  if (yourBday) yourBday.addEventListener('input', formatDateInput);
-  if (partnerBday) partnerBday.addEventListener('input', formatDateInput);
 });
