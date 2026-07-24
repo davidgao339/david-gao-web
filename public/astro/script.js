@@ -7,11 +7,24 @@ const METRIC_NAMES = {
   physical:  'PHYSICAL AND INTIMATE CHEMISTRY'
 };
 
-const METRIC_DESCS = {
-  heart:     'High capacity for active listening. You share compatible lifestyle habits. There is mutual trust between partners. Great for friendships and long-term relationships.',
-  emotional: 'Empathetic conflict resolution and shared humor. You love spending time with each other and love similar activities.',
-  physical:  'Strong physical connection, complementary attachment styles, and alignment in intimacy preferences'
-};
+function getMetricBlurb(key, val) {
+  if (key === 'heart') {
+    if (val >= 50) return 'High capacity for active listening. You share compatible lifestyle habits. There is mutual trust between partners. Great for friendships and long-term relationships.';
+    if (val >= 0)  return 'There is a solid foundation of mutual respect, but deeper communication may sometimes require extra effort. Building trust will strengthen your bond over time.';
+    return 'Frequent misunderstandings and clashing lifestyle habits. Patience and active listening are absolutely necessary to bridge the gap and build trust.';
+  }
+  if (key === 'emotional') {
+    if (val >= 50) return 'Empathetic conflict resolution and shared humor. You love spending time with each other and love similar activities.';
+    if (val >= 0)  return 'You connect well on a basic level, but your emotional needs may differ at times. Finding common ground in shared activities helps align your feelings.';
+    return 'There can be emotional disconnects and differing ways of processing feelings. It takes conscious effort to understand each other\'s emotional language.';
+  }
+  if (key === 'physical') {
+    if (val >= 50) return 'Strong physical connection, complementary attachment styles, and alignment in intimacy preferences.';
+    if (val >= 0)  return 'A moderate physical connection. You may have different pacing or intimacy preferences that require open communication to fully align.';
+    return 'Mismatched physical energy and attachment styles. You will need to openly discuss and respect each other\'s boundaries and needs to find common ground.';
+  }
+  return '';
+}
 
 function renderChakras(data) {
   const chart   = data.bio_result_chart;
@@ -29,7 +42,7 @@ function renderChakras(data) {
     const rawVal = chart[key] ?? 0;
     const pct    = Math.abs(rawVal);
     const isNeg  = rawVal < 0;
-    const desc   = METRIC_DESCS[key];
+    const desc   = getMetricBlurb(key, rawVal);
 
     const row = document.createElement('div');
     row.className = 'chakra-bar-row';
