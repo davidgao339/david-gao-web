@@ -28,12 +28,12 @@
           <form class="input-grid">
             <div class="form-group">
               <label for="your-name">YOUR NAME:</label>
-              <input type="text" id="your-name" autocomplete="off" placeholder="e.g. Romeo">
+              <input type="text" id="your-name" maxlength="30" autocomplete="off" placeholder="e.g. Romeo">
             </div>
 
             <div class="form-group">
               <label for="partner-name">PARTNER'S NAME:</label>
-              <input type="text" id="partner-name" autocomplete="off" placeholder="e.g. Juliet">
+              <input type="text" id="partner-name" maxlength="30" autocomplete="off" placeholder="e.g. Juliet">
             </div>
 
             <div class="form-group">
@@ -65,7 +65,7 @@
         <section class="right-section">
           <div class="icon-container">
             <div class="yin-yang-orb">
-              <span class="symbol">&#9802;</span> <!-- Decorative Symbol -->
+              <span class="symbol">🌊</span> <!-- Decorative Symbol -->
             </div>
           </div>
 
@@ -128,6 +128,10 @@
             <div id="zodiac-pair-text" class="zodiac-pair-text"></div>
           </div>
         </section>
+      </div>
+
+      <div style="text-align:center; margin-top:30px;">
+        <button type="button" id="back-btn" class="analyze-btn" style="background:rgba(255,255,255,0.05); border:1px solid rgba(135,206,250,0.3); color:#fff; width:100%; max-width:300px; margin:0 auto; transition:all 0.3s;">← RECALCULATE</button>
       </div>
     </main>
 

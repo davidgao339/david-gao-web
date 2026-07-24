@@ -9,18 +9,18 @@ const METRIC_NAMES = {
 
 function getMetricBlurb(key, val) {
   if (key === 'heart') {
-    if (val >= 50) return 'High capacity for active listening. You share compatible lifestyle habits. There is mutual trust between partners. Great for friendships and long-term relationships.';
-    if (val >= 0)  return 'There is a solid foundation of mutual respect, but deeper communication may sometimes require extra effort. Building trust will strengthen your bond over time.';
+    if (val >= 60) return 'High capacity for active listening. You share compatible lifestyle habits. There is mutual trust between partners. Great for friendships and long-term relationships.';
+    if (val > 0)  return 'There is a solid foundation of mutual respect, but deeper communication may sometimes require extra effort. Building trust will strengthen your bond over time.';
     return 'Frequent misunderstandings and clashing lifestyle habits. Patience and active listening are absolutely necessary to bridge the gap and build trust.';
   }
   if (key === 'emotional') {
-    if (val >= 50) return 'Empathetic conflict resolution and shared humor. You love spending time with each other and love similar activities.';
-    if (val >= 0)  return 'You connect well on a basic level, but your emotional needs may differ at times. Finding common ground in shared activities helps align your feelings.';
+    if (val >= 60) return 'Empathetic conflict resolution and shared humor. You love spending time with each other and love similar activities.';
+    if (val > 0)  return 'You connect well on a basic level, but your emotional needs may differ at times. Finding common ground in shared activities helps align your feelings.';
     return 'There can be emotional disconnects and differing ways of processing feelings. It takes conscious effort to understand each other\'s emotional language.';
   }
   if (key === 'physical') {
-    if (val >= 50) return 'Strong physical connection, complementary attachment styles, and alignment in intimacy preferences.';
-    if (val >= 0)  return 'A moderate physical connection. You may have different pacing or intimacy preferences that require open communication to fully align.';
+    if (val >= 60) return 'Strong physical connection, complementary attachment styles, and alignment in intimacy preferences.';
+    if (val > 0)  return 'A moderate physical connection. You may have different pacing or intimacy preferences that require open communication to fully align.';
     return 'Mismatched physical energy and attachment styles. You will need to openly discuss and respect each other\'s boundaries and needs to find common ground.';
   }
   return '';
@@ -33,9 +33,8 @@ function renderChakras(data) {
   barsEl.innerHTML = '';
 
   Object.entries(METRIC_NAMES).forEach(([key, name]) => {
-    // If Sexual Compatibility toggle is off, don't show the physical bar
-    const includeSexCompat = document.getElementById('sex-compat-toggle').checked;
-    if (key === 'physical' && !includeSexCompat) {
+    // Skip physical here, we handle it below as a bonus
+    if (key === 'physical') {
       return; 
     }
 
@@ -47,22 +46,76 @@ function renderChakras(data) {
     const row = document.createElement('div');
     row.className = 'chakra-bar-row';
     row.innerHTML = `
-      <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-        <div class="chakra-bar-label">${name}</div>
+      <div style="display:flex; justify-content:space-between; margin-bottom:5px; cursor:pointer; user-select:none;" class="metric-header">
+        <div class="chakra-bar-label">${name} <span class="expand-icon" style="display:inline-block; transition:transform 0.3s; font-size:0.8rem; margin-left:6px; opacity:0.8;">▼</span></div>
         <div class="chakra-bar-pct" style="margin-top:0;">${rawVal}%</div>
       </div>
       <div class="chakra-bar-track">
         <div class="chakra-bar-fill ${isNeg ? 'negative' : ''}" style="width: 0%"></div>
       </div>
-      <div style="font-size:0.8rem; color:#8daed8; margin-top:8px; line-height:1.4;">${desc}</div>
+      <div class="metric-details" style="display:none; font-size:0.9rem; color:#e2e8f0; margin-top:10px; line-height:1.5; padding:10px; background:rgba(255,255,255,0.05); border-radius:8px;">${desc}</div>
     `;
     barsEl.appendChild(row);
 
+    // Toggle expansion logic
+    const header = row.querySelector('.metric-header');
+    const details = row.querySelector('.metric-details');
+    const icon = row.querySelector('.expand-icon');
+    
+    header.addEventListener('click', () => {
+      const isHidden = details.style.display === 'none';
+      details.style.display = isHidden ? 'block' : 'none';
+      icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+    });
+
     // Animate the bar width
     setTimeout(() => {
-      row.querySelector('.chakra-bar-fill').style.width = pct + '%';
+      row.querySelector('.chakra-bar-fill').style.width = Math.min(pct, 100) + '%';
     }, 100);
   });
+
+  // Render Physical as a Bonus Section if toggled on
+  const includeSexCompat = document.getElementById('sex-compat-toggle').checked;
+  if (includeSexCompat) {
+    const physVal = chart['physical'] ?? 0;
+    const desc = getMetricBlurb('physical', physVal);
+    const bonusDiv = document.createElement('div');
+    
+    if (physVal >= 60) {
+      // Bonus met!
+      bonusDiv.style.cssText = "margin-top:25px; padding:15px; background:rgba(255,105,180,0.15); border:1px solid rgba(255,105,180,0.4); border-radius:12px; text-align:center; box-shadow: inset 0 0 15px rgba(255,105,180,0.1); cursor:pointer; user-select:none;";
+      bonusDiv.innerHTML = `
+        <div class="bonus-header">
+          <div style="font-size:1.1rem; font-weight:bold; color:#ffb6c1; margin-bottom:0; letter-spacing:0.5px;">
+            💖 BONUS: Physical Chemistry (${physVal}%) <span class="expand-icon" style="display:inline-block; transition:transform 0.3s; font-size:0.8rem; margin-left:6px; opacity:0.8;">▼</span>
+          </div>
+        </div>
+        <div class="metric-details" style="display:none; font-size:0.9rem; color:#fde4ec; line-height:1.5; margin-top:12px;">${desc}</div>
+      `;
+    } else {
+      // Not met threshold
+      bonusDiv.style.cssText = "margin-top:25px; padding:15px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:12px; text-align:center; cursor:pointer; user-select:none;";
+      bonusDiv.innerHTML = `
+        <div class="bonus-header">
+          <div style="font-size:1rem; font-weight:bold; color:#a5c9f5; margin-bottom:0;">
+            Physical Chemistry (${physVal}%) <span class="expand-icon" style="display:inline-block; transition:transform 0.3s; font-size:0.8rem; margin-left:6px; opacity:0.8;">▼</span>
+          </div>
+        </div>
+        <div class="metric-details" style="display:none; font-size:0.9rem; color:#cbd5e1; line-height:1.5; margin-top:12px;">${desc}</div>
+      `;
+    }
+    barsEl.appendChild(bonusDiv);
+
+    // Toggle expansion logic for bonus
+    const details = bonusDiv.querySelector('.metric-details');
+    const icon = bonusDiv.querySelector('.expand-icon');
+    
+    bonusDiv.addEventListener('click', () => {
+      const isHidden = details.style.display === 'none';
+      details.style.display = isHidden ? 'block' : 'none';
+      icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+    });
+  }
 }
 
 /* ============================================================
@@ -103,9 +156,27 @@ function calculate() {
   const errEl = document.getElementById('calc-error');
   
   if (!mDay || !mMonth || !mYear || !fDay || !fMonth || !fYear) {
+    errEl.textContent = 'Please fill out all birthday fields.';
     errEl.classList.remove('hidden');
     return;
   }
+
+  const mDayNum = parseInt(mDay);
+  const mMonthNum = parseInt(mMonth);
+  const mYearNum = parseInt(mYear);
+  const fDayNum = parseInt(fDay);
+  const fMonthNum = parseInt(fMonth);
+  const fYearNum = parseInt(fYear);
+
+  const yourDateObj = new Date(mYearNum, mMonthNum - 1, mDayNum);
+  const partnerDateObj = new Date(fYearNum, fMonthNum - 1, fDayNum);
+
+  if (yourDateObj.getDate() !== mDayNum || partnerDateObj.getDate() !== fDayNum) {
+    errEl.textContent = 'Please select valid calendar dates.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
   errEl.classList.add('hidden');
 
   const btn = document.getElementById('calc-btn');
@@ -114,8 +185,8 @@ function calculate() {
 
   try {
     const data = calculateCompatibility(
-      parseInt(mDay), parseInt(mMonth), parseInt(mYear),
-      parseInt(fDay), parseInt(fMonth), parseInt(fYear)
+      mDayNum, mMonthNum, mYearNum,
+      fDayNum, fMonthNum, fYearNum
     );
 
     // Render components
@@ -130,7 +201,7 @@ function calculate() {
     }
 
     if (verdict.includes('Perfect Match')) {
-      verdict = "Its a perfect match. You found TRUE LOVE";
+      verdict = verdict.replace('Perfect Match', "It's a perfect match. You found TRUE LOVE");
     }
 
     document.getElementById('final-verdict').textContent = verdict;
@@ -198,4 +269,10 @@ function populateSelects() {
 document.addEventListener('DOMContentLoaded', () => {
   populateSelects();
   document.getElementById('calc-btn').addEventListener('click', calculate);
+  
+  document.getElementById('back-btn').addEventListener('click', () => {
+    document.getElementById('results-card').classList.add('hidden');
+    document.getElementById('input-card').classList.remove('hidden');
+    window.scrollTo(0, 0);
+  });
 });
