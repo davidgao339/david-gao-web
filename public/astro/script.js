@@ -325,6 +325,65 @@ function calculate() {
       if (clashCount > 0) {
         if (pBoth) pBoth.classList.remove('hidden');
       }
+    } else if (verdict.includes('Perfect match')) {
+      summaryBlock.classList.remove('hidden');
+      summaryBlock.style.borderLeft = "4px solid #10b981";
+      summaryBlock.style.background = "rgba(16, 185, 129, 0.05)";
+      
+      const t = {
+        title: "Overall Result: Exceptional Compatibility",
+        note: "A high compatibility score is one of the rarest and most exciting findings. It means your core values, communication styles, and natural worldviews align smoothly, giving you a remarkably strong foundation to build upon.",
+        insights: [
+          "<strong>Effortless Flow:</strong> Your communication and emotional processing styles complement each other naturally, making it easier to understand each other without constant translation.",
+          "<strong>Shared Direction:</strong> Your underlying goals, personal values, and lifestyle preferences move in the same direction, reducing major friction around long-term choices.",
+          "<strong>Built-in Support:</strong> You naturally provide the type of care, validation, and motivation that the other person needs to thrive."
+        ],
+        meaningIntro: "Finding a partner with whom everything \"just clicks\" is rare. Natural compatibility gives your relationship a massive head start, making love feel less like a heavy project and more like a safe harbor.",
+        path1Title: "1. Why This Dynamic Works",
+        path1Intro: "",
+        path1Points: [
+          "<strong>Ease & Comfort:</strong> You can truly be yourselves without feeling the need to perform, overly compensate, or walking on eggshells.",
+          "<strong>Constructive Growth:</strong> When disagreements inevitably happen, your shared framework makes it much easier to listen, resolve conflict quickly, and grow closer rather than drifting apart."
+        ],
+        path2Title: "2. Nurturing Your Connection",
+        path2Intro: "While natural synergy makes things feel easy, even the best connections flourish with intentional care:",
+        path2Points: [
+          "<strong>Keep Exploring:</strong> Use your strong dynamic as a springboard to try new things, pursue shared goals, and build lasting memories together.",
+          "<strong>Don't Take It for Granted:</strong> High compatibility is a rare gift—continue to appreciate, celebrate, and invest in the unique bond you've found."
+        ],
+        nextSteps: "Celebrate this connection! Use this score as reassurance that you’ve found something truly special—a partnership built on mutual understanding, genuine care, and exceptional potential."
+      };
+      
+      summaryBlock.innerHTML = `
+        <h3 style="color: #10b981; font-size: 1.4rem;">Relationship Compatibility Summary</h3>
+        <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #6ee7b7;">${t.title}</p>
+        
+        <p><strong>A Quick Note from Us:</strong><br>${t.note}</p>
+        
+        <h4 style="color: #34d399; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Key Findings & Insights</h4>
+        <ul style="padding-left: 20px; margin-bottom: 15px;">
+          ${t.insights.map(i => `<li style="margin-bottom: 8px;">${i}</li>`).join('')}
+        </ul>
+        
+        <h4 style="color: #34d399; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">What Does This Mean for You?</h4>
+        <p>${t.meaningIntro}</p>
+        
+        <p style="margin-top: 10px;"><strong>${t.path1Title}</strong><br>
+        ${t.path1Intro}
+        <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+          ${t.path1Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
+        </ul>
+        </p>
+        
+        <p style="margin-top: 10px;"><strong>${t.path2Title}</strong><br>
+        ${t.path2Intro}
+        <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+          ${t.path2Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
+        </ul>
+        </p>
+        
+        <p style="margin-top: 15px;"><strong>Next Steps</strong><br>${t.nextSteps}</p>
+      `;
     } else {
       summaryBlock.classList.add('hidden');
     }
