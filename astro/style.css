@@ -181,10 +181,13 @@ body {
   background-position: right 10px top 50%;
   background-size: 10px auto;
 }
-.date-selects select:focus {
+.form-group input:focus {
   border-color: rgba(135, 206, 250, 0.7);
   box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
   background: rgba(255, 255, 255, 0.08);
+}
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 .date-selects select option {
   color: #000;
@@ -373,8 +376,10 @@ body {
   margin-bottom: 12px;
 }
 .chakra-bar-label {
-  font-size: 0.85rem;
-  color: #a5c9f5;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 0.5px;
   margin-bottom: 5px;
 }
 .chakra-bar-track {
@@ -394,8 +399,9 @@ body {
   background: linear-gradient(90deg, #cf4a6a, #ff9baf);
 }
 .chakra-bar-pct {
-  font-size: 0.75rem;
-  color: #8daed8;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #9bc5ff;
   margin-top: 3px;
   text-align: right;
 }
@@ -422,6 +428,9 @@ body {
   margin-bottom: 5px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
 }
 .zodiac-sign-name {
   font-size: 1.2rem;
@@ -435,7 +444,7 @@ body {
 .zodiac-vs {
   font-size: 1.5rem;
   font-weight: bold;
-  color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.6);
 }
 .zodiac-harmony {
   text-align: center;
@@ -475,20 +484,20 @@ body {
 
 .wave {
   position: absolute;
-  width: 250vw;
-  height: 250vw;
-  bottom: -250vw; /* Start completely off-screen at the bottom */
-  left: -75vw;
+  width: 250vmax;
+  height: 250vmax;
+  bottom: -250vmax; /* Start completely off-screen at the bottom */
+  left: -75vmax;
   border-radius: 40%;
   animation: none;
 }
 
 @media (min-width: 1024px) {
   .wave {
-    width: 200vw;
-    height: 200vw;
-    bottom: -200vw;
-    left: -50vw;
+    width: 200vmax;
+    height: 200vmax;
+    bottom: -200vmax;
+    left: -50vmax;
   }
 }
 
@@ -508,15 +517,15 @@ body {
 
 @keyframes waveUp {
   0% {
-    bottom: -250vw;
+    bottom: -250vmax;
     transform: rotate(0deg);
   }
   50% {
-    bottom: -50vw;
+    bottom: -50vmax;
     transform: rotate(180deg);
   }
   100% {
-    bottom: 150vh;
+    bottom: 150vmax;
     transform: rotate(360deg);
   }
 }
