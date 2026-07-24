@@ -65,7 +65,7 @@
         <section class="right-section">
           <div class="icon-container">
             <div class="yin-yang-orb">
-              <span class="symbol">🌊</span> <!-- Decorative Symbol -->
+              <span class="symbol">💖</span> <!-- Decorative Symbol -->
             </div>
           </div>
 
@@ -130,11 +130,90 @@
         </section>
       </div>
 
-      <div style="text-align:center; margin-top:30px;">
-        <button type="button" id="back-btn" class="analyze-btn" style="background:rgba(255,255,255,0.05); border:1px solid rgba(135,206,250,0.3); color:#fff; width:100%; max-width:300px; margin:0 auto; transition:all 0.3s;">← RECALCULATE</button>
+      <div class="action-buttons-container" style="display:flex; flex-direction:column; gap:15px; margin-top:30px;">
+        <button type="button" id="full-report-btn" class="analyze-btn" style="background:linear-gradient(135deg, rgba(219, 39, 119, 0.4), rgba(157, 23, 77, 0.6)); border:1px solid rgba(244, 114, 182, 0.5); color:#fff; width:100%; max-width:400px; margin:0 auto; transition:all 0.3s; animation:none;">VIEW FULL REPORT</button>
+        <button type="button" id="back-btn" class="analyze-btn" style="background:rgba(255,255,255,0.05); border:1px solid rgba(135,206,250,0.3); color:#fff; width:100%; max-width:400px; margin:0 auto; transition:all 0.3s; animation:none;">← RECALCULATE</button>
       </div>
     </main>
 
+  </div>
+
+  <!-- Full Report Modal -->
+  <div id="full-report-modal" class="modal-overlay hidden">
+    <div class="modal-content ui-card">
+      <div class="modal-header">
+        <h2>DEEP ANALYSIS REPORT</h2>
+        <button id="close-modal-btn" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Low Compatibility Summary Block -->
+        <div id="low-compat-summary" class="report-section hidden" style="border-left: 4px solid #ef4444; background: rgba(239, 68, 68, 0.05);">
+          <h3 style="color: #ef4444; font-size: 1.4rem;">Relationship Compatibility Summary</h3>
+          <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">Overall Result: Low Compatibility</p>
+          
+          <p><strong>A Quick Note from Us:</strong><br>
+          Compatibility scores are a tool to help you understand natural alignment, communication differences, and ability to sustain long-term relationships. A low score means that building long-term relationships will be significantly harder and will require a lot of sacrifice from both of you. The report below highlights where your natural trajectories, core values, or relationship dynamics differ significantly.</p>
+          
+          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Key Findings & Insights</h4>
+          <p id="low-compat-harmony" class="hidden" style="margin-bottom: 5px;"><strong>Natural Misalignment:</strong> Your core personalities and default conflict-resolution styles require very different environments to feel completely understood and supported.</p>
+          <p id="low-compat-emotion" class="hidden" style="margin-bottom: 5px;"><strong>Emotional Misalignment:</strong> The areas where you differ are fundamental—such as emotional needs, future goals, or communication preferences—rather than minor preferences.</p>
+          <p id="low-compat-both" class="hidden"><strong>Energy Investment:</strong> Sustaining harmony in this partnership will likely require continuous, heavy compromise and emotional heavy-lifting from both sides.</p>
+          
+          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">What Does This Mean for You?</h4>
+          <p>Every relationship requires effort, but when natural compatibility is low, that effort turns into a daily uphill climb.</p>
+          
+          <p style="margin-top: 10px;"><strong>1. The Path of Staying Together</strong><br>
+          If you choose to move forward, it’s important to be realistic about what lies ahead:<br>
+          <em>High Sacrifice:</em> You will both likely need to make significant sacrifices regarding your natural habits, desires, and communication styles.<br>
+          <em>Continuous Effort:</em> Love alone may not eliminate the recurring friction. Navigating these differences will require patience, professional guidance, or constant conscious effort to keep the relationship stable.</p>
+          
+          <p style="margin-top: 10px;"><strong>2. The Path of Moving On</strong><br>
+          While it’s never easy to realize a partnership might not be the right fit, it’s also an opportunity:<br>
+          <em>You Deserve Ease:</em> Relationships shouldn't feel like a constant struggle. You deserve a connection where being yourself feels natural and effortless.<br>
+          <em>A World of Possibilities:</em> There are billions of people in the world. Out there is someone whose values, communication style, and long-term vision align effortlessly with yours—someone who will care for you exactly as you need to be cared for, without requiring either of you to change who you fundamentally are.</p>
+          
+          <p style="margin-top: 15px;"><strong>Next Steps</strong><br>
+          Take a breath and reflect. Use this report not as a harsh verdict, but as an honest mirror to evaluate what you truly want out of love, peace, and your future.</p>
+        </div>
+        
+        <div class="report-section">
+          <h3>Your Numerology</h3>
+          <p id="report-num-male"></p>
+        </div>
+        
+        <div class="report-section">
+          <h3>Partner's Numerology</h3>
+          <p id="report-num-female"></p>
+        </div>
+
+        <div class="report-section">
+          <h3>Pair Energy Matrix</h3>
+          <p id="report-pair-energy"></p>
+        </div>
+        
+        <div class="report-section">
+          <h3>Your Tarot Arcana</h3>
+          <p id="report-arcana-male"></p>
+        </div>
+        
+        <div class="report-section">
+          <h3>Partner's Tarot Arcana</h3>
+          <p id="report-arcana-female"></p>
+        </div>
+
+        <div class="report-section">
+          <h3>Your Love Scenario</h3>
+          <p id="report-scenario-male"></p>
+        </div>
+        
+        <div class="report-section">
+          <h3>Partner's Love Scenario</h3>
+          <p id="report-scenario-female"></p>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <!-- Wave Transition Overlay -->
