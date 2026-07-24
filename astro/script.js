@@ -452,19 +452,28 @@ document.addEventListener('DOMContentLoaded', () => {
   populateSelects();
   document.getElementById('calc-btn').addEventListener('click', calculate);
   
-  document.getElementById('back-btn').addEventListener('click', () => {
-    document.getElementById('results-card').classList.add('hidden');
-    document.getElementById('input-card').classList.remove('hidden');
-    window.scrollTo(0, 0);
-  });
+  const backBtn = document.getElementById('back-btn');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      document.getElementById('results-card').classList.add('hidden');
+      document.getElementById('input-card').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    });
+  }
 
   const modal = document.getElementById('full-report-modal');
-  document.getElementById('full-report-btn').addEventListener('click', () => {
-    modal.classList.remove('hidden');
-  });
-  document.getElementById('close-modal-btn').addEventListener('click', () => {
-    modal.classList.add('hidden');
-  });
+  const fullReportBtn = document.getElementById('full-report-btn');
+  if (fullReportBtn) {
+    fullReportBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+    });
+  }
+  const closeModalBtn = document.getElementById('close-modal-btn');
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+  }
   modal.addEventListener('click', (e) => {
     if (e.target === modal) modal.classList.add('hidden');
   });
