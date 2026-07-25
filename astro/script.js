@@ -9,17 +9,15 @@ const METRIC_NAMES = {
 
 function getMetricBlurb(key, val) {
   if (key === 'heart') {
-    if (val >= 60) return 'High capacity for active listening. You share compatible lifestyle habits. There is mutual trust between partners. Great for friendships and long-term relationships.';
-    if (val > 0)  return 'There is a solid foundation of mutual respect, but deeper communication may sometimes require extra effort. Building trust will strengthen your bond over time.';
-    return 'Frequent misunderstandings and clashing lifestyle habits. Patience and active listening are absolutely necessary to bridge the gap and build trust.';
+    if (val >= 60) return 'Built on active listening, compatible lifestyles, and deep mutual trust, this connection is ideal for both strong friendships and long-term relationships';
+    return 'While there is a baseline of mutual respect, your partner may occasionally lack understanding and care. Reaching deeper levels of communication will demand intentional effort, and building lasting trust may present a real challenge over time';
   }
   if (key === 'emotional') {
-    if (val >= 60) return 'Empathetic conflict resolution and shared humor. You love spending time with each other and love similar activities.';
-    if (val > 0)  return 'You connect well on a basic level, but your emotional needs may differ at times. Finding common ground in shared activities helps align your feelings.';
-    return 'There can be emotional disconnects and differing ways of processing feelings. It takes conscious effort to understand each other\'s emotional language.';
+    if (val >= 60) return 'Bonded by a shared sense of humor and empathetic conflict resolution, you genuinely enjoy each other\'s company and share similar interests';
+    return 'While you may connect on a surface level, a deep emotional incompatibility makes forming a strong long-term bond difficult. With a noticeable lack of emotional intimacy, shared interests, and aligned life goals, the relationship faces significant long-term strain, raising the risk that one partner may seek fulfillment elsewhere';
   }
   if (key === 'physical') {
-    if (val >= 60) return 'Strong physical connection, complementary attachment styles, and alignment in intimacy preferences.';
+    if (val >= 60) return 'You share a strong physical chemistry, attachment styles that naturally balance each other out, and matching expectations when it comes to intimacy';
     if (val > 0)  return 'A moderate physical connection. You may have different pacing or intimacy preferences that require open communication to fully align.';
     return 'Mismatched physical energy and attachment styles. You will need to openly discuss and respect each other\'s boundaries and needs to find common ground.';
   }
@@ -263,6 +261,9 @@ function calculate() {
       summaryBlock.classList.remove('hidden');
       
       let clashCount = 0;
+      let hasElementClashTemplate = false;
+      let clashT = null;
+      
       if (data.zodiac_result_signs.zodiacElementHarmony === 'Elements clash') {
         const sign1 = data.zodiac_result_signs.zodiacElementMale;
         const sign2 = data.zodiac_result_signs.zodiacElementFemale;
@@ -272,48 +273,69 @@ function calculate() {
         }
         
         if (CLASH_TEXTS[clashKey]) {
-            const t = CLASH_TEXTS[clashKey];
-            summaryBlock.innerHTML = `
-              <h3 style="color: #ef4444; font-size: 1.4rem;">Relationship Compatibility Summary</h3>
-              <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">${t.title}</p>
-              
-              <p><strong>A Quick Note from Us:</strong><br>${t.note}</p>
-              
-              <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Key Findings & Insights</h4>
-              <ul style="padding-left: 20px; margin-bottom: 15px;">
-                ${t.insights.map(i => `<li style="margin-bottom: 8px;">${i}</li>`).join('')}
-              </ul>
-              
-              <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">What Does This Mean for You?</h4>
-              <p>${t.meaningIntro}</p>
-              
-              <p style="margin-top: 10px;"><strong>${t.path1Title}</strong><br>
-              ${t.path1Intro}<br>
-              <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
-                ${t.path1Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
-              </ul>
-              </p>
-              
-              <p style="margin-top: 10px;"><strong>${t.path2Title}</strong><br>
-              ${t.path2Intro}<br>
-              <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
-                ${t.path2Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
-              </ul>
-              </p>
-              
-              <p style="margin-top: 15px;"><strong>Next Steps</strong><br>${t.nextSteps}</p>
-            `;
-        } else {
-            pHarmony.classList.remove('hidden');
+            hasElementClashTemplate = true;
+            clashT = CLASH_TEXTS[clashKey];
         }
-        clashCount++;
       }
-      if (data.bio_result_chart.emotional <= 60) {
-        if (pEmotion) pEmotion.classList.remove('hidden');
-        clashCount++;
-      }
-      if (clashCount > 0) {
-        if (pBoth) pBoth.classList.remove('hidden');
+      
+      if (hasElementClashTemplate) {
+          let insightsHtml = clashT.insights.map(i => `<li style="margin-bottom: 8px;">${i}</li>`).join('');
+          
+          if (data.bio_result_chart.heart <= 60) {
+              insightsHtml += `<li style="margin-bottom: 8px;"><strong>Natural Misalignment:</strong> Your core personalities and default conflict-resolution styles require very different environments to feel completely understood and supported.</li>`;
+              clashCount++;
+          }
+          if (data.bio_result_chart.emotional <= 60) {
+              insightsHtml += `<li style="margin-bottom: 8px;"><strong>Emotional Misalignment:</strong> The areas where you differ are fundamental—such as emotional needs, future goals, or communication preferences—rather than minor preferences.</li>`;
+              clashCount++;
+          }
+          if (clashCount > 0 || hasElementClashTemplate) {
+              insightsHtml += `<li style="margin-bottom: 8px;"><strong>Energy Investment:</strong> Sustaining harmony in this partnership will likely require continuous, heavy compromise and emotional heavy-lifting from both sides.</li>`;
+          }
+
+          summaryBlock.innerHTML = `
+            <h3 style="color: #ef4444; font-size: 1.4rem;">Relationship Compatibility Summary</h3>
+            <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">${clashT.title}</p>
+            
+            <p><strong>A Quick Note from Us:</strong><br>${clashT.note}</p>
+            
+            <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Key Findings & Insights</h4>
+            <ul style="padding-left: 20px; margin-bottom: 15px;">
+              ${insightsHtml}
+            </ul>
+            
+            <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">What Does This Mean for You?</h4>
+            <p>${clashT.meaningIntro}</p>
+            
+            <p style="margin-top: 10px;"><strong>${clashT.path1Title}</strong><br>
+            ${clashT.path1Intro}<br>
+            <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+              ${clashT.path1Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
+            </ul>
+            </p>
+            
+            <p style="margin-top: 10px;"><strong>${clashT.path2Title}</strong><br>
+            ${clashT.path2Intro}<br>
+            <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+              ${clashT.path2Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
+            </ul>
+            </p>
+            
+            <p style="margin-top: 15px;"><strong>Next Steps</strong><br>${clashT.nextSteps}</p>
+          `;
+      } else {
+          // Normal HTML path without Element Clash text overwrite
+          if (data.bio_result_chart.heart <= 60) {
+            if (pHarmony) pHarmony.classList.remove('hidden');
+            clashCount++;
+          }
+          if (data.bio_result_chart.emotional <= 60) {
+            if (pEmotion) pEmotion.classList.remove('hidden');
+            clashCount++;
+          }
+          if (clashCount > 0) {
+            if (pBoth) pBoth.classList.remove('hidden');
+          }
       }
     } else if (verdict.includes('Perfect Match') || verdict.includes('Good compatibility') || verdict.includes('TRUE LOVE')) {
       summaryBlock.classList.remove('hidden');
