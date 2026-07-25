@@ -265,8 +265,8 @@ function calculate() {
       
       let clashCount = 0;
       if (data.zodiac_result_signs.zodiacElementHarmony === 'Elements clash') {
-        const sign1 = data.zodiac_result_signs.zodiac_sign1.element;
-        const sign2 = data.zodiac_result_signs.zodiac_sign2.element;
+        const sign1 = data.zodiac_result_signs.zodiacElementMale;
+        const sign2 = data.zodiac_result_signs.zodiacElementFemale;
         let clashKey = `${sign1}-${sign2}`;
         if (!CLASH_TEXTS[clashKey]) {
             clashKey = `${sign2}-${sign1}`;
