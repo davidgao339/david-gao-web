@@ -144,7 +144,9 @@ function renderZodiac(data, yourName, partnerName) {
   
   document.getElementById('zodiac-role-title').textContent = roles.zodiacRoleTitle;
   document.getElementById('zodiac-role-desc').textContent  = roles.zodiacRoleDescription;
-  document.getElementById('zodiac-pair-text').textContent  = roles.zodiacPairText;
+  
+  const pairTextEl = document.getElementById('zodiac-pair-text');
+  if (pairTextEl) pairTextEl.style.display = 'none'; // hide the duplicate text
 }
 
 /* ============================================================
@@ -212,12 +214,9 @@ function calculate() {
     renderChakras(data);
     renderZodiac(data, yourName, partnerName);
     
-    // Modify verdict if sexual compatibility is turned off
-    let verdict = data.final_verdict;
+    // Modify verdict to unconditionally remove the physical chemistry string from the main banner
+    let verdict = data.final_verdict.replace(' (Great Physical Chemistry!)', '');
     const includeSexCompat = document.getElementById('sex-compat-toggle').checked;
-    if (!includeSexCompat) {
-      verdict = verdict.replace(' (Great Physical Chemistry!)', '');
-    }
 
     const finalVerdictEl = document.getElementById('final-verdict');
     if (verdict.includes('Perfect Match')) {
@@ -316,7 +315,7 @@ function calculate() {
       if (clashCount > 0) {
         if (pBoth) pBoth.classList.remove('hidden');
       }
-    } else if (verdict.includes('Perfect Match')) {
+    } else if (verdict.includes('Perfect Match') || verdict.includes('Good compatibility') || verdict.includes('TRUE LOVE')) {
       summaryBlock.classList.remove('hidden');
       summaryBlock.style.borderLeft = "4px solid #10b981";
       summaryBlock.style.background = "rgba(16, 185, 129, 0.05)";
