@@ -41,12 +41,14 @@ function renderChakras(data) {
     const isNeg  = rawVal < 0;
     const desc   = getMetricBlurb(key, rawVal);
 
+    const pctColor = rawVal >= 60 ? '#10b981' : '#ef4444';
+
     const row = document.createElement('div');
     row.className = 'chakra-bar-row';
     row.innerHTML = `
       <div style="display:flex; justify-content:space-between; margin-bottom:5px; cursor:pointer; user-select:none;" class="metric-header">
         <div class="chakra-bar-label">${name} <span class="expand-icon" style="display:inline-block; transition:transform 0.3s; font-size:0.8rem; margin-left:6px; opacity:0.8;">▼</span></div>
-        <div class="chakra-bar-pct" style="margin-top:0;">${rawVal}%</div>
+        <div class="chakra-bar-pct" style="margin-top:0; color: ${pctColor};">${rawVal}%</div>
       </div>
       <div class="chakra-bar-track">
         <div class="chakra-bar-fill ${isNeg ? 'negative' : ''}" style="width: 0%"></div>
@@ -85,7 +87,7 @@ function renderChakras(data) {
       bonusDiv.innerHTML = `
         <div class="bonus-header">
           <div style="font-size:1.1rem; font-weight:bold; color:#ffb6c1; margin-bottom:0; letter-spacing:0.5px;">
-            💖 BONUS: Physical Chemistry (${physVal}%) <span class="expand-icon" style="display:inline-block; transition:transform 0.3s; font-size:0.8rem; margin-left:6px; opacity:0.8;">▼</span>
+            💖 BONUS: Physical Chemistry (<span style="color:#10b981">${physVal}%</span>) <span class="expand-icon" style="display:inline-block; transition:transform 0.3s; font-size:0.8rem; margin-left:6px; opacity:0.8;">▼</span>
           </div>
         </div>
         <div class="metric-details" style="display:none; font-size:0.9rem; color:#fde4ec; line-height:1.5; margin-top:12px;">${desc}</div>
@@ -96,7 +98,7 @@ function renderChakras(data) {
       bonusDiv.innerHTML = `
         <div class="bonus-header">
           <div style="font-size:1rem; font-weight:bold; color:#a5c9f5; margin-bottom:0;">
-            Physical Chemistry (${physVal}%) <span class="expand-icon" style="display:inline-block; transition:transform 0.3s; font-size:0.8rem; margin-left:6px; opacity:0.8;">▼</span>
+            Physical Chemistry (<span style="color:#ef4444">${physVal}%</span>) <span class="expand-icon" style="display:inline-block; transition:transform 0.3s; font-size:0.8rem; margin-left:6px; opacity:0.8;">▼</span>
           </div>
         </div>
         <div class="metric-details" style="display:none; font-size:0.9rem; color:#cbd5e1; line-height:1.5; margin-top:12px;">${desc}</div>
@@ -218,14 +220,20 @@ function calculate() {
 
     const finalVerdictEl = document.getElementById('final-verdict');
     if (verdict.includes('Perfect Match')) {
-      verdict = verdict.replace('Perfect Match', "It's a perfect match. You found TRUE LOVE");
       finalVerdictEl.className = 'verdict-text verdict-good';
-      finalVerdictEl.textContent = verdict;
+      finalVerdictEl.innerHTML = `
+        <div style="display:flex; justify-content:center; align-items:center; gap: 10px; font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;">
+          <span class="fireworks-anim" style="display:inline-block; animation: pop 1.5s infinite alternate;">🎆</span> 
+          PERFECT MATCH! 
+          <span class="fireworks-anim" style="display:inline-block; animation: pop 1.5s infinite alternate-reverse;">🎆</span>
+        </div>
+        <div style="font-size: 1.2rem; margin-top:8px;">You found your TRUE LOVE!</div>
+      `;
     } else if (verdict.includes('Not compatible')) {
       finalVerdictEl.className = 'verdict-text verdict-bad';
       finalVerdictEl.innerHTML = `
         <div style="color: #ef4444; font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;">NOT COMPATIBLE</div>
-        <div style="color: #60a5fa; font-size: 1.1rem; margin-top: 5px;">(Can be friends)</div>
+        <div style="color: #3b82f6; font-size: 1.1rem; margin-top: 5px;">(Can be friends)</div>
       `;
     } else {
       // Good compatibility (but not perfect)
