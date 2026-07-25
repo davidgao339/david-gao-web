@@ -230,10 +230,18 @@ function calculate() {
         <div style="font-size: 1.2rem; margin-top:8px;">You found your TRUE LOVE!</div>
       `;
     } else if (verdict.includes('Not compatible')) {
+      const heartMatch = (data.bio_result_chart.heart >= 60);
+      const emotionalMatch = (data.bio_result_chart.emotional >= 60);
+      
+      let friendsHtml = '';
+      if (heartMatch || emotionalMatch) {
+          friendsHtml = `<div style="color: #3b82f6; font-size: 1.1rem; margin-top: 5px;">(Can be friends)</div>`;
+      }
+      
       finalVerdictEl.className = 'verdict-text verdict-bad';
       finalVerdictEl.innerHTML = `
         <div style="color: #ef4444; font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;">NOT COMPATIBLE</div>
-        <div style="color: #3b82f6; font-size: 1.1rem; margin-top: 5px;">(Can be friends)</div>
+        ${friendsHtml}
       `;
     } else {
       // Good compatibility (but not perfect)
