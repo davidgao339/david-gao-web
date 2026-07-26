@@ -426,7 +426,7 @@ function calculate() {
       document.getElementById('input-card').classList.add('hidden');
       document.getElementById('results-card').classList.remove('hidden');
       window.scrollTo(0, 0); // Reset scroll position for new page
-    }, 1400);
+    }, 5000);
 
     // Hide wave overlay after animation finishes
     setTimeout(() => {
@@ -434,7 +434,7 @@ function calculate() {
       waveOverlay.classList.add('hidden');
       btn.disabled = false;
       btn.textContent = 'BEGIN ANALYSIS';
-    }, 3000);
+    }, 10000);
 
   } catch (err) {
     console.error(err);
