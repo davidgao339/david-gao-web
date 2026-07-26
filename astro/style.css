@@ -649,13 +649,39 @@ body {
 .wave3 { background: rgba(10, 15, 30, 1); }
 
 .wave-overlay.active .wave1 {
-  animation: waveUp 2.5s ease-in-out forwards;
+  animation: waveUp 10s ease-in-out forwards;
 }
 .wave-overlay.active .wave2 {
-  animation: waveUp 2.5s ease-in-out forwards 0.2s;
+  animation: waveUp 10s ease-in-out forwards 0.5s;
 }
 .wave-overlay.active .wave3 {
-  animation: waveUp 2.5s ease-in-out forwards 0.4s;
+  animation: waveUp 10s ease-in-out forwards 1s;
+}
+
+.analyzing-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 5px;
+  opacity: 0;
+  z-index: 10000;
+}
+
+.wave-overlay.active .analyzing-text {
+  animation: textFade 10s ease-in-out forwards;
+}
+
+@keyframes textFade {
+  0% { opacity: 0; }
+  10% { opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  90% { opacity: 0; }
+  100% { opacity: 0; }
 }
 
 @keyframes waveUp {
