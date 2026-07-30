@@ -649,13 +649,13 @@ body {
 .wave3 { background: rgba(10, 15, 30, 1); }
 
 .wave-overlay.active .wave1 {
-  animation: waveUp 10s ease-in-out forwards;
+  animation: waveUp 3s ease-in-out forwards;
 }
 .wave-overlay.active .wave2 {
-  animation: waveUp 10s ease-in-out forwards 0.5s;
+  animation: waveUp 3s ease-in-out forwards 0.2s;
 }
 .wave-overlay.active .wave3 {
-  animation: waveUp 10s ease-in-out forwards 1s;
+  animation: waveUp 3s ease-in-out forwards 0.4s;
 }
 
 .analyzing-text {
@@ -682,7 +682,7 @@ body {
 }
 
 .wave-overlay.active .loading-container {
-  animation: textFade 10s ease-in-out forwards;
+  animation: textFade 3s ease-in-out forwards;
 }
 
 .progress-bar-container {

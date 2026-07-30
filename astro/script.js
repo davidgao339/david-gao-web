@@ -493,11 +493,11 @@ function calculate() {
       if (phase < 3) {
         loadingPhrase.textContent = shuffled[phase];
       }
-    }, 3300);
+    }, 1000);
 
     // Smoothly fill progress bar
     setTimeout(() => { 
-      loadingProgress.style.transition = 'width 9.5s linear';
+      loadingProgress.style.transition = 'width 2.8s linear';
       loadingProgress.style.width = '100%'; 
     }, 50);
 
@@ -511,7 +511,7 @@ function calculate() {
       document.getElementById('results-blur-container').classList.remove('revealed');
 
       window.scrollTo(0, 0); // Reset scroll position for new page
-    }, 5000);
+    }, 1500);
 
     // Hide wave overlay after animation finishes
     setTimeout(() => {
@@ -520,7 +520,7 @@ function calculate() {
       clearInterval(phraseInterval);
       btn.disabled = false;
       btn.textContent = 'BEGIN ANALYSIS';
-    }, 10000);
+    }, 3000);
 
   } catch (err) {
     console.error(err);
