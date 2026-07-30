@@ -238,7 +238,15 @@ function calculate() {
       fireworksBg.style.display = 'none';
     }
 
-    teaserNames.textContent = `${yourName} & ${partnerName}`;
+    let nameDisplay = "";
+    if (yourName && partnerName) {
+      nameDisplay = `${yourName} & ${partnerName}`;
+    } else if (yourName) {
+      nameDisplay = yourName;
+    } else if (partnerName) {
+      nameDisplay = partnerName;
+    }
+    teaserNames.textContent = nameDisplay;
 
     if (verdict.includes('Perfect Match')) {
       finalVerdictEl.className = 'verdict-text verdict-good';
