@@ -262,22 +262,26 @@ function calculate() {
     } else if (verdict.includes('Not compatible')) {
       const heartMatch = (data.bio_result_chart.heart >= 60);
       const emotionalMatch = (data.bio_result_chart.emotional >= 60);
+      const zodiacCompatible = (data.zodiac_result_signs.zodiacElementHarmony !== 'Elements clash');
       
-      let friendsHtml = '';
-      if (heartMatch || emotionalMatch) {
-          friendsHtml = `<div style="color: #3b82f6; font-size: 1.1rem; margin-top: 5px;">(Can be friends)</div>`;
-      }
-      
-      finalVerdictEl.className = 'verdict-text verdict-bad';
-      finalVerdictEl.innerHTML = `
-        <div style="color: #ef4444; font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;">NOT COMPATIBLE</div>
-        ${friendsHtml}
-      `;
+      if (zodiacCompatible && (heartMatch || emotionalMatch)) {
+        verdict = "HIGHER THAN AVERAGE COMPATIBILITY";
+        finalVerdictEl.className = 'verdict-text verdict-good';
+        finalVerdictEl.textContent = verdict;
+        teaserVerdict.innerHTML = `
+          <span style="font-weight: bold; color: #a5c9f5;">${verdict}</span>
+        `;
+      } else {
+        finalVerdictEl.className = 'verdict-text verdict-bad';
+        finalVerdictEl.innerHTML = `
+          <div style="color: #ef4444; font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;">NOT COMPATIBLE</div>
+        `;
 
-      // Setup teaser
-      teaserVerdict.innerHTML = `
-        <span style="font-weight: bold; color: #ef4444;">Unfortunately you are NOT COMPATIBLE.</span>
-      `;
+        // Setup teaser
+        teaserVerdict.innerHTML = `
+          <span style="font-weight: bold; color: #ef4444;">Unfortunately you are NOT COMPATIBLE.</span>
+        `;
+      }
     } else {
       // Good compatibility (but not perfect)
       finalVerdictEl.className = 'verdict-text verdict-good';
@@ -399,7 +403,7 @@ function calculate() {
             if (pBoth) pBoth.classList.remove('hidden');
           }
       }
-    } else if (verdict.includes('Perfect Match') || verdict.includes('Good compatibility') || verdict.includes('TRUE LOVE')) {
+    } else if (verdict.includes('Perfect Match') || verdict.includes('Good compatibility') || verdict.includes('TRUE LOVE') || verdict.includes('HIGHER THAN AVERAGE COMPATIBILITY')) {
       summaryBlock.classList.remove('hidden');
       summaryBlock.style.borderLeft = "4px solid #10b981";
       summaryBlock.style.background = "rgba(16, 185, 129, 0.05)";
