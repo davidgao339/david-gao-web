@@ -411,6 +411,68 @@ function calculate() {
             if (pBoth) pBoth.classList.remove('hidden');
           }
       }
+    } else if (verdict.includes('HIGHER THAN AVERAGE COMPATIBILITY') && (!(data.bio_result_chart.heart >= 60) || !(data.bio_result_chart.emotional >= 60))) {
+      summaryBlock.classList.remove('hidden');
+      summaryBlock.style.borderLeft = "4px solid #f59e0b";
+      summaryBlock.style.background = "rgba(245, 158, 11, 0.05)";
+      
+      const heartMatch = (data.bio_result_chart.heart >= 60);
+      
+      if (!heartMatch) {
+          summaryBlock.innerHTML = `
+            <h3 style="color: #f59e0b; font-size: 1.4rem;">Overall compatibility: Higher than Average compatibility</h3>
+            <p style="font-weight: bold; color: #fbbf24; font-size: 1.1rem; margin-bottom: 15px;">Problem found: Harmony waves mismatch</p>
+            
+            <h4 style="color: #fcd34d; font-size: 1.1rem; margin-bottom: 8px;">What a Harmony Waves Mismatch Looks Like</h4>
+            <p>In everyday life, a Harmony waves mismatch usually manifests in how two people handle emotional intimacy. Here is how it typically shows up:</p>
+            <ul style="padding-left: 20px; margin-bottom: 15px;">
+              <li style="margin-bottom: 5px;"><strong>The Empathy Gap:</strong> One partner may be highly sensitive, deeply affectionate, and emotionally open, while the other might have "blocked" or underactive Harmony waves, appearing guarded, distant, or overly analytical.</li>
+              <li style="margin-bottom: 5px;"><strong>Differing Core Values:</strong> You might hold opposing beliefs about what a relationship should look like, or have drastically different moral compasses and deeply held spiritual values.</li>
+              <li style="margin-bottom: 5px;"><strong>Unequal Emotional Labor:</strong> One person may naturally act as the constant giver or "healer," while the other primarily receives. This dynamic can lead to emotional exhaustion and resentment for the giver.</li>
+              <li style="margin-bottom: 5px;"><strong>Trust and Forgiveness Issues:</strong> Blocked Harmony waves struggle with letting go. If one partner easily forgives and moves forward, but the other holds onto past resentments, fears, or jealousy, your emotional energies will constantly clash.</li>
+            </ul>
+            
+            <h4 style="color: #fcd34d; font-size: 1.1rem; margin-bottom: 8px;">Is the Relationship Doomed?</h4>
+            <p><strong>Key insight:</strong> Harmony waves are not static—they are fluid energy centers that change based on your emotional state, life experiences, and personal growth. A mismatch is not a relationship death sentence; it is simply a diagnostic tool pointing out where your dynamic needs conscious work.</p>
+            <p>A mismatch just means that deep, effortless emotional resonance isn't happening automatically right now.</p>
+            
+            <h4 style="color: #fcd34d; font-size: 1.1rem; margin-top: 15px; margin-bottom: 8px;">How to Bridge the Gap</h4>
+            <p>If you want to harmonize your emotional energies and open the Harmony waves space, both partners need to cultivate a feeling of mutual emotional safety:</p>
+            <ul style="padding-left: 20px; margin-bottom: 15px;">
+              <li style="margin-bottom: 5px;"><strong>Stop Forcing It:</strong> A guarded partner cannot be forced to open their heart. Pressuring someone to be more emotionally vulnerable often causes them to retreat further behind their walls.</li>
+              <li style="margin-bottom: 5px;"><strong>Lean on Aligned Connections:</strong> If your Harmony waves are currently misaligned, rely on the areas where you do match. If you have a strong Root Chakra connection (shared security, finances, and stability) or Throat Chakra connection (great communication), use those strong foundations to build emotional trust over time.</li>
+              <li style="margin-bottom: 5px;"><strong>Practice Active Forgiveness:</strong> The biggest block to Harmony waves energy is stored resentment. Both partners must consciously work on letting go of past arguments and avoiding the habit of keeping "score."</li>
+              <li style="margin-bottom: 5px;"><strong>Communicate First:</strong> Often, the heart cannot open until the throat has spoken. Honest, gentle, and non-judgmental communication helps release defensive barriers, allowing love and empathy to eventually flow more naturally.</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>A mismatch here is ultimately an invitation to understand how differently you both experience love—and to learn how to patiently meet each other halfway.</strong></p>
+          `;
+      } else {
+          summaryBlock.innerHTML = `
+            <h3 style="color: #f59e0b; font-size: 1.4rem;">Overall compatibility: Higher than Average compatibility</h3>
+            <p style="font-weight: bold; color: #fbbf24; font-size: 1.1rem; margin-bottom: 15px;">Problem found: Emotional resonance Misalignment</p>
+            <p>Emotional resonance governs our emotions, intimacy, pleasure, creativity, and sense of "flow."<br>When this emotional resonance is out of alignment between partners, it usually means the emotional and physical rhythm of the relationship has hit a block.</p>
+            
+            <h4 style="color: #fcd34d; font-size: 1.1rem; margin-bottom: 8px;">What Misalignment Looks Like</h4>
+            <p>When your emotional waves aren't syncing up with your partner's, you might notice a few specific patterns:</p>
+            <ul style="padding-left: 20px; margin-bottom: 15px;">
+              <li style="margin-bottom: 5px;"><strong>Emotional rigidity:</strong> Instead of easily letting things go, small disagreements turn into stubborn standoffs. The natural "give and take" feels forced.</li>
+              <li style="margin-bottom: 5px;"><strong>Intimacy disconnect:</strong> This can manifest as mismatched physical desires, a lack of affection, or feeling romantically uninspired.</li>
+              <li style="margin-bottom: 5px;"><strong>Loss of playfulness:</strong> The relationship might feel purely transactional or overly serious. You're managing life together, but you aren't playing or creating joy together.</li>
+              <li style="margin-bottom: 5px;"><strong>Feeling stuck:</strong> Because emotional resonance is tied to adaptability, an emotional waves Misalignment here makes it hard to adjust to changes or flow with new routines.</li>
+            </ul>
+            
+            <h4 style="color: #fcd34d; font-size: 1.1rem; margin-top: 15px; margin-bottom: 8px;">How to Realign</h4>
+            <p>To bring these emotional waves back into harmony, you both need to foster a sense of pleasure, movement, and emotional openness.</p>
+            <ul style="padding-left: 20px; margin-bottom: 15px;">
+              <li style="margin-bottom: 5px;"><strong>Prioritize Low-Stress Physical Flow:</strong> Since emotional resonance is deeply connected to movement and joy, focus on shared activities rather than overthinking. Taking dedicated evening bicycle rides together is an excellent way to do this. The rhythmic movement, fresh air, and lack of pressure help relieve tension and allow you to reconnect naturally in a relaxed state.</li>
+              <li style="margin-bottom: 5px;"><strong>Seek Calming Environments:</strong> Spending time in relaxing environments, such as taking a shower together, swimming, or simply relaxing near a lake or the ocean, can help mentally and emotionally reset your shared dynamic.</li>
+              <li style="margin-bottom: 5px;"><strong>Collaborative Creation:</strong> Emotional resonance thrives on creativity. Cook a brand-new meal together without a strict recipe, build something together, or take a pottery class. The goal isn't to make something perfect, but to share the messy, fun process of creating.</li>
+              <li style="margin-bottom: 5px;"><strong>Practice "Sensory" Grounding:</strong> Bring pleasure back into your shared space. Light calming candles, play music that makes you both want to move, and focus on closeness that isn't purely sexual—like a long massage or spending quiet time together.</li>
+              <li style="margin-bottom: 5px;"><strong>Open the Emotional Valve:</strong> Set aside 10 minutes where one partner speaks about how they are feeling without the other offering solutions or trying to "fix" it. Just listen and validate.</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Realigning your emotional waves isn't about forcing an immediate deep connection; it's about intentionally removing the pressure so that your natural rhythm can return.</strong></p>
+          `;
+      }
     } else if (verdict.includes('Perfect Match') || verdict.includes('Good compatibility') || verdict.includes('TRUE LOVE') || verdict.includes('HIGHER THAN AVERAGE COMPATIBILITY')) {
       summaryBlock.classList.remove('hidden');
       summaryBlock.style.borderLeft = "4px solid #10b981";
