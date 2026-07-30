@@ -463,44 +463,11 @@ function calculate() {
     }
 
     // Trigger wave animation
+    // Trigger wave animation
     const waveOverlay = document.getElementById('wave-transition');
-    const loadingPhrase = document.getElementById('loading-phrase');
-    const loadingProgress = document.getElementById('loading-progress');
-    
     waveOverlay.classList.remove('hidden');
     waveOverlay.classList.add('active');
     
-    // Reset progress
-    loadingProgress.style.width = '0%';
-    loadingProgress.style.transition = 'none'; // Snap to 0
-    
-    const phrases = [
-      "analyzing your compatibility...",
-      "calculating love wave lengths...",
-      "finding differences...",
-      "comparing emotional waves...",
-      "calculating harmony waves..."
-    ];
-    
-    // Shuffle or pick 3 phrases
-    let shuffled = phrases.sort(() => 0.5 - Math.random()).slice(0, 3);
-    
-    let phase = 0;
-    loadingPhrase.textContent = shuffled[0];
-    
-    const phraseInterval = setInterval(() => {
-      phase++;
-      if (phase < 3) {
-        loadingPhrase.textContent = shuffled[phase];
-      }
-    }, 1000);
-
-    // Smoothly fill progress bar
-    setTimeout(() => { 
-      loadingProgress.style.transition = 'width 2.8s linear';
-      loadingProgress.style.width = '100%'; 
-    }, 50);
-
     // Swap the cards halfway through the wave (when screen is covered)
     setTimeout(() => {
       document.getElementById('input-card').classList.add('hidden');
@@ -517,7 +484,6 @@ function calculate() {
     setTimeout(() => {
       waveOverlay.classList.remove('active');
       waveOverlay.classList.add('hidden');
-      clearInterval(phraseInterval);
       btn.disabled = false;
       btn.textContent = 'BEGIN ANALYSIS';
     }, 3000);
