@@ -264,7 +264,7 @@ function calculate() {
       fireworksBg.style.display = 'block';
       teaserVerdict.innerHTML = `
         <span class="rings-icon">💍</span> 
-        <span style="font-weight: bold; color: #fca5a5;">You have a PERFECT MATCH!</span>
+        <span style="font-weight: bold; color: #fca5a5;">Congratulations! You have a PERFECT MATCH!</span>
         <span class="rings-icon">💍</span>
       `;
     } else if (verdict.includes('Not compatible')) {
@@ -277,7 +277,7 @@ function calculate() {
         finalVerdictEl.className = 'verdict-text verdict-good';
         finalVerdictEl.textContent = verdict;
         teaserVerdict.innerHTML = `
-          <span style="font-weight: bold; color: #a5c9f5;">${verdict}</span>
+          <span style="font-weight: bold; color: #a5c9f5;">Congratulations! ${verdict}</span>
         `;
       } else {
         finalVerdictEl.className = 'verdict-text verdict-bad';
@@ -440,7 +440,7 @@ function calculate() {
             <p>If you want to harmonize your emotional energies and open the Harmony waves space, both partners need to cultivate a feeling of mutual emotional safety:</p>
             <ul style="padding-left: 20px; margin-bottom: 15px;">
               <li style="margin-bottom: 5px;"><strong>Stop Forcing It:</strong> A guarded partner cannot be forced to open their heart. Pressuring someone to be more emotionally vulnerable often causes them to retreat further behind their walls.</li>
-              <li style="margin-bottom: 5px;"><strong>Lean on Aligned Connections:</strong> If your Harmony waves are currently misaligned, rely on the areas where you do match. If you have a strong Root Chakra connection (shared security, finances, and stability) or Throat Chakra connection (great communication), use those strong foundations to build emotional trust over time.</li>
+              <li style="margin-bottom: 5px;"><strong>Lean on Aligned Connections:</strong> As you have a strong Emotional resonance connection— you share a natural flow of intimacy, a deep understanding of each other's feelings, and a sense of shared joy and adaptability—use those strong foundations to build emotional trust over time.</li>
               <li style="margin-bottom: 5px;"><strong>Practice Active Forgiveness:</strong> The biggest block to Harmony waves energy is stored resentment. Both partners must consciously work on letting go of past arguments and avoiding the habit of keeping "score."</li>
               <li style="margin-bottom: 5px;"><strong>Communicate First:</strong> Often, the heart cannot open until the throat has spoken. Honest, gentle, and non-judgmental communication helps release defensive barriers, allowing love and empathy to eventually flow more naturally.</li>
             </ul>
