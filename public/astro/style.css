@@ -704,6 +704,10 @@ body {
   border-radius: 12px;
 }
 
+.teaser-content {
+  margin-bottom: 25vh; /* Moves the teaser results higher on the page */
+}
+
 .teaser-layer.hidden {
   opacity: 0;
   pointer-events: none;
