@@ -219,6 +219,27 @@ function calculate() {
     const includeSexCompat = document.getElementById('sex-compat-toggle').checked;
 
     const finalVerdictEl = document.getElementById('final-verdict');
+    const teaserLayer = document.getElementById('results-teaser-layer');
+    const teaserNames = document.getElementById('teaser-names');
+    const teaserVerdict = document.getElementById('teaser-verdict');
+    
+    // Reset classes
+    teaserLayer.className = 'teaser-layer';
+    
+    // Check if fireworks exist, if not create
+    let fireworksBg = document.getElementById('teaser-fireworks');
+    if (!fireworksBg) {
+      fireworksBg = document.createElement('div');
+      fireworksBg.id = 'teaser-fireworks';
+      fireworksBg.className = 'fireworks-bg';
+      fireworksBg.style.display = 'none';
+      teaserLayer.insertBefore(fireworksBg, teaserLayer.firstChild);
+    } else {
+      fireworksBg.style.display = 'none';
+    }
+
+    teaserNames.textContent = `${yourName} & ${partnerName}`;
+
     if (verdict.includes('Perfect Match')) {
       finalVerdictEl.className = 'verdict-text verdict-good';
       finalVerdictEl.innerHTML = `
@@ -228,6 +249,15 @@ function calculate() {
           <span class="fireworks-anim" style="display:inline-block; animation: pop 1.5s infinite alternate-reverse;">🎆</span>
         </div>
         <div style="font-size: 1.2rem; margin-top:8px;">You found your TRUE LOVE!</div>
+      `;
+
+      // Setup teaser
+      teaserLayer.classList.add('perfect-match');
+      fireworksBg.style.display = 'block';
+      teaserVerdict.innerHTML = `
+        <span class="rings-icon">💍</span> 
+        <span style="font-weight: bold; color: #fca5a5;">You have a PERFECT MATCH!</span>
+        <span class="rings-icon">💍</span>
       `;
     } else if (verdict.includes('Not compatible')) {
       const heartMatch = (data.bio_result_chart.heart >= 60);
@@ -243,11 +273,27 @@ function calculate() {
         <div style="color: #ef4444; font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;">NOT COMPATIBLE</div>
         ${friendsHtml}
       `;
+
+      // Setup teaser
+      teaserVerdict.innerHTML = `
+        <span style="font-weight: bold; color: #ef4444;">Unfortunately you are NOT COMPATIBLE.</span>
+      `;
     } else {
       // Good compatibility (but not perfect)
       finalVerdictEl.className = 'verdict-text verdict-good';
       finalVerdictEl.textContent = verdict;
+
+      // Setup teaser
+      teaserVerdict.innerHTML = `
+        <span style="font-weight: bold; color: #a5c9f5;">${verdict}</span>
+      `;
     }
+
+    // Hook up read more button
+    document.getElementById('read-more-btn').onclick = () => {
+      teaserLayer.classList.add('hidden');
+      document.getElementById('results-blur-container').classList.add('revealed');
+    };
 
     // Render Full Report
     renderFullReport(data.full_report, yourName, partnerName);
@@ -418,13 +464,52 @@ function calculate() {
 
     // Trigger wave animation
     const waveOverlay = document.getElementById('wave-transition');
+    const loadingPhrase = document.getElementById('loading-phrase');
+    const loadingProgress = document.getElementById('loading-progress');
+    
     waveOverlay.classList.remove('hidden');
     waveOverlay.classList.add('active');
+    
+    // Reset progress
+    loadingProgress.style.width = '0%';
+    loadingProgress.style.transition = 'none'; // Snap to 0
+    
+    const phrases = [
+      "analyzing your compatibility...",
+      "calculating love wave lengths...",
+      "finding differences...",
+      "comparing emotional waves...",
+      "calculating harmony waves..."
+    ];
+    
+    // Shuffle or pick 3 phrases
+    let shuffled = phrases.sort(() => 0.5 - Math.random()).slice(0, 3);
+    
+    let phase = 0;
+    loadingPhrase.textContent = shuffled[0];
+    
+    const phraseInterval = setInterval(() => {
+      phase++;
+      if (phase < 3) {
+        loadingPhrase.textContent = shuffled[phase];
+      }
+    }, 3300);
+
+    // Smoothly fill progress bar
+    setTimeout(() => { 
+      loadingProgress.style.transition = 'width 9.5s linear';
+      loadingProgress.style.width = '100%'; 
+    }, 50);
 
     // Swap the cards halfway through the wave (when screen is covered)
     setTimeout(() => {
       document.getElementById('input-card').classList.add('hidden');
       document.getElementById('results-card').classList.remove('hidden');
+      
+      // Reset blur state for new calculation
+      document.getElementById('results-teaser-layer').classList.remove('hidden');
+      document.getElementById('results-blur-container').classList.remove('revealed');
+
       window.scrollTo(0, 0); // Reset scroll position for new page
     }, 5000);
 
@@ -432,6 +517,7 @@ function calculate() {
     setTimeout(() => {
       waveOverlay.classList.remove('active');
       waveOverlay.classList.add('hidden');
+      clearInterval(phraseInterval);
       btn.disabled = false;
       btn.textContent = 'BEGIN ANALYSIS';
     }, 10000);
