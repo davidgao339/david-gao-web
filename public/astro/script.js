@@ -477,7 +477,6 @@ function calculate() {
     // Trigger wave animation
     // Trigger wave animation
     const waveOverlay = document.getElementById('wave-transition');
-    waveOverlay.classList.remove('hidden');
     waveOverlay.classList.add('active');
     
     // Swap the cards halfway through the wave (when screen is covered)
@@ -495,7 +494,6 @@ function calculate() {
     // Hide wave overlay after animation finishes
     setTimeout(() => {
       waveOverlay.classList.remove('active');
-      waveOverlay.classList.add('hidden');
       btn.disabled = false;
       btn.textContent = 'BEGIN ANALYSIS';
     }, 3000);
