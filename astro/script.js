@@ -203,6 +203,19 @@ function calculate() {
   const btn = document.getElementById('calc-btn');
   btn.disabled = true;
   btn.textContent = 'ANALYZING...';
+  
+  // Reset gauge
+  const circleEl = document.getElementById('radial-gauge-circle');
+  if (circleEl) {
+    // temporarily disable transition to reset instantly
+    circleEl.style.transition = 'none';
+    circleEl.setAttribute('stroke-dasharray', '0, 100');
+    // flush layout and restore transition
+    circleEl.getBoundingClientRect();
+    circleEl.style.transition = '';
+  }
+  const textEl = document.getElementById('radial-gauge-text');
+  if (textEl) textEl.textContent = '0%';
 
   try {
     const data = calculateCompatibility(
@@ -305,6 +318,39 @@ function calculate() {
     document.getElementById('read-more-btn').onclick = () => {
       teaserLayer.classList.add('hidden');
       document.getElementById('results-blur-container').classList.add('revealed');
+      
+      // Calculate and animate radial gauge
+      let gaugeScore = 0;
+      if (data.zodiac_result_signs.zodiacElementHarmony !== 'Elements clash') {
+        gaugeScore = Math.round((data.bio_result_chart.heart + data.bio_result_chart.emotional) / 2);
+      }
+      
+      const circleEl = document.getElementById('radial-gauge-circle');
+      const textEl = document.getElementById('radial-gauge-text');
+      
+      if (circleEl) {
+        setTimeout(() => {
+          circleEl.setAttribute('stroke-dasharray', `${gaugeScore}, 100`);
+        }, 100);
+      }
+      if (textEl) {
+        let currentNum = 0;
+        const duration = 1500;
+        const stepTime = Math.max(20, duration / (gaugeScore || 1));
+        
+        if (gaugeScore === 0) {
+          textEl.textContent = '0%';
+        } else {
+          const timer = setInterval(() => {
+            currentNum++;
+            textEl.textContent = `${currentNum}%`;
+            if (currentNum >= gaugeScore) {
+              clearInterval(timer);
+              textEl.textContent = `${gaugeScore}%`;
+            }
+          }, stepTime);
+        }
+      }
     };
 
     // Render Full Report
