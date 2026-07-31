@@ -577,21 +577,30 @@ function calculate() {
         circleEl.setAttribute('stroke-dasharray', `${gaugeScore}, 100`);
       }
       if (textEl) {
-        let currentNum = 0;
-        const duration = 1500;
-        const stepTime = Math.max(20, duration / (gaugeScore || 1));
-        
         if (gaugeScore === 0) {
           textEl.textContent = '0%';
         } else {
-          const timer = setInterval(() => {
-            currentNum++;
+          const duration = 1500;
+          const startTime = performance.now();
+          
+          const easeOutQuad = t => t * (2 - t);
+          
+          const animateNumber = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Apply ease-out so the numbers match the stroke transition
+            const currentNum = Math.floor(easeOutQuad(progress) * gaugeScore);
             textEl.textContent = `${currentNum}%`;
-            if (currentNum >= gaugeScore) {
-              clearInterval(timer);
+            
+            if (progress < 1) {
+              requestAnimationFrame(animateNumber);
+            } else {
               textEl.textContent = `${gaugeScore}%`;
             }
-          }, stepTime);
+          };
+          
+          requestAnimationFrame(animateNumber);
         }
       }
 
