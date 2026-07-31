@@ -68,7 +68,12 @@ body {
 
 @media (max-width: 768px) {
   .ui-card {
-    padding: 20px 20px 30px;
+    padding: 15px;
+    margin-top: 5px;
+  }
+  
+  .teaser-layer {
+    padding-top: 60px;
   }
   .card-content {
     flex-direction: column;
@@ -694,18 +699,19 @@ body {
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: 100;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Keep at top of tall card */
   align-items: center;
   flex-direction: column;
-  padding: 20px;
+  padding-top: 100px;
   text-align: center;
   transition: opacity 0.5s ease;
-  background: rgba(10, 15, 30, 0.6);
+  background: rgba(10, 15, 30, 0.85); /* Slightly darker to hide blurred content better */
   border-radius: 12px;
 }
 
 .teaser-content {
-  margin-bottom: 25vh; /* Moves the teaser results higher on the page */
+  /* Removed aggressive margin-bottom */
+  transform: translateY(0);
 }
 
 .teaser-layer.hidden {
@@ -730,7 +736,7 @@ body {
 }
 
 .teaser-layer.perfect-match {
-  background: radial-gradient(circle at center, rgba(219, 39, 119, 0.25) 0%, rgba(10, 15, 30, 0.8) 70%);
+  background: radial-gradient(circle at center, rgba(219, 39, 119, 0.6) 0%, rgba(10, 15, 30, 0.95) 70%);
 }
 
 .rings-icon {
