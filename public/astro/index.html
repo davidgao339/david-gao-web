@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Waves - Find Your True Love</title>
-  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 
@@ -97,28 +97,6 @@
 
       <!-- FINAL VERDICT BANNER (Blurred Layer) -->
       <div id="results-blur-container" class="blurred-content">
-        <div class="verdict-banner">
-          
-          <!-- Radial Gauge -->
-          <div class="gauge-container">
-            <div class="gauge-wrapper">
-              <svg class="circular-chart" viewBox="0 0 36 36">
-                <path class="circle-bg"
-                  d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-                <path class="circle" id="radial-gauge-circle"
-                  stroke-dasharray="0, 100"
-                  d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-                <text x="18" y="20.5" id="radial-gauge-text" class="percentage-text">0%</text>
-              </svg>
-            </div>
-          </div>
-
           <h2>OVERALL COMPATIBILITY</h2>
           <div id="final-verdict" class="verdict-text"></div>
         </div>
@@ -168,6 +146,25 @@
       <!-- Top Layer Teaser Overlay -->
       <div id="results-teaser-layer" class="teaser-layer">
         <div class="teaser-content">
+          <!-- Radial Gauge -->
+          <div class="gauge-container">
+            <div class="gauge-wrapper">
+              <svg class="circular-chart" viewBox="0 0 36 36">
+                <path class="circle-bg"
+                  d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path class="circle" id="radial-gauge-circle"
+                  stroke-dasharray="0, 100"
+                  d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <text x="18" y="20.5" id="radial-gauge-text" class="percentage-text">0%</text>
+              </svg>
+            </div>
+          </div>
           <div id="teaser-names" class="teaser-names"></div>
           <div id="teaser-verdict" class="teaser-verdict"></div>
           <button type="button" id="read-more-btn" class="analyze-btn">Learn why</button>
@@ -225,7 +222,7 @@
     <div class="wave wave3"></div>
   </div>
 
-  <script src="calc.js?v=10"></script>
-  <script src="script.js?v=10"></script>
+  <script src="calc.js?v=11"></script>
+  <script src="script.js?v=11"></script>
 </body>
 </html>
