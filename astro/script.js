@@ -573,34 +573,40 @@ function calculate() {
       const textEl = document.getElementById('radial-gauge-text');
       
       if (circleEl) {
-        // SVG stroke-dasharray goes up to 100
-        circleEl.setAttribute('stroke-dasharray', `${gaugeScore}, 100`);
+        // Disable CSS transition to manually drive it via requestAnimationFrame
+        circleEl.style.transition = 'none';
       }
-      if (textEl) {
+      
+      if (textEl && circleEl) {
         if (gaugeScore === 0) {
           textEl.textContent = '0%';
+          circleEl.setAttribute('stroke-dasharray', '0, 100');
         } else {
           const duration = 1500;
           const startTime = performance.now();
           
           const easeOutQuad = t => t * (2 - t);
           
-          const animateNumber = (currentTime) => {
+          const animateGauge = (currentTime) => {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
             
-            // Apply ease-out so the numbers match the stroke transition
-            const currentNum = Math.floor(easeOutQuad(progress) * gaugeScore);
+            // Apply ease-out to BOTH number and SVG stroke
+            const currentScore = easeOutQuad(progress) * gaugeScore;
+            const currentNum = Math.floor(currentScore);
+            
             textEl.textContent = `${currentNum}%`;
+            circleEl.setAttribute('stroke-dasharray', `${currentScore}, 100`);
             
             if (progress < 1) {
-              requestAnimationFrame(animateNumber);
+              requestAnimationFrame(animateGauge);
             } else {
               textEl.textContent = `${gaugeScore}%`;
+              circleEl.setAttribute('stroke-dasharray', `${gaugeScore}, 100`);
             }
           };
           
-          requestAnimationFrame(animateNumber);
+          requestAnimationFrame(animateGauge);
         }
       }
 
