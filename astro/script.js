@@ -164,8 +164,10 @@ let chartInstance = null;
 let originalSummaryHTML = null;
 
 function calculate() {
-  const yourName = document.getElementById('your-name').value.trim();
-  const partnerName = document.getElementById('partner-name').value.trim();
+  const yourNameInput = document.getElementById('your-name');
+  const partnerNameInput = document.getElementById('partner-name');
+  const yourName = yourNameInput ? yourNameInput.value.trim() : '';
+  const partnerName = partnerNameInput ? partnerNameInput.value.trim() : '';
   
   const mDay   = document.getElementById('m-day').value;
   const mMonth = document.getElementById('m-month').value;
@@ -176,6 +178,22 @@ function calculate() {
 
   const errEl = document.getElementById('calc-error');
   
+  if (yourNameInput) yourNameInput.style.borderColor = '';
+  if (partnerNameInput) partnerNameInput.style.borderColor = '';
+
+  if (!yourName || !partnerName) {
+    if (!yourName && yourNameInput) {
+      yourNameInput.style.borderColor = '#ef4444';
+      yourNameInput.focus();
+    } else if (!partnerName && partnerNameInput) {
+      partnerNameInput.style.borderColor = '#ef4444';
+      partnerNameInput.focus();
+    }
+    errEl.textContent = "Please enter both your name and your partner's name.";
+    errEl.classList.remove('hidden');
+    return;
+  }
+
   if (!mDay || !mMonth || !mYear || !fDay || !fMonth || !fYear) {
     errEl.textContent = 'Please fill out all birthday fields.';
     errEl.classList.remove('hidden');
@@ -290,7 +308,7 @@ function calculate() {
         finalVerdictEl.className = 'verdict-text verdict-good';
         finalVerdictEl.textContent = verdict;
         teaserVerdict.innerHTML = `
-          <span style="font-weight: bold; color: #a5c9f5;">Congratulations! ${verdict}</span>
+          <span style="font-weight: bold; color: #a5c9f5;">Congratulations! You have higher than average compatibility</span>
         `;
       } else {
         finalVerdictEl.className = 'verdict-text verdict-bad';
@@ -354,14 +372,10 @@ function calculate() {
       if (data.zodiac_result_signs.zodiacElementHarmony === 'Elements clash') {
         const sign1 = data.zodiac_result_signs.zodiacElementMale;
         const sign2 = data.zodiac_result_signs.zodiacElementFemale;
-        let clashKey = `${sign1}-${sign2}`;
-        if (!CLASH_TEXTS[clashKey]) {
-            clashKey = `${sign2}-${sign1}`;
-        }
         
-        if (CLASH_TEXTS[clashKey]) {
-            hasElementClashTemplate = true;
-            clashT = CLASH_TEXTS[clashKey];
+        clashT = getClashTemplate(sign1, sign2, yourName, partnerName);
+        if (clashT) {
+          hasElementClashTemplate = true;
         }
       }
       
@@ -663,6 +677,27 @@ function populateSelects() {
 document.addEventListener('DOMContentLoaded', () => {
   populateSelects();
   document.getElementById('calc-btn').addEventListener('click', calculate);
+
+  const form = document.querySelector('form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      calculate();
+    });
+  }
+
+  ['your-name', 'partner-name'].forEach(id => {
+    const input = document.getElementById(id);
+    if (input) {
+      input.addEventListener('input', () => {
+        input.style.borderColor = '';
+        const errEl = document.getElementById('calc-error');
+        if (errEl && errEl.textContent.includes('name')) {
+          errEl.classList.add('hidden');
+        }
+      });
+    }
+  });
   
   const backBtn = document.getElementById('back-btn');
   if (backBtn) {
