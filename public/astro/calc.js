@@ -575,97 +575,128 @@ function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear) {
   };
 }
 
-const CLASH_TEXTS = {
-  'Air-Water': {
-    title: 'Elemental Alignment: Air & Water Mismatch',
-    note: "In astrology, when elements like Air and Water come together, it creates a fascinating contrast. Air operates in the realm of thoughts, logic, and perspective, while Water flows through emotions, intuition, and deep feeling. A low elemental match doesn't mean affection is missing—it just means you naturally process the world in very different languages.",
-    insights: [
-      "<strong>Logic vs. Emotion:</strong> Air tends to analyze feelings to understand them, whereas Water needs to sit with and feel them deeply. This can lead to moments where one partner feels unheard and the other feels overwhelmed.",
-      "<strong>Need for Freedom vs. Need for Depth:</strong> Air thrives on movement, variety, and mental space, while Water seeks closeness, emotional security, and deep bonding.",
-      "<strong>The Atmospheric Effect:</strong> Just like in nature, Air over Water can create unpredictable weather—ranging from light breezes of inspiration to turbulent emotional storms if expectations aren't managed carefully."
-    ],
-    meaningIntro: "An elemental clash means your relationship operates on a dynamic where balance requires constant, deliberate calibration.",
-    path1Title: "1. Navigating the Challenging Currents",
-    path1Intro: "If you choose to build on this connection, be prepared for specific recurring dynamics:",
-    path1Points: [
-      "<strong>High Emotional Heavy-Lifting:</strong> Bridging the gap between intellectual detachment (Air) and emotional depth (Water) takes immense patience, frequent translation, and deep compromise.",
-      "<strong>Risk of Exhaustion:</strong> Water may sometimes feel Air is too distant or rational, while Air may feel Water is too intense or changeable. Without high emotional maturity, this constant adjustment can feel draining over time."
-    ],
-    path2Title: "2. Looking at the Bigger Picture",
-    path2Intro: "While opposites can occasionally challenge each other to grow, true astrological harmony shouldn't feel like a constant struggle:",
-    path2Points: [
-      "<strong>You Deserve Natural Resonant Energy:</strong> Relationships feel most nourishing when your primary element finds its natural home.",
-      "<strong>A Vast Cosmos Out There:</strong> In the wider world of connections, there are partners whose elemental nature naturally nurtures yours—where Water finds grounding Earth or deep Water, and Air finds inspiring Fire or clear Air. You deserve a connection where your authentic nature is naturally understood without needing to constantly adapt who you are."
-    ],
-    nextSteps: "Take this insight as an opportunity for honest reflection. Ask yourselves if this partnership offers the natural ease and alignment you desire, or if the energy required to bridge your elemental differences is taking away from your personal peace."
-  },
-  'Air-Earth': {
-    title: 'Elemental Alignment: Air & Earth Mismatch',
-    note: "In astrology, combining Air and Earth brings together two completely different approaches to life. Air thrives on concepts, ideas, spontaneous communication, and change, while Earth is rooted in stability, practical results, routine, and tangible security. A low elemental score simply means your core motivations and paces naturally diverge.",
-    insights: [
-      "<strong>Mind vs. Matter:</strong> Air lives in the realm of 'what could be,' constantly seeking new perspectives and mental stimulation. Earth lives in the realm of 'what is,' focusing on tangible reality, structure, and physical outcomes.",
-      "<strong>Speed & Rhythm:</strong> Air moves fast, adapts quickly, and can change direction on a whim. Earth moves deliberately, values consistency, and needs time to process and build before committing to a change.",
-      "<strong>The Atmospheric Effect:</strong> In nature, too much Air can stir up dust storms, while solid Earth can feel immobile to the wind. In a relationship, Air may view Earth as overly rigid or stubborn, while Earth may see Air as unpredictable, flighty, or impractical."
-    ],
-    meaningIntro: "When Air and Earth join forces, the dynamic often feels like trying to anchor a breeze or fly a heavy kite—it requires deliberate effort to keep from pulling in opposite directions.",
-    path1Title: "1. Navigating the Challenging Landscape",
-    path1Intro: "Building a lasting bond here means navigating specific foundational differences:",
-    path1Points: [
-      "<strong>Heavy Compromise on Pace:</strong> Air will need to slow down and offer concrete reassurance, while Earth will need to step out of its comfort zone to embrace flexibility and spontaneous ideas.",
-      "<strong>Communication Friction:</strong> Discussions can easily stall when Air wants to talk through abstract possibilities and Earth just wants to know the practical bottom line. Bridging this gap requires continuous patience and translation."
-    ],
-    path2Title: "2. Looking at the Bigger Picture",
-    path2Intro: "While Earth can offer Air a soft place to land and Air can bring fresh energy to Earth, maintaining this balance can take a lot of heavy lifting:",
-    path2Points: [
-      "<strong>You Deserve Natural Flow:</strong> Love is meant to support you, not feel like an ongoing project where you constantly have to adjust your natural pace and priorities.",
-      "<strong>A Vast Cosmos Out There:</strong> There are countless people in the world whose elemental nature naturally matches yours. Air thrives effortlessly alongside Fire's passion or another Air's intellect; Earth finds deep, natural comfort with Water's emotional depth or another Earth's grounded stability. You both deserve a partnership that feels like home without requiring you to sacrifice your fundamental nature."
-    ],
-    nextSteps: "Reflect on what you need most in a relationship right now. Use this report to consider whether adjusting to these elemental differences feels inspiring, or if it is taking too much effort to keep your worlds aligned."
-  },
-  'Fire-Water': {
-    title: 'Elemental Alignment: Water & Fire Mismatch',
-    note: "In astrology, Water and Fire form one of the most intense and volatile combinations. Fire is driven by passion, direct action, enthusiasm, and impulse, while Water navigates the world through deep emotions, intuition, sensitivity, and quiet connection. A low elemental score means your natural energies can easily overwhelm or extinguish one another.",
-    insights: [
-      "<strong>Emotion vs. Impulse:</strong> Fire acts quickly on gut instincts and desires immediate momentum, whereas Water needs time to process feelings, feel emotionally safe, and move at a gentler pace.",
-      "<strong>Sensitivity & Directness:</strong> Fire’s bold, straightforward nature can inadvertently sting or overwhelm Water's deeply sensitive radar. Conversely, Water’s emotional mood shifts or need for reassurance can feel restrictive or confusing to Fire’s independent spirit.",
-      "<strong>The Atmospheric Effect:</strong> In nature, Water can extinguish Fire's natural spark, while Fire can bring Water to a scalding boil. In a relationship, this often translates to a cycle of intense passion followed by emotional burnout or frustration."
-    ],
-    meaningIntro: "When Water and Fire try to blend, the relationship dynamic often feels like managing steam—it generates high heat and drama, but keeping that energy constructive requires constant management.",
-    path1Title: "1. Navigating the Turbulent Waters",
-    path1Intro: "Sustaining this connection long-term requires awareness of these recurring challenges:",
-    path1Points: [
-      "<strong>Continuous Emotional Balancing:</strong> Fire must practice extreme patience and softness to avoid hurting Water, while Water must learn not to take Fire’s intense, blunt energy personally.",
-      "<strong>High Energy Consumption:</strong> Balancing these opposing forces takes tremendous emotional heavy-lifting. Without active, conscious compromise, the relationship can easily drift between emotional distance and heated misunderstandings."
-    ],
-    path2Title: "2. Looking at the Bigger Picture",
-    path2Intro: "While the spark between Water and Fire can feel hypnotic at first, true emotional alignment shouldn't demand that you constantly sacrifice your inner peace:",
-    path2Points: [
-      "<strong>You Deserve Natural Harmony:</strong> A great connection should feel like a safe harbor, not an unpredictable storm where you are constantly adjusting your temperature to keep the peace.",
-      "<strong>A Vast Cosmos Out There:</strong> The world is full of people whose elemental nature naturally complements yours. Water finds deep, effortless understanding with Earth's grounding stability or another Water sign's empathy; Fire thrives wildly with Air's inspiring intellect or another Fire sign's shared passion. You both deserve a relationship where your core identity is naturally celebrated, not constantly suppressed."
-    ],
-    nextSteps: "Take a moment to check in with yourself. Use this report to evaluate whether navigating this high-intensity dynamic brings genuine fulfillment, or if it is draining the energy you need to thrive."
-  },
-  'Earth-Fire': {
-    title: 'Elemental Alignment: Fire & Earth Mismatch',
-    note: "In astrology, Fire and Earth bring together two very different foundational energies. Fire is propelled by inspiration, bold risks, immediate action, and passion, while Earth relies on careful planning, stability, practical results, and routine. A low elemental score highlights a fundamental difference in how you approach life's pace, goals, and daily momentum.",
-    insights: [
-      "<strong>Impulse vs. Caution:</strong> Fire wants to leap first and figure out the details later, thriving on excitement and change. Earth prefers to measure twice, build step-by-step, and minimize risk before taking action.",
-      "<strong>Passion vs. Practicality:</strong> Fire expresses affection and drive through grand gestures, high energy, and enthusiasm. Earth shows love and security through tangible reliability, consistency, and practical support.",
-      "<strong>The Atmospheric Effect:</strong> In nature, Fire can scorch Earth if it burns too fast, while heavy Earth can smother Fire’s flame. In a relationship, Fire may begin to feel constrained or bored by Earth's routine, while Earth may feel stressed or destabilized by Fire's unpredictability."
-    ],
-    meaningIntro: "Blending Fire and Earth often feels like trying to build a bonfire on moving terrain—it takes constant, deliberate structure to keep the flame burning without consuming the foundation.",
-    path1Title: "1. Navigating the Challenging Terrain",
-    path1Intro: "Sustaining harmony between these elements requires working through specific foundational differences:",
-    path1Points: [
-      "<strong>Pacing & Priority Compromises:</strong> Fire will need to practice patience and respect Earth's need for time and safety, while Earth will need to step out of its comfort zone to allow room for Fire's spontaneous sparks.",
-      "<strong>Friction Around Friction Points:</strong> Long-term decisions—like finances, lifestyle changes, or daily routines—can easily become battlegrounds between Fire’s desire for immediate freedom and Earth’s need for careful security."
-    ],
-    path2Title: "2. Looking at the Bigger Picture",
-    path2Intro: "While Earth can offer Fire a solid foundation to build upon and Fire can inspire Earth to aim higher, keeping this dynamic balanced requires ongoing, heavy emotional lifting:",
-    path2Points: [
-      "<strong>You Deserve Natural Resonant Energy:</strong> Love should feel like a supportive wind at your back, not a constant tug-of-war between moving forward and standing still.",
-      "<strong>A Vast Cosmos Out There:</strong> There are countless people in the world whose elemental nature naturally moves at your speed. Fire ignites effortlessly alongside Air's quick intellect or another Fire sign's shared passion; Earth finds deep, peaceful harmony with Water's emotional depth or another Earth sign's grounded stability. You both deserve a connection where your natural tempo is embraced, not held back or rushed."
-    ],
-    nextSteps: "Reflect on what you need most to feel secure and fulfilled. Use this report to consider whether adjusting to these elemental differences inspires genuine growth, or if it demands more compromise than feels healthy for your long-term peace."
+function getClashTemplate(element1, element2, name1, name2) {
+  const elementMap = {};
+  elementMap[element1] = `${name1 || 'You'} (${element1})`;
+  elementMap[element2] = `${name2 || 'Partner'} (${element2})`;
+  
+  const air = elementMap['Air'];
+  const earth = elementMap['Earth'];
+  const water = elementMap['Water'];
+  const fire = elementMap['Fire'];
+  
+  const pairKey = [element1, element2].sort().join('-');
+  
+  if (pairKey === 'Air-Water') {
+    return {
+      title: `Elemental Alignment: ${air} & ${water} Mismatch`,
+      note: `In astrology, when elements like Air and Water come together, it creates a fascinating contrast. ${air} operates in the realm of thoughts, logic, and perspective, while ${water} flows through emotions, intuition, and deep feeling. A low elemental match doesn't mean affection is missing—it just means you naturally process the world in very different languages.`,
+      insights: [
+        `<strong>Logic vs. Emotion:</strong> ${air} tends to analyze feelings to understand them, whereas ${water} needs to sit with and feel them deeply. This can lead to moments where one partner feels unheard and the other feels overwhelmed.`,
+        `<strong>Need for Freedom vs. Need for Depth:</strong> ${air} thrives on movement, variety, and mental space, while ${water} seeks closeness, emotional security, and deep bonding.`,
+        `<strong>The Atmospheric Effect:</strong> Just like in nature, Air over Water can create unpredictable weather—ranging from light breezes of inspiration to turbulent emotional storms if expectations aren't managed carefully.`
+      ],
+      meaningIntro: `An elemental clash means your relationship operates on a dynamic where balance requires constant, deliberate calibration.`,
+      path1Title: `1. Navigating the Challenging Currents`,
+      path1Intro: `If you choose to build on this connection, be prepared for specific recurring dynamics:`,
+      path1Points: [
+        `<strong>High Emotional Heavy-Lifting:</strong> Bridging the gap between ${air}'s intellectual detachment and ${water}'s emotional depth takes immense patience, frequent translation, and deep compromise.`,
+        `<strong>Risk of Exhaustion:</strong> ${water} may sometimes feel ${air} is too distant or rational, while ${air} may feel ${water} is too intense or changeable. Without high emotional maturity, this constant adjustment can feel draining over time.`
+      ],
+      path2Title: `2. Looking at the Bigger Picture`,
+      path2Intro: `While opposites can occasionally challenge each other to grow, true astrological harmony shouldn't feel like a constant struggle:`,
+      path2Points: [
+        `<strong>You Deserve Natural Resonant Energy:</strong> Relationships feel most nourishing when your primary element finds its natural home.`,
+        `<strong>A Vast Cosmos Out There:</strong> In the wider world of connections, there are partners whose elemental nature naturally nurtures yours—where ${water} finds grounding Earth or deep Water, and ${air} finds inspiring Fire or clear Air. You deserve a connection where your authentic nature is naturally understood without needing to constantly adapt who you are.`
+      ],
+      nextSteps: `Take this insight as an opportunity for honest reflection. Ask yourselves if this partnership offers the natural ease and alignment you desire, or if the energy required to bridge your elemental differences is taking away from your personal peace.`
+    };
   }
+
+  if (pairKey === 'Air-Earth') {
+    return {
+      title: `Elemental Alignment: ${air} & ${earth} Mismatch`,
+      note: `In astrology, combining Air and Earth brings together two completely different approaches to life. ${air} thrives on concepts, ideas, spontaneous communication, and change, while ${earth} is rooted in stability, practical results, routine, and tangible security. A low elemental score simply means your core motivations and paces naturally diverge.`,
+      insights: [
+        `<strong>Mind vs. Matter:</strong> ${air} lives in the realm of 'what could be,' constantly seeking new perspectives and mental stimulation. ${earth} lives in the realm of 'what is,' focusing on tangible reality, structure, and physical outcomes.`,
+        `<strong>Speed & Rhythm:</strong> ${air} moves fast, adapts quickly, and can change direction on a whim. ${earth} moves deliberately, values consistency, and needs time to process and build before committing to a change.`,
+        `<strong>The Atmospheric Effect:</strong> In nature, too much Air can stir up dust storms, while solid Earth can feel immobile to the wind. In a relationship, ${air} may view ${earth} as overly rigid or stubborn, while ${earth} may see ${air} as unpredictable, flighty, or impractical.`
+      ],
+      meaningIntro: `When Air and Earth join forces, the dynamic often feels like trying to anchor a breeze or fly a heavy kite—it requires deliberate effort to keep from pulling in opposite directions.`,
+      path1Title: `1. Navigating the Challenging Landscape`,
+      path1Intro: `Building a lasting bond here means navigating specific foundational differences:`,
+      path1Points: [
+        `<strong>Heavy Compromise on Pace:</strong> ${air} will need to slow down and offer concrete reassurance, while ${earth} will need to step out of their comfort zone to embrace flexibility and spontaneous ideas.`,
+        `<strong>Communication Friction:</strong> Discussions can easily stall when ${air} wants to talk through abstract possibilities and ${earth} just wants to know the practical bottom line. Bridging this gap requires continuous patience and translation.`,
+      ],
+      path2Title: `2. Looking at the Bigger Picture`,
+      path2Intro: `While ${earth} can offer ${air} a soft place to land and ${air} can bring fresh energy to ${earth}, maintaining this balance can take a lot of heavy lifting:`,
+      path2Points: [
+        `<strong>You Deserve Natural Flow:</strong> Love is meant to support you, not feel like an ongoing project where you constantly have to adjust your natural pace and priorities.`,
+        `<strong>A Vast Cosmos Out There:</strong> There are countless people in the world whose elemental nature naturally matches yours. ${air} thrives effortlessly alongside Fire's passion or another Air's intellect; ${earth} finds deep, natural comfort with Water's emotional depth or another Earth's grounded stability. You both deserve a partnership that feels like home without requiring you to sacrifice your fundamental nature.`
+      ],
+      nextSteps: `Reflect on what you need most in a relationship right now. Use this report to consider whether adjusting to these elemental differences feels inspiring, or if it is taking too much effort to keep your worlds aligned.`
+    };
+  }
+
+  if (pairKey === 'Fire-Water') {
+    return {
+      title: `Elemental Alignment: ${water} & ${fire} Mismatch`,
+      note: `In astrology, Water and Fire form one of the most intense and volatile combinations. ${fire} is driven by passion, direct action, enthusiasm, and impulse, while ${water} navigates the world through deep emotions, intuition, sensitivity, and quiet connection. A low elemental score means your natural energies can easily overwhelm or extinguish one another.`,
+      insights: [
+        `<strong>Emotion vs. Impulse:</strong> ${fire} acts quickly on gut instincts and desires immediate momentum, whereas ${water} needs time to process feelings, feel emotionally safe, and move at a gentler pace.`,
+        `<strong>Sensitivity & Directness:</strong> ${fire}’s bold, straightforward nature can inadvertently sting or overwhelm ${water}'s deeply sensitive radar. Conversely, ${water}’s emotional mood shifts or need for reassurance can feel restrictive or confusing to ${fire}’s independent spirit.`,
+        `<strong>The Atmospheric Effect:</strong> In nature, Water can extinguish Fire's natural spark, while Fire can bring Water to a scalding boil. In a relationship, this often translates to a cycle of intense passion followed by emotional burnout or frustration.`
+      ],
+      meaningIntro: `When Water and Fire try to blend, the relationship dynamic often feels like managing steam—it generates high heat and drama, but keeping that energy constructive requires constant management.`,
+      path1Title: `1. Navigating the Turbulent Waters`,
+      path1Intro: `Sustaining this connection long-term requires awareness of these recurring challenges:`,
+      path1Points: [
+        `<strong>Continuous Emotional Balancing:</strong> ${fire} must practice extreme patience and softness to avoid hurting ${water}, while ${water} must learn not to take ${fire}’s intense, blunt energy personally.`,
+        `<strong>High Energy Consumption:</strong> Balancing these opposing forces takes tremendous emotional heavy-lifting. Without active, conscious compromise, the relationship can easily drift between emotional distance and heated misunderstandings.`
+      ],
+      path2Title: `2. Looking at the Bigger Picture`,
+      path2Intro: `While the spark between Water and Fire can feel hypnotic at first, true emotional alignment shouldn't demand that you constantly sacrifice your inner peace:`,
+      path2Points: [
+        `<strong>You Deserve Natural Harmony:</strong> A great connection should feel like a safe harbor, not an unpredictable storm where you are constantly adjusting your temperature to keep the peace.`,
+        `<strong>A Vast Cosmos Out There:</strong> The world is full of people whose elemental nature naturally complements yours. ${water} finds deep, effortless understanding with Earth's grounding stability or another Water sign's empathy; ${fire} thrives wildly with Air's inspiring intellect or another Fire sign's shared passion. You both deserve a relationship where your core identity is naturally celebrated, not constantly suppressed.`
+      ],
+      nextSteps: `Take a moment to check in with yourself. Use this report to evaluate whether navigating this high-intensity dynamic brings genuine fulfillment, or if it is draining the energy you need to thrive.`
+    };
+  }
+
+  if (pairKey === 'Earth-Fire') {
+    return {
+      title: `Elemental Alignment: ${fire} & ${earth} Mismatch`,
+      note: `In astrology, Fire and Earth bring together two very different foundational energies. ${fire} is propelled by inspiration, bold risks, immediate action, and passion, while ${earth} relies on careful planning, stability, practical results, and routine. A low elemental score highlights a fundamental difference in how you approach life's pace, goals, and daily momentum.`,
+      insights: [
+        `<strong>Impulse vs. Caution:</strong> ${fire} wants to leap first and figure out the details later, thriving on excitement and change. ${earth} prefers to measure twice, build step-by-step, and minimize risk before taking action.`,
+        `<strong>Passion vs. Practicality:</strong> ${fire} expresses affection and drive through grand gestures, high energy, and enthusiasm. ${earth} shows love and security through tangible reliability, consistency, and practical support.`,
+        `<strong>The Atmospheric Effect:</strong> In nature, Fire can scorch Earth if it burns too fast, while heavy Earth can smother Fire’s flame. In a relationship, ${fire} may begin to feel constrained or bored by ${earth}'s routine, while ${earth} may feel stressed or destabilized by ${fire}'s unpredictability.`
+      ],
+      meaningIntro: `Blending Fire and Earth often feels like trying to build a bonfire on moving terrain—it takes constant, deliberate structure to keep the flame burning without consuming the foundation.`,
+      path1Title: `1. Navigating the Challenging Terrain`,
+      path1Intro: `Sustaining harmony between these elements requires working through specific foundational differences:`,
+      path1Points: [
+        `<strong>Pacing & Priority Compromises:</strong> ${fire} will need to practice patience and respect ${earth}'s need for time and safety, while ${earth} will need to step out of their comfort zone to allow room for ${fire}'s spontaneous sparks.`,
+        `<strong>Friction Around Friction Points:</strong> Long-term decisions—like finances, lifestyle changes, or daily routines—can easily become battlegrounds between ${fire}’s desire for immediate freedom and ${earth}’s need for careful security.`
+      ],
+      path2Title: `2. Looking at the Bigger Picture`,
+      path2Intro: `While ${earth} can offer ${fire} a solid foundation to build upon and ${fire} can inspire ${earth} to aim higher, keeping this dynamic balanced requires ongoing, heavy emotional lifting:`,
+      path2Points: [
+        `<strong>You Deserve Natural Resonant Energy:</strong> Love should feel like a supportive wind at your back, not a constant tug-of-war between moving forward and standing still.`,
+        `<strong>A Vast Cosmos Out There:</strong> There are countless people in the world whose elemental nature naturally moves at your speed. ${fire} ignites effortlessly alongside Air's quick intellect or another Fire sign's shared passion; ${earth} finds deep, peaceful harmony with Water's emotional depth or another Earth sign's grounded stability. You both deserve a connection where your natural tempo is embraced, not held back or rushed.`
+      ],
+      nextSteps: `Reflect on what you need most to feel secure and fulfilled. Use this report to consider whether adjusting to these elemental differences inspires genuine growth, or if it demands more compromise than feels healthy for your long-term peace.`
+    };
+  }
+
+  return null;
+}
+
+const CLASH_TEXTS = {
+  'Air-Water': getClashTemplate('Air', 'Water', 'Air', 'Water'),
+  'Air-Earth': getClashTemplate('Air', 'Earth', 'Air', 'Earth'),
+  'Fire-Water': getClashTemplate('Fire', 'Water', 'Fire', 'Water'),
+  'Earth-Fire': getClashTemplate('Earth', 'Fire', 'Earth', 'Fire'),
 };
