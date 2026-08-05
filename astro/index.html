@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Waves - Find Your True Love</title>
-  <link rel="stylesheet" href="style.css?v=19">
+  <link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
 
@@ -32,7 +32,7 @@
             <p>Simply enter two birthdays to cut through the confusion of transient attraction and uncover an honest, objective look at your true emotional compatibility and long-term potential.</p>
           </div>
 
-          <form class="input-grid">
+          <form id="astro-form" class="input-grid">
             <div class="form-group">
               <label for="your-name">YOUR NAME:</label>
               <input type="text" id="your-name" maxlength="30" autocomplete="off" placeholder="e.g. Romeo" required>
@@ -84,7 +84,7 @@
             </label>
           </div>
 
-          <button type="button" id="calc-btn" class="analyze-btn">BEGIN ANALYSIS</button>
+          <button type="submit" form="astro-form" id="calc-btn" class="analyze-btn">BEGIN ANALYSIS</button>
         </section>
       </div>
     </main>
@@ -223,7 +223,7 @@
     <div class="wave wave3"></div>
   </div>
 
-  <script src="calc.js?v=19"></script>
-  <script src="script.js?v=19"></script>
+  <script src="calc.js?v=20"></script>
+  <script src="script.js?v=20"></script>
 </body>
 </html>
