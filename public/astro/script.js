@@ -182,13 +182,15 @@ function calculate() {
   if (partnerNameInput) partnerNameInput.style.borderColor = '';
 
   if (!yourName || !partnerName) {
+    if (!yourName && yourNameInput) yourNameInput.style.borderColor = '#ef4444';
+    if (!partnerName && partnerNameInput) partnerNameInput.style.borderColor = '#ef4444';
+
     if (!yourName && yourNameInput) {
-      yourNameInput.style.borderColor = '#ef4444';
       yourNameInput.focus();
     } else if (!partnerName && partnerNameInput) {
-      partnerNameInput.style.borderColor = '#ef4444';
       partnerNameInput.focus();
     }
+
     errEl.textContent = "Please enter both your name and your partner's name.";
     errEl.classList.remove('hidden');
     return;
