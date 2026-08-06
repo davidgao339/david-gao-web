@@ -261,6 +261,150 @@ function elementHarmonyText(elA, elB) {
 // e.g. distance 3 gives the "ahead" person the senior role, but distance
 // 2/4/5 give the "ahead" person the junior role) so each is hardcoded
 // from observed data rather than derived from a single universal rule.
+/* ============================================================
+   ZODIAC COMPATIBILITY 78-PAIR KNOWLEDGE BASE
+   ============================================================ */
+const ZODIAC_PAIR_DESCRIPTIONS = {
+  "Aries&Libra": "Aries acts as the impulsive Catalyst, while Libra steps in as the diplomatic Mediator. Their chemistry is immediate because Aries learns grace from Libra, while Libra learns decisive self-advocacy from Aries. Good for Marriage: Yes, they balance each other's blind spots exceptionally well.",
+  "Taurus&Scorpio": "Taurus serves as the steady Builder, while Scorpio operates as the intense Strategist. This pair creates a magnetic bond of loyalty and shared determination, provided they don't lock horns in stubborn power struggles. Good for Marriage: Yes, their shared value of unwavering devotion creates a long-lasting foundation.",
+  "Gemini&Sagittarius": "Gemini is the curious Student gathering local details, while Sagittarius is the expansive Philosopher chasing universal truths. They keep life vibrant through non-stop intellectual dialogue, travel, and mutual freedom. Good for Marriage: Yes, their shared thirst for mental growth keeps boredom at bay.",
+  "Cancer&Capricorn": "Cancer takes the role of the intuitive Nurturer, while Capricorn assumes the role of the structured Provider. They naturally fall into a traditional harmony where emotional security and material stability reinforce one another. Good for Marriage: Yes, they form an exceptionally stable domestic unit.",
+  "Leo&Aquarius": "Leo is the passionate Performer, while Aquarius acts as the objective Director. Leo brings warm, personal heart to the relationship, while Aquarius provides visionary perspective, creating a balanced and striking team dynamic. Good for Marriage: Yes, their complementary energies build a strong power-couple dynamic.",
+  "Virgo&Pisces": "Virgo acts as the grounded Analyst, while Pisces serves as the intuitive Visionary. Virgo brings practical structure to Pisces' big dreams, while Pisces teaches Virgo to relax perfectionist tendencies and embrace flow. Good for Marriage: Yes, they form a deeply healing partnership.",
+  "Aries&Leo": "Aries acts as the Initiator, while Leo acts as the Sustainer in this high-energy Fire pair. Their shared enthusiasm and competitive spirit make them an inspiring team that constantly pushes each other forward. Good for Marriage: Yes, their shared passion and mutual support make for a vibrant life together.",
+  "Aries&Sagittarius": "Aries acts as the Pioneer, while Sagittarius serves as the Explorer. Their connection is effortless, filled with optimism, spontaneous adventures, and a deep respect for each other's independence. Good for Marriage: Yes, they thrive on joint goals and shared freedom.",
+  "Leo&Sagittarius": "Leo is the charismatic Sovereign, while Sagittarius is the adventurous Wanderer. Their bond is generous, warm, and playful, bringing out the highest levels of confidence and optimism in both partners. Good for Marriage: Yes, they enjoy a joyful and resilient relationship.",
+  "Taurus&Virgo": "Taurus takes the role of the steady Anchor, while Virgo acts as the meticulous Planner. They build a peaceful, highly functional life grounded in sensible decisions, physical comfort, and reliable routines. Good for Marriage: Yes, their shared practical values make them deeply dependable partners.",
+  "Taurus&Capricorn": "Taurus is the loyal Sustainer, while Capricorn acts as the ambitious Architect. Together, they focus on long-term security, material success, and building a comfortable, lasting legacy. Good for Marriage: Yes, they possess one of the most unshakable foundations in synastry.",
+  "Virgo&Capricorn": "Virgo functions as the practical Specialist, while Capricorn operates as the executive Leader. Their fluid cooperation in running a household or managing shared ambitions makes them an incredible team. Good for Marriage: Yes, their mutual work ethic and grounded goals guarantee stability.",
+  "Gemini&Libra": "Gemini plays the expressive Communicator, while Libra steps in as the social Harmonizer. Their connection is lighthearted and social, marked by constant conversation and shared cultural or intellectual interests. Good for Marriage: Yes, they build a harmonious and socially active union.",
+  "Gemini&Aquarius": "Gemini is the inquisitive Thinker, while Aquarius acts as the forward-thinking Innovator. They give each other plenty of intellectual space and share an open-minded approach to living life on their own terms. Good for Marriage: Yes, their high friendship value creates a durable bond.",
+  "Libra&Aquarius": "Libra acts as the relationship Strategist, while Aquarius serves as the social Visionary. They bond over shared ideals, social justice, and artistic endeavors, maintaining a peaceful and intellectually stimulating dynamic. Good for Marriage: Yes, they enjoy a deeply inspiring and harmonious union.",
+  "Cancer&Scorpio": "Cancer serves as the protective Sanctuary, while Scorpio acts as the watchful Guard. Their connection is intensely emotional, intuitive, and bound by deep trust and unwavering loyalty. Good for Marriage: Yes, they form an extraordinarily devoted and supportive pair.",
+  "Cancer&Pisces": "Cancer acts as the compassionate Caregiver, while Pisces functions as the creative Dreamer. They offer each other a gentle, empathetic safe haven where feelings are validated without judgment. Good for Marriage: Yes, their emotional alignment fosters deep domestic bliss.",
+  "Scorpio&Pisces": "Scorpio provides the Anchor of Depth, while Pisces brings the Flowing Spirit. Scorpio gives Pisces a sense of safety and grounding, while Pisces brings healing, romantic softness to Scorpio's intense world. Good for Marriage: Yes, they share a profound emotional connection.",
+  "Aries&Gemini": "Aries brings energetic drive, while Gemini supplies quick-witted ideas. Their relationship feels like an ongoing adventure filled with laughter, banter, and zero downtime. Good for Marriage: Yes, their natural camaraderie creates a fun, lasting friendship.",
+  "Aries&Aquarius": "Aries leads the physical charge, while Aquarius designs the innovative plan. Together, they form an unconventional, forward-thinking duo that respects individual autonomy. Good for Marriage: Yes, their mutual encouragement supports long-term growth.",
+  "Taurus&Cancer": "Taurus provides solid physical comfort, while Cancer offers warm emotional care. They take immense pleasure in building a cozy, hospitable home environment together. Good for Marriage: Yes, they share an exceptionally high level of domestic compatibility.",
+  "Taurus&Pisces": "Taurus grounds the relationship in reality, while Pisces injects imagination and artistic flair. They enjoy a peaceful, gentle pace of life that feels both secure and romantic. Good for Marriage: Yes, their complementary temperaments foster lasting ease.",
+  "Gemini&Leo": "Gemini supplies engaging conversation, while Leo brings theatrical warmth and enthusiasm. They thrive in social settings and constantly keep each other entertained. Good for Marriage: Yes, their lively dynamic supports a happy partnership.",
+  "Cancer&Virgo": "Cancer provides intuitive nurturing, while Virgo handles practical organization. They take care of one another in tangible ways, creating an efficient and loving home. Good for Marriage: Yes, their complementary strengths make daily life run smoothly.",
+  "Leo&Libra": "Leo brings bold magnetism, while Libra adds refined charm and style. They share a love for romance, art, and social gatherings, making them a popular and harmonious pair. Good for Marriage: Yes, they easily maintain romance and mutual appreciation.",
+  "Virgo&Scorpio": "Virgo offers analytical clarity, while Scorpio digs into hidden truths. They share a quiet, discerning nature and form a deeply loyal bond built on mutual respect. Good for Marriage: Yes, their understated strength makes for a resilient union.",
+  "Libra&Sagittarius": "Libra brings diplomatic grace, while Sagittarius adds spontaneous excitement. They inspire one another to expand their horizons through learning, travel, and social connection. Good for Marriage: Yes, their bright outlook keeps the relationship refreshing.",
+  "Scorpio&Capricorn": "Scorpio brings intense emotional focus, while Capricorn provides steady strategic execution. They respect each other's drive, forming a formidable and protective union. Good for Marriage: Yes, they build a solid life centered on mutual ambition.",
+  "Sagittarius&Aquarius": "Sagittarius offers philosophical curiosity, while Aquarius contributes inventive vision. They share an open-minded approach to life that gives both partners room to explore. Good for Marriage: Yes, their shared independence creates a flexible, enduring connection.",
+  "Capricorn&Pisces": "Capricorn provides structural support, while Pisces brings emotional depth and soulfulness. They balance practical responsibility with imagination in a comforting way. Good for Marriage: Yes, they offer each other grounding and inspiration in equal measure.",
+  "Aries&Taurus": "Aries acts as the pioneering Older Brother who sparks momentum, while Taurus acts as the cautious Younger Brother who grounds that energy into reality. Aries can get frustrated by Taurus's slow pace, and Taurus feels rushed by Aries's impatience. Not Good for Marriage: These zodiac signs are not compatible due to fundamental clashes between urgency and deliberation.",
+  "Taurus&Gemini": "Taurus steps in as the grounded Older Brother who focuses on tangible output, while Gemini is the curious Younger Brother eager to gather new options. Taurus finds Gemini ungrounded, while Gemini finds Taurus overly predictable. Not Good for Marriage: These zodiac signs are not compatible because their basic needs for routine versus variety constantly conflict.",
+  "Gemini&Cancer": "Gemini plays the cerebral Older Brother who analyzes facts, while Cancer is the sensitive Younger Brother who absorbs feelings. Gemini can accidentally brush off Cancer's moods, leaving Cancer feeling emotionally unsafe. Not Good for Marriage: These zodiac signs are not compatible due to mismatched communication styles between logic and emotion.",
+  "Cancer&Leo": "Cancer assumes the protective Older Brother role behind the scenes, while Leo steps out as the expressive Younger Brother demanding center stage. Cancer's private nature often clashes with Leo's desire for public recognition. Not Good for Marriage: These zodiac signs are not compatible as their temperaments pull toward opposite ends of the social spectrum.",
+  "Leo&Virgo": "Leo plays the confident Older Brother setting grand visions, while Virgo acts as the meticulous Younger Brother sharpening the details. Leo may feel criticized by Virgo's adjustments, while Virgo gets tired of managing Leo's ego. Not Good for Marriage: These zodiac signs are not compatible due to ongoing tension between big pride and fine critique.",
+  "Virgo&Libra": "Virgo serves as the practical Older Brother focused on efficient order, while Libra acts as the artistic Younger Brother seeking aesthetic balance. Virgo can view Libra as indecisive, while Libra finds Virgo's critique unromantic. Not Good for Marriage: These zodiac signs are not compatible because their day-to-day priorities rarely align naturally.",
+  "Libra&Scorpio": "Libra is the agreeable Older Brother maintaining smooth surface relations, while Scorpio is the intense Younger Brother digging for unspoken truths. Libra feels unsettled by Scorpio's intensity, and Scorpio distrusts Libra's politeness. Not Good for Marriage: These zodiac signs are not compatible due to deep friction between social diplomacy and raw honesty.",
+  "Scorpio&Sagittarius": "Scorpio acts as the guarded Older Brother protecting deeper motives, while Sagittarius is the candid Younger Brother who blurt out thoughts freely. Scorpio feels exposed by Sagittarius, while Sagittarius feels weighed down by Scorpio's secrecy. Not Good for Marriage: These zodiac signs are not compatible because their emotional boundaries operate on opposite extremes.",
+  "Sagittarius&Capricorn": "Sagittarius serves as the idealistic Older Brother chasing big visions, while Capricorn acts as the disciplined Younger Brother enforcing realistic limits. Sagittarius feels restricted by Capricorn's rules, and Capricorn views Sagittarius as irresponsible. Not Good for Marriage: These zodiac signs are not compatible due to a constant struggle between freedom and restraint.",
+  "Capricorn&Aquarius": "Capricorn acts as the traditional Older Brother honoring established structures, while Aquarius acts as the rebellious Younger Brother pushing for innovation. Capricorn resists Aquarius's radical ideas, while Aquarius rebels against Capricorn's authority. Not Good for Marriage: These zodiac signs are not compatible due to opposing philosophies on tradition versus reform.",
+  "Aquarius&Pisces": "Aquarius functions as the detached Older Brother thinking of the collective, while Pisces is the empathetic Younger Brother absorbing individual feelings. Aquarius struggles with Pisces's emotional fluidity, while Pisces feels lonely around Aquarius's cool logic. Not Good for Marriage: These zodiac signs are not compatible because emotional intimacy is difficult to maintain.",
+  "Pisces&Aries": "Pisces acts as the reflective Older Brother offering instinctive wisdom, while Aries steps up as the impulsive Younger Brother charging ahead. Pisces feels overwhelmed by Aries's forcefulness, while Aries grows impatient with Pisces's passivity. Not Good for Marriage: These zodiac signs are not compatible due to sharply contrasting energy levels and instincts.",
+  "Aries&Cancer": "Aries pushes for fast, direct action, while Cancer needs emotional safety and reflection before moving forward. Aries feels held back by Cancer's caution, while Cancer feels bruised by Aries's blunt approach. Not Good for Marriage: These zodiac signs are not compatible because their emotional instincts constantly trigger defensiveness.",
+  "Aries&Capricorn": "Aries relies on quick impulse, while Capricorn demands long-term strategy and discipline. Aries feels suffocated by Capricorn's rules, while Capricorn views Aries's haste as reckless. Not Good for Marriage: These zodiac signs are not compatible due to a structural conflict over control and pace.",
+  "Cancer&Libra": "Cancer reaches for deep emotional bonding, while Libra looks for objective, intellectual harmony. Cancer finds Libra emotionally detached, while Libra feels exhausted by Cancer's unpredictable mood shifts. Not Good for Marriage: These zodiac signs are not compatible as their approaches to relational intimacy conflict.",
+  "Libra&Capricorn": "Libra seeks flexible compromise and social ease, while Capricorn insists on firm rules and clear hierarchies. Libra finds Capricorn rigid, while Capricorn views Libra's indecisiveness as weak leadership. Not Good for Marriage: These zodiac signs are not compatible due to conflicting philosophies on authority and negotiation.",
+  "Taurus&Leo": "Taurus wants quiet financial caution and predictable routines, while Leo seeks grand expressions, generosity, and public recognition. Both are stubbornly fixed, leading to endless standoffs over spending and lifestyle priorities. Not Good for Marriage: These zodiac signs are not compatible because neither sign is willing to compromise their pride or preferences.",
+  "Taurus&Aquarius": "Taurus demands predictable stability and tradition, while Aquarius pushes for radical change and intellectual freedom. Taurus views Aquarius as erratic, while Aquarius sees Taurus as narrow-minded. Not Good for Marriage: These zodiac signs are not compatible due to irreconcilable values regarding routine versus change.",
+  "Leo&Scorpio": "Leo wants open appreciation and straightforward expression, while Scorpio operates with privacy, emotional power, and hidden strategy. Power struggles over control and transparency run deep in this pair. Not Good for Marriage: These zodiac signs are not compatible because their stubborn wills turn differences into emotional standoffs.",
+  "Scorpio&Aquarius": "Scorpio requires deep emotional involvement and intense loyalty, while Aquarius maintains intellectual detachment and broad social networks. Scorpio feels insecure with Aquarius's cool distance, while Aquarius feels suffocated by Scorpio's possessiveness. Not Good for Marriage: These zodiac signs are not compatible due to mismatched emotional needs.",
+  "Gemini&Virgo": "Gemini jumps across multiple ideas casually, while Virgo demands precise execution and thorough organization. Gemini feels micro-managed by Virgo's critiques, while Virgo feels stressed by Gemini's lack of follow-through. Not Good for Marriage: These zodiac signs are not compatible because their working styles create persistent nervous tension.",
+  "Gemini&Pisces": "Gemini processes life through objective logic, while Pisces navigates reality through intuitive, subjective feelings. Gemini finds Pisces overly dramatic or vague, while Pisces finds Gemini cold and superficial. Not Good for Marriage: These zodiac signs are not compatible due to a fundamental breakdown in how they communicate.",
+  "Virgo&Sagittarius": "Virgo concentrates on practical daily details, while Sagittarius focuses exclusively on the expansive big picture. Virgo sees Sagittarius as careless, while Sagittarius views Virgo as overly cautious and nitpicky. Not Good for Marriage: These zodiac signs are not compatible because their scope of focus continuously pulls them apart.",
+  "Sagittarius&Pisces": "Sagittarius practices direct, unfiltered honesty, while Pisces requires delicate emotional handling. Sagittarius unintentionally hurts Pisces's feelings, while Pisces's indirect responses frustrate Sagittarius's need for directness. Not Good for Marriage: These zodiac signs are not compatible due to contrasting approaches to truth and sensitivity.",
+  "Aries&Virgo": "Aries moves on raw impulse, while Virgo needs careful preparation and risk assessment. Aries views Virgo's caution as a drag, while Virgo views Aries's speed as sloppy. Not Good for Marriage: These zodiac signs are not compatible due to contradictory operational habits.",
+  "Aries&Scorpio": "Aries fights out in the open, while Scorpio operates through quiet strategy and emotional depth. Though they share an intense physical attraction, their motives and tactics clash under stress. Not Good for Marriage: These zodiac signs are not compatible because power struggles easily burn out the connection.",
+  "Taurus&Libra": "While both appreciate beauty, Taurus prefers low-key comfort at home, whereas Libra seeks active social engagements and cultural outings. Taurus finds Libra's social needs tiresome, while Libra feels stifled by Taurus's domesticity. Not Good for Marriage: These zodiac signs are not compatible due to diverging lifestyle demands.",
+  "Taurus&Sagittarius": "Taurus values a predictable domestic routine, while Sagittarius craves spontaneous travel and constant change. Taurus feels anxious around Sagittarius's restlessness, while Sagittarius feels trapped by Taurus's stability. Not Good for Marriage: These zodiac signs are not compatible because their core desires for security versus freedom oppose one another.",
+  "Gemini&Scorpio": "Gemini prefers light, wide-ranging social banter, while Scorpio demands emotional depth and privacy. Gemini feels weighed down by Scorpio's intensity, while Scorpio finds Gemini's casual nature insincere. Not Good for Marriage: These zodiac signs are not compatible due to incompatible levels of emotional depth.",
+  "Gemini&Capricorn": "Gemini approaches life with playful flexibility, while Capricorn operates with strict discipline and long-term ambition. Gemini finds Capricorn overly solemn, while Capricorn views Gemini as irresponsible. Not Good for Marriage: These zodiac signs are not compatible because their basic attitudes toward duty clash.",
+  "Cancer&Sagittarius": "Cancer craves emotional intimacy and a stable home base, while Sagittarius seeks independence and outdoor adventures. Cancer feels neglected by Sagittarius's wanderlust, while Sagittarius feels constrained by Cancer's emotional demands. Not Good for Marriage: These zodiac signs are not compatible due to fundamentally opposing security requirements.",
+  "Cancer&Aquarius": "Cancer centers life around close personal ties and home, while Aquarius focuses on community networks and broad humanitarian ideals. Cancer feels hurt by Aquarius's objective distance, while Aquarius feels drained by Cancer's personal expectations. Not Good for Marriage: These zodiac signs are not compatible because their emotional focal points are worlds apart.",
+  "Leo&Capricorn": "Leo desires enthusiastic praise and personal warmth, while Capricorn offers reserved authority and quiet results. Leo feels starved for affection, while Capricorn views Leo's need for attention as childish. Not Good for Marriage: These zodiac signs are not compatible due to incompatible emotional reward systems.",
+  "Leo&Pisces": "Leo needs bold presence and direct validation, while Pisces drifts through quiet sensitivity and subtle shifts in mood. Leo accidentally overwhelms Pisces, while Pisces retreats into solitude, leaving Leo confused. Not Good for Marriage: These zodiac signs are not compatible because their energetic rhythms clash.",
+  "Virgo&Aquarius": "Virgo focuses on tangible, immediate improvements, while Aquarius thinks in broad, systemic theories. Virgo finds Aquarius impractical, while Aquarius sees Virgo as bogged down in minutiae. Not Good for Marriage: These zodiac signs are not compatible due to mismatched problem-solving approaches.",
+  "Libra&Pisces": "Libra seeks balanced, intellectual fairness in partnerships, while Pisces operates on boundless, unconditional empathy. They can easily fall into codependent patterns without setting clear boundaries. Not Good for Marriage: These zodiac signs are not compatible because a lack of practical grounding creates long-term instability.",
+  "Aries&Aries": "Two impulsive Catalysts create an energetic bond filled with excitement, but constant competition and quick tempers can lead to sudden burnouts. Conditional: Works well only if both partners manage their pride and share common goals.",
+  "Taurus&Taurus": "Two steady Builders establish an exceptionally comfortable, loyal, and secure life, though they risk getting stuck in rigid routines. Conditional: Highly stable for marriage, provided they don't lock into mutual stubbornness.",
+  "Gemini&Gemini": "Two curious Students keep life endlessly interesting with witty banter and constant activity, though their shared restlessness can make long-term commitment tricky. Conditional: Successful if both cultivate emotional depth alongside intellectual stimulation.",
+  "Cancer&Cancer": "Two intuitive Nurturers build a deeply caring home, but double sensitivity can turn minor misunderstandings into prolonged emotional retreats. Conditional: Excellent domestic foundation if both maintain clear emotional boundaries.",
+  "Leo&Leo": "Two charismatic Performers bring immense passion and fun to the relationship, but fighting over the spotlight can strain the bond. Conditional: Thrives if they learn to take turns celebrating each other's achievements.",
+  "Virgo&Virgo": "Two meticulous Analysts keep life impeccably organized, but doubling up on critical tendencies can create an overly stressful home environment. Conditional: Works wonderfully if they direct their analytical skills outward rather than at each other.",
+  "Libra&Libra": "Two graceful Mediators build a romantic, harmonious atmosphere, but a mutual avoidance of conflict can leave real problems unaddressed. Conditional: Successful if both learn to tackle difficult conversations head-on.",
+  "Scorpio&Scorpio": "Two intense Strategists form an unbreakable, deeply devoted bond, but unaddressed mistrust can turn the relationship into a power struggle. Conditional: Incredibly strong for marriage if mutual trust is absolute from the start.",
+  "Sagittarius&Sagittarius": "Two adventurous Philosophers enjoy endless travel and learning, but a lack of grounding can make managing practical responsibilities difficult. Conditional: Great partnership if at least one partner keeps an eye on practical details.",
+  "Capricorn&Capricorn": "Two ambitious Architects build an impressive life of financial security, though focusing too much on work can leave little room for emotional warmth. Conditional: Highly successful for long-term stability if they make time for personal connection.",
+  "Aquarius&Aquarius": "Two visionary Directors share a deep intellectual understanding and respect for freedom, but cool detachment can hinder deep emotional intimacy. Conditional: Strong companionship if they consciously nurture emotional connection.",
+  "Pisces&Pisces": "Two empathetic Visionaries share a magical connection, but a lack of practical boundaries can make dealing with real-world stress difficult. Conditional: Beautiful union if both partners practice staying grounded in daily responsibilities.",
+};
+
+function getZodiacPairDescription(sign1, sign2, name1, name2) {
+  const k1 = `${sign1}&${sign2}`;
+  const k2 = `${sign2}&${sign1}`;
+  
+  let rawText = ZODIAC_PAIR_DESCRIPTIONS[k1] || ZODIAC_PAIR_DESCRIPTIONS[k2] || '';
+  if (!rawText) return '';
+
+  const n1 = (name1 && name1.trim()) || 'You';
+  const n2 = (name2 && name2.trim()) || 'Partner';
+
+  if (sign1 === sign2) {
+    const combinedNames = `${n1} & ${n2}`;
+    const signRegex = new RegExp(`\\b${sign1}('s|'|’s)?\\b`, 'g');
+    return rawText.replace(signRegex, (match, suffix) => {
+      return `${sign1} (${combinedNames})${suffix || ''}`;
+    });
+  }
+
+  const map = {
+    [sign1]: n1,
+    [sign2]: n2,
+  };
+
+  let replaced = rawText;
+  [sign1, sign2].forEach(sign => {
+    const personName = map[sign];
+    if (personName) {
+      const signRegex = new RegExp(`\\b${sign}('s|'|’s)?\\b`, 'g');
+      replaced = replaced.replace(signRegex, (match, suffix) => {
+        return `${sign} (${personName})${suffix || ''}`;
+      });
+    }
+  });
+
+  return replaced;
+}
+
+function formatZodiacDescription(text) {
+  if (!text) return '';
+  
+  let formatted = text;
+  if (formatted.includes('Good for Marriage:')) {
+    formatted = formatted.replace(
+      /Good for Marriage:\s*(.*)$/i,
+      '<div style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.1);"><span style="display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.8rem; font-weight:700; background:rgba(16,185,129,0.2); color:#34d399; margin-right:6px;">Good for Marriage</span> <span style="color:#e2e8f0;">$1</span></div>'
+    );
+  } else if (formatted.includes('Not Good for Marriage:')) {
+    formatted = formatted.replace(
+      /Not Good for Marriage:\s*(.*)$/i,
+      '<div style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.1);"><span style="display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.8rem; font-weight:700; background:rgba(239,68,68,0.2); color:#f87171; margin-right:6px;">Not Good for Marriage</span> <span style="color:#e2e8f0;">$1</span></div>'
+    );
+  } else if (formatted.includes('Conditional:')) {
+    formatted = formatted.replace(
+      /Conditional:\s*(.*)$/i,
+      '<div style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.1);"><span style="display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.8rem; font-weight:700; background:rgba(245,158,11,0.2); color:#fbbf24; margin-right:6px;">Conditional</span> <span style="color:#e2e8f0;">$1</span></div>'
+    );
+  }
+  return formatted;
+}
+
 const ROLE_INFO = [
   {
     title: '"Me and my mirror"', symmetric: true, name: 'Reflection',
@@ -299,9 +443,10 @@ const ROLE_INFO = [
   },
 ];
 
-function calcZodiacRoles(mDay, mMonth, fDay, fMonth) {
+function calcZodiacRoles(mDay, mMonth, fDay, fMonth, yourName, partnerName) {
   const mIdx = zodiacIndex(mDay, mMonth);
   const fIdx = zodiacIndex(fDay, fMonth);
+  const m = ZODIAC_SIGNS[mIdx], f = ZODIAC_SIGNS[fIdx];
   const mPos = mIdx + 1, fPos = fIdx + 1;
 
   const rawDiff = Math.abs(mPos - fPos);
@@ -320,18 +465,20 @@ function calcZodiacRoles(mDay, mMonth, fDay, fMonth) {
     zodiacRoleFemale = maleAhead ? info.names[1] : info.names[0];
   }
 
+  const customDesc = getZodiacPairDescription(m.name, f.name, yourName, partnerName);
+
   return {
-    zodiacRoleTitle: info.title,
+    zodiacRoleTitle: `${m.name} & ${f.name}`,
     zodiacRoleDifference: info.roleDifference,
     zodiacRoleMale,
     zodiacRoleFemale,
-    zodiacRoleDescription: info.description,
-    zodiacPairText: `The union of ${ZODIAC_SIGNS[mIdx].name} and ${ZODIAC_SIGNS[fIdx].name} is a combination of ${info.title}. ${info.description}`,
+    zodiacRoleDescription: customDesc || info.description,
+    zodiacPairText: customDesc,
     positions: [mPos, fPos, rawDiff],
   };
 }
 
-function calcZodiac(mDay, mMonth, fDay, fMonth) {
+function calcZodiac(mDay, mMonth, fDay, fMonth, yourName, partnerName) {
   const mIdx = zodiacIndex(mDay, mMonth);
   const fIdx = zodiacIndex(fDay, fMonth);
   const m = ZODIAC_SIGNS[mIdx], f = ZODIAC_SIGNS[fIdx];
@@ -345,7 +492,7 @@ function calcZodiac(mDay, mMonth, fDay, fMonth) {
       zodiacPeriodFemale: f.period, zodiacUrlFemale: f.url,
       zodiacElementHarmony: elementHarmonyText(m.element, f.element),
     },
-    zodiac_result_roles: calcZodiacRoles(mDay, mMonth, fDay, fMonth),
+    zodiac_result_roles: calcZodiacRoles(mDay, mMonth, fDay, fMonth, yourName, partnerName),
   };
 }
 
@@ -520,7 +667,7 @@ function calcFaw(day, month, year) {
    TOP-LEVEL ENTRY POINT
    ============================================================ */
 
-function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear) {
+function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear, yourName, partnerName) {
   mDay = +mDay; mMonth = +mMonth; mYear = +mYear;
   fDay = +fDay; fMonth = +fMonth; fYear = +fYear;
 
@@ -528,7 +675,7 @@ function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear) {
   const fDateMs = Date.UTC(fYear, fMonth - 1, fDay);
 
   const chakra = calcChakra(mDateMs, fDateMs);
-  const zodiac = calcZodiac(mDay, mMonth, fDay, fMonth);
+  const zodiac = calcZodiac(mDay, mMonth, fDay, fMonth, yourName, partnerName);
 
   const zDist = Math.min(zodiac.zodiac_result_roles.positions[2], 12 - zodiac.zodiac_result_roles.positions[2]);
   const isZodiacCompatible = (zDist === 0 || zDist === 2 || zDist === 4 || zDist === 6);

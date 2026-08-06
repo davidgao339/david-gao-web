@@ -142,8 +142,18 @@ function renderZodiac(data, yourName, partnerName) {
     harmonyEl.style.color = '';
   }
   
-  document.getElementById('zodiac-role-title').textContent = roles.zodiacRoleTitle;
-  document.getElementById('zodiac-role-desc').textContent  = roles.zodiacRoleDescription;
+  const customDesc = (typeof getZodiacPairDescription === 'function')
+    ? getZodiacPairDescription(signs.zodiacSignMale, signs.zodiacSignFemale, yourName, partnerName)
+    : roles.zodiacRoleDescription;
+
+  document.getElementById('zodiac-role-title').textContent = `${signs.zodiacSignMale} & ${signs.zodiacSignFemale}`;
+  
+  const descEl = document.getElementById('zodiac-role-desc');
+  if (typeof formatZodiacDescription === 'function') {
+    descEl.innerHTML = formatZodiacDescription(customDesc || roles.zodiacRoleDescription);
+  } else {
+    descEl.textContent = customDesc || roles.zodiacRoleDescription;
+  }
   
   const pairTextEl = document.getElementById('zodiac-pair-text');
   if (pairTextEl) pairTextEl.style.display = 'none'; // hide the duplicate text
@@ -240,7 +250,8 @@ function calculate() {
   try {
     const data = calculateCompatibility(
       mDayNum, mMonthNum, mYearNum,
-      fDayNum, fMonthNum, fYearNum
+      fDayNum, fMonthNum, fYearNum,
+      yourName, partnerName
     );
 
     // Render components
