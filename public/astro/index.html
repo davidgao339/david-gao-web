@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Waves - Find Your True Love</title>
-  <link rel="stylesheet" href="style.css?v=20">
+  <link rel="stylesheet" href="style.css?v=21">
 </head>
 <body>
 
@@ -33,31 +33,37 @@
           </div>
 
           <form id="astro-form" class="input-grid">
-            <div class="form-group">
-              <label for="your-name">YOUR NAME:</label>
-              <input type="text" id="your-name" maxlength="30" autocomplete="off" placeholder="e.g. Romeo" required>
-            </div>
+            <!-- Person 1 Column -->
+            <div class="person-inputs">
+              <div class="form-group">
+                <label for="your-name">YOUR NAME:</label>
+                <input type="text" id="your-name" maxlength="30" autocomplete="off" placeholder="e.g. Romeo" required>
+              </div>
 
-            <div class="form-group">
-              <label for="partner-name">PARTNER'S NAME:</label>
-              <input type="text" id="partner-name" maxlength="30" autocomplete="off" placeholder="e.g. Juliet" required>
-            </div>
-
-            <div class="form-group">
-              <label>YOUR BIRTHDAY:</label>
-              <div class="date-selects">
-                <select id="m-day"></select>
-                <select id="m-month"></select>
-                <select id="m-year"></select>
+              <div class="form-group">
+                <label>YOUR BIRTHDAY:</label>
+                <div class="date-selects">
+                  <select id="m-day"></select>
+                  <select id="m-month"></select>
+                  <select id="m-year"></select>
+                </div>
               </div>
             </div>
 
-            <div class="form-group">
-              <label>PARTNER'S BIRTHDAY:</label>
-              <div class="date-selects">
-                <select id="f-day"></select>
-                <select id="f-month"></select>
-                <select id="f-year"></select>
+            <!-- Person 2 Column -->
+            <div class="person-inputs">
+              <div class="form-group">
+                <label for="partner-name">PARTNER'S NAME:</label>
+                <input type="text" id="partner-name" maxlength="30" autocomplete="off" placeholder="e.g. Juliet" required>
+              </div>
+
+              <div class="form-group">
+                <label>PARTNER'S BIRTHDAY:</label>
+                <div class="date-selects">
+                  <select id="f-day"></select>
+                  <select id="f-month"></select>
+                  <select id="f-year"></select>
+                </div>
               </div>
             </div>
           </form>
