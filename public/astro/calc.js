@@ -386,15 +386,15 @@ function formatZodiacDescription(text) {
   if (!text) return '';
   
   let formatted = text;
-  if (formatted.includes('Good for Marriage:')) {
-    formatted = formatted.replace(
-      /Good for Marriage:\s*(.*)$/i,
-      '<div style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.1);"><span style="display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.8rem; font-weight:700; background:rgba(16,185,129,0.2); color:#34d399; margin-right:6px;">Good for Marriage</span> <span style="color:#e2e8f0;">$1</span></div>'
-    );
-  } else if (formatted.includes('Not Good for Marriage:')) {
+  if (formatted.includes('Not Good for Marriage:')) {
     formatted = formatted.replace(
       /Not Good for Marriage:\s*(.*)$/i,
       '<div style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.1);"><span style="display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.8rem; font-weight:700; background:rgba(239,68,68,0.2); color:#f87171; margin-right:6px;">Not Good for Marriage</span> <span style="color:#e2e8f0;">$1</span></div>'
+    );
+  } else if (formatted.includes('Good for Marriage:')) {
+    formatted = formatted.replace(
+      /Good for Marriage:\s*(.*)$/i,
+      '<div style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.1);"><span style="display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.8rem; font-weight:700; background:rgba(16,185,129,0.2); color:#34d399; margin-right:6px;">Good for Marriage</span> <span style="color:#e2e8f0;">$1</span></div>'
     );
   } else if (formatted.includes('Conditional:')) {
     formatted = formatted.replace(
