@@ -324,14 +324,19 @@ function calculate() {
           <span style="font-weight: bold; color: #a5c9f5;">Congratulations! You have higher than average compatibility</span>
         `;
       } else {
-        finalVerdictEl.className = 'verdict-text verdict-bad';
+        verdict = "NOT COMPATIBLE";
+        finalVerdictEl.className = 'verdict-text';
         finalVerdictEl.innerHTML = `
-          <div style="color: #ef4444; font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;">NOT COMPATIBLE</div>
+          <div style="color: #F87171; font-weight: 800; font-size: 1.5rem; letter-spacing: 1px; display: flex; justify-content: center; align-items: center; gap: 8px;">
+            <span>💔</span> <span>NOT COMPATIBLE</span>
+          </div>
         `;
 
         // Setup teaser
         teaserVerdict.innerHTML = `
-          <span style="font-weight: bold; color: #ef4444;">Unfortunately you are NOT COMPATIBLE.</span>
+          <div style="display: flex; justify-content: center; align-items: center; gap: 8px; font-weight: bold; color: #F87171; font-size: 1.25rem; letter-spacing: 0.5px;">
+            <span>💔</span> <span>NOT COMPATIBLE</span>
+          </div>
         `;
       }
     } else {
@@ -592,7 +597,11 @@ function calculate() {
       
       // Calculate and animate radial gauge
       let gaugeScore = 0;
-      if (data.zodiac_result_signs.zodiacElementHarmony !== 'Elements clash') {
+      if (verdict === 'NOT COMPATIBLE' || verdict.includes('Not compatible')) {
+        // For not compatible: average of the lowest compatibility score between harmony waves and emotional resonance and 0%
+        const lowestScore = Math.min(data.bio_result_chart.heart, data.bio_result_chart.emotional);
+        gaugeScore = Math.round((lowestScore + 0) / 2);
+      } else {
         gaugeScore = Math.round((data.bio_result_chart.heart + data.bio_result_chart.emotional) / 2);
       }
       
