@@ -380,22 +380,25 @@ function calculate() {
     pEmotion.classList.add('hidden');
     pBoth.classList.add('hidden');
 
-    if (verdict.includes('Not compatible')) {
+    let hasElementClashTemplate = false;
+    let clashT = null;
+    
+    if (data.zodiac_result_signs.zodiacElementHarmony === 'Elements clash') {
+      const sign1 = data.zodiac_result_signs.zodiacElementMale;
+      const sign2 = data.zodiac_result_signs.zodiacElementFemale;
+      
+      clashT = getClashTemplate(sign1, sign2, yourName, partnerName);
+      if (clashT) {
+        hasElementClashTemplate = true;
+      }
+    }
+
+    const isNotCompatible = verdict === 'NOT COMPATIBLE' || verdict.toUpperCase().includes('NOT COMPATIBLE') || verdict.includes('Not compatible');
+
+    if (isNotCompatible || hasElementClashTemplate) {
       summaryBlock.classList.remove('hidden');
       
       let clashCount = 0;
-      let hasElementClashTemplate = false;
-      let clashT = null;
-      
-      if (data.zodiac_result_signs.zodiacElementHarmony === 'Elements clash') {
-        const sign1 = data.zodiac_result_signs.zodiacElementMale;
-        const sign2 = data.zodiac_result_signs.zodiacElementFemale;
-        
-        clashT = getClashTemplate(sign1, sign2, yourName, partnerName);
-        if (clashT) {
-          hasElementClashTemplate = true;
-        }
-      }
       
       if (hasElementClashTemplate) {
           let insightsHtml = clashT.insights.map(i => `<li style="margin-bottom: 8px;">${i}</li>`).join('');
