@@ -6,8 +6,8 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>Waves - Find Your True Love</title>
-  <link rel="stylesheet" href="style.css?v=25">
+  <title data-i18n="pageTitle">Waves - Find Your True Love</title>
+  <link rel="stylesheet" href="style.css?v=28">
 </head>
 <body>
 
@@ -17,34 +17,39 @@
     <!-- Main Holographic Card -->
     <main class="ui-card" id="input-card">
       <div class="card-header">
-        <span class="tab-label">IS THIS TRUE LOVE?</span>
+        <span class="tab-label" data-i18n="tabLabelInput">IS THIS TRUE LOVE?</span>
+      </div>
+      <div class="card-lang-switcher">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-divider">|</span>
+        <button type="button" class="lang-btn" data-lang="ru">RU</button>
       </div>
 
       <div class="card-content">
         <!-- Left Column: Branding & Form -->
         <section class="left-section">
           <div class="brand">
-            <h1 class="logo-title">WAVES</h1>
+            <h1 class="logo-title" data-i18n="brandTitle">WAVES</h1>
           </div>
           
           <div class="intro-text" style="margin-bottom: 30px; color: #a5c9f5; font-size: 0.95rem; line-height: 1.6; text-align: left;">
-            <h2 style="text-transform: uppercase; margin-bottom: 15px; color: #d1e8ff; font-size: 1.1rem; letter-spacing: 1px;">Uncover the Truth Behind Your Connection</h2>
-            <p style="margin-bottom: 12px;">Today’s high divorce rates show a clear trend: it’s easy to mistake short-term chemistry for long-term compatibility. Modern dating culture focuses on surface-level sparks, but lasting relationships depend on much deeper dynamics.</p>
-            <p style="margin-bottom: 12px;">WAVES gives you the clarity to look deeper.</p>
-            <p style="margin-bottom: 12px;">Our specialized algorithm uses your birth dates to analyze the fundamental energetic and astrological alignment between you and your partner.</p>
-            <p>Simply enter two birthdays to cut through the confusion of transient attraction and uncover an honest, objective look at your true emotional compatibility and long-term potential.</p>
+            <h2 data-i18n="introHeading" style="text-transform: uppercase; margin-bottom: 15px; color: #d1e8ff; font-size: 1.1rem; letter-spacing: 1px;">Uncover the Truth Behind Your Connection</h2>
+            <p data-i18n="introP1" style="margin-bottom: 12px;">Today’s high divorce rates show a clear trend: it’s easy to mistake short-term chemistry for long-term compatibility. Modern dating culture focuses on surface-level sparks, but lasting relationships depend on much deeper dynamics.</p>
+            <p data-i18n="introP2" style="margin-bottom: 12px;">WAVES gives you the clarity to look deeper.</p>
+            <p data-i18n="introP3" style="margin-bottom: 12px;">Our specialized algorithm uses your birth dates to analyze the fundamental energetic and astrological alignment between you and your partner.</p>
+            <p data-i18n="introP4">Simply enter two birthdays to cut through the confusion of transient attraction and uncover an honest, objective look at your true emotional compatibility and long-term potential.</p>
           </div>
 
           <form id="astro-form" class="input-grid">
             <!-- Person 1 Column -->
             <div class="person-inputs">
               <div class="form-group">
-                <label for="your-name">YOUR NAME:</label>
+                <label for="your-name" data-i18n="yourNameLabel">YOUR NAME:</label>
                 <input type="text" id="your-name" maxlength="30" autocomplete="off" placeholder="e.g. Romeo" required>
               </div>
 
               <div class="form-group">
-                <label>YOUR BIRTHDAY:</label>
+                <label data-i18n="yourBirthdayLabel">YOUR BIRTHDAY:</label>
                 <div class="date-selects">
                   <select id="m-day"></select>
                   <select id="m-month"></select>
@@ -56,12 +61,12 @@
             <!-- Person 2 Column -->
             <div class="person-inputs">
               <div class="form-group">
-                <label for="partner-name">PARTNER'S NAME:</label>
+                <label for="partner-name" data-i18n="partnerNameLabel">PARTNER'S NAME:</label>
                 <input type="text" id="partner-name" maxlength="30" autocomplete="off" placeholder="e.g. Juliet" required>
               </div>
 
               <div class="form-group">
-                <label>PARTNER'S BIRTHDAY:</label>
+                <label data-i18n="partnerBirthdayLabel">PARTNER'S BIRTHDAY:</label>
                 <div class="date-selects">
                   <select id="f-day"></select>
                   <select id="f-month"></select>
@@ -86,14 +91,14 @@
           </div>
 
           <div class="toggle-group">
-            <span class="toggle-label">SEXUAL COMPATIBILITY</span>
+            <span class="toggle-label" data-i18n="sexCompatLabel">SEXUAL COMPATIBILITY</span>
             <label class="custom-checkbox">
               <input type="checkbox" id="sex-compat-toggle" checked>
               <span class="checkmark">✓</span>
             </label>
           </div>
 
-          <button type="submit" form="astro-form" id="calc-btn" class="analyze-btn">BEGIN ANALYSIS</button>
+          <button type="submit" form="astro-form" id="calc-btn" class="analyze-btn" data-i18n="btnAnalyze">BEGIN ANALYSIS</button>
         </section>
       </div>
     </main>
@@ -101,28 +106,33 @@
     <!-- Results Holographic Card -->
     <main class="ui-card results-card hidden" id="results-card">
       <div class="card-header">
-        <span class="tab-label">ANALYSIS RESULTS</span>
+        <span class="tab-label" data-i18n="tabLabelResults">ANALYSIS RESULTS</span>
+      </div>
+      <div class="card-lang-switcher">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-divider">|</span>
+        <button type="button" class="lang-btn" data-lang="ru">RU</button>
       </div>
 
       <!-- FINAL VERDICT BANNER (Blurred Layer) -->
       <div id="results-blur-container" class="blurred-content">
         <div class="verdict-banner">
-          <h2>OVERALL COMPATIBILITY</h2>
+          <h2 data-i18n="overallCompatHeading">OVERALL COMPATIBILITY</h2>
           <div id="final-verdict" class="verdict-text"></div>
         </div>
 
       <div class="results-grid">
         <!-- SECTION 1: CHAKRAS -->
         <section class="result-section">
-          <h3>COMPATIBILITY SCORES</h3>
-          <p style="font-size: 0.95rem; color: #a5c9f5; margin-top: 10px; margin-bottom: 20px; line-height: 1.6;">Achieving true compatibility relies on three core conditions: high harmony waves, deep emotional resonance, and complementary zodiac natures. While physical chemistry is important to many, it isn’t strictly necessary for a profoundly compatible connection. Instead, great chemistry can often be cultivated over time through shared experiences and open communication about your desires.<br><br>Lets take a look at your compatibility results.</p>
+          <h3 data-i18n="scoresHeading">COMPATIBILITY SCORES</h3>
+          <p data-i18n="scoresDesc" style="font-size: 0.95rem; color: #a5c9f5; margin-top: 10px; margin-bottom: 20px; line-height: 1.6;">Achieving true compatibility relies on three core conditions: high harmony waves, deep emotional resonance, and complementary zodiac natures. While physical chemistry is important to many, it isn’t strictly necessary for a profoundly compatible connection. Instead, great chemistry can often be cultivated over time through shared experiences and open communication about your desires.<br><br>Lets take a look at your compatibility results.</p>
           
           <div id="chakra-bars" class="chakra-bars"></div>
         </section>
 
         <!-- SECTION 2: ZODIAC -->
         <section class="result-section">
-          <h3>Zodiac Compatibility</h3>
+          <h3 data-i18n="zodiacCompatHeading">Zodiac Compatibility</h3>
           
           <div class="zodiac-signs">
             <div class="zodiac-person">
@@ -130,7 +140,7 @@
               <div id="zodiac-sign-male" class="zodiac-sign-name"></div>
               <div id="zodiac-element-male" class="zodiac-element"></div>
             </div>
-            <div class="zodiac-vs">VS</div>
+            <div class="zodiac-vs" data-i18n="vsText">VS</div>
             <div class="zodiac-person">
               <div id="zodiac-name-female" class="zodiac-person-name"></div>
               <div id="zodiac-sign-female" class="zodiac-sign-name"></div>
@@ -148,8 +158,8 @@
       </div>
 
       <div class="action-buttons-container" style="display:flex; flex-direction:column; align-items:center; gap:15px; margin-top:30px;">
-        <button type="button" id="full-report-btn" class="analyze-btn" style="background:linear-gradient(135deg, rgba(219, 39, 119, 0.4), rgba(157, 23, 77, 0.6)); border:1px solid rgba(244, 114, 182, 0.5); color:#fff; width:100%; max-width:400px; margin:0 auto; transition:all 0.3s; animation:none;">VIEW FULL REPORT</button>
-        <button type="button" id="back-btn" style="background:none; border:none; color:rgba(255,255,255,0.6); text-decoration:underline; font-size:0.9rem; cursor:pointer; padding:5px;">Start Over / Recalculate</button>
+        <button type="button" id="full-report-btn" class="analyze-btn" data-i18n="btnFullReport" style="background:linear-gradient(135deg, rgba(219, 39, 119, 0.4), rgba(157, 23, 77, 0.6)); border:1px solid rgba(244, 114, 182, 0.5); color:#fff; width:100%; max-width:400px; margin:0 auto; transition:all 0.3s; animation:none;">VIEW FULL REPORT</button>
+        <button type="button" id="back-btn" data-i18n="btnBack" style="background:none; border:none; color:rgba(255,255,255,0.6); text-decoration:underline; font-size:0.9rem; cursor:pointer; padding:5px;">Start Over / Recalculate</button>
       </div>
       </div> <!-- Close blurred container -->
 
@@ -177,7 +187,7 @@
           </div>
           <div id="teaser-names" class="teaser-names"></div>
           <div id="teaser-verdict" class="teaser-verdict"></div>
-          <button type="button" id="read-more-btn" class="analyze-btn">Learn why</button>
+          <button type="button" id="read-more-btn" class="analyze-btn" data-i18n="learnWhy">Learn why</button>
         </div>
       </div>
     </main>
@@ -188,7 +198,7 @@
   <div id="full-report-modal" class="modal-overlay hidden">
     <div class="modal-content ui-card">
       <div class="modal-header">
-        <h2>DEEP ANALYSIS REPORT</h2>
+        <h2 data-i18n="modalReportTitle">DEEP ANALYSIS REPORT</h2>
         <button id="close-modal-btn" class="close-btn">&times;</button>
       </div>
       <div class="modal-body">
@@ -232,7 +242,8 @@
     <div class="wave wave3"></div>
   </div>
 
-  <script src="calc.js?v=26"></script>
-  <script src="script.js?v=26"></script>
+  <script src="i18n.js?v=28"></script>
+  <script src="calc.js?v=28"></script>
+  <script src="script.js?v=28"></script>
 </body>
 </html>
