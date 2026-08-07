@@ -60,6 +60,54 @@ body {
   font-weight: 600;
 }
 
+/* Language Switcher */
+.card-lang-switcher {
+  position: absolute;
+  top: -16px;
+  right: 60px;
+  background: rgba(15, 25, 48, 0.85);
+  border: 1px solid rgba(135, 206, 250, 0.4);
+  border-radius: 20px;
+  padding: 2px 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.2);
+  z-index: 105;
+  backdrop-filter: blur(8px);
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: #7dd3fc;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.lang-btn:hover {
+  color: #fff;
+  text-shadow: 0 0 6px rgba(125, 211, 252, 0.6);
+}
+
+.lang-btn.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(59, 130, 246, 0.6));
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+}
+
+.lang-divider {
+  color: rgba(135, 206, 250, 0.3);
+  font-size: 0.75rem;
+  user-select: none;
+}
+
 /* Card Content Layout */
 .card-content {
   display: flex;
@@ -71,6 +119,16 @@ body {
   .ui-card {
     padding: 15px;
     margin-top: 5px;
+  }
+  
+  .card-header {
+    left: 15px;
+    padding: 4px 14px;
+  }
+  
+  .card-lang-switcher {
+    right: 15px;
+    padding: 2px 6px;
   }
   
   .teaser-layer {
