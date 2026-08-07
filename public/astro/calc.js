@@ -346,6 +346,10 @@ const ZODIAC_PAIR_DESCRIPTIONS = {
 };
 
 function getZodiacPairDescription(sign1, sign2, name1, name2) {
+  if (typeof window !== 'undefined' && window.I18N && typeof window.I18N.getZodiacPairDescriptionLocalized === 'function') {
+    return window.I18N.getZodiacPairDescriptionLocalized(sign1, sign2, name1, name2, window.I18N.getLang());
+  }
+
   const k1 = `${sign1}&${sign2}`;
   const k2 = `${sign2}&${sign1}`;
   
@@ -384,6 +388,9 @@ function getZodiacPairDescription(sign1, sign2, name1, name2) {
 
 function formatZodiacDescription(text) {
   if (!text) return '';
+  if (typeof window !== 'undefined' && window.I18N && typeof window.I18N.formatZodiacDescriptionI18n === 'function') {
+    return window.I18N.formatZodiacDescriptionI18n(text, window.I18N.getLang());
+  }
   
   let formatted = text;
   if (formatted.includes('Not Good for Marriage:')) {
@@ -723,6 +730,10 @@ function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear, yourNa
 }
 
 function getClashTemplate(element1, element2, name1, name2) {
+  if (typeof window !== 'undefined' && window.I18N && window.I18N.getLang() === 'ru' && typeof window.I18N.getClashTemplateRu === 'function') {
+    return window.I18N.getClashTemplateRu(element1, element2, name1, name2);
+  }
+
   const elementMap = {};
   elementMap[element1] = `${name1 || 'You'} (${element1})`;
   elementMap[element2] = `${name2 || 'Partner'} (${element2})`;
