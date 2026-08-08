@@ -750,6 +750,7 @@ function getClashTemplate(element1, element2, name1, name2) {
         `<strong>Need for Freedom vs. Need for Depth:</strong> ${air} thrives on movement, variety, and mental space, while ${water} seeks closeness, emotional security, and deep bonding.`,
         `<strong>The Atmospheric Effect:</strong> Just like in nature, Air over Water can create unpredictable weather—ranging from light breezes of inspiration to turbulent emotional storms if expectations aren't managed carefully.`
       ],
+      meaning: `An elemental clash means your relationship operates on a dynamic where balance requires constant, deliberate calibration.`,
       meaningIntro: `An elemental clash means your relationship operates on a dynamic where balance requires constant, deliberate calibration.`,
       path1Title: `1. Navigating the Challenging Currents`,
       path1Intro: `If you choose to build on this connection, be prepared for specific recurring dynamics:`,
@@ -776,6 +777,7 @@ function getClashTemplate(element1, element2, name1, name2) {
         `<strong>Speed & Rhythm:</strong> ${air} moves fast, adapts quickly, and can change direction on a whim. ${earth} moves deliberately, values consistency, and needs time to process and build before committing to a change.`,
         `<strong>The Atmospheric Effect:</strong> In nature, too much Air can stir up dust storms, while solid Earth can feel immobile to the wind. In a relationship, ${air} may view ${earth} as overly rigid or stubborn, while ${earth} may see ${air} as unpredictable, flighty, or impractical.`
       ],
+      meaning: `When Air and Earth join forces, the dynamic often feels like trying to anchor a breeze or fly a heavy kite—it requires deliberate effort to keep from pulling in opposite directions.`,
       meaningIntro: `When Air and Earth join forces, the dynamic often feels like trying to anchor a breeze or fly a heavy kite—it requires deliberate effort to keep from pulling in opposite directions.`,
       path1Title: `1. Navigating the Challenging Landscape`,
       path1Intro: `Building a lasting bond here means navigating specific foundational differences:`,
@@ -802,6 +804,7 @@ function getClashTemplate(element1, element2, name1, name2) {
         `<strong>Sensitivity & Directness:</strong> ${fire}’s bold, straightforward nature can inadvertently sting or overwhelm ${water}'s deeply sensitive radar. Conversely, ${water}’s emotional mood shifts or need for reassurance can feel restrictive or confusing to ${fire}’s independent spirit.`,
         `<strong>The Atmospheric Effect:</strong> In nature, Water can extinguish Fire's natural spark, while Fire can bring Water to a scalding boil. In a relationship, this often translates to a cycle of intense passion followed by emotional burnout or frustration.`
       ],
+      meaning: `When Water and Fire try to blend, the relationship dynamic often feels like managing steam—it generates high heat and drama, but keeping that energy constructive requires constant management.`,
       meaningIntro: `When Water and Fire try to blend, the relationship dynamic often feels like managing steam—it generates high heat and drama, but keeping that energy constructive requires constant management.`,
       path1Title: `1. Navigating the Turbulent Waters`,
       path1Intro: `Sustaining this connection long-term requires awareness of these recurring challenges:`,
@@ -828,6 +831,7 @@ function getClashTemplate(element1, element2, name1, name2) {
         `<strong>Passion vs. Practicality:</strong> ${fire} expresses affection and drive through grand gestures, high energy, and enthusiasm. ${earth} shows love and security through tangible reliability, consistency, and practical support.`,
         `<strong>The Atmospheric Effect:</strong> In nature, Fire can scorch Earth if it burns too fast, while heavy Earth can smother Fire’s flame. In a relationship, ${fire} may begin to feel constrained or bored by ${earth}'s routine, while ${earth} may feel stressed or destabilized by ${fire}'s unpredictability.`
       ],
+      meaning: `Blending Fire and Earth often feels like trying to build a bonfire on moving terrain—it takes constant, deliberate structure to keep the flame burning without consuming the foundation.`,
       meaningIntro: `Blending Fire and Earth often feels like trying to build a bonfire on moving terrain—it takes constant, deliberate structure to keep the flame burning without consuming the foundation.`,
       path1Title: `1. Navigating the Challenging Terrain`,
       path1Intro: `Sustaining harmony between these elements requires working through specific foundational differences:`,
