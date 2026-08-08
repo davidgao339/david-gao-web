@@ -776,7 +776,14 @@ function calculate() {
       
       // Calculate gauge score
       let gaugeScore = 0;
-      if (verdict === 'NOT COMPATIBLE' || verdict.includes('Not compatible')) {
+      const heartMatch = (data.bio_result_chart.heart >= 60);
+      const emotionalMatch = (data.bio_result_chart.emotional >= 60);
+      const isClash = (data.zodiac_result_signs.zodiacElementHarmony === 'Elements clash');
+      const isHigherAvg = !isClash && ((!heartMatch && emotionalMatch) || (heartMatch && !emotionalMatch));
+
+      if (isHigherAvg) {
+        gaugeScore = Math.round((data.bio_result_chart.heart + data.bio_result_chart.emotional) / 2);
+      } else if (verdict === 'NOT COMPATIBLE' || verdict.includes('Not compatible')) {
         const lowestScore = Math.min(data.bio_result_chart.heart, data.bio_result_chart.emotional);
         gaugeScore = Math.round((lowestScore + 0) / 2);
       } else {
