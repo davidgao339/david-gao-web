@@ -694,10 +694,20 @@ function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear, yourNa
     finalVerdict = 'Higher than Average compatibility';
   }
 
+  const isPerfectMatch = isZodiacCompatible && isSvadhistanaPass && isAnahataPass;
   const isHigherAvg = isZodiacCompatible && ((!isAnahataPass && isSvadhistanaPass) || (isAnahataPass && !isSvadhistanaPass));
-  const overallScore = (isHigherAvg || (isZodiacCompatible && isAnahataPass && isSvadhistanaPass))
-    ? Math.round((chakra.bio_result_chart.heart + chakra.bio_result_chart.emotional) / 2)
-    : Math.round((Math.min(chakra.bio_result_chart.heart, chakra.bio_result_chart.emotional) + 0) / 2);
+  
+  let overallScore = 0;
+  if (isPerfectMatch) {
+    overallScore = Math.round((chakra.bio_result_chart.heart + chakra.bio_result_chart.emotional) / 2);
+    if (overallScore < 70) {
+      overallScore = Math.min(overallScore + 10, 100);
+    }
+  } else if (isHigherAvg) {
+    overallScore = Math.round((chakra.bio_result_chart.heart + chakra.bio_result_chart.emotional) / 2);
+  } else {
+    overallScore = Math.round((Math.min(chakra.bio_result_chart.heart, chakra.bio_result_chart.emotional) + 0) / 2);
+  }
 
   const mNum = calcNumerology(mDay, mMonth, mYear);
   const fNum = calcNumerology(fDay, fMonth, fYear);
