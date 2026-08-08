@@ -213,7 +213,13 @@ function renderVerdictAndTeaser(data, yourName, partnerName, lang) {
   }
   teaserNames.textContent = nameDisplay;
 
-  if (verdict.includes('Perfect Match')) {
+  const heartMatch = (data.bio_result_chart.heart >= 60);
+  const emotionalMatch = (data.bio_result_chart.emotional >= 60);
+  const isClash = (data.zodiac_result_signs.zodiacElementHarmony === 'Elements clash');
+  const isPerfectMatch = !isClash && heartMatch && emotionalMatch;
+  const isHigherAvg = !isClash && (heartMatch || emotionalMatch) && !isPerfectMatch;
+
+  if (isPerfectMatch || verdict.includes('Perfect Match')) {
     finalVerdictEl.className = 'verdict-text verdict-good';
     finalVerdictEl.innerHTML = `
       <div style="display:flex; justify-content:center; align-items:center; gap: 10px; font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;">
@@ -231,37 +237,24 @@ function renderVerdictAndTeaser(data, yourName, partnerName, lang) {
       <span style="font-weight: bold; color: #fca5a5;">${t('perfectMatchTeaser')}</span>
       <span class="rings-icon">💍</span>
     `;
-  } else if (verdict.includes('Not compatible')) {
-    const heartMatch = (data.bio_result_chart.heart >= 60);
-    const emotionalMatch = (data.bio_result_chart.emotional >= 60);
-    const zodiacCompatible = (data.zodiac_result_signs.zodiacElementHarmony !== 'Elements clash');
-    
-    if (zodiacCompatible && (heartMatch || emotionalMatch)) {
-      finalVerdictEl.className = 'verdict-text verdict-good';
-      finalVerdictEl.textContent = t('higherAvgVerdict');
-      teaserVerdict.innerHTML = `
-        <span style="font-weight: bold; color: #a5c9f5;">${t('higherAvgTeaser')}</span>
-      `;
-    } else {
-      finalVerdictEl.className = 'verdict-text';
-      finalVerdictEl.innerHTML = `
-        <div style="color: #F87171; font-weight: 800; font-size: 1.5rem; letter-spacing: 1px; display: flex; justify-content: center; align-items: center; gap: 8px;">
-          <span>💔</span> <span>${t('notCompatVerdict')}</span>
-        </div>
-      `;
-
-      teaserVerdict.innerHTML = `
-        <div style="display: flex; justify-content: center; align-items: center; gap: 8px; font-weight: bold; color: #F87171; font-size: 1.25rem; letter-spacing: 0.5px;">
-          <span>💔</span> <span>${t('notCompatVerdict')}</span>
-        </div>
-      `;
-    }
-  } else {
-    // Good compatibility
+  } else if (isHigherAvg || verdict.includes('Higher than Average')) {
     finalVerdictEl.className = 'verdict-text verdict-good';
-    finalVerdictEl.textContent = t('goodCompatVerdict');
+    finalVerdictEl.textContent = t('higherAvgVerdict');
     teaserVerdict.innerHTML = `
-      <span style="font-weight: bold; color: #a5c9f5;">${t('goodCompatVerdict')}</span>
+      <span style="font-weight: bold; color: #a5c9f5;">${t('higherAvgTeaser')}</span>
+    `;
+  } else {
+    finalVerdictEl.className = 'verdict-text';
+    finalVerdictEl.innerHTML = `
+      <div style="color: #F87171; font-weight: 800; font-size: 1.5rem; letter-spacing: 1px; display: flex; justify-content: center; align-items: center; gap: 8px;">
+        <span>💔</span> <span>${t('notCompatVerdict')}</span>
+      </div>
+    `;
+
+    teaserVerdict.innerHTML = `
+      <div style="display: flex; justify-content: center; align-items: center; gap: 8px; font-weight: bold; color: #F87171; font-size: 1.25rem; letter-spacing: 0.5px;">
+        <span>💔</span> <span>${t('notCompatVerdict')}</span>
+      </div>
     `;
   }
 }
@@ -775,19 +768,16 @@ function calculate() {
       document.getElementById('results-blur-container').classList.remove('revealed');
       
       // Calculate gauge score
-      let gaugeScore = 0;
-      const heartMatch = (data.bio_result_chart.heart >= 60);
-      const emotionalMatch = (data.bio_result_chart.emotional >= 60);
-      const isClash = (data.zodiac_result_signs.zodiacElementHarmony === 'Elements clash');
-      const isHigherAvg = !isClash && ((!heartMatch && emotionalMatch) || (heartMatch && !emotionalMatch));
+      const heartVal = data.bio_result_chart.heart;
+      const emotionalVal = data.bio_result_chart.emotional;
+      const isClashSign = (data.zodiac_result_signs.zodiacElementHarmony === 'Elements clash');
+      const isLowCompat = isClashSign || (heartVal < 60 && emotionalVal < 60);
 
-      if (isHigherAvg) {
-        gaugeScore = Math.round((data.bio_result_chart.heart + data.bio_result_chart.emotional) / 2);
-      } else if (verdict === 'NOT COMPATIBLE' || verdict.includes('Not compatible')) {
-        const lowestScore = Math.min(data.bio_result_chart.heart, data.bio_result_chart.emotional);
-        gaugeScore = Math.round((lowestScore + 0) / 2);
+      let gaugeScore = 0;
+      if (isLowCompat) {
+        gaugeScore = Math.round(Math.min(heartVal, emotionalVal) / 2);
       } else {
-        gaugeScore = Math.round((data.bio_result_chart.heart + data.bio_result_chart.emotional) / 2);
+        gaugeScore = Math.round((heartVal + emotionalVal) / 2);
       }
       
       const cEl = document.getElementById('radial-gauge-circle');
