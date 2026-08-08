@@ -700,8 +700,10 @@ function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear, yourNa
   let overallScore = 0;
   if (isPerfectMatch) {
     overallScore = Math.round((chakra.bio_result_chart.heart + chakra.bio_result_chart.emotional) / 2);
-    if (overallScore < 70) {
+    if (overallScore <= 70) {
       overallScore = Math.min(overallScore + 10, 100);
+    } else if (overallScore >= 71 && overallScore <= 80) {
+      overallScore = Math.min(overallScore + 8, 100);
     }
   } else if (isHigherAvg) {
     overallScore = Math.round((chakra.bio_result_chart.heart + chakra.bio_result_chart.emotional) / 2);
