@@ -279,7 +279,9 @@ function renderDeepAnalysisReport(data, yourName, partnerName, lang) {
   const isClash = signs.zodiacElementHarmony === 'Elements clash';
   const heartMatch = (data.bio_result_chart.heart >= 60);
   const emotionalMatch = (data.bio_result_chart.emotional >= 60);
-  const isNotCompatible = verdict === 'NOT COMPATIBLE' || verdict.toUpperCase().includes('NOT COMPATIBLE') || verdict.includes('Not compatible');
+  const zodiacCompatible = !isClash;
+  const isHigherAvg = zodiacCompatible && ((!heartMatch && emotionalMatch) || (heartMatch && !emotionalMatch));
+  const isNotCompatible = isClash || (!heartMatch && !emotionalMatch);
 
   let clashT = null;
   if (isClash && typeof getClashTemplate === 'function') {
@@ -288,168 +290,7 @@ function renderDeepAnalysisReport(data, yourName, partnerName, lang) {
 
   summaryBlock.classList.remove('hidden');
 
-  if (isNotCompatible || isClash) {
-    summaryBlock.style.borderLeft = "4px solid #ef4444";
-    summaryBlock.style.background = "rgba(239, 68, 68, 0.05)";
-
-    if (clashT) {
-      let insightsHtml = clashT.insights.map(i => `<li style="margin-bottom: 8px;">${i}</li>`).join('');
-      let clashCount = 0;
-      
-      if (lang === 'ru') {
-        if (data.bio_result_chart.heart <= 60) {
-          insightsHtml += `<li style="margin-bottom: 8px;"><strong>Природное несовпадение:</strong> Ваши характеры и привычные способы решения конфликтов требуют совершенно разной среды, чтобы чувствовать полную поддержку и понимание.</li>`;
-          clashCount++;
-        }
-        if (data.bio_result_chart.emotional <= 60) {
-          insightsHtml += `<li style="margin-bottom: 8px;"><strong>Эмоциональное несовпадение:</strong> Различия носят фундаментальный характер — это касается эмоциональных потребностей, жизненных целей и формата общения.</li>`;
-          clashCount++;
-        }
-        if (clashCount > 0 || isClash) {
-          insightsHtml += `<li style="margin-bottom: 8px;"><strong>Вложение сил:</strong> Сохранение гармонии в таком союзе потребует непрерывных компромиссов и глубокой душевной работы с обеих сторон.</li>`;
-        }
-
-        summaryBlock.innerHTML = `
-          <h3 style="color: #ef4444; font-size: 1.4rem;">Краткий обзор совместимости отношений</h3>
-          <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">${clashT.title}</p>
-          
-          <p><strong>Важная заметка от нас:</strong><br>${clashT.note}</p>
-          
-          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Ключевые выводы и наблюдения</h4>
-          <ul style="padding-left: 20px; margin-bottom: 15px;">
-            ${insightsHtml}
-          </ul>
-          
-          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Что это значит для вас?</h4>
-          <p>${clashT.meaningIntro}</p>
-          
-          <p style="margin-top: 10px;"><strong>${clashT.path1Title}</strong><br>
-          ${clashT.path1Intro}<br>
-          <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
-            ${clashT.path1Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
-          </ul>
-          </p>
-          
-          <p style="margin-top: 10px;"><strong>${clashT.path2Title}</strong><br>
-          ${clashT.path2Intro}<br>
-          <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
-            ${clashT.path2Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
-          </ul>
-          </p>
-          
-          <p style="margin-top: 15px;"><strong>Следующие шаги</strong><br>${clashT.nextSteps}</p>
-        `;
-      } else {
-        // English
-        if (data.bio_result_chart.heart <= 60) {
-          insightsHtml += `<li style="margin-bottom: 8px;"><strong>Natural Misalignment:</strong> Your core personalities and default conflict-resolution styles require very different environments to feel completely understood and supported.</li>`;
-          clashCount++;
-        }
-        if (data.bio_result_chart.emotional <= 60) {
-          insightsHtml += `<li style="margin-bottom: 8px;"><strong>Emotional Misalignment:</strong> The areas where you differ are fundamental—such as emotional needs, future goals, or communication preferences—rather than minor preferences.</li>`;
-          clashCount++;
-        }
-        if (clashCount > 0 || isClash) {
-          insightsHtml += `<li style="margin-bottom: 8px;"><strong>Energy Investment:</strong> Sustaining harmony in this partnership will likely require continuous, heavy compromise and emotional heavy-lifting from both sides.</li>`;
-        }
-
-        summaryBlock.innerHTML = `
-          <h3 style="color: #ef4444; font-size: 1.4rem;">Relationship Compatibility Summary</h3>
-          <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">${clashT.title}</p>
-          
-          <p><strong>A Quick Note from Us:</strong><br>${clashT.note}</p>
-          
-          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Key Findings & Insights</h4>
-          <ul style="padding-left: 20px; margin-bottom: 15px;">
-            ${insightsHtml}
-          </ul>
-          
-          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">What Does This Mean for You?</h4>
-          <p>${clashT.meaningIntro}</p>
-          
-          <p style="margin-top: 10px;"><strong>${clashT.path1Title}</strong><br>
-          ${clashT.path1Intro}<br>
-          <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
-            ${clashT.path1Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
-          </ul>
-          </p>
-          
-          <p style="margin-top: 10px;"><strong>${clashT.path2Title}</strong><br>
-          ${clashT.path2Intro}<br>
-          <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
-            ${clashT.path2Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
-          </ul>
-          </p>
-          
-          <p style="margin-top: 15px;"><strong>Next Steps</strong><br>${clashT.nextSteps}</p>
-        `;
-      }
-    } else {
-      // Default low compatibility without element clash
-      if (lang === 'ru' && window.I18N && window.I18N.SUMMARY_REPORTS_RU) {
-        const d = window.I18N.SUMMARY_REPORTS_RU.lowCompatDefault;
-        let findings = [];
-        if (data.bio_result_chart.heart <= 60) findings.push(`<li style="margin-bottom: 5px;">${d.harmonyText}</li>`);
-        if (data.bio_result_chart.emotional <= 60) findings.push(`<li style="margin-bottom: 5px;">${d.emotionText}</li>`);
-        findings.push(`<li style="margin-bottom: 5px;">${d.bothText}</li>`);
-
-        summaryBlock.innerHTML = `
-          <h3 style="color: #ef4444; font-size: 1.4rem;">${d.heading}</h3>
-          <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">${d.resultBadge}</p>
-          
-          <p><strong>${d.noteTitle}</strong><br>${d.noteText}</p>
-          
-          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">${d.findingsTitle}</h4>
-          <ul style="padding-left: 20px; margin-bottom: 15px;">
-            ${findings.join('')}
-          </ul>
-          
-          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">${d.meaningTitle}</h4>
-          <p>${d.meaningP}</p>
-          
-          <p style="margin-top: 10px;"><strong>${d.path1Title}</strong><br>${d.path1Intro}</p>
-          
-          <p style="margin-top: 10px;"><strong>${d.path2Title}</strong><br>${d.path2Intro}</p>
-          
-          <p style="margin-top: 15px;"><strong>${d.nextStepsTitle}</strong><br>${d.nextStepsText}</p>
-        `;
-      } else {
-        let findings = [];
-        if (data.bio_result_chart.heart <= 60) findings.push(`<li style="margin-bottom: 5px;"><strong>Natural Misalignment:</strong> Your core personalities and default conflict-resolution styles require very different environments to feel completely understood and supported.</li>`);
-        if (data.bio_result_chart.emotional <= 60) findings.push(`<li style="margin-bottom: 5px;"><strong>Emotional Misalignment:</strong> The areas where you differ are fundamental—such as emotional needs, future goals, or communication preferences—rather than minor preferences.</li>`);
-        findings.push(`<li style="margin-bottom: 5px;"><strong>Energy Investment:</strong> Sustaining harmony in this partnership will likely require continuous, heavy compromise and emotional heavy-lifting from both sides.</li>`);
-
-        summaryBlock.innerHTML = `
-          <h3 style="color: #ef4444; font-size: 1.4rem;">Relationship Compatibility Summary</h3>
-          <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">Overall Result: Low Compatibility</p>
-          
-          <p><strong>A Quick Note from Us:</strong><br>
-          Compatibility scores are a tool to help you understand natural alignment, communication differences, and ability to sustain long-term relationships. A low score means that building long-term relationships will be significantly harder and will require a lot of sacrifice from both of you. The report below highlights where your natural trajectories, core values, or relationship dynamics differ significantly.</p>
-          
-          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Key Findings & Insights</h4>
-          <ul style="padding-left: 20px; margin-bottom: 15px;">
-            ${findings.join('')}
-          </ul>
-          
-          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">What Does This Mean for You?</h4>
-          <p>Every relationship requires effort, but when natural compatibility is low, that effort turns into a daily uphill climb.</p>
-          
-          <p style="margin-top: 10px;"><strong>1. The Path of Staying Together</strong><br>
-          If you choose to move forward, it’s important to be realistic about what lies ahead:<br>
-          <em>High Sacrifice:</em> You will both likely need to make significant sacrifices regarding your natural habits, desires, and communication styles.<br>
-          <em>Continuous Effort:</em> Love alone may not eliminate the recurring friction. Navigating these differences will require patience, professional guidance, or constant conscious effort to keep the relationship stable.</p>
-          
-          <p style="margin-top: 10px;"><strong>2. The Path of Moving On</strong><br>
-          While it’s never easy to realize a partnership might not be the right fit, it’s also an opportunity:<br>
-          <em>You Deserve Ease:</em> Relationships shouldn't feel like a constant struggle. You deserve a connection where being yourself feels natural and effortless.<br>
-          <em>A World of Possibilities:</em> There are billions of people in the world. Out there is someone whose values, communication style, and long-term vision align effortlessly with yours—someone who will care for you exactly as you need to be cared for, without requiring either of you to change who you fundamentally are.</p>
-          
-          <p style="margin-top: 15px;"><strong>Next Steps</strong><br>
-          Take a breath and reflect. Use this report not as a harsh verdict, but as an honest mirror to evaluate what you truly want out of love, peace, and your future.</p>
-        `;
-      }
-    }
-  } else if (verdict.includes('HIGHER THAN AVERAGE COMPATIBILITY') && (!heartMatch || !emotionalMatch)) {
+  if (isHigherAvg) {
     summaryBlock.style.borderLeft = "4px solid #f59e0b";
     summaryBlock.style.background = "rgba(245, 158, 11, 0.05)";
     
@@ -500,11 +341,11 @@ function renderDeepAnalysisReport(data, yourName, partnerName, lang) {
           <p>If you want to harmonize your emotional energies and open the Harmony waves space, both partners need to cultivate a feeling of mutual emotional safety:</p>
           <ul style="padding-left: 20px; margin-bottom: 15px;">
             <li style="margin-bottom: 5px;"><strong>Stop Forcing It:</strong> A guarded partner cannot be forced to open their heart. Pressuring someone to be more emotionally vulnerable often causes them to retreat further behind their walls.</li>
-            <li style="margin-bottom: 5px;"><strong>Lean on Aligned Connections:</strong> As you have a strong Emotional resonance connection— you share a natural flow of intimacy, a deep understanding of each other's feelings, and a sense of shared joy and adaptability—use those strong foundations to build emotional trust over time.</li>
+            <li style="margin-bottom: 5px;"><strong>Lean on Aligned Connections:</strong> If your Harmony waves are currently misaligned, rely on the areas where you do match. If you have a strong Root Chakra connection (shared security, finances, and stability) or Throat Chakra connection (great communication), use those strong foundations to build emotional trust over time.</li>
             <li style="margin-bottom: 5px;"><strong>Practice Active Forgiveness:</strong> The biggest block to Harmony waves energy is stored resentment. Both partners must consciously work on letting go of past arguments and avoiding the habit of keeping "score."</li>
             <li style="margin-bottom: 5px;"><strong>Communicate First:</strong> Often, the heart cannot open until the throat has spoken. Honest, gentle, and non-judgmental communication helps release defensive barriers, allowing love and empathy to eventually flow more naturally.</li>
           </ul>
-          <p style="margin-top: 15px;"><strong>A mismatch here is ultimately an invitation to understand how differently you both experience love—and to learn how to patiently meet each other halfway.</strong></p>
+          <p style="margin-top: 15px;">A mismatch here is ultimately an invitation to understand how differently you both experience love—and to learn how to patiently meet each other halfway.</p>
         `;
       }
     } else {
@@ -555,6 +396,164 @@ function renderDeepAnalysisReport(data, yourName, partnerName, lang) {
             <li style="margin-bottom: 5px;"><strong>Open the Emotional Valve:</strong> Set aside 10 minutes where one partner speaks about how they are feeling without the other offering solutions or trying to "fix" it. Just listen and validate.</li>
           </ul>
           <p style="margin-top: 15px;"><strong>Realigning your emotional waves isn't about forcing an immediate deep connection; it's about intentionally removing the pressure so that your natural rhythm can return.</strong></p>
+        `;
+      }
+    }
+  } else if (isNotCompatible) {
+    summaryBlock.style.borderLeft = "4px solid #ef4444";
+    summaryBlock.style.background = "rgba(239, 68, 68, 0.05)";
+
+    if (clashT) {
+      let insightsHtml = clashT.insights.map(i => `<li style="margin-bottom: 8px;">${i}</li>`).join('');
+      let clashCount = 0;
+      
+      if (lang === 'ru') {
+        if (data.bio_result_chart.heart <= 60) {
+          insightsHtml += `<li style="margin-bottom: 8px;"><strong>Природное несовпадение:</strong> Ваши характеры и привычные способы решения конфликтов требуют совершенно разной среды, чтобы чувствовать полную поддержку и понимание.</li>`;
+          clashCount++;
+        }
+        if (data.bio_result_chart.emotional <= 60) {
+          insightsHtml += `<li style="margin-bottom: 8px;"><strong>Эмоциональное несовпадение:</strong> Различия носят фундаментальный характер — это касается эмоциональных потребностей, жизненных целей и формата общения.</li>`;
+          clashCount++;
+        }
+        if (clashCount > 0 || isClash) {
+          insightsHtml += `<li style="margin-bottom: 8px;"><strong>Вложение сил:</strong> Сохранение гармонии в таком союзе потребует непрерывных компромиссов и глубокой душевной работы с обеих сторон.</li>`;
+        }
+
+        summaryBlock.innerHTML = `
+          <h3 style="color: #ef4444; font-size: 1.4rem;">Краткий обзор совместимости отношений</h3>
+          <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">${clashT.title}</p>
+          
+          <p><strong>Важная заметка от нас:</strong><br>${clashT.note}</p>
+          
+          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Ключевые выводы и наблюдения</h4>
+          <ul style="padding-left: 20px; margin-bottom: 15px;">
+            ${insightsHtml}
+          </ul>
+          
+          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Что это значит для вас?</h4>
+          <p>${clashT.meaning}</p>
+          
+          <p style="margin-top: 10px;"><strong>1. Путь сохранения отношений</strong><br>
+          ${clashT.path1Intro}
+          <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+            ${clashT.path1Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
+          </ul>
+          </p>
+          
+          <p style="margin-top: 10px;"><strong>2. Путь движения дальше</strong><br>
+          ${clashT.path2Intro}
+          <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+            ${clashT.path2Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
+          </ul>
+          </p>
+          
+          <p style="margin-top: 15px;"><strong>Следующие шаги</strong><br>${clashT.nextSteps}</p>
+        `;
+      } else {
+        // English Clash
+        if (data.bio_result_chart.heart <= 60) {
+          insightsHtml += `<li style="margin-bottom: 8px;"><strong>Natural Friction:</strong> Your default instincts and stress responses are wired differently, requiring continuous translation rather than mutual intuition.</li>`;
+          clashCount++;
+        }
+        if (data.bio_result_chart.emotional <= 60) {
+          insightsHtml += `<li style="margin-bottom: 8px;"><strong>Fundamental Misalignment:</strong> The core divide is emotional, not superficial—affecting basic expectations around communication and support.</li>`;
+          clashCount++;
+        }
+        if (clashCount > 0 || isClash) {
+          insightsHtml += `<li style="margin-bottom: 8px;"><strong>High Maintenance:</strong> Maintaining harmony will demand disproportionate conscious effort from both partners compared to naturally aligned pairs.</li>`;
+        }
+
+        summaryBlock.innerHTML = `
+          <h3 style="color: #ef4444; font-size: 1.4rem;">Relationship Compatibility Summary</h3>
+          <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">${clashT.title}</p>
+          
+          <p><strong>A Thoughtful Note From Us:</strong><br>${clashT.note}</p>
+          
+          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Key Findings & Insights</h4>
+          <ul style="padding-left: 20px; margin-bottom: 15px;">
+            ${insightsHtml}
+          </ul>
+          
+          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">What Does This Mean for You?</h4>
+          <p>${clashT.meaning}</p>
+          
+          <p style="margin-top: 10px;"><strong>1. The Path of Staying Together</strong><br>
+          ${clashT.path1Intro}
+          <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+            ${clashT.path1Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
+          </ul>
+          </p>
+          
+          <p style="margin-top: 10px;"><strong>2. The Path of Moving On</strong><br>
+          ${clashT.path2Intro}
+          <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+            ${clashT.path2Points.map(p => `<li style="margin-bottom: 5px;">${p}</li>`).join('')}
+          </ul>
+          </p>
+          
+          <p style="margin-top: 15px;"><strong>Next Steps</strong><br>${clashT.nextSteps}</p>
+        `;
+      }
+    } else {
+      // Default low compatibility summary
+      if (lang === 'ru' && window.I18N && window.I18N.SUMMARY_REPORTS_RU) {
+        const l = window.I18N.SUMMARY_REPORTS_RU.lowCompatDefault;
+        summaryBlock.innerHTML = `
+          <h3 style="color: #ef4444; font-size: 1.4rem;">${l.heading}</h3>
+          <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">${l.resultBadge}</p>
+          
+          <p><strong>${l.noteTitle}</strong><br>${l.noteText}</p>
+          
+          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">${l.findingsTitle}</h4>
+          <ul style="padding-left: 20px; margin-bottom: 15px;">
+            <li style="margin-bottom: 8px;">${l.harmonyText}</li>
+            <li style="margin-bottom: 8px;">${l.emotionText}</li>
+            <li style="margin-bottom: 8px;">${l.bothText}</li>
+          </ul>
+          
+          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">${l.meaningTitle}</h4>
+          <p>${l.meaningP}</p>
+          
+          <p style="margin-top: 10px;"><strong>${l.path1Title}</strong><br>
+          ${l.path1Intro}</p>
+          
+          <p style="margin-top: 10px;"><strong>${l.path2Title}</strong><br>
+          ${l.path2Intro}</p>
+          
+          <p style="margin-top: 15px;"><strong>${l.nextStepsTitle}</strong><br>${l.nextStepsText}</p>
+        `;
+      } else {
+        // English Default Low
+        summaryBlock.innerHTML = `
+          <h3 style="color: #ef4444; font-size: 1.4rem;">Relationship Compatibility Summary</h3>
+          <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">Overall Result: Low Compatibility</p>
+          
+          <p><strong>A Thoughtful Note From Us:</strong><br>
+          Compatibility is a helpful tool for understanding ease, communication flow, and natural long-term harmony. A lower score simply highlights that making this dynamic thrive may require significantly more conscious effort and adaptation from both people. The summary below outlines the core differences in your fundamental styles.</p>
+          
+          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Key Findings & Insights</h4>
+          <ul style="padding-left: 20px; margin-bottom: 15px;">
+            <li style="margin-bottom: 8px;"><strong>Natural Friction:</strong> Your instinctual responses and emotional coping mechanisms are fundamentally different, meaning misunderstandings may occur more easily.</li>
+            <li style="margin-bottom: 8px;"><strong>Core Values & Alignment:</strong> Differences exist in how you navigate emotional needs, communication styles, or personal boundaries.</li>
+            <li style="margin-bottom: 8px;"><strong>Relationship Energy:</strong> Staying harmonized may require frequent compromise and intentional effort compared to naturally aligned pairs.</li>
+          </ul>
+          
+          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">What Does This Mean for You?</h4>
+          <p>Every relationship has unique challenges, but lower baseline compatibility means that everyday dynamics can sometimes feel like swimming upstream.</p>
+          
+          <p style="margin-top: 10px;"><strong>1. The Path of Staying Together</strong><br>
+          If you choose to navigate this bond, going in with eyes open is key:<br>
+          <em>Significant Adaptation:</em> Both partners will need to continuously adjust expectations and communication styles.<br>
+          <em>Continuous Effort:</em> Love alone may not eliminate the recurring friction. Navigating these differences will require patience, professional guidance, or constant conscious effort to keep the relationship stable.</p>
+          
+          <p style="margin-top: 10px;"><strong>2. The Path of Moving On</strong><br>
+          While it’s never easy to realize a partnership might not be the right fit, it’s also an opportunity:<br>
+          <em>You Deserve Ease:</em> Relationships shouldn't feel like a constant struggle. You deserve a connection where being yourself feels natural and effortless.<br>
+          <em>A World of Possibilities:</em> There are billions of people in the world. Out there is someone whose values, communication style, and long-term vision align effortlessly with yours—someone who will care for you exactly as you need to be cared for, without requiring either of you to change who you fundamentally are.</p>
+          
+          <p style="margin-top: 15px;"><strong>Next Steps</strong><br>
+          Take a breath and reflect. Use this report not as a harsh verdict, but as an honest mirror to evaluate what you truly want out of love, peace, and your future.</p>
         `;
       }
     }
