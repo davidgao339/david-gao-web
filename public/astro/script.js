@@ -781,8 +781,10 @@ function calculate() {
         gaugeScore = Math.round(Math.min(heartVal, emotionalVal) / 2);
       } else if (isPerfectMatch) {
         gaugeScore = Math.round((heartVal + emotionalVal) / 2);
-        if (gaugeScore < 70) {
+        if (gaugeScore <= 70) {
           gaugeScore = Math.min(gaugeScore + 10, 100);
+        } else if (gaugeScore >= 71 && gaugeScore <= 80) {
+          gaugeScore = Math.min(gaugeScore + 8, 100);
         }
       } else {
         gaugeScore = Math.round((heartVal + emotionalVal) / 2);
