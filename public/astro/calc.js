@@ -682,16 +682,16 @@ function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear, yourNa
 
   const zDist = Math.min(zodiac.zodiac_result_roles.positions[2], 12 - zodiac.zodiac_result_roles.positions[2]);
   const isZodiacCompatible = (zDist === 0 || zDist === 2 || zDist === 4 || zDist === 6);
-  const isSvadhistanaPass = chakra.bio_result_chart.emotional > 60;
-  const isAnahataPass = chakra.bio_result_chart.heart > 60;
-  const isGoodSex = chakra.bio_result_chart.physical > 60;
+  const isSvadhistanaPass = chakra.bio_result_chart.emotional >= 60;
+  const isAnahataPass = chakra.bio_result_chart.heart >= 60;
+  const isGoodSex = chakra.bio_result_chart.physical >= 60;
 
   let finalVerdict = 'Not compatible as partners (Can be friends)';
   if (isZodiacCompatible && isSvadhistanaPass && isAnahataPass) {
     finalVerdict = 'Perfect Match';
     if (isGoodSex) finalVerdict += ' (Great Physical Chemistry!)';
-  } else if (isZodiacCompatible || isSvadhistanaPass || isAnahataPass) {
-    finalVerdict = 'Not compatible as partners (Can be friends)';
+  } else if (isZodiacCompatible && (isSvadhistanaPass || isAnahataPass)) {
+    finalVerdict = 'Higher than Average compatibility';
   }
 
   const isHigherAvg = isZodiacCompatible && ((!isAnahataPass && isSvadhistanaPass) || (isAnahataPass && !isSvadhistanaPass));
