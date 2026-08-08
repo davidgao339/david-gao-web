@@ -600,6 +600,18 @@ function formatZodiacDescriptionI18n(text, lang) {
   return formatted;
 }
 
+function replaceFirstSignName(text, signWord, personName) {
+  if (!text || !signWord || !personName) return text;
+  const escaped = signWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const pattern = new RegExp(`(^|[^\\p{L}\\p{N}_])(${escaped})('s|'|’s)?(?![\\p{L}\\p{N}_]|\\s*\\()`, 'u');
+  if (pattern.test(text)) {
+    return text.replace(pattern, (match, prefix, word, suffix) => {
+      return `${prefix}${word} (${personName})${suffix || ''}`;
+    });
+  }
+  return text;
+}
+
 function getZodiacPairDescriptionLocalized(sign1En, sign2En, name1, name2, lang) {
   lang = lang || getLang();
   const k1 = `${sign1En}&${sign2En}`;
@@ -621,30 +633,30 @@ function getZodiacPairDescriptionLocalized(sign1En, sign2En, name1, name2, lang)
   const sign2Name = getZodiacSignName(sign2En, lang);
 
   if (sign1En === sign2En) {
-    const combinedNames = `${n1} & ${n2}`;
-    const signRegex = new RegExp(`\\b(${sign1Name}|${sign1En})('s|'|’s)?\\b`, 'g');
-    return rawText.replace(signRegex, (match, signWord, suffix) => {
-      return `${signWord} (${combinedNames})${suffix || ''}`;
-    });
+    const joinWord = lang === 'ru' ? 'и' : '&';
+    const combinedNames = `${n1} ${joinWord} ${n2}`;
+    let res = replaceFirstSignName(rawText, sign1Name, combinedNames);
+    if (res === rawText && sign1En !== sign1Name) {
+      res = replaceFirstSignName(rawText, sign1En, combinedNames);
+    }
+    return res;
   }
 
-  const map = {
-    [sign1Name]: n1,
-    [sign2Name]: n2,
-    [sign1En]: n1,
-    [sign2En]: n2,
-  };
-
   let replaced = rawText;
-  [sign1Name, sign2Name, sign1En, sign2En].forEach(signWord => {
-    const personName = map[signWord];
-    if (personName) {
-      const signRegex = new RegExp(`\\b${signWord}('s|'|’s)?\\b`, 'g');
-      replaced = replaced.replace(signRegex, (match, suffix) => {
-        return `${signWord} (${personName})${suffix || ''}`;
-      });
-    }
-  });
+
+  // Person 1 sign replacement (only first occurrence)
+  let res1 = replaceFirstSignName(replaced, sign1Name, n1);
+  if (res1 === replaced && sign1En !== sign1Name) {
+    res1 = replaceFirstSignName(replaced, sign1En, n1);
+  }
+  replaced = res1;
+
+  // Person 2 sign replacement (only first occurrence)
+  let res2 = replaceFirstSignName(replaced, sign2Name, n2);
+  if (res2 === replaced && sign2En !== sign2Name) {
+    res2 = replaceFirstSignName(replaced, sign2En, n2);
+  }
+  replaced = res2;
 
   return replaced;
 }
