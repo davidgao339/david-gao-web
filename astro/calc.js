@@ -345,6 +345,18 @@ const ZODIAC_PAIR_DESCRIPTIONS = {
   "Pisces&Pisces": "Two empathetic Visionaries share a magical connection, but a lack of practical boundaries can make dealing with real-world stress difficult. Conditional: Beautiful union if both partners practice staying grounded in daily responsibilities.",
 };
 
+function replaceFirstSignName(text, signWord, personName) {
+  if (!text || !signWord || !personName) return text;
+  const escaped = signWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const pattern = new RegExp(`(^|[^\\p{L}\\p{N}_])(${escaped})('s|'|’s)?(?![\\p{L}\\p{N}_]|\\s*\\()`, 'u');
+  if (pattern.test(text)) {
+    return text.replace(pattern, (match, prefix, word, suffix) => {
+      return `${prefix}${word} (${personName})${suffix || ''}`;
+    });
+  }
+  return text;
+}
+
 function getZodiacPairDescription(sign1, sign2, name1, name2) {
   if (typeof window !== 'undefined' && window.I18N && typeof window.I18N.getZodiacPairDescriptionLocalized === 'function') {
     return window.I18N.getZodiacPairDescriptionLocalized(sign1, sign2, name1, name2, window.I18N.getLang());
@@ -361,27 +373,11 @@ function getZodiacPairDescription(sign1, sign2, name1, name2) {
 
   if (sign1 === sign2) {
     const combinedNames = `${n1} & ${n2}`;
-    const signRegex = new RegExp(`\\b${sign1}('s|'|’s)?\\b`, 'g');
-    return rawText.replace(signRegex, (match, suffix) => {
-      return `${sign1} (${combinedNames})${suffix || ''}`;
-    });
+    return replaceFirstSignName(rawText, sign1, combinedNames);
   }
 
-  const map = {
-    [sign1]: n1,
-    [sign2]: n2,
-  };
-
-  let replaced = rawText;
-  [sign1, sign2].forEach(sign => {
-    const personName = map[sign];
-    if (personName) {
-      const signRegex = new RegExp(`\\b${sign}('s|'|’s)?\\b`, 'g');
-      replaced = replaced.replace(signRegex, (match, suffix) => {
-        return `${sign} (${personName})${suffix || ''}`;
-      });
-    }
-  });
+  let replaced = replaceFirstSignName(rawText, sign1, n1);
+  replaced = replaceFirstSignName(replaced, sign2, n2);
 
   return replaced;
 }
