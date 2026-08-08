@@ -156,7 +156,7 @@ const METRIC_BLURBS_I18N = {
     },
     emotional: {
       high: 'Bonded by a shared sense of humor and empathetic conflict resolution, you genuinely enjoy each other\'s company and share similar interests',
-      low: 'While you may connect on a surface level, a deep emotional incompatibility makes forming a strong long-term bond difficult. With a noticeable lack of emotional intimacy, shared interests, and aligned life goals, the relationship faces significant long-term strain, raising the risk that one partner may seek fulfillment elsewhere'
+      low: 'While you may connect on a surface level, a deep emotional incompatibility makes forming a strong long-term bond difficult. Without deep feelings, mutual care, and a true investment in each other\'s opinions and life choices, the relationship faces significant strain, raising the risk that one partner may seek fulfillment elsewhere'
     },
     physical: {
       high: 'You share a strong physical chemistry, attachment styles that naturally balance each other out, and matching expectations when it comes to intimacy',
@@ -171,7 +171,7 @@ const METRIC_BLURBS_I18N = {
     },
     emotional: {
       high: 'Связанные общим чувством юмора и бережным отношением в конфликтах, вы искренне наслаждаетесь обществом друг друга и разделяете похожие интересы',
-      low: 'Хотя на поверхностном уровне вы можете находить общий язык, эмоциональная несовместимость затрудняет создание глубокой связи. При нехватке душевной близости и общих жизненных целей союз подвергается испытаниям, что повышает риск поиска понимания на стороне'
+      low: 'Хотя на поверхностном уровне вы можете находить общий язык, глубокая эмоциональная несовместимость затрудняет создание прочной связи. Без глубоких чувств, взаимной заботы и искреннего интереса к мнению и выбору друг друга союз сталкивается с серьезными испытаниями, что повышает риск поиска понимания на стороне'
     },
     physical: {
       high: 'У вас яркая физическая химия, взаимно дополняющие типы привязанности и совпадающие ожидания в сфере близости',
