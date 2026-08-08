@@ -771,11 +771,19 @@ function calculate() {
       const heartVal = data.bio_result_chart.heart;
       const emotionalVal = data.bio_result_chart.emotional;
       const isClashSign = (data.zodiac_result_signs.zodiacElementHarmony === 'Elements clash');
-      const isLowCompat = isClashSign || (heartVal < 60 && emotionalVal < 60);
+      const heartMatch = heartVal >= 60;
+      const emotionalMatch = emotionalVal >= 60;
+      const isPerfectMatch = !isClashSign && heartMatch && emotionalMatch;
+      const isLowCompat = isClashSign || (!heartMatch && !emotionalMatch);
 
       let gaugeScore = 0;
       if (isLowCompat) {
         gaugeScore = Math.round(Math.min(heartVal, emotionalVal) / 2);
+      } else if (isPerfectMatch) {
+        gaugeScore = Math.round((heartVal + emotionalVal) / 2);
+        if (gaugeScore < 70) {
+          gaugeScore = Math.min(gaugeScore + 10, 100);
+        }
       } else {
         gaugeScore = Math.round((heartVal + emotionalVal) / 2);
       }
