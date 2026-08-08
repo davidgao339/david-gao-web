@@ -151,7 +151,7 @@ const METRIC_NAMES_I18N = {
 const METRIC_BLURBS_I18N = {
   en: {
     heart: {
-      high: 'Built on active listening, compatible lifestyles, and deep mutual trust, this connection is ideal for both strong friendships and long-term relationships',
+      high: 'Built on strong mutual trust, active listening, and lifestyle compatibility, this connection offers a solid foundation for deep, enduring friendships',
       low: 'While there is a baseline of mutual respect, your partner may occasionally lack understanding and care. Reaching deeper levels of communication will demand intentional effort, and building lasting trust may present a real challenge over time'
     },
     emotional: {
@@ -166,7 +166,7 @@ const METRIC_BLURBS_I18N = {
   },
   ru: {
     heart: {
-      high: 'Основанный на активном слушании, гармоничном образе жизни и глубоком взаимном доверии, этот союз идеален как для крепкой дружбы, так и для долгосрочных отношений',
+      high: 'Основанный на глубоком взаимном доверии, активном слушании и совместимости стилей жизни, этот союз создает прочный фундамент для глубокой и долгой дружбы',
       low: 'Хотя между вами присутствует базовое взаимное уважение, партнёру порой может не хватать чуткости и заботы. Выход на глубокий уровень взаимопонимания потребует осознанных усилий, а выстраивание прочного доверия со временем может стать непростой задачей'
     },
     emotional: {
