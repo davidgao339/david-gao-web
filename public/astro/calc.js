@@ -694,6 +694,11 @@ function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear, yourNa
     finalVerdict = 'Not compatible as partners (Can be friends)';
   }
 
+  const isHigherAvg = isZodiacCompatible && ((!isAnahataPass && isSvadhistanaPass) || (isAnahataPass && !isSvadhistanaPass));
+  const overallScore = (isHigherAvg || (isZodiacCompatible && isAnahataPass && isSvadhistanaPass))
+    ? Math.round((chakra.bio_result_chart.heart + chakra.bio_result_chart.emotional) / 2)
+    : Math.round((Math.min(chakra.bio_result_chart.heart, chakra.bio_result_chart.emotional) + 0) / 2);
+
   const mNum = calcNumerology(mDay, mMonth, mYear);
   const fNum = calcNumerology(fDay, fMonth, fYear);
   const pairNum = calcNumerologyPair(mNum, fNum);
@@ -704,6 +709,7 @@ function calculateCompatibility(mDay, mMonth, mYear, fDay, fMonth, fYear, yourNa
 
   return {
     final_verdict: finalVerdict,
+    overall_score: overallScore,
     bio_result_top: chakra.bio_result_top,
     bio_result_chart: chakra.bio_result_chart,
     bio_result_chart_labels: chakra.bio_result_chart_labels,
