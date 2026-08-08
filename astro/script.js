@@ -284,8 +284,12 @@ function renderDeepAnalysisReport(data, yourName, partnerName, lang) {
   const isNotCompatible = isClash || (!heartMatch && !emotionalMatch);
 
   let clashT = null;
-  if (isClash && typeof getClashTemplate === 'function') {
-    clashT = getClashTemplate(signs.zodiacElementMale, signs.zodiacElementFemale, yourName, partnerName);
+  if (isClash) {
+    if (lang === 'ru' && window.I18N && typeof window.I18N.getClashTemplateRu === 'function') {
+      clashT = window.I18N.getClashTemplateRu(signs.zodiacElementMale, signs.zodiacElementFemale, yourName, partnerName);
+    } else if (typeof getClashTemplate === 'function') {
+      clashT = getClashTemplate(signs.zodiacElementMale, signs.zodiacElementFemale, yourName, partnerName);
+    }
   }
 
   summaryBlock.classList.remove('hidden');
@@ -432,7 +436,7 @@ function renderDeepAnalysisReport(data, yourName, partnerName, lang) {
           </ul>
           
           <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Что это значит для вас?</h4>
-          <p>${clashT.meaning}</p>
+          <p>${clashT.meaning || clashT.meaningIntro || ''}</p>
           
           <p style="margin-top: 10px;"><strong>1. Путь сохранения отношений</strong><br>
           ${clashT.path1Intro}
@@ -476,7 +480,7 @@ function renderDeepAnalysisReport(data, yourName, partnerName, lang) {
           </ul>
           
           <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">What Does This Mean for You?</h4>
-          <p>${clashT.meaning}</p>
+          <p>${clashT.meaning || clashT.meaningIntro || ''}</p>
           
           <p style="margin-top: 10px;"><strong>1. The Path of Staying Together</strong><br>
           ${clashT.path1Intro}
