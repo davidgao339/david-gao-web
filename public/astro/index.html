@@ -3,247 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title data-i18n="pageTitle">Waves - Find Your True Love</title>
-  <link rel="stylesheet" href="style.css?v=42">
+  <title>WAVES - Astrological Compatibility</title>
+  <meta http-equiv="refresh" content="0; url=https://waveslove.com/">
+  <script>
+    window.location.replace("https://waveslove.com/");
+  </script>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #e2e8f0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
-
-  <!-- Background Space Container -->
-  <div class="space-background">
-    
-    <!-- Main Holographic Card -->
-    <main class="ui-card" id="input-card">
-      <div class="card-header">
-        <span class="tab-label" data-i18n="tabLabelInput">IS THIS TRUE LOVE?</span>
-      </div>
-      <div class="card-lang-switcher">
-        <button type="button" class="lang-btn active" data-lang="en">EN</button>
-        <span class="lang-divider">|</span>
-        <button type="button" class="lang-btn" data-lang="ru">RU</button>
-      </div>
-
-      <div class="card-content">
-        <!-- Left Column: Branding & Form -->
-        <section class="left-section">
-          <div class="brand">
-            <h1 class="logo-title" data-i18n="brandTitle">WAVES</h1>
-          </div>
-          
-          <div class="intro-text" style="margin-bottom: 30px; color: #a5c9f5; font-size: 0.95rem; line-height: 1.6; text-align: left;">
-            <h2 data-i18n="introHeading" style="text-transform: uppercase; margin-bottom: 15px; color: #d1e8ff; font-size: 1.1rem; letter-spacing: 1px;">Uncover the Truth Behind Your Connection</h2>
-            <p data-i18n="introP1" style="margin-bottom: 12px;">Today’s high divorce rates show a clear trend: it’s easy to mistake short-term chemistry for long-term compatibility. Modern dating culture focuses on surface-level sparks, but lasting relationships depend on much deeper dynamics.</p>
-            <p data-i18n="introP2" style="margin-bottom: 12px;">WAVES gives you the clarity to look deeper.</p>
-            <p data-i18n="introP3" style="margin-bottom: 12px;">Our specialized algorithm uses your birth dates to analyze the fundamental energetic and astrological alignment between you and your partner.</p>
-            <p data-i18n="introP4">Simply enter two birthdays to cut through the confusion of transient attraction and uncover an honest, objective look at your true emotional compatibility and long-term potential.</p>
-          </div>
-
-          <form id="astro-form" class="input-grid">
-            <!-- Person 1 Column -->
-            <div class="person-inputs">
-              <div class="form-group">
-                <label for="your-name" data-i18n="yourNameLabel">YOUR NAME:</label>
-                <input type="text" id="your-name" maxlength="30" autocomplete="off" placeholder="e.g. Romeo" required>
-              </div>
-
-              <div class="form-group">
-                <label data-i18n="yourBirthdayLabel">YOUR BIRTHDAY:</label>
-                <div class="date-selects">
-                  <select id="m-day"></select>
-                  <select id="m-month"></select>
-                  <select id="m-year"></select>
-                </div>
-              </div>
-            </div>
-
-            <!-- Person 2 Column -->
-            <div class="person-inputs">
-              <div class="form-group">
-                <label for="partner-name" data-i18n="partnerNameLabel">PARTNER'S NAME:</label>
-                <input type="text" id="partner-name" maxlength="30" autocomplete="off" placeholder="e.g. Juliet" required>
-              </div>
-
-              <div class="form-group">
-                <label data-i18n="partnerBirthdayLabel">PARTNER'S BIRTHDAY:</label>
-                <div class="date-selects">
-                  <select id="f-day"></select>
-                  <select id="f-month"></select>
-                  <select id="f-year"></select>
-                </div>
-              </div>
-            </div>
-          </form>
-          
-          <div id="calc-error" class="error-msg hidden">Please enter valid dates (MM/DD/YYYY).</div>
-        </section>
-
-        <!-- Vertical Divider Line -->
-        <div class="divider"></div>
-
-        <!-- Right Column: Actions -->
-        <section class="right-section">
-          <div class="icon-container">
-            <div class="yin-yang-orb">
-              <span class="symbol">❤️‍🔥</span> <!-- Decorative Symbol -->
-            </div>
-          </div>
-
-          <div class="toggle-group">
-            <span class="toggle-label" data-i18n="sexCompatLabel">SEXUAL COMPATIBILITY</span>
-            <label class="custom-checkbox">
-              <input type="checkbox" id="sex-compat-toggle" checked>
-              <span class="checkmark">✓</span>
-            </label>
-          </div>
-
-          <button type="submit" form="astro-form" id="calc-btn" class="analyze-btn" data-i18n="btnAnalyze">BEGIN ANALYSIS</button>
-        </section>
-      </div>
-    </main>
-
-    <!-- Results Holographic Card -->
-    <main class="ui-card results-card hidden" id="results-card">
-      <div class="card-header">
-        <span class="tab-label" data-i18n="tabLabelResults">ANALYSIS RESULTS</span>
-      </div>
-      <div class="card-lang-switcher">
-        <button type="button" class="lang-btn active" data-lang="en">EN</button>
-        <span class="lang-divider">|</span>
-        <button type="button" class="lang-btn" data-lang="ru">RU</button>
-      </div>
-
-      <!-- FINAL VERDICT BANNER (Blurred Layer) -->
-      <div id="results-blur-container" class="blurred-content">
-        <div class="verdict-banner">
-          <h2 data-i18n="overallCompatHeading">OVERALL COMPATIBILITY</h2>
-          <div id="final-verdict" class="verdict-text"></div>
-        </div>
-
-      <div class="results-grid">
-        <!-- SECTION 1: CHAKRAS -->
-        <section class="result-section">
-          <h3 data-i18n="scoresHeading">COMPATIBILITY SCORES</h3>
-          <p data-i18n="scoresDesc" style="font-size: 0.95rem; color: #a5c9f5; margin-top: 10px; margin-bottom: 20px; line-height: 1.6;">Achieving true compatibility relies on three core conditions: high harmony waves, deep emotional resonance, and complementary zodiac natures. While physical chemistry is important to many, it isn’t strictly necessary for a profoundly compatible connection. Instead, great chemistry can often be cultivated over time through shared experiences and open communication about your desires.<br><br>Lets take a look at your compatibility results.</p>
-          
-          <div id="chakra-bars" class="chakra-bars"></div>
-        </section>
-
-        <!-- SECTION 2: ZODIAC -->
-        <section class="result-section">
-          <h3 data-i18n="zodiacCompatHeading">Zodiac Compatibility</h3>
-          
-          <div class="zodiac-signs">
-            <div class="zodiac-person">
-              <div id="zodiac-name-male" class="zodiac-person-name"></div>
-              <div id="zodiac-sign-male" class="zodiac-sign-name"></div>
-              <div id="zodiac-element-male" class="zodiac-element"></div>
-            </div>
-            <div class="zodiac-vs" data-i18n="vsText">AND</div>
-            <div class="zodiac-person">
-              <div id="zodiac-name-female" class="zodiac-person-name"></div>
-              <div id="zodiac-sign-female" class="zodiac-sign-name"></div>
-              <div id="zodiac-element-female" class="zodiac-element"></div>
-            </div>
-          </div>
-          
-          <div id="zodiac-harmony" class="zodiac-harmony"></div>
-          
-          <div class="zodiac-role-card">
-            <div id="zodiac-role-title" class="zodiac-role-title"></div>
-            <div id="zodiac-role-desc" class="zodiac-role-desc"></div>
-          </div>
-        </section>
-      </div>
-
-      <div class="action-buttons-container" style="display:flex; flex-direction:column; align-items:center; gap:15px; margin-top:30px;">
-        <button type="button" id="full-report-btn" class="analyze-btn" data-i18n="btnFullReport" style="background:linear-gradient(135deg, rgba(219, 39, 119, 0.4), rgba(157, 23, 77, 0.6)); border:1px solid rgba(244, 114, 182, 0.5); color:#fff; width:100%; max-width:400px; margin:0 auto; transition:all 0.3s; animation:none;">VIEW FULL REPORT</button>
-        <button type="button" id="back-btn" data-i18n="btnBack" style="background:none; border:none; color:rgba(255,255,255,0.6); text-decoration:underline; font-size:0.9rem; cursor:pointer; padding:5px;">Start Over / Recalculate</button>
-      </div>
-      </div> <!-- Close blurred container -->
-
-      <!-- Top Layer Teaser Overlay -->
-      <div id="results-teaser-layer" class="teaser-layer">
-        <div class="teaser-content">
-          <!-- Radial Gauge -->
-          <div class="gauge-container">
-            <div class="gauge-wrapper">
-              <svg class="circular-chart" viewBox="0 0 36 36">
-                <path class="circle-bg"
-                  d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-                <path class="circle" id="radial-gauge-circle"
-                  stroke-dasharray="0, 100"
-                  d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-                <text x="18" y="20.5" id="radial-gauge-text" class="percentage-text">0%</text>
-              </svg>
-            </div>
-          </div>
-          <div id="teaser-names" class="teaser-names"></div>
-          <div id="teaser-verdict" class="teaser-verdict"></div>
-          <button type="button" id="read-more-btn" class="analyze-btn" data-i18n="learnWhy">Learn why</button>
-        </div>
-      </div>
-    </main>
-
+  <div>
+    <h2>WAVES has moved!</h2>
+    <p>Redirecting you to our new home...</p>
+    <p>If you are not redirected automatically, click <a href="https://waveslove.com/">here</a>.</p>
   </div>
-
-  <!-- Full Report Modal -->
-  <div id="full-report-modal" class="modal-overlay hidden">
-    <div class="modal-content ui-card">
-      <div class="modal-header">
-        <h2 data-i18n="modalReportTitle">DEEP ANALYSIS REPORT</h2>
-        <button id="close-modal-btn" class="close-btn">&times;</button>
-      </div>
-      <div class="modal-body">
-        
-        <!-- Low Compatibility Summary Block -->
-        <div id="low-compat-summary" class="report-section hidden" style="border-left: 4px solid #ef4444; background: rgba(239, 68, 68, 0.05);">
-          <h3 style="color: #ef4444; font-size: 1.4rem;">Relationship Compatibility Summary</h3>
-          <p style="font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: #fca5a5;">Overall Result: Low Compatibility</p>
-          
-          <p><strong>A Quick Note from Us:</strong><br>
-          Compatibility scores are a tool to help you understand natural alignment, communication differences, and ability to sustain long-term relationships. A low score means that building long-term relationships will be significantly harder and will require a lot of sacrifice from both of you. The report below highlights where your natural trajectories, core values, or relationship dynamics differ significantly.</p>
-          
-          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">Key Findings & Insights</h4>
-          <p id="low-compat-harmony" class="hidden" style="margin-bottom: 5px;"><strong>Natural Misalignment:</strong> Your core personalities and default conflict-resolution styles require very different environments to feel completely understood and supported.</p>
-          <p id="low-compat-emotion" class="hidden" style="margin-bottom: 5px;"><strong>Emotional Misalignment:</strong> The areas where you differ are fundamental—such as emotional needs, future goals, or communication preferences—rather than minor preferences.</p>
-          <p id="low-compat-both" class="hidden"><strong>Energy Investment:</strong> Sustaining harmony in this partnership will likely require continuous, heavy compromise and emotional heavy-lifting from both sides.</p>
-          
-          <h4 style="color: #f87171; margin-top: 15px; font-size: 1.1rem; margin-bottom: 8px;">What Does This Mean for You?</h4>
-          <p>Every relationship requires effort, but when natural compatibility is low, that effort turns into a daily uphill climb.</p>
-          
-          <p style="margin-top: 10px;"><strong>1. The Path of Staying Together</strong><br>
-          If you choose to move forward, it’s important to be realistic about what lies ahead:<br>
-          <em>High Sacrifice:</em> You will both likely need to make significant sacrifices regarding your natural habits, desires, and communication styles.<br>
-          <em>Continuous Effort:</em> Love alone may not eliminate the recurring friction. Navigating these differences will require patience, professional guidance, or constant conscious effort to keep the relationship stable.</p>
-          
-          <p style="margin-top: 10px;"><strong>2. The Path of Moving On</strong><br>
-          While it’s never easy to realize a partnership might not be the right fit, it’s also an opportunity:<br>
-          <em>You Deserve Ease:</em> Relationships shouldn't feel like a constant struggle. You deserve a connection where being yourself feels natural and effortless.<br>
-          <em>A World of Possibilities:</em> There are billions of people in the world. Out there is someone whose values, communication style, and long-term vision align effortlessly with yours—someone who will care for you exactly as you need to be cared for, without requiring either of you to change who you fundamentally are.</p>
-          
-          <p style="margin-top: 15px;"><strong>Next Steps</strong><br>
-          Take a breath and reflect. Use this report not as a harsh verdict, but as an honest mirror to evaluate what you truly want out of love, peace, and your future.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Wave Transition Overlay -->
-  <div id="wave-transition" class="wave-overlay">
-    <div class="wave wave1"></div>
-    <div class="wave wave2"></div>
-    <div class="wave wave3"></div>
-  </div>
-
-  <script src="i18n.js?v=42"></script>
-  <script src="calc.js?v=42"></script>
-  <script src="script.js?v=42"></script>
 </body>
 </html>
