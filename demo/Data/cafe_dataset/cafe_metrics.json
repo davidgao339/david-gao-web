@@ -1,0 +1,248 @@
+{
+    "monthly_trends": [
+        {
+            "month": "2024-01",
+            "revenue": 21420.42,
+            "orders": 1903,
+            "quantity": 4174
+        },
+        {
+            "month": "2024-02",
+            "revenue": 19688.4,
+            "orders": 1736,
+            "quantity": 3816
+        },
+        {
+            "month": "2024-03",
+            "revenue": 20966.06,
+            "orders": 1850,
+            "quantity": 4072
+        },
+        {
+            "month": "2024-04",
+            "revenue": 19983.84,
+            "orders": 1768,
+            "quantity": 3850
+        },
+        {
+            "month": "2024-05",
+            "revenue": 20360.14,
+            "orders": 1837,
+            "quantity": 3978
+        },
+        {
+            "month": "2024-06",
+            "revenue": 24061.8,
+            "orders": 2096,
+            "quantity": 4654
+        },
+        {
+            "month": "2024-07",
+            "revenue": 26022.11,
+            "orders": 2337,
+            "quantity": 5042
+        },
+        {
+            "month": "2024-08",
+            "revenue": 25163.41,
+            "orders": 2255,
+            "quantity": 4927
+        },
+        {
+            "month": "2024-09",
+            "revenue": 20252.39,
+            "orders": 1792,
+            "quantity": 3949
+        },
+        {
+            "month": "2024-10",
+            "revenue": 21630.3,
+            "orders": 1980,
+            "quantity": 4210
+        },
+        {
+            "month": "2024-11",
+            "revenue": 25781.48,
+            "orders": 2321,
+            "quantity": 4991
+        },
+        {
+            "month": "2024-12",
+            "revenue": 27338.46,
+            "orders": 2436,
+            "quantity": 5339
+        },
+        {
+            "month": "2025-01",
+            "revenue": 23246.31,
+            "orders": 2086,
+            "quantity": 4545
+        },
+        {
+            "month": "2025-02",
+            "revenue": 20293.27,
+            "orders": 1782,
+            "quantity": 3936
+        },
+        {
+            "month": "2025-03",
+            "revenue": 23991.57,
+            "orders": 2166,
+            "quantity": 4666
+        },
+        {
+            "month": "2025-04",
+            "revenue": 22654.12,
+            "orders": 2025,
+            "quantity": 4429
+        },
+        {
+            "month": "2025-05",
+            "revenue": 22917.62,
+            "orders": 2042,
+            "quantity": 4491
+        },
+        {
+            "month": "2025-06",
+            "revenue": 26084.72,
+            "orders": 2351,
+            "quantity": 5093
+        },
+        {
+            "month": "2025-07",
+            "revenue": 26963.58,
+            "orders": 2373,
+            "quantity": 5269
+        },
+        {
+            "month": "2025-08",
+            "revenue": 26846.61,
+            "orders": 2405,
+            "quantity": 5264
+        },
+        {
+            "month": "2025-09",
+            "revenue": 22169.97,
+            "orders": 2005,
+            "quantity": 4330
+        },
+        {
+            "month": "2025-10",
+            "revenue": 22543.39,
+            "orders": 2004,
+            "quantity": 4429
+        },
+        {
+            "month": "2025-11",
+            "revenue": 28697.79,
+            "orders": 2540,
+            "quantity": 5562
+        },
+        {
+            "month": "2025-12",
+            "revenue": 28560.74,
+            "orders": 2529,
+            "quantity": 5513
+        }
+    ],
+    "category_breakdown": [
+        {
+            "category": "Coffee",
+            "revenue": 318474.2,
+            "quantity": 63474
+        },
+        {
+            "category": "Food",
+            "revenue": 59527.01,
+            "quantity": 5805
+        },
+        {
+            "category": "Merchandise",
+            "revenue": 9886.53,
+            "quantity": 519
+        },
+        {
+            "category": "Pastries",
+            "revenue": 99917.56,
+            "quantity": 23484
+        },
+        {
+            "category": "Tea",
+            "revenue": 79833.2,
+            "quantity": 17247
+        }
+    ],
+    "subcategory_usage": [
+        {
+            "subcategory": "Latte",
+            "quantity": 14830
+        },
+        {
+            "subcategory": "Drip Coffee",
+            "quantity": 14483
+        },
+        {
+            "subcategory": "Scone",
+            "quantity": 11661
+        },
+        {
+            "subcategory": "Americano",
+            "quantity": 9821
+        },
+        {
+            "subcategory": "Espresso",
+            "quantity": 9782
+        },
+        {
+            "subcategory": "Cold Brew",
+            "quantity": 9682
+        },
+        {
+            "subcategory": "Matcha",
+            "quantity": 7465
+        },
+        {
+            "subcategory": "Iced Tea",
+            "quantity": 7291
+        },
+        {
+            "subcategory": "Cappuccino",
+            "quantity": 4876
+        },
+        {
+            "subcategory": "Breakfast Sandwich",
+            "quantity": 4318
+        },
+        {
+            "subcategory": "Croissant",
+            "quantity": 4012
+        },
+        {
+            "subcategory": "Chocolate Chip Cookie",
+            "quantity": 3936
+        },
+        {
+            "subcategory": "Blueberry Muffin",
+            "quantity": 3875
+        },
+        {
+            "subcategory": "Chai Latte",
+            "quantity": 2491
+        },
+        {
+            "subcategory": "Avocado Toast",
+            "quantity": 1487
+        },
+        {
+            "subcategory": "Whole Bean Coffee",
+            "quantity": 280
+        },
+        {
+            "subcategory": "Travel Mug",
+            "quantity": 239
+        }
+    ],
+    "total_revenue": 567638.5,
+    "total_orders": 50619,
+    "total_quantity": 110529
+}

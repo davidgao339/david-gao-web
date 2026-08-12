@@ -32,22 +32,117 @@
       margin-top: 2rem;
     }
     header h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 700;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       background: linear-gradient(to right, #3b82f6, #10b981);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     header p {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       color: var(--text-muted);
-      max-width: 600px;
+      max-width: 800px;
       margin: 0 auto;
+      line-height: 1.4;
     }
+    
+    /* Hero Showcase Layout */
+    .showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: stretch;
+    }
+    @media (max-width: 900px) {
+      .showcase {
+        grid-template-columns: 1fr;
+      }
+    }
+    .showcase-card {
+      background-color: var(--card-bg);
+      border-radius: 1rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      padding: 3rem 1.5rem 1.5rem 1.5rem;
+    }
+    .showcase-label {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(0,0,0,0.7);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      backdrop-filter: blur(4px);
+      z-index: 10;
+    }
+    .showcase-img {
+      width: 100%;
+      height: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      display: block;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .interactive-link {
+        display: block;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .interactive-link:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+        border-color: rgba(59, 130, 246, 0.5);
+    }
+    
+    /* Global Button */
+    .card-btn {
+      display: inline-block;
+      text-align: center;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .card-btn:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Gallery Grid Layout */
+    .section-divider {
+      margin: 6rem 0 3rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 3rem;
+    }
+    .section-divider h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+    .section-divider p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
     }
     .card {
@@ -88,20 +183,13 @@
       margin-bottom: 1.5rem;
       flex: 1;
     }
-    .card-btn {
-      display: inline-block;
-      text-align: center;
-      background-color: var(--primary);
-      color: white;
-      text-decoration: none;
+    .card .card-btn {
       padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 500;
-      transition: background-color 0.2s;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
     }
-    .card-btn:hover {
-      background-color: var(--primary-hover);
-    }
+
     .back-link {
       display: inline-block;
       margin-top: 4rem;
@@ -117,15 +205,41 @@
 <body>
 
   <div class="container">
+    <!-- Hero Section -->
     <header>
-      <h1>App Demos</h1>
-      <p>A collection of high-performance internal tools and business applications I've built to solve complex operations.</p>
+      <h1>Data Transformation</h1>
+      <p>I take care of the data so you can take care of your business.</p>
     </header>
+
+    <div class="showcase">
+      <!-- Before -->
+      <div class="showcase-card">
+        <div class="showcase-label" style="color: #ef4444;">Before</div>
+        <img src="assets/before_excel.png" alt="Messy Excel Spreadsheet" class="showcase-img" onerror="this.src='https://via.placeholder.com/800x600/1e293b/94a3b8?text=Place+before_excel.png+in+assets+folder'">
+      </div>
+
+      <!-- After -->
+      <a href="cafe-dashboard/index.html" class="showcase-card interactive-link">
+        <div class="showcase-label" style="color: #10b981;">After</div>
+        <img src="assets/after_dashboard.png" alt="Clean Interactive Dashboard" class="showcase-img" onerror="this.src='https://via.placeholder.com/800x600/1e293b/3b82f6?text=Place+after_dashboard.png+in+assets+folder'">
+      </a>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+        <h2 style="margin-bottom: 1rem;">Ready to upgrade your operations?</h2>
+        <a href="cafe-dashboard/index.html" class="card-btn">Try the Interactive Demo</a>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="section-divider">
+      <h2>Explore Other Tools</h2>
+      <p>A collection of high-performance internal applications built to solve complex operations.</p>
+    </div>
 
     <div class="grid">
       <!-- App 1 -->
       <div class="card">
-        <img src="assets/schedule_app.jpg" alt="Schedule App" class="card-img">
+        <img src="assets/schedule_app.jpg" alt="Schedule App" class="card-img" onerror="this.src='https://via.placeholder.com/600x337/1e293b/94a3b8'">
         <div class="card-content">
           <h2 class="card-title">Employee Scheduling</h2>
           <p class="card-desc">A responsive React 19 application for managing complex employee shift schedules with intuitive drag-and-drop mechanics.</p>
@@ -135,7 +249,7 @@
 
       <!-- App 2 -->
       <div class="card">
-        <img src="assets/inventory_app.jpg" alt="Inventory App" class="card-img">
+        <img src="assets/inventory_app.jpg" alt="Inventory App" class="card-img" onerror="this.src='https://via.placeholder.com/600x337/1e293b/94a3b8'">
         <div class="card-content">
           <h2 class="card-title">Inventory Management</h2>
           <p class="card-desc">A blazing-fast Vite React app tracking real-time stock levels, waste metrics, and reorder thresholds across multiple locations.</p>
@@ -145,7 +259,7 @@
 
       <!-- App 3 -->
       <div class="card">
-        <img src="assets/optimizer_app.jpg" alt="Schedule Optimizer" class="card-img">
+        <img src="assets/optimizer_app.jpg" alt="Schedule Optimizer" class="card-img" onerror="this.src='https://via.placeholder.com/600x337/1e293b/94a3b8'">
         <div class="card-content">
           <h2 class="card-title">AI Schedule Optimizer</h2>
           <p class="card-desc">An interactive Python (Streamlit) CP-SAT solver that generates mathematically optimal staff schedules based on business constraints.</p>
@@ -155,7 +269,7 @@
 
       <!-- App 4 -->
       <div class="card">
-        <img src="assets/bank_app.jpg" alt="Bank Statement Analyzer" class="card-img">
+        <img src="assets/bank_app.jpg" alt="Bank Statement Analyzer" class="card-img" onerror="this.src='https://via.placeholder.com/600x337/1e293b/94a3b8'">
         <div class="card-content">
           <h2 class="card-title">Bank Statement Analyzer</h2>
           <p class="card-desc">An automated BI tool that parses thousands of banking CSV rows into clean charts, categorizing income and expenses instantly.</p>
