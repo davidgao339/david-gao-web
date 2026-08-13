@@ -1,35 +1,32 @@
-sku_id,sku_name,category,subcategory,unit_price
-SKU001,Espresso Variation 1,Coffee,Espresso,3.59
-SKU002,Espresso Variation 2,Coffee,Espresso,4.7
-SKU003,Espresso Variation 3,Coffee,Espresso,4.81
-SKU004,Latte Variation 1,Coffee,Latte,3.03
-SKU005,Latte Variation 2,Coffee,Latte,3.94
-SKU006,Cappuccino Variation 1,Coffee,Cappuccino,4.26
-SKU007,Cappuccino Variation 2,Coffee,Cappuccino,3.79
-SKU008,Cappuccino Variation 3,Coffee,Cappuccino,4.74
-SKU009,Drip Coffee Variation 1,Coffee,Drip Coffee,6.21
-SKU010,Drip Coffee Variation 2,Coffee,Drip Coffee,3.5
-SKU011,Cold Brew Variation 1,Coffee,Cold Brew,3.94
-SKU012,Cold Brew Variation 2,Coffee,Cold Brew,3.19
-SKU013,Americano Variation 1,Coffee,Americano,4.79
-SKU014,Americano Variation 2,Coffee,Americano,4.9
-SKU015,Americano Variation 3,Coffee,Americano,5.89
-SKU016,Matcha Variation 1,Tea,Matcha,4.91
-SKU017,Matcha Variation 2,Tea,Matcha,5.73
-SKU018,Chai Latte Variation 1,Tea,Chai Latte,4.1
-SKU019,Chai Latte Variation 2,Tea,Chai Latte,5.93
-SKU020,Iced Tea Variation 1,Tea,Iced Tea,5.09
-SKU021,Iced Tea Variation 2,Tea,Iced Tea,4.55
-SKU022,Iced Tea Variation 3,Tea,Iced Tea,4.13
-SKU023,Croissant Variation 1,Pastries,Croissant,5.09
-SKU024,Blueberry Muffin Variation 1,Pastries,Blueberry Muffin,4.08
-SKU025,Chocolate Chip Cookie Variation 1,Pastries,Chocolate Chip Cookie,4.92
-SKU026,Scone Variation 1,Pastries,Scone,5.45
-SKU027,Scone Variation 2,Pastries,Scone,4.4
-SKU028,Breakfast Sandwich Variation 1,Food,Breakfast Sandwich,7.77
-SKU029,Avocado Toast Variation 1,Food,Avocado Toast,7.18
-SKU030,Avocado Toast Variation 2,Food,Avocado Toast,7.26
-SKU031,Whole Bean Coffee Variation 1,Merchandise,Whole Bean Coffee,20.63
-SKU032,Whole Bean Coffee Variation 2,Merchandise,Whole Bean Coffee,17.88
-SKU033,Whole Bean Coffee Variation 3,Merchandise,Whole Bean Coffee,20.67
-SKU034,Travel Mug Variation 1,Merchandise,Travel Mug,21.99
+sku_id,sku_name,category,subcategory,unit_price,unit_cost
+SKU001,Espresso Variation 1,Coffee,Espresso,3.23,0.46
+SKU002,Espresso Variation 2,Coffee,Espresso,3.49,0.48
+SKU003,Espresso Variation 3,Coffee,Espresso,4.76,0.67
+SKU004,Latte Variation 1,Coffee,Latte,6.0,0.95
+SKU005,Cappuccino Variation 1,Coffee,Cappuccino,4.18,0.62
+SKU006,Drip Coffee Variation 1,Coffee,Drip Coffee,4.71,0.69
+SKU007,Drip Coffee Variation 2,Coffee,Drip Coffee,4.24,0.6
+SKU008,Cold Brew Variation 1,Coffee,Cold Brew,4.85,0.72
+SKU009,Cold Brew Variation 2,Coffee,Cold Brew,5.57,0.84
+SKU010,Americano Variation 1,Coffee,Americano,3.04,0.44
+SKU011,Americano Variation 2,Coffee,Americano,3.35,0.46
+SKU012,Matcha Variation 1,Tea,Matcha,5.95,0.92
+SKU013,Matcha Variation 2,Tea,Matcha,4.74,0.71
+SKU014,Matcha Variation 3,Tea,Matcha,4.92,0.78
+SKU015,Chai Latte Variation 1,Tea,Chai Latte,4.75,0.67
+SKU016,Chai Latte Variation 2,Tea,Chai Latte,5.02,0.83
+SKU017,Iced Tea Variation 1,Tea,Iced Tea,4.3,0.62
+SKU018,Croissant Variation 1,Pastries,Croissant,3.94,1.36
+SKU019,Croissant Variation 2,Pastries,Croissant,3.53,1.23
+SKU020,Croissant Variation 3,Pastries,Croissant,4.68,1.6
+SKU021,Blueberry Muffin Variation 1,Pastries,Blueberry Muffin,4.35,1.53
+SKU022,Blueberry Muffin Variation 2,Pastries,Blueberry Muffin,5.15,1.69
+SKU023,Chocolate Chip Cookie Variation 1,Pastries,Chocolate Chip Cookie,4.19,1.41
+SKU024,Scone Variation 1,Pastries,Scone,4.98,1.69
+SKU025,Scone Variation 2,Pastries,Scone,4.7,1.69
+SKU026,Scone Variation 3,Pastries,Scone,3.8,1.4
+SKU027,Breakfast Sandwich Variation 1,Food,Breakfast Sandwich,11.37,5.37
+SKU028,Avocado Toast Variation 1,Food,Avocado Toast,11.67,5.1
+SKU029,Avocado Toast Variation 2,Food,Avocado Toast,8.83,4.09
+SKU030,Whole Bean Coffee Variation 1,Merchandise,Whole Bean Coffee,23.59,12.97
+SKU031,Travel Mug Variation 1,Merchandise,Travel Mug,23.89,11.56

@@ -48,46 +48,63 @@
         <section class="kpi-grid">
             <div class="kpi-card glass-panel">
                 <h3>Total Revenue (2 Yr)</h3>
-                <h2 id="kpi-total-revenue">Loading...</h2>
-                <div class="kpi-trend positive">↑ Steady Growth</div>
+                <h3>Total Revenue</h3>
+                <h2 id="kpi-total-revenue">$0</h2>
+                <div class="kpi-trend neutral" id="kpi-yoy-text">Select dates to view YoY</div>
+            </div>
+            <div class="kpi-card glass-panel">
+                <h3>Gross Margin</h3>
+                <h2 id="kpi-margin">0%</h2>
+                <div class="kpi-trend neutral" id="kpi-margin-text">Revenue vs COGS</div>
+            </div>
+            <div class="kpi-card glass-panel">
+                <h3>Avg Order Value</h3>
+                <h2 id="kpi-aov">$0</h2>
+                <div class="kpi-trend neutral" id="kpi-aov-text">Spend per receipt</div>
+            </div>
+            <div class="kpi-card glass-panel">
+                <h3>Items Per Trans.</h3>
+                <h2 id="kpi-ipt">0</h2>
+                <div class="kpi-trend neutral" id="kpi-ipt-text">Items per receipt</div>
             </div>
             <div class="kpi-card glass-panel">
                 <h3>Total Orders</h3>
-                <h2 id="kpi-total-orders">Loading...</h2>
-                <div class="kpi-trend neutral">Consistent Volume</div>
-            </div>
-            <div class="kpi-card glass-panel">
-                <h3>YoY Growth (2025 vs 2024)</h3>
-                <h2 id="kpi-yoy">Loading...</h2>
-                <div class="kpi-trend positive">↑ Outperforming</div>
-            </div>
-            <div class="kpi-card glass-panel">
-                <h3>MoM Growth (Dec vs Nov '25)</h3>
-                <h2 id="kpi-mom">Loading...</h2>
-                <div class="kpi-trend positive" id="mom-trend">↑</div>
+                <h2 id="kpi-total-orders">0</h2>
+                <div class="kpi-trend neutral" id="kpi-orders-text">Volume</div>
             </div>
         </section>
 
-        <!-- Charts Grid -->
+        <!-- Charts -->
         <section class="charts-grid">
             <div class="chart-container glass-panel span-2">
-                <h3>Revenue Trends (YoY Comparison)</h3>
+                <h3>Revenue & Cost Trend</h3>
                 <div class="canvas-wrapper">
                     <canvas id="trendChart"></canvas>
                 </div>
             </div>
-            
             <div class="chart-container glass-panel">
                 <h3>Revenue by Category</h3>
                 <div class="canvas-wrapper">
                     <canvas id="categoryChart"></canvas>
                 </div>
             </div>
-
-            <div class="chart-container glass-panel span-3">
-                <h3>Inventory Usage (Top Subcategories)</h3>
+            
+            <div class="chart-container glass-panel">
+                <h3>Traffic by Hour of Day</h3>
                 <div class="canvas-wrapper">
-                    <canvas id="inventoryChart"></canvas>
+                    <canvas id="heatmapChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-container glass-panel">
+                <h3>Customer Loyalty (Revenue)</h3>
+                <div class="canvas-wrapper">
+                    <canvas id="loyaltyChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-container glass-panel">
+                <h3>Top Product Pairings</h3>
+                <div class="canvas-wrapper">
+                    <canvas id="affinityChart"></canvas>
                 </div>
             </div>
         </section>

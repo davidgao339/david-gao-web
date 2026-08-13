@@ -28,7 +28,7 @@
     }
     header {
       text-align: center;
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
       margin-top: 2rem;
     }
     header h1 {
@@ -38,25 +38,95 @@
       background: linear-gradient(to right, #3b82f6, #10b981);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      line-height: 1.2;
     }
     header p {
       font-size: 1.5rem;
       color: var(--text-muted);
       max-width: 800px;
-      margin: 0 auto;
+      margin: 0 auto 2.5rem auto;
       line-height: 1.4;
     }
     
+    .cta-group {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+    }
+    
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+      border: 2px solid var(--primary);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      border-color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    }
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-main);
+      border: 2px solid var(--text-muted);
+    }
+    .btn-secondary:hover {
+      border-color: white;
+      color: white;
+      transform: translateY(-2px);
+    }
+
     /* Hero Showcase Layout */
+    .showcase-wrapper {
+      position: relative;
+      margin-bottom: 4rem;
+    }
     .showcase {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+      gap: 4rem;
       align-items: stretch;
+      position: relative;
+    }
+    .flow-arrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      color: var(--text-muted);
+      z-index: 5;
+      background: var(--bg-color);
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.1);
     }
     @media (max-width: 900px) {
       .showcase {
         grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .flow-arrow {
+        transform: translate(-50%, -50%) rotate(90deg);
+        top: calc(50% - 1.5rem);
       }
     }
     .showcase-card {
@@ -94,32 +164,55 @@
       border-radius: 0.5rem;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
+    
+    /* UX Animations */
     .interactive-link {
         display: block;
-        transition: transform 0.2s, box-shadow 0.2s;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: subtle-pulse 3s infinite;
+    }
+    @keyframes subtle-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.2); }
+        50% { box-shadow: 0 0 20px 5px rgba(16, 185, 129, 0.3); }
+        100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.2); }
     }
     .interactive-link:hover {
+        animation: none;
         transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
-        border-color: rgba(59, 130, 246, 0.5);
+        box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+        border-color: rgba(16, 185, 129, 0.5);
     }
     
-    /* Global Button */
-    .card-btn {
-      display: inline-block;
-      text-align: center;
-      background-color: var(--primary);
-      color: white;
-      text-decoration: none;
-      padding: 1rem 2rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: background-color 0.2s, transform 0.2s;
+    /* Benefits Section */
+    .benefits {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-bottom: 5rem;
     }
-    .card-btn:hover {
-      background-color: var(--primary-hover);
-      transform: translateY(-2px);
+    @media (max-width: 768px) {
+        .benefits { grid-template-columns: 1fr; }
+    }
+    .benefit-item {
+        text-align: center;
+        padding: 2rem;
+        background: rgba(255,255,255,0.02);
+        border-radius: 1rem;
+        border: 1px solid rgba(255,255,255,0.05);
+    }
+    .benefit-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+    .benefit-item h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+    .benefit-item p {
+        color: var(--text-muted);
+        line-height: 1.5;
+        font-size: 0.95rem;
     }
 
     /* Gallery Grid Layout */
@@ -144,6 +237,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
+      margin-bottom: 6rem;
     }
     .card {
       background-color: var(--card-bg);
@@ -183,16 +277,36 @@
       margin-bottom: 1.5rem;
       flex: 1;
     }
-    .card .card-btn {
+    .card .btn-primary {
       padding: 0.75rem 1.5rem;
       font-size: 1rem;
       width: 100%;
       box-sizing: border-box;
+      box-shadow: none;
+    }
+
+    /* Final CTA */
+    .final-cta {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+        border-radius: 1rem;
+        border: 1px solid rgba(255,255,255,0.1);
+        margin-bottom: 2rem;
+    }
+    .final-cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    .final-cta p {
+        color: var(--text-muted);
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
     }
 
     .back-link {
       display: inline-block;
-      margin-top: 4rem;
+      margin-top: 2rem;
       color: var(--text-muted);
       text-decoration: none;
     }
@@ -207,28 +321,50 @@
   <div class="container">
     <!-- Hero Section -->
     <header>
-      <h1>Data Transformation</h1>
+      <h1>Turn Messy Spreadsheets into<br>Actionable Business Insights</h1>
       <p>I take care of the data so you can take care of your business.</p>
+      
+      <div class="cta-group">
+          <a href="cafe-dashboard/index.html" class="btn btn-primary">Try the Interactive Demo</a>
+          <a href="mailto:contact@davidgao.ca" class="btn btn-secondary">Book a Consultation</a>
+      </div>
     </header>
 
-    <div class="showcase">
-      <!-- Before -->
-      <div class="showcase-card">
-        <div class="showcase-label" style="color: #ef4444;">Before</div>
-        <img src="assets/before_excel.png" alt="Messy Excel Spreadsheet" class="showcase-img" onerror="this.src='https://via.placeholder.com/800x600/1e293b/94a3b8?text=Place+before_excel.png+in+assets+folder'">
-      </div>
+    <div class="showcase-wrapper">
+        <div class="flow-arrow">➔</div>
+        <div class="showcase">
+        <!-- Before -->
+        <div class="showcase-card">
+            <div class="showcase-label" style="color: #ef4444;">Before</div>
+            <img src="assets/before_excel.png" alt="Messy Excel Spreadsheet" class="showcase-img" onerror="this.src='https://via.placeholder.com/800x600/1e293b/94a3b8?text=Place+before_excel.png+in+assets+folder'">
+        </div>
 
-      <!-- After -->
-      <a href="cafe-dashboard/index.html" class="showcase-card interactive-link">
-        <div class="showcase-label" style="color: #10b981;">After</div>
-        <img src="assets/after_dashboard.png" alt="Clean Interactive Dashboard" class="showcase-img" onerror="this.src='https://via.placeholder.com/800x600/1e293b/3b82f6?text=Place+after_dashboard.png+in+assets+folder'">
-      </a>
+        <!-- After -->
+        <a href="cafe-dashboard/index.html" class="showcase-card interactive-link">
+            <div class="showcase-label" style="color: #10b981;">After</div>
+            <img src="assets/after_dashboard.png" alt="Clean Interactive Dashboard" class="showcase-img" onerror="this.src='https://via.placeholder.com/800x600/1e293b/10b981?text=Place+after_dashboard.png+in+assets+folder'">
+        </a>
+        </div>
     </div>
 
-    <div style="text-align: center; margin-top: 3rem;">
-        <h2 style="margin-bottom: 1rem;">Ready to upgrade your operations?</h2>
-        <a href="cafe-dashboard/index.html" class="card-btn">Try the Interactive Demo</a>
-    </div>
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="benefit-item">
+            <span class="benefit-icon">⚡</span>
+            <h3>Automated Reporting</h3>
+            <p>Stop manually crunching numbers. Dashboards automatically sync with your data sources to provide real-time updates.</p>
+        </div>
+        <div class="benefit-item">
+            <span class="benefit-icon">🎯</span>
+            <h3>Custom Built for You</h3>
+            <p>No cookie-cutter templates. Every metric, chart, and layout is tailored entirely to your specific business model.</p>
+        </div>
+        <div class="benefit-item">
+            <span class="benefit-icon">☁️</span>
+            <h3>Fully Managed Infrastructure</h3>
+            <p>I handle the secure servers, data pipelines, and hosting. You just log in and get the insights you need.</p>
+        </div>
+    </section>
 
     <!-- Gallery Section -->
     <div class="section-divider">
@@ -243,7 +379,7 @@
         <div class="card-content">
           <h2 class="card-title">Employee Scheduling</h2>
           <p class="card-desc">A responsive React 19 application for managing complex employee shift schedules with intuitive drag-and-drop mechanics.</p>
-          <a href="schedule-app/" class="card-btn">View Demo</a>
+          <a href="schedule-app/" class="btn btn-primary">View Demo</a>
         </div>
       </div>
 
@@ -253,7 +389,7 @@
         <div class="card-content">
           <h2 class="card-title">Inventory Management</h2>
           <p class="card-desc">A blazing-fast Vite React app tracking real-time stock levels, waste metrics, and reorder thresholds across multiple locations.</p>
-          <a href="inventory-app/" class="card-btn">View Demo</a>
+          <a href="inventory-app/" class="btn btn-primary">View Demo</a>
         </div>
       </div>
 
@@ -263,7 +399,7 @@
         <div class="card-content">
           <h2 class="card-title">AI Schedule Optimizer</h2>
           <p class="card-desc">An interactive Python (Streamlit) CP-SAT solver that generates mathematically optimal staff schedules based on business constraints.</p>
-          <a href="schedule-optimizer/" class="card-btn">View Interactive Mockup</a>
+          <a href="schedule-optimizer/" class="btn btn-primary">Interactive Mockup</a>
         </div>
       </div>
 
@@ -273,10 +409,17 @@
         <div class="card-content">
           <h2 class="card-title">Bank Statement Analyzer</h2>
           <p class="card-desc">An automated BI tool that parses thousands of banking CSV rows into clean charts, categorizing income and expenses instantly.</p>
-          <a href="bank-statement/" class="card-btn">View Interactive Mockup</a>
+          <a href="bank-statement/" class="btn btn-primary">Interactive Mockup</a>
         </div>
       </div>
     </div>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Ready to upgrade your operations?</h2>
+        <p>Let's build a customized analytics engine for your business.</p>
+        <a href="mailto:contact@davidgao.ca" class="btn btn-primary">Let's Talk</a>
+    </section>
 
     <div style="text-align: center;">
       <a href="/" class="back-link">← Back to Portfolio</a>
