@@ -1,1 +1,268 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><link rel="manifest" href="/demo/schedule-app/manifest.json"><link rel="shortcut icon" href="/demo/schedule-app/favicon.ico"><title>Боба Кролик - График Работы</title><script defer="defer" src="/demo/schedule-app/static/js/main.a9daf0f1.js"></script></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script src="/internal/pins.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <span class="material-icons menu-icon" id="menu-btn" style="cursor: pointer;">menu</span>
+                <span class="logo">
+                    <span class="material-icons logo-icon">calendar_today</span>
+                    <span class="logo-text">Schedule</span>
+                </span>
+            </div>
+            <div class="header-right">
+                <span class="material-icons icon-btn">search</span>
+                <span class="material-icons icon-btn">help_outline</span>
+                <span class="material-icons icon-btn">settings</span>
+                <div class="avatar">A</div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Upload View -->
+            <div id="upload-view" class="view-section active">
+                <div class="upload-container">
+                    <div class="upload-card" id="upload-card">
+                        <div class="upload-icon-wrapper">
+                            <span class="material-icons upload-icon">table_view</span>
+                        </div>
+                        <h2>Transform Excel to Schedule</h2>
+                        <p class="subtitle">Upload your raw shift data (.xlsx, .csv) to generate a visual schedule instantly.</p>
+                        
+                        <div class="data-preview">
+                            <table class="preview-table">
+                                <thead>
+                                    <tr><th>Name</th><th>Role</th><th>Date</th><th>Start</th><th>End</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Sarah J.</td><td>Driver</td><td>Oct 1</td><td>07:00 AM</td><td>03:00 PM</td></tr>
+                                    <tr><td>David G.</td><td>Sorter</td><td>Oct 1</td><td>08:00 AM</td><td>04:00 PM</td></tr>
+                                    <tr><td>Elena R.</td><td>Sorter</td><td>Oct 2</td><td>12:00 PM</td><td>08:00 PM</td></tr>
+                                    <tr><td>Mike T.</td><td>Greeter</td><td>Oct 2</td><td>08:00 AM</td><td>04:00 PM</td></tr>
+                                </tbody>
+                            </table>
+                            <div class="fade-out-bottom"></div>
+                        </div>
+                        
+                        <div class="upload-actions">
+                            <button class="btn btn-primary" id="demo-btn">
+                                <span class="material-icons btn-icon">auto_awesome</span>
+                                Generate Visual Schedule
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Processing State (Hidden initially) -->
+                    <div class="processing-state" id="processing-state">
+                        <div class="spinner"></div>
+                        <h3 id="process-text">Parsing Excel Data...</h3>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard View (Hidden initially) -->
+            <div id="dashboard-view" class="view-section">
+                <div class="dashboard-layout">
+                    
+                    <!-- Sidebar Navigation -->
+                    <aside class="sidebar">
+                        <div class="nav-item active" id="nav-weekly">
+                            <span class="material-icons">calendar_month</span>
+                            <span>Weekly View</span>
+                        </div>
+                        <div class="nav-item" id="nav-employees">
+                            <span class="material-icons">people</span>
+                            <span>Employees</span>
+                        </div>
+                        <div class="nav-item" id="nav-analytics">
+                            <span class="material-icons">bar_chart</span>
+                            <span>Analytics</span>
+                        </div>
+                        <div class="nav-item divider-nav"></div>
+                        <div class="nav-item" id="nav-export">
+                            <span class="material-icons">file_download</span>
+                            <span>Export Data</span>
+                        </div>
+                    </aside>
+
+                    <!-- Schedule Grid Area -->
+                    <div class="schedule-area" id="schedule-area">
+                        <div class="schedule-header">
+                            <div class="date-navigator">
+                                <button class="icon-btn" id="prev-week"><span class="material-icons">chevron_left</span></button>
+                                <h3 id="current-date-range">Oct 1 - Oct 7</h3>
+                                <button class="icon-btn" id="next-week"><span class="material-icons">chevron_right</span></button>
+                            </div>
+                            <div class="schedule-actions">
+                                <button class="btn btn-outline">Today</button>
+                                <button class="btn btn-primary" id="new-shift-btn"><span class="material-icons btn-icon">add</span>New Shift</button>
+                            </div>
+                        </div>
+
+                        <!-- Calendar Grid -->
+                        <div class="calendar-wrapper">
+                            <div class="calendar-grid">
+                                <div class="grid-header" id="grid-header">
+                                    <div class="cell header-cell empty-cell">Employees</div>
+                                    <!-- Populated by JS -->
+                                </div>
+                                
+                                <div class="grid-body" id="schedule-body">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Employees Area (Hidden initially) -->
+                    <div class="employees-area" id="employees-area" style="display: none;">
+                        <div class="schedule-header">
+                            <div class="date-navigator">
+                                <h3>Employee Directory</h3>
+                            </div>
+                            <div class="schedule-actions">
+                                <button class="btn btn-primary" id="add-employee-btn"><span class="material-icons btn-icon">person_add</span>Add Employee</button>
+                            </div>
+                        </div>
+                        <div class="employees-list-wrapper">
+                            <div class="employees-grid" id="employees-grid">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Area (Hidden initially) -->
+                    <div class="analytics-area" id="analytics-area" style="display: none;">
+                        <div class="schedule-header">
+                            <div class="date-navigator">
+                                <h3>Monthly Analytics Overview</h3>
+                            </div>
+                            <div class="schedule-actions">
+                                <button class="btn btn-outline"><span class="material-icons btn-icon">filter_list</span>Filter</button>
+                            </div>
+                        </div>
+                        <div class="analytics-content stagger-in">
+                            <div class="stats-row">
+                                <div class="analytics-card">
+                                    <div class="stat-title">Total Hours Contributed</div>
+                                    <div class="stat-number">340h</div>
+                                    <div class="stat-trend positive"><span class="material-icons">arrow_upward</span> 12% vs last month</div>
+                                </div>
+                                <div class="analytics-card">
+                                    <div class="stat-title">Shift Fill Rate</div>
+                                    <div class="stat-number">94%</div>
+                                    <div class="stat-trend positive"><span class="material-icons">arrow_upward</span> 3% vs last month</div>
+                                </div>
+                                <div class="analytics-card">
+                                    <div class="stat-title">Active Volunteers</div>
+                                    <div class="stat-number">12</div>
+                                    <div class="stat-trend neutral"><span class="material-icons">person_add</span> 2 new this month</div>
+                                </div>
+                            </div>
+                            
+                            <div class="charts-row">
+                            <div class="charts-row">
+                                <div class="analytics-card chart-card">
+                                    <div class="stat-title">Shift Coverage by Role</div>
+                                    <div class="chart-bars">
+                                        <div class="chart-bar-wrap"><div class="bar-label">Driver</div><div class="bar-track"><div class="bar-fill role-manager" style="width: 100%"></div></div><div class="bar-val">100%</div></div>
+                                        <div class="chart-bar-wrap"><div class="bar-label">Sorter</div><div class="bar-track"><div class="bar-fill role-barista" style="width: 95%"></div></div><div class="bar-val">95%</div></div>
+                                        <div class="chart-bar-wrap"><div class="bar-label">Greeter</div><div class="bar-track"><div class="bar-fill role-kitchen" style="width: 80%"></div></div><div class="bar-val">80%</div></div>
+                                        <div class="chart-bar-wrap"><div class="bar-label">Event Staff</div><div class="bar-track"><div class="bar-fill role-cashier" style="width: 90%"></div></div><div class="bar-val">90%</div></div>
+                                    </div>
+                                </div>
+                                <div class="analytics-card chart-card">
+                                    <div class="stat-title">Top Contributors</div>
+                                    <div class="top-contributors" id="top-contributors">
+                                        <!-- Populated by JS -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        
+        <!-- Modal (Hidden initially) -->
+        <div class="modal-overlay" id="new-shift-modal" style="display: none;">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3>Create New Shift</h3>
+                    <span class="material-icons modal-close" id="modal-close">close</span>
+                </div>
+                <div class="modal-body">
+                    <p class="subtitle" style="margin-top:0; margin-bottom:16px;">Select volunteer and time to add a shift.</p>
+                    <div class="form-group">
+                        <label>Volunteer</label>
+                        <select id="shift-volunteer">
+                            <option value="0">Sarah J. (Driver)</option>
+                            <option value="1">David G. (Sorter)</option>
+                            <option value="2">Elena R. (Sorter)</option>
+                            <option value="3">Mike T. (Greeter)</option>
+                            <option value="4">Anna K. (Event Staff)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Date (Oct)</label>
+                        <input type="number" id="shift-day" min="1" max="31" value="1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline" id="modal-cancel">Cancel</button>
+                    <button class="btn btn-primary" id="modal-save">Save Shift</button>
+                </div>
+            </div>
+        </div>
+        <!-- Add Employee Modal (Hidden initially) -->
+        <div class="modal-overlay" id="add-employee-modal" style="display: none;">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3>Add New Volunteer</h3>
+                    <span class="material-icons modal-close" id="emp-modal-close">close</span>
+                </div>
+                <div class="modal-body">
+                    <p class="subtitle" style="margin-top:0; margin-bottom:16px;">Enter the new volunteer's details.</p>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="emp-name" placeholder="e.g. John D.">
+                    </div>
+                    <div class="form-group">
+                        <label>Role</label>
+                        <select id="emp-role">
+                            <option value="Driver,manager">Driver</option>
+                            <option value="Sorter,barista">Sorter</option>
+                            <option value="Greeter,kitchen">Greeter</option>
+                            <option value="Event Staff,cashier">Event Staff</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline" id="emp-modal-cancel">Cancel</button>
+                    <button class="btn btn-primary" id="emp-modal-save">Add Volunteer</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Toast Container -->
+        <div id="toast-container" class="toast-container"></div>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

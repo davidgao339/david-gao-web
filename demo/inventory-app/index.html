@@ -1,20 +1,335 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Boba Inventory</title>
-    <style>
-      @media print {
-        .no-print { display: none !important; }
-        body { background: white; }
-      }
-    </style>
-    <script type="module" crossorigin src="/demo/inventory-app/assets/index-sgkQhMYG.js"></script>
-    <link rel="stylesheet" crossorigin href="/demo/inventory-app/assets/index-C7Ytp0yV.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script>window.PINS = {"1234": "Demo User"};</script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop Inventory | David Gao Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="material-icons logo-icon">inventory_2</span>
+                <span class="logo-text">Inventory</span>
+            </div>
+            
+            <div class="nav-item active" id="nav-dashboard">
+                <span class="material-icons">dashboard</span>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item" id="nav-stock">
+                <span class="material-icons">list_alt</span>
+                <span>All Stock</span>
+            </div>
+            <div class="nav-item" id="nav-po">
+                <span class="material-icons">shopping_cart</span>
+                <span>Purchase Orders</span>
+            </div>
+            <div class="nav-item" id="nav-waste">
+                <span class="material-icons">delete_sweep</span>
+                <span>Waste Logs</span>
+            </div>
+            <div class="nav-item divider-nav"></div>
+            <div class="nav-item" id="nav-settings">
+                <span class="material-icons">settings</span>
+                <span>Settings</span>
+            </div>
+            
+            <div class="sidebar-footer">
+                <a href="../index.html" class="back-link">
+                    <span class="material-icons">arrow_back</span>
+                    <span>Back to Portfolio</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-left">
+                    <span class="material-icons menu-icon" id="menu-btn">menu</span>
+                    <h2>Coffee Shop Operations</h2>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <span class="material-icons">search</span>
+                        <input type="text" placeholder="Search items...">
+                    </div>
+                    <span class="material-icons icon-btn">notifications</span>
+                    <div class="avatar">A</div>
+                </div>
+            </header>
+
+            <!-- VIEW: DASHBOARD -->
+            <div id="view-dashboard" class="view-section active">
+                <div class="dashboard-content">
+                    <!-- KPI Bento Box Row -->
+                    <div class="stats-row stagger-in">
+                        <div class="analytics-card">
+                            <div class="stat-title">Total Value in Stock</div>
+                            <div class="stat-number" id="kpi-total-value">$4,250.00</div>
+                            <div class="stat-trend neutral"><span class="material-icons">trending_up</span> 2% vs last week</div>
+                        </div>
+                        <div class="analytics-card alert-card">
+                            <div class="stat-title">Low Stock Alerts</div>
+                            <div class="stat-number alert-text" id="kpi-low-stock">3</div>
+                            <div class="stat-trend negative"><span class="material-icons">warning</span> Action required</div>
+                        </div>
+                        <div class="analytics-card">
+                            <div class="stat-title">YTD Waste Value</div>
+                            <div class="stat-number" id="kpi-waste-value">$340.50</div>
+                            <div class="stat-trend positive"><span class="material-icons">trending_down</span> 12% reduction</div>
+                        </div>
+                    </div>
+                    
+                    <div class="inventory-section stagger-in" style="animation-delay: 0.1s;">
+                        <div class="section-header">
+                            <h3>Current Inventory Snapshot</h3>
+                            <div class="action-buttons">
+                                <button class="btn btn-outline" id="btn-waste"><span class="material-icons btn-icon">delete_outline</span>Record Waste</button>
+                                <button class="btn btn-primary" id="btn-receive"><span class="material-icons btn-icon">add_box</span>Receive Shipment</button>
+                            </div>
+                        </div>
+                        
+                        <div class="table-container">
+                            <table class="inventory-table">
+                                <thead>
+                                    <tr>
+                                        <th>Item Name</th>
+                                        <th>Category</th>
+                                        <th>Current Stock</th>
+                                        <th>Unit</th>
+                                        <th>Threshold</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="inventory-body-dash">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: ALL STOCK -->
+            <div id="view-stock" class="view-section" style="display: none;">
+                <div class="dashboard-content">
+                    <div class="section-header stagger-in">
+                        <h3>All Stock Master List</h3>
+                        <div class="action-buttons">
+                            <button class="btn btn-outline" id="btn-filter"><span class="material-icons btn-icon">filter_list</span>Filter Low Stock</button>
+                        </div>
+                    </div>
+                    <div class="table-container stagger-in" style="animation-delay: 0.1s;">
+                        <table class="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Category</th>
+                                    <th>Current Stock</th>
+                                    <th>Unit</th>
+                                    <th>Threshold</th>
+                                    <th>Cost/Unit</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inventory-body-full">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: PURCHASE ORDERS -->
+            <div id="view-po" class="view-section" style="display: none;">
+                <div class="dashboard-content">
+                    <div class="section-header stagger-in">
+                        <h3>Purchase Order History</h3>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="btn-create-po"><span class="material-icons btn-icon">add</span>Create Draft PO</button>
+                        </div>
+                    </div>
+                    <div class="table-container stagger-in" style="animation-delay: 0.1s;">
+                        <table class="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>PO Number</th>
+                                    <th>Supplier</th>
+                                    <th>Item</th>
+                                    <th>Qty Received</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="po-body">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: WASTE LOGS -->
+            <div id="view-waste" class="view-section" style="display: none;">
+                <div class="dashboard-content">
+                    <div class="section-header stagger-in">
+                        <h3>Waste & Spoilage Logs</h3>
+                    </div>
+                    <div class="table-container stagger-in" style="animation-delay: 0.1s;">
+                        <table class="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Item</th>
+                                    <th>Category</th>
+                                    <th>Qty Wasted</th>
+                                    <th>Reason</th>
+                                    <th>Financial Loss</th>
+                                </tr>
+                            </thead>
+                            <tbody id="waste-body">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: SETTINGS -->
+            <div id="view-settings" class="view-section" style="display: none;">
+                <div class="dashboard-content">
+                    <div class="section-header stagger-in">
+                        <h3>Application Settings</h3>
+                    </div>
+                    <div class="settings-card stagger-in" style="animation-delay: 0.1s;">
+                        <div class="settings-row">
+                            <div>
+                                <h4>Auto-Reorder Alerts</h4>
+                                <p class="subtitle">Automatically email supplier when stock falls below threshold.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-reorder" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="settings-row">
+                            <div>
+                                <h4>Dark Mode</h4>
+                                <p class="subtitle">Switch the application to a dark color scheme.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-dark">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+        
+        <!-- Receive Shipment Modal -->
+        <div class="modal-overlay" id="receive-modal" style="display: none;">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3>Receive Shipment</h3>
+                    <span class="material-icons modal-close" id="receive-close">close</span>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Select Item</label>
+                        <select id="receive-item">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity Received</label>
+                        <input type="number" id="receive-qty" min="1" value="1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline" id="receive-cancel">Cancel</button>
+                    <button class="btn btn-primary" id="receive-save">Add to Stock</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Record Waste Modal -->
+        <div class="modal-overlay" id="waste-modal" style="display: none;">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3>Record Waste / Spoilage</h3>
+                    <span class="material-icons modal-close" id="waste-close">close</span>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Select Item</label>
+                        <select id="waste-item">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity Wasted</label>
+                        <input type="number" id="waste-qty" min="1" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Reason</label>
+                        <select id="waste-reason">
+                            <option>Expired / Spoiled</option>
+                            <option>Spilled / Dropped</option>
+                            <option>Quality Control</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline" id="waste-cancel">Cancel</button>
+                    <button class="btn btn-danger" id="waste-save">Record Loss</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Create PO Modal -->
+        <div class="modal-overlay" id="create-po-modal" style="display: none;">
+            <div class="modal" style="width: 500px;">
+                <div class="modal-header">
+                    <h3>Recommended Purchase Orders</h3>
+                    <span class="material-icons modal-close" id="create-po-close">close</span>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-secondary);">The following items have dropped below their minimum threshold and are recommended for reordering:</p>
+                    <div class="table-container" style="max-height: 250px; overflow-y: auto; margin-bottom: 16px;">
+                        <table class="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Current</th>
+                                    <th>Suggested Qty</th>
+                                </tr>
+                            </thead>
+                            <tbody id="create-po-list">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline" id="create-po-cancel">Cancel</button>
+                    <button class="btn btn-primary" id="create-po-save">Confirm & Generate POs</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Container -->
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
