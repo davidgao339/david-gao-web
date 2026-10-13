@@ -3,452 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>App Demos | David Gao</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --primary: #3b82f6;
-      --primary-hover: #2563eb;
-      --accent: #10b981;
-    }
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      padding: 2rem;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 3rem;
-      margin-top: 2rem;
-    }
-    header h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(to right, #3b82f6, #10b981);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      line-height: 1.2;
-    }
-    header p {
-      font-size: 1.5rem;
-      color: var(--text-muted);
-      max-width: 800px;
-      margin: 0 auto 2.5rem auto;
-      line-height: 1.4;
-    }
-    
-    .cta-group {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        margin-bottom: 4rem;
-    }
-    
-    /* Buttons */
-    .btn {
-      display: inline-block;
-      text-align: center;
-      text-decoration: none;
-      padding: 1rem 2rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background-color: var(--primary);
-      color: white;
-      border: 2px solid var(--primary);
-      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-    }
-    .btn-primary:hover {
-      background-color: var(--primary-hover);
-      border-color: var(--primary-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-    }
-    .btn-secondary {
-      background-color: transparent;
-      color: var(--text-main);
-      border: 2px solid var(--text-muted);
-    }
-    .btn-secondary:hover {
-      border-color: white;
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    /* Hero Showcase Layout */
-    .showcase-wrapper {
-      position: relative;
-      margin-bottom: 4rem;
-    }
-    .showcase {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: stretch;
-      position: relative;
-    }
-    .flow-arrow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 3rem;
-      color: var(--text-muted);
-      z-index: 5;
-      background: var(--bg-color);
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.1);
-    }
-    @media (max-width: 900px) {
-      .showcase {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-      .flow-arrow {
-        transform: translate(-50%, -50%) rotate(90deg);
-        top: calc(50% - 1.5rem);
+  <title>Production Applications & AI Demos | David Gao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwindcss.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
       }
     }
-    .showcase-card {
-      background-color: var(--card-bg);
-      border-radius: 1rem;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative;
-      padding: 3rem 1.5rem 1.5rem 1.5rem;
-    }
-    .showcase-label {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: rgba(0,0,0,0.7);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      backdrop-filter: blur(4px);
-      z-index: 10;
-    }
-    .showcase-img {
-      width: 100%;
-      height: 100%;
-      max-height: 400px;
-      object-fit: contain;
-      display: block;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    
-    /* UX Animations */
-    .interactive-link {
-        display: block;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        animation: subtle-pulse 3s infinite;
-    }
-    @keyframes subtle-pulse {
-        0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.2); }
-        50% { box-shadow: 0 0 20px 5px rgba(16, 185, 129, 0.3); }
-        100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.2); }
-    }
-    .interactive-link:hover {
-        animation: none;
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
-        border-color: rgba(16, 185, 129, 0.5);
-    }
-    
-    /* Benefits Section */
-    .benefits {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-        margin-bottom: 5rem;
-    }
-    @media (max-width: 768px) {
-        .benefits { grid-template-columns: 1fr; }
-    }
-    .benefit-item {
-        text-align: center;
-        padding: 2rem;
-        background: rgba(255,255,255,0.02);
-        border-radius: 1rem;
-        border: 1px solid rgba(255,255,255,0.05);
-    }
-    .benefit-icon {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        display: block;
-    }
-    .benefit-item h3 {
-        font-size: 1.25rem;
-        margin-bottom: 0.75rem;
-    }
-    .benefit-item p {
-        color: var(--text-muted);
-        line-height: 1.5;
-        font-size: 0.95rem;
-    }
-
-    /* Gallery Grid Layout */
-    .section-divider {
-      margin: 6rem 0 3rem 0;
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 3rem;
-    }
-    .section-divider h2 {
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 0.5rem;
-    }
-    .section-divider p {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-bottom: 6rem;
-    }
-    .card {
-      background-color: var(--card-bg);
-      border-radius: 1rem;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-    .card-img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .card-content {
-      padding: 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin: 0 0 0.5rem 0;
-    }
-    .card-desc {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.5;
-      margin-bottom: 1.5rem;
-      flex: 1;
-    }
-    .card .btn-primary {
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      width: 100%;
-      box-sizing: border-box;
-      box-shadow: none;
-    }
-
-    /* Final CTA */
-    .final-cta {
-        text-align: center;
-        padding: 4rem 2rem;
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
-        border-radius: 1rem;
-        border: 1px solid rgba(255,255,255,0.1);
-        margin-bottom: 2rem;
-    }
-    .final-cta h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-    }
-    .final-cta p {
-        color: var(--text-muted);
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 2rem;
-      color: var(--text-muted);
-      text-decoration: none;
-    }
-    .back-link:hover {
-      color: white;
-      text-decoration: underline;
-    }
-  </style>
+  </script>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen selection:bg-blue-500 selection:text-white">
 
-  <div class="container">
-    <!-- Hero Section -->
-    <header>
-      <h1>Turn Messy Spreadsheets into<br>Actionable Business Insights</h1>
-      <p>I take care of the data so you can take care of your business.</p>
-      
-      <div class="cta-group">
-          <a href="cafe-dashboard/index.html" class="btn btn-primary">Try the Interactive Demo</a>
-          <a href="mailto:contact@davidgao.ca" class="btn btn-secondary">Book a Consultation</a>
-      </div>
-    </header>
-
-    <div class="showcase-wrapper">
-        <div class="flow-arrow">➔</div>
-        <div class="showcase">
-        <!-- Before -->
-        <div class="showcase-card">
-            <div class="showcase-label" style="color: #ef4444;">Before</div>
-            <img src="assets/before_excel.png" alt="Messy Excel Spreadsheet" class="showcase-img" onerror="this.src='https://via.placeholder.com/800x600/1e293b/94a3b8?text=Place+before_excel.png+in+assets+folder'">
-        </div>
-
-        <!-- After -->
-        <a href="cafe-dashboard/index.html" class="showcase-card interactive-link">
-            <div class="showcase-label" style="color: #10b981;">After</div>
-            <img src="assets/after_dashboard.png" alt="Clean Interactive Dashboard" class="showcase-img" onerror="this.src='https://via.placeholder.com/800x600/1e293b/10b981?text=Place+after_dashboard.png+in+assets+folder'">
-        </a>
-        </div>
+  <!-- Nav -->
+  <nav class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <a href="/" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition-all">
+        &larr; Return to Portfolio
+      </a>
+      <div class="h-4 w-px bg-slate-800"></div>
+      <span class="text-xs font-bold text-blue-400 uppercase tracking-widest flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+        Data Science &bull; Applied AI &bull; Operations Suite
+      </span>
     </div>
 
-    <!-- Benefits Section -->
-    <section class="benefits">
-        <div class="benefit-item">
-            <span class="benefit-icon">⚡</span>
-            <h3>Automated Reporting</h3>
-            <p>Stop manually crunching numbers in Excel. Your dashboards sync automatically in real-time, eliminating human error.</p>
-        </div>
-        <div class="benefit-item">
-            <span class="benefit-icon">🎯</span>
-            <h3>Custom Built for You</h3>
-            <p>No clunky, off-the-shelf software. Every metric and workflow is precision-engineered for exactly how your business operates.</p>
-        </div>
-        <div class="benefit-item">
-            <span class="benefit-icon">☁️</span>
-            <h3>Fully Managed Infrastructure</h3>
-            <p>I handle the secure servers, data pipelines, and hosting. You just log in and get the insights you need.</p>
-        </div>
-    </section>
+    <a href="/David_Gao_Resume.pdf" target="_blank" rel="noopener noreferrer"
+       class="inline-flex items-center gap-1.5 px-4 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-full text-xs font-semibold transition-all shadow-sm">
+      <span>Resume (PDF)</span>
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+    </a>
+  </nav>
 
-    <!-- Gallery Section -->
-    <div class="section-divider">
-      <h2>Explore Other Tools</h2>
-      <p>A collection of high-performance internal applications built to solve complex operations.</p>
+  <main class="max-w-6xl mx-auto px-6 py-14">
+
+    <!-- Hero Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="px-3.5 py-1 bg-blue-950/80 border border-blue-800 text-blue-300 rounded-full text-xs font-bold uppercase tracking-wider inline-block mb-4">
+        Interactive Production Showcase
+      </span>
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-5 leading-tight">
+        Engineered for Production. Tested with Real Data.
+      </h1>
+      <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
+        A collection of production applications, operations research solvers, and analytics platforms built and deployed by <strong class="text-white">David Gao</strong> to automate multi-facility retail and enterprise operations.
+      </p>
     </div>
 
-    <div class="grid" style="margin-bottom: 6rem;">
-      <!-- Cafe Dashboard App -->
-      <div class="card">
-        <div class="card-img" style="background-color: rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="20" x2="18" y2="10"></line>
-                <line x1="12" y1="20" x2="12" y2="4"></line>
-                <line x1="6" y1="20" x2="6" y2="14"></line>
-            </svg>
+    <!-- 4 Interactive App Cards -->
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+
+      <!-- 1. Real Inventory & Replenishment ERP -->
+      <div class="rounded-3xl bg-slate-900/90 border border-slate-800 p-8 flex flex-col justify-between hover:border-slate-700 hover:shadow-2xl hover:shadow-blue-900/10 transition-all group">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-blue-950 border border-blue-800 text-blue-400 uppercase tracking-wider">
+              Full-Stack ERP &bull; React &amp; Vite
+            </span>
+            <span class="text-xs text-slate-500 font-medium">Boba Cafe Platform</span>
+          </div>
+
+          <h2 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+            Inventory &amp; Replenishment ERP
+          </h2>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Production ERP web application managing ingredients, recipes, and multi-facility replenishment. Features Bill-of-Materials (BOM) consumption conversion, automated PO creation, supplier grouping, and physical audit reconciliation.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">React &amp; Vite</span>
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">BOM Depletion</span>
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">PO Generator</span>
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Audit Variance</span>
+          </div>
         </div>
-        <div class="card-content">
-          <h2 class="card-title">Retail Analytics Dashboard</h2>
-          <p class="card-desc">A beautiful, data-dense financial dashboard built for retail management. Features interactive charting and real-time KPI tracking.</p>
-          <a href="cafe-dashboard/index.html" class="btn btn-primary" style="width: 100%; box-sizing: border-box; text-align: center;">View Demo</a>
+
+        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Pre-loaded with 130+ items
+          </span>
+          <a href="/demo/inventory-app/index.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition-all shadow-md">
+            <span>Launch ERP App</span>
+            <span>&rarr;</span>
+          </a>
         </div>
       </div>
 
-      <!-- Schedule App -->
-      <div class="card">
-        <div class="card-img" style="background-color: rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
+      <!-- 2. CP-SAT Shift & Constraint Optimizer -->
+      <div class="rounded-3xl bg-slate-900/90 border border-purple-900/40 p-8 flex flex-col justify-between hover:border-purple-800/60 hover:shadow-2xl hover:shadow-purple-900/20 transition-all group">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-purple-950 border border-purple-800 text-purple-400 uppercase tracking-wider">
+              Operations Research &bull; CP-SAT
+            </span>
+            <span class="text-xs text-slate-500 font-medium">Live Streamlit App</span>
+          </div>
+
+          <h2 class="text-2xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">
+            Shift &amp; Constraint Optimizer
+          </h2>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Mathematical constraint programming solver in Python using Google OR-Tools CP-SAT. Solves globally optimal weekly schedules across 10 locations and 50+ staff in under 3 minutes, honoring 12-hour rest intervals, coverage, and labor laws.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Python OR-Tools</span>
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">CP-SAT Solver</span>
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Streamlit Cloud</span>
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">100% Feasible</span>
+          </div>
         </div>
-        <div class="card-content">
-          <h2 class="card-title">Volunteer Scheduler</h2>
-          <p class="card-desc">An interactive drag-and-drop scheduling tool built for non-profits. Features intelligent conflict detection and automated CSV exports.</p>
-          <a href="schedule-app/index.html" class="btn btn-primary" style="width: 100%; box-sizing: border-box;">View Demo</a>
+
+        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <a href="/demo/schedule-optimizer/index.html" class="text-xs text-purple-400 hover:text-purple-300 font-semibold underline underline-offset-4">
+            Model Architecture &rarr;
+          </a>
+          <a href="https://bobacafe-web-scheduleoptimizer.streamlit.app/" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-xs font-bold transition-all shadow-md">
+            <span>Launch Live Solver ↗</span>
+          </a>
         </div>
       </div>
 
-      <!-- Coming Soon App -->
-      <div class="card">
-        <div class="card-img" style="background-color: rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
+      <!-- 3. Real Work Schedule App -->
+      <div class="rounded-3xl bg-slate-900/90 border border-slate-800 p-8 flex flex-col justify-between hover:border-slate-700 hover:shadow-2xl hover:shadow-blue-900/10 transition-all group">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 uppercase tracking-wider">
+              Internal Team Tool &bull; React
+            </span>
+            <span class="text-xs text-slate-500 font-medium">Boba Operations</span>
+          </div>
+
+          <h2 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+            Multi-Location Staff Schedule
+          </h2>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Production employee schedule application serving 50+ staff across 10 European retail stores. Provides mobile-responsive shift lookup, branch location routing, and shift hour tracking with instant employee switching.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">React &amp; Tailwind</span>
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Mobile-First</span>
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Branch Routing</span>
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">14-Day Calendar</span>
+          </div>
         </div>
-        <div class="card-content">
-          <h2 class="card-title">Inventory Management</h2>
-          <p class="card-desc">A blazing-fast interactive web app tracking real-time stock levels, waste metrics, and reorder thresholds for coffee shops and cafes.</p>
-          <a href="inventory-app/index.html" class="btn btn-primary" style="width: 100%; box-sizing: border-box; text-align: center;">View Demo</a>
+
+        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 12 Staff &bull; 8 Branches
+          </span>
+          <a href="/demo/schedule-app/index.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition-all shadow-md">
+            <span>Launch Schedule Tool</span>
+            <span>&rarr;</span>
+          </a>
         </div>
       </div>
 
-      <!-- Schedule Optimizer App -->
-      <div class="card">
-        <div class="card-img" style="background-color: rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-            </svg>
+      <!-- 4. Cafe Analytics Dashboard -->
+      <div class="rounded-3xl bg-slate-900/90 border border-slate-800 p-8 flex flex-col justify-between hover:border-slate-700 hover:shadow-2xl hover:shadow-blue-900/10 transition-all group">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 uppercase tracking-wider">
+              BI &bull; Chart.js Canvas
+            </span>
+            <span class="text-xs text-slate-500 font-medium">11,294 Records</span>
+          </div>
+
+          <h2 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+            Retail Analytics &amp; Forecasting Dashboard
+          </h2>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Client-side business intelligence dashboard rendering 2 years of daily transactional data. Computes gross margin, AOV, hourly traffic heatmaps, customer loyalty retention, and top product basket pairings.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Client-Side ETL</span>
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Canvas / Chart.js</span>
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">KPI Modeling</span>
+            <span class="text-xs font-mono px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Affinity Matrix</span>
+          </div>
         </div>
-        <div class="card-content">
-          <h2 class="card-title">Shift &amp; Constraint Optimizer</h2>
-          <p class="card-desc">OR-Tools CP-SAT mathematical optimization solver. Generates optimal weekly schedules respecting availability, labor laws, and coverage constraints.</p>
-          <a href="schedule-optimizer/index.html" class="btn btn-primary" style="width: 100%; box-sizing: border-box; text-align: center;">View Demo</a>
+
+        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-slate-400 font-mono">
+            $2.1M+ Vol Simulated
+          </span>
+          <a href="/demo/cafe-dashboard/index.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition-all shadow-md">
+            <span>Launch Analytics App</span>
+            <span>&rarr;</span>
+          </a>
         </div>
       </div>
+
     </div>
 
-    <!-- Final CTA -->
-    <section class="final-cta">
-        <h2>Ready to stop fighting your own data?</h2>
-        <p>Let's build the exact tools your team needs to scale.</p>
-        <a href="mailto:contact@davidgao.ca" class="btn btn-primary">Let's Talk</a>
-    </section>
-
-    <div style="text-align: center;">
-      <a href="/" class="back-link">← Back to Portfolio</a>
+    <!-- Bottom note & Portfolio Back link -->
+    <div class="text-center pt-8 border-t border-slate-800/60">
+      <a href="/" class="text-slate-400 hover:text-white text-sm font-semibold transition-colors">
+        &larr; Return to David Gao's Portfolio Homepage
+      </a>
     </div>
-  </div>
+
+  </main>
 
 </body>
 </html>

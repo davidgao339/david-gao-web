@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/demo/schedule-app/static/js/main.a08173bf.js",
+    "index.html": "/demo/schedule-app/index.html",
+    "main.a08173bf.js.map": "/demo/schedule-app/static/js/main.a08173bf.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.a08173bf.js"
+  ]
+}

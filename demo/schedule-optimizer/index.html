@@ -3,210 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Schedule Optimizer</title>
-  <style>
-    :root {
-      --primary-color: #ff4b4b;
-      --bg-color: #ffffff;
-      --secondary-bg-color: #f0f2f6;
-      --text-color: #31333F;
-      --font-family: "Source Sans Pro", sans-serif;
+  <title>Shift & Constraint Scheduling Optimizer | OR-Tools CP-SAT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwindcss.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
     }
-    body {
-      margin: 0;
-      font-family: var(--font-family);
-      color: var(--text-color);
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .sidebar {
-      width: 300px;
-      background-color: var(--secondary-bg-color);
-      padding: 2rem;
-      box-sizing: border-box;
-      height: 100%;
-      overflow-y: auto;
-    }
-    .main-content {
-      flex: 1;
-      padding: 3rem;
-      background-color: var(--bg-color);
-      overflow-y: auto;
-    }
-    h1 {
-      font-size: 2.25rem;
-      font-weight: 700;
-      margin-top: 0;
-    }
-    .st-button {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 0.25rem;
-      font-size: 1rem;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 1rem;
-    }
-    .st-button:hover {
-      background-color: #ff3333;
-    }
-    .st-slider, .st-select, .st-file {
-      margin-bottom: 1.5rem;
-    }
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      font-size: 0.875rem;
-    }
-    input[type="range"] {
-      width: 100%;
-    }
-    select {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 0.25rem;
-    }
-    .spinner {
-      display: none;
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid var(--primary-color);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 2rem auto;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .result-container {
-      display: none;
-      margin-top: 2rem;
-    }
-    .alert-success {
-      background-color: #d4edda;
-      color: #155724;
-      padding: 1rem;
-      border-radius: 0.25rem;
-      border: 1px solid #c3e6cb;
-      margin-bottom: 1rem;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
+  </script>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen selection:bg-purple-500 selection:text-white">
 
-<div class="sidebar">
-  <div style="margin-bottom: 1.5rem;">
-    <a href="/" style="display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; color: #475569; font-size: 0.825rem; font-weight: 600; padding: 0.35rem 0.75rem; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 9999px;">
-      &larr; Back to Portfolio
-    </a>
-  </div>
-  <h2>Settings</h2>
-  
-  <div class="st-select">
-    <label>Select Location</label>
-    <select>
-      <option>Boba Cafe Downtown</option>
-      <option>Boba Cafe Uptown</option>
-    </select>
-  </div>
-
-  <div class="st-slider">
-    <label>Max Hours per Employee</label>
-    <input type="range" min="20" max="40" value="35">
-  </div>
-
-  <div class="st-slider">
-    <label>Minimum Rest Between Shifts (hrs)</label>
-    <input type="range" min="8" max="16" value="12">
-  </div>
-
-  <button class="st-button" onclick="runOptimization()">Optimize Schedule</button>
-</div>
-
-<div class="main-content">
-  <h1>⚙️ Schedule Optimizer (CP-SAT)</h1>
-  <p>Uses OR-Tools Constraint Programming to generate mathematically optimal schedules for employees, respecting all labor laws, availability, and business requirements.</p>
-  
-  <div class="spinner" id="loadingSpinner"></div>
-
-  <div class="result-container" id="resultArea">
-    <div class="alert-success">
-      <strong>Optimization Successful!</strong> Found optimal schedule in 2.43 seconds.
+  <!-- Top bar -->
+  <header class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <a href="/" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition-all">
+        &larr; Portfolio
+      </a>
+      <a href="/demo/index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800/60 hover:bg-slate-700 text-slate-400 hover:text-slate-200 rounded-lg text-xs font-semibold transition-all">
+        All Demos
+      </a>
+      <div class="h-4 w-px bg-slate-800"></div>
+      <span class="text-xs font-semibold text-purple-400 uppercase tracking-wider flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+        Operations Research &bull; CP-SAT
+      </span>
     </div>
 
-    <h3>Generated Schedule (Preview)</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Employee</th>
-          <th>Monday</th>
-          <th>Tuesday</th>
-          <th>Wednesday</th>
-          <th>Thursday</th>
-          <th>Friday</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Alice (Manager)</td>
-          <td>9:00 - 17:00</td>
-          <td>9:00 - 17:00</td>
-          <td>Off</td>
-          <td>11:00 - 19:00</td>
-          <td>12:00 - 20:00</td>
-        </tr>
-        <tr>
-          <td>Bob (Barista)</td>
-          <td>Off</td>
-          <td>13:00 - 21:00</td>
-          <td>9:00 - 17:00</td>
-          <td>9:00 - 17:00</td>
-          <td>14:00 - 22:00</td>
-        </tr>
-        <tr>
-          <td>Charlie (Cashier)</td>
-          <td>14:00 - 22:00</td>
-          <td>Off</td>
-          <td>13:00 - 21:00</td>
-          <td>Off</td>
-          <td>9:00 - 17:00</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+    <a href="https://bobacafe-web-scheduleoptimizer.streamlit.app/" target="_blank" rel="noopener noreferrer"
+       class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-lg text-xs font-bold transition-all shadow-md shadow-purple-900/30">
+      <span>Launch Live Streamlit App</span>
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+    </a>
+  </header>
 
-<script>
-  function runOptimization() {
-    document.getElementById('resultArea').style.display = 'none';
-    document.getElementById('loadingSpinner').style.display = 'block';
-    
-    setTimeout(() => {
-      document.getElementById('loadingSpinner').style.display = 'none';
-      document.getElementById('resultArea').style.display = 'block';
-    }, 1500);
-  }
-</script>
+  <main class="max-w-5xl mx-auto px-6 py-12">
+
+    <!-- Hero badge & Title -->
+    <div class="mb-10 text-center sm:text-left">
+      <span class="px-3 py-1 bg-purple-950/80 border border-purple-800 text-purple-300 rounded-full text-xs font-semibold uppercase tracking-wider inline-block mb-3">
+        Google OR-Tools &bull; Constraint Programming
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+        Multi-Location Shift &amp; Constraint Optimizer
+      </h1>
+      <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-3xl">
+        A mathematical constraint optimization engine formulated in Python using Google OR-Tools CP-SAT.
+        Solves optimal weekly shift allocations across <strong class="text-slate-200">10 locations and 50+ staff</strong> in under 3 minutes, slashing a 2-week manual management burden to zero.
+      </p>
+    </div>
+
+    <!-- Live App Launch Card -->
+    <div class="mb-12 rounded-3xl bg-gradient-to-br from-purple-900/40 via-slate-900 to-slate-900 border border-purple-800/50 p-8 sm:p-10 shadow-2xl relative overflow-hidden">
+      <div class="absolute -right-16 -top-16 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-purple-400 mb-1 block">Live Cloud Deployment</span>
+          <h2 class="text-2xl font-bold text-white mb-2">Interactive Streamlit Solver Environment</h2>
+          <p class="text-slate-300 text-sm leading-relaxed max-w-xl">
+            Test the live solver hosted on Streamlit Cloud. Adjust location headcounts, minimum rest periods, and shift fairness parameters, then execute the CP-SAT solver in real time.
+          </p>
+        </div>
+
+        <a href="https://bobacafe-web-scheduleoptimizer.streamlit.app/" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2.5 px-6 py-3.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-purple-900/40 shrink-0">
+          <span>Open Live Streamlit App</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mathematical Model Architecture -->
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+
+      <!-- Hard Constraints -->
+      <div class="rounded-2xl bg-slate-900 border border-slate-800 p-6">
+        <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+          Hard Constraints (Strict Feasibility)
+        </h3>
+        <ul class="space-y-3 text-sm text-slate-300">
+          <li class="flex items-start gap-2.5">
+            <span class="text-red-400 font-mono text-xs mt-0.5">&bull;</span>
+            <span><strong>Store Coverage Demand:</strong> Exactly N baristas and supervisors present during opening, peak rush, and closing hours.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-red-400 font-mono text-xs mt-0.5">&bull;</span>
+            <span><strong>Rest Interval:</strong> Minimum 12 hours of mandatory rest between consecutive shifts for any staff member.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-red-400 font-mono text-xs mt-0.5">&bull;</span>
+            <span><strong>Weekly Max Hours:</strong> Strict cap at 40 hours/week per employee to prevent overtime penalties under labor laws.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-red-400 font-mono text-xs mt-0.5">&bull;</span>
+            <span><strong>Single Assignment:</strong> No employee can be assigned to multiple stores or overlapping slots on the same day.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Soft Constraints & Objective -->
+      <div class="rounded-2xl bg-slate-900 border border-slate-800 p-6">
+        <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          Objective Function &amp; Soft Penalties
+        </h3>
+        <ul class="space-y-3 text-sm text-slate-300">
+          <li class="flex items-start gap-2.5">
+            <span class="text-emerald-400 font-mono text-xs mt-0.5">&bull;</span>
+            <span><strong>Fair Weekend Allocation:</strong> Minimizes the variance of weekend shifts across the employee roster.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-emerald-400 font-mono text-xs mt-0.5">&bull;</span>
+            <span><strong>Commute Distance Minimization:</strong> Prioritizes branch assignments closest to employee residential zones.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-emerald-400 font-mono text-xs mt-0.5">&bull;</span>
+            <span><strong>Availability Preferences:</strong> Soft bonus for honoring voluntary time-off and preferred shift requests.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-emerald-400 font-mono text-xs mt-0.5">&bull;</span>
+            <span><strong>Solver Speed:</strong> High-efficiency boolean satisfiability tree traversal finds optimal assignments in &lt; 180s.</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Solver Benchmark Card -->
+    <div class="rounded-2xl bg-slate-900 border border-slate-800 p-6 mb-12">
+      <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Performance Metrics</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+          <p class="text-2xl font-black text-purple-400">&lt; 3 min</p>
+          <p class="text-xs text-slate-500 font-medium mt-1">Solve Duration</p>
+        </div>
+        <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+          <p class="text-2xl font-black text-purple-400">10</p>
+          <p class="text-xs text-slate-500 font-medium mt-1">Locations Solved</p>
+        </div>
+        <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+          <p class="text-2xl font-black text-purple-400">50+</p>
+          <p class="text-xs text-slate-500 font-medium mt-1">Employees Scheduled</p>
+        </div>
+        <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+          <p class="text-2xl font-black text-purple-400">100%</p>
+          <p class="text-xs text-slate-500 font-medium mt-1">Labor Law Compliance</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Navigation -->
+    <div class="text-center pt-4">
+      <a href="/" class="text-slate-400 hover:text-white text-sm font-semibold transition-colors">
+        &larr; Return to David Gao's Portfolio
+      </a>
+    </div>
+
+  </main>
 
 </body>
 </html>
