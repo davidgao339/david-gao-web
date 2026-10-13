@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru"><head><meta charset="UTF-8"><title>Заявка PO-007 (Пример отображения)</title>
+<html lang="en"><head><meta charset="UTF-8"><title>Purchase Order PO-007 (Sample Print Preview)</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,sans-serif;padding:32px 44px;color:#222;font-size:13px;max-width:900px;margin:0 auto;background:#fff}
@@ -82,197 +82,253 @@ table.items-table tr{break-inside:avoid;page-break-inside:avoid}
 </style></head><body>
 
 <div class="no-print-bar">
-  <span>💡 <b>Предварительный просмотр PO:</b> Нажмите «Печать / PDF», чтобы проверить отображение повторяющегося заголовка на каждой странице.</span>
-  <button class="print-btn" onclick="window.print()">Печать / Сохранить в PDF</button>
+  <span>💡 <b>Purchase Order Print Preview:</b> Click "Print / Save PDF" to inspect the multi-page layout and verification checklist.</span>
+  <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
 </div>
 
 <div class="page" style="page-break-after: always;">
   <div class="header-wrap">
     <div class="header-left">
-      <div class="store">БОН ПАССАЖ</div>
-      <div class="title">ЗАЯВКА НА ЗАКАЗ <span class="doc-id">№ PO-007</span></div>
-      <div class="cat">Категория: Снабжение кафе / Контроль поставок · Перемещение: <b>Warehouse (Центральный Склад)</b> → <b>БОН ПАССАЖ</b></div>
+      <div class="store">HARBOR PROMENADE</div>
+      <div class="title">PURCHASE ORDER &amp; RECEIVING MANIFEST <span class="doc-id"># PO-007</span></div>
+      <div class="cat">Category: Cafe Supply &middot; Inventory Transfer: <b>Central Warehouse</b> &rarr; <b>Harbor Promenade</b></div>
     </div>
     <div class="created-date-box">
       <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:3px;">
-         <div class="date-box-label" style="margin-bottom:0;">📅 ДАТА СОЗДАНИЯ:</div>
-         <div class="page-count-badge" style="font-size:11px; font-weight:800; color:#1a6e34; background:#dcfce7; padding:2px 6px; border-radius:4px; border:1px solid #bbf7d0;">Стр. 1 из 2</div>
+         <div class="date-box-label" style="margin-bottom:0;">📅 ISSUE DATE:</div>
+         <div class="page-count-badge" style="font-size:11px; font-weight:800; color:#1a6e34; background:#dcfce7; padding:2px 6px; border-radius:4px; border:1px solid #bbf7d0;">Page 1 of 2</div>
       </div>
-      <div class="date-box-val">3 августа 2026 г.</div>
-      <div class="date-box-sub">Понедельник, 03.08.2026</div>
+      <div class="date-box-val">October 14, 2026</div>
+      <div class="date-box-sub">Wednesday &middot; 08:30 Dispatch</div>
     </div>
   </div>
 
   <div class="sig-box">
-    <div class="sig-title">ПОДТВЕРЖДЕНИЕ ПРИЕМКИ ТОВАРА:</div>
+    <div class="sig-title">GOODS RECEIPT &amp; RECONCILIATION VERIFICATION:</div>
     <div class="sig-row">
-      <div class="sig-field"><div class="sig-label">Товар принял (ФИО сотрудника):</div><div class="sig-line"></div></div>
-      <div class="sig-field"><div class="sig-label">Подпись:</div><div class="sig-line"></div></div>
-      <div class="sig-field"><div class="sig-label">Дата приемки:</div><div class="sig-line"></div></div>
+      <div class="sig-field">
+        <div class="sig-label">Received By (Employee Full Name):</div>
+        <div class="sig-line"></div>
+      </div>
+      <div class="sig-field">
+        <div class="sig-label">Receiving Date &amp; Shift:</div>
+        <div class="sig-line"></div>
+      </div>
+      <div class="sig-field">
+        <div class="sig-label">Receiving Signature:</div>
+        <div class="sig-line"></div>
+      </div>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-header">1. Чай и основы</div>
+    <div class="section-header">PRIMARY BEVERAGE INGREDIENTS &amp; TOPPINGS</div>
     <table class="items-table">
-      <thead><tr>
-        <th class="col-cb">СКЛАД</th>
-        <th class="col-cb">МАГАЗИН</th>
-        <th class="col-name">НАИМЕНОВАНИЕ</th>
-        <th class="col-qty">ЗАКАЗ</th>
-        <th class="col-unit">ЕД. ИЗМ.</th>
-      </tr></thead>
+      <thead>
+        <tr>
+          <th style="width:40px; text-align:center;">#</th>
+          <th>ITEM DESCRIPTION</th>
+          <th style="width:100px;">UNIT</th>
+          <th class="col-qty">DISPATCH</th>
+          <th style="width:110px; text-align:right;">WAREHOUSE</th>
+          <th style="width:120px;">EXPIRY / BATCH</th>
+          <th class="col-cb">VERIFIED</th>
+        </tr>
+      </thead>
       <tbody>
         <tr>
+          <td style="text-align:center; color:#888;">1</td>
+          <td><b>Premium Black Tapioca Pearls (1kg)</b><br><span style="font-size:11px; color:#666;">Supplier: Pacific Tea Imports &middot; SKU: TOP-010</span></td>
+          <td class="col-unit">pack (1kg)</td>
+          <td class="col-qty">24</td>
+          <td style="text-align:right; color:#555;">24 pk</td>
+          <td style="font-size:11px; color:#555;">B-2027-04</td>
           <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Тапиока классическая (Black Pearl)</td>
-          <td class="col-qty">12</td>
-          <td class="col-unit">кг</td>
         </tr>
         <tr>
+          <td style="text-align:center; color:#888;">2</td>
+          <td><b>Organic Madagascar Vanilla Syrup (1L)</b><br><span style="font-size:11px; color:#666;">Supplier: Maison Routin 1883 &middot; SKU: SYR-004</span></td>
+          <td class="col-unit">bottle (1L)</td>
+          <td class="col-qty">6</td>
+          <td style="text-align:right; color:#555;">6 btl</td>
+          <td style="font-size:11px; color:#555;">B-2027-09</td>
           <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Чай Черный Ассам премиум</td>
-          <td class="col-qty">5</td>
-          <td class="col-unit">кг</td>
         </tr>
         <tr>
+          <td style="text-align:center; color:#888;">3</td>
+          <td><b>Salted Caramel Flavoring Syrup (1L)</b><br><span style="font-size:11px; color:#666;">Supplier: Maison Routin 1883 &middot; SKU: SYR-008</span></td>
+          <td class="col-unit">bottle (1L)</td>
+          <td class="col-qty">6</td>
+          <td style="text-align:right; color:#555;">6 btl</td>
+          <td style="font-size:11px; color:#555;">B-2027-11</td>
           <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Сироп Тростниковый коричневый</td>
-          <td class="col-qty">8</td>
-          <td class="col-unit">бут</td>
         </tr>
         <tr>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Зеленый чай Жасминовый премиум</td>
+          <td style="text-align:center; color:#888;">4</td>
+          <td><b>Ceremonial Grade Uji Matcha Powder (500g)</b><br><span style="font-size:11px; color:#666;">Supplier: Kyoto Tea Masters &middot; SKU: TEA-022</span></td>
+          <td class="col-unit">tin (500g)</td>
           <td class="col-qty">4</td>
-          <td class="col-unit">кг</td>
+          <td style="text-align:right; color:#555;">4 tin</td>
+          <td style="font-size:11px; color:#555;">B-2027-06</td>
+          <td class="col-cb"><span class="cb"></span></td>
         </tr>
         <tr>
+          <td style="text-align:center; color:#888;">5</td>
+          <td><b>Imperial Assam CTC Black Tea Leaves (1kg)</b><br><span style="font-size:11px; color:#666;">Supplier: Pacific Tea Imports &middot; SKU: TEA-001</span></td>
+          <td class="col-unit">pack (1kg)</td>
+          <td class="col-qty">12</td>
+          <td style="text-align:right; color:#555;">12 pk</td>
+          <td style="font-size:11px; color:#555;">B-2027-12</td>
           <td class="col-cb"><span class="cb"></span></td>
+        </tr>
+        <tr>
+          <td style="text-align:center; color:#888;">6</td>
+          <td><b>Four Seasons Jasmine Green Tea (1kg)</b><br><span style="font-size:11px; color:#666;">Supplier: Pacific Tea Imports &middot; SKU: TEA-002</span></td>
+          <td class="col-unit">pack (1kg)</td>
+          <td class="col-qty">10</td>
+          <td style="text-align:right; color:#555;">10 pk</td>
+          <td style="font-size:11px; color:#555;">B-2027-12</td>
           <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Матча порошок церемониальный</td>
-          <td class="col-qty">2</td>
-          <td class="col-unit">кг</td>
+        </tr>
+        <tr>
+          <td style="text-align:center; color:#888;">7</td>
+          <td><b>Brown Sugar Tiger Glaze Concentrate (2.5kg)</b><br><span style="font-size:11px; color:#666;">Supplier: Sunfield Specialty Goods &middot; SKU: SYR-012</span></td>
+          <td class="col-unit">jug (2.5kg)</td>
+          <td class="col-qty">4</td>
+          <td style="text-align:right; color:#555;">4 jug</td>
+          <td style="font-size:11px; color:#555;">B-2027-08</td>
+          <td class="col-cb"><span class="cb"></span></td>
+        </tr>
+        <tr>
+          <td style="text-align:center; color:#888;">8</td>
+          <td><b>Mango Passionfruit Puree (1L)</b><br><span style="font-size:11px; color:#666;">Supplier: Tropical Harvest Co. &middot; SKU: PUR-005</span></td>
+          <td class="col-unit">carton (1L)</td>
+          <td class="col-qty">8</td>
+          <td style="text-align:right; color:#555;">8 ctn</td>
+          <td style="font-size:11px; color:#555;">B-2027-05</td>
+          <td class="col-cb"><span class="cb"></span></td>
         </tr>
       </tbody>
     </table>
   </div>
-
-  <div class="section">
-    <div class="section-header">2. Сиропы и топпинги</div>
-    <table class="items-table">
-      <thead><tr>
-        <th class="col-cb">СКЛАД</th>
-        <th class="col-cb">МАГАЗИН</th>
-        <th class="col-name">НАИМЕНОВАНИЕ</th>
-        <th class="col-qty">ЗАКАЗ</th>
-        <th class="col-unit">ЕД. ИЗМ.</th>
-      </tr></thead>
-      <tbody>
-        <tr>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Поппинг боба Манго</td>
-          <td class="col-qty">6</td>
-          <td class="col-unit">бан</td>
-        </tr>
-        <tr>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Поппинг боба Клубника</td>
-          <td class="col-qty">6</td>
-          <td class="col-unit">бан</td>
-        </tr>
-        <tr>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Желе Кокосовое в сиропе</td>
-          <td class="col-qty">4</td>
-          <td class="col-unit">бан</td>
-        </tr>
-        <tr>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Сироп Таро порошковый</td>
-          <td class="col-qty">5</td>
-          <td class="col-unit">пак</td>
-        </tr>
-      </tbody>
-    </table>
+  
+  <div class="instr">
+    * Staff Instructions: Verify container seals, batch numbers, temperature logs, and actual package counts before signing goods receipt.
   </div>
 </div>
 
 <div class="page">
   <div class="header-wrap">
     <div class="header-left">
-      <div class="store">БОН ПАССАЖ</div>
-      <div class="title">ЗАЯВКА НА ЗАКАЗ <span class="doc-id">№ PO-007</span></div>
-      <div class="cat">Категория: Снабжение кафе / Контроль поставок · Перемещение: <b>Warehouse (Центральный Склад)</b> → <b>БОН ПАССАЖ</b></div>
+      <div class="store">HARBOR PROMENADE</div>
+      <div class="title">PURCHASE ORDER &amp; RECEIVING MANIFEST <span class="doc-id"># PO-007</span></div>
+      <div class="cat">Category: Cafe Supply &middot; Inventory Transfer: <b>Central Warehouse</b> &rarr; <b>Harbor Promenade</b></div>
     </div>
     <div class="created-date-box">
       <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:3px;">
-         <div class="date-box-label" style="margin-bottom:0;">📅 ДАТА СОЗДАНИЯ:</div>
-         <div class="page-count-badge" style="font-size:11px; font-weight:800; color:#1a6e34; background:#dcfce7; padding:2px 6px; border-radius:4px; border:1px solid #bbf7d0;">Стр. 2 из 2</div>
+         <div class="date-box-label" style="margin-bottom:0;">📅 ISSUE DATE:</div>
+         <div class="page-count-badge" style="font-size:11px; font-weight:800; color:#1a6e34; background:#dcfce7; padding:2px 6px; border-radius:4px; border:1px solid #bbf7d0;">Page 2 of 2</div>
       </div>
-      <div class="date-box-val">3 августа 2026 г.</div>
-      <div class="date-box-sub">Понедельник, 03.08.2026</div>
+      <div class="date-box-val">October 14, 2026</div>
+      <div class="date-box-sub">Wednesday &middot; 08:30 Dispatch</div>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-header">3. Упаковка и расходники</div>
+    <div class="section-header">DAIRY, PACKAGING &amp; CONSUMABLES</div>
     <table class="items-table">
-      <thead><tr>
-        <th class="col-cb">СКЛАД</th>
-        <th class="col-cb">МАГАЗИН</th>
-        <th class="col-name">НАИМЕНОВАНИЕ</th>
-        <th class="col-qty">ЗАКАЗ</th>
-        <th class="col-unit">ЕД. ИЗМ.</th>
-      </tr></thead>
+      <thead>
+        <tr>
+          <th style="width:40px; text-align:center;">#</th>
+          <th>ITEM DESCRIPTION</th>
+          <th style="width:100px;">UNIT</th>
+          <th class="col-qty">DISPATCH</th>
+          <th style="width:110px; text-align:right;">WAREHOUSE</th>
+          <th style="width:120px;">EXPIRY / BATCH</th>
+          <th class="col-cb">VERIFIED</th>
+        </tr>
+      </thead>
       <tbody>
         <tr>
+          <td style="text-align:center; color:#888;">9</td>
+          <td><b>Barista Oat Milk (1L Carton)</b><br><span style="font-size:11px; color:#666;">Supplier: Cascade Dairy &middot; SKU: MLK-003</span></td>
+          <td class="col-unit">case (12L)</td>
+          <td class="col-qty">6</td>
+          <td style="text-align:right; color:#555;">6 cs</td>
+          <td style="font-size:11px; color:#555;">B-2027-03</td>
           <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Стаканы 500 мл (фирменные)</td>
-          <td class="col-qty">500</td>
-          <td class="col-unit">шт</td>
         </tr>
         <tr>
+          <td style="text-align:center; color:#888;">10</td>
+          <td><b>Condensed Sweet Whole Milk (380g)</b><br><span style="font-size:11px; color:#666;">Supplier: Cascade Dairy &middot; SKU: MLK-008</span></td>
+          <td class="col-unit">case (24 tins)</td>
+          <td class="col-qty">3</td>
+          <td style="text-align:right; color:#555;">3 cs</td>
+          <td style="font-size:11px; color:#555;">B-2027-10</td>
           <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Стаканы 700 мл (фирменные)</td>
-          <td class="col-qty">400</td>
-          <td class="col-unit">шт</td>
         </tr>
         <tr>
+          <td style="text-align:center; color:#888;">11</td>
+          <td><b>Clear PP Cold Beverage Cups 500ml (98mm)</b><br><span style="font-size:11px; color:#666;">Supplier: EcoPack Solutions &middot; SKU: PKG-001</span></td>
+          <td class="col-unit">box (1,000 pcs)</td>
+          <td class="col-qty">3</td>
+          <td style="text-align:right; color:#555;">3 box</td>
+          <td style="font-size:11px; color:#555;">N/A</td>
           <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Трубочки широкие для тапиоки 12мм</td>
-          <td class="col-qty">600</td>
-          <td class="col-unit">шт</td>
         </tr>
         <tr>
+          <td style="text-align:center; color:#888;">12</td>
+          <td><b>Dome Cold Beverage Lids 98mm</b><br><span style="font-size:11px; color:#666;">Supplier: EcoPack Solutions &middot; SKU: PKG-002</span></td>
+          <td class="col-unit">box (1,000 pcs)</td>
+          <td class="col-qty">3</td>
+          <td style="text-align:right; color:#555;">3 box</td>
+          <td style="font-size:11px; color:#555;">N/A</td>
           <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Пленка запаечная для стаканов (рулон)</td>
+        </tr>
+        <tr>
+          <td style="text-align:center; color:#888;">13</td>
+          <td><b>Individually Wrapped Boba Straws 12mm</b><br><span style="font-size:11px; color:#666;">Supplier: EcoPack Solutions &middot; SKU: PKG-005</span></td>
+          <td class="col-unit">box (2,000 pcs)</td>
           <td class="col-qty">2</td>
-          <td class="col-unit">рул</td>
+          <td style="text-align:right; color:#555;">2 box</td>
+          <td style="font-size:11px; color:#555;">N/A</td>
+          <td class="col-cb"><span class="cb"></span></td>
         </tr>
         <tr>
+          <td style="text-align:center; color:#888;">14</td>
+          <td><b>Cup Sealing Film Roll (3,000 seals)</b><br><span style="font-size:11px; color:#666;">Supplier: EcoPack Solutions &middot; SKU: PKG-009</span></td>
+          <td class="col-unit">roll</td>
+          <td class="col-qty">2</td>
+          <td style="text-align:right; color:#555;">2 roll</td>
+          <td style="font-size:11px; color:#555;">N/A</td>
           <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-cb"><span class="cb"></span></td>
-          <td class="col-name">Салфетки барные бумажные</td>
-          <td class="col-qty">10</td>
-          <td class="col-unit">пак</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="instr">* Инструкция для персонала: Перед отметкой галочкой сверьте фактическое наименование, срок годности, целостность упаковки и точное количество поставляемого товара.</div>
+  <div class="sig-box" style="margin-top:28px;">
+    <div class="sig-title">FINAL SUPERVISOR SIGN-OFF &amp; DISCREPANCY RECORD:</div>
+    <div class="sig-row">
+      <div class="sig-field">
+        <div class="sig-label">Supervisor Sign-Off:</div>
+        <div class="sig-line"></div>
+      </div>
+      <div class="sig-field">
+        <div class="sig-label">Discrepancy Notes (if any):</div>
+        <div class="sig-line"></div>
+      </div>
+      <div class="sig-field">
+        <div class="sig-label">Inventory Database Updated:</div>
+        <div style="font-size:12px; color:#1a6e34; font-weight:700; margin-top:4px;">☑ Logged in ERP System</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="instr">
+    * End of Manifest &middot; Generated by Boba Cafe Automated Inventory System &middot; Document Ref # PO-007
+  </div>
 </div>
-</body></html>
+
+</body>
+</html>
