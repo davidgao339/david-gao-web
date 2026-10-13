@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>David Gao - Data & Operations Leader</title>
-  <meta name="description" content="David Gao - Data & Operations Leader. Automating the boring stuff with Python, AI agents, SQL, and whatever the job needs." />
+  <title>David Gao - Data Scientist & Applied AI Engineer</title>
+  <meta name="description" content="David Gao - Data Scientist & Applied AI Engineer. Building production ML systems, autonomous AI agents, constraint optimization, and high-impact data infrastructure." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <script>
     tailwindcss.config = {
       theme: {
@@ -21,17 +21,17 @@
   <style>
     html { scroll-behavior: smooth; }
     .gradient-text {
-      background: linear-gradient(135deg, #1a73e8 0%, #6d28d9 100%);
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     .card-hover {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
     .card-hover:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.08);
     }
     .fade-in {
       opacity: 0;
@@ -44,74 +44,88 @@
     }
   </style>
 </head>
-<body class="bg-white text-gray-900 font-sans antialiased">
+<body class="bg-white text-gray-900 font-sans antialiased selection:bg-blue-100 selection:text-blue-900">
 
   <!-- Nav -->
-  <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
+  <nav class="fixed top-0 w-full bg-white/85 backdrop-blur-md z-50 border-b border-gray-100">
     <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#" class="text-xl font-semibold tracking-tight">David <span class="gradient-text">Gao</span></a>
-      <div class="hidden sm:flex items-center gap-8 text-sm text-gray-600">
+      <a href="#" class="text-xl font-bold tracking-tight">David <span class="gradient-text">Gao</span></a>
+      <div class="hidden sm:flex items-center gap-7 text-sm text-gray-600 font-medium">
         <a href="#about" class="hover:text-gray-900 transition-colors">About</a>
         <a href="#projects" class="hover:text-gray-900 transition-colors">Projects</a>
         <a href="#experience" class="hover:text-gray-900 transition-colors">Experience</a>
         <a href="#skills" class="hover:text-gray-900 transition-colors">Skills</a>
         <a href="#contact" class="hover:text-gray-900 transition-colors">Contact</a>
+        <a href="/David_Gao_Resume.pdf" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-xs font-semibold transition-all shadow-sm hover:shadow">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Resume (PDF)
+        </a>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="min-h-screen flex items-center justify-center px-6 pt-20">
+  <section class="min-h-screen flex items-center justify-center px-6 pt-24 pb-16">
     <div class="max-w-3xl text-center">
       <div class="flex justify-center mb-8">
-        <div>
-          <img src="/david_artemis.jpg" alt="David Gao" class="w-48 sm:w-56 rounded-[15%] object-cover shadow-xl ring-4 ring-white" />
+        <div class="relative">
+          <img src="/david_artemis.jpg" alt="David Gao with Artemis rocket" class="w-48 sm:w-56 rounded-[18%] object-cover shadow-2xl ring-4 ring-white" />
+          <div class="absolute -bottom-2 -right-2 bg-blue-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
+            Applied AI &bull; ML
+          </div>
         </div>
       </div>
-      <p class="text-sm font-medium text-blue-600 tracking-wider uppercase mb-4">Data & Operations Leader</p>
-      <h1 class="text-5xl sm:text-7xl font-bold tracking-tight mb-6">
+      <p class="text-xs sm:text-sm font-bold text-blue-600 tracking-widest uppercase mb-3 bg-blue-50 inline-block px-3.5 py-1 rounded-full">
+        Data Scientist &bull; Applied AI Engineer
+      </p>
+      <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight mb-6 text-gray-950">
         Hi, I'm <span class="gradient-text">David</span>
       </h1>
-      <p class="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto mb-10">
-        I automate the boring stuff so people can focus on what actually matters.
-        Python, AI agents, SQL, React, Databricks — or whatever the job needs.
-        If I don't know how, I'll figure it out.
+      <p class="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-10">
+        I build production ML systems, autonomous AI agents, and mathematical optimization models that solve complex business problems.
+        Bridging advanced analytics, scalable cloud infrastructure, and measurable ROI.
       </p>
-      <div class="flex items-center justify-center gap-4">
-        <a href="#contact" class="px-8 py-3 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-colors">
-          Get in Touch
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/David_Gao_Resume.pdf" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-600 text-white rounded-full text-sm font-semibold hover:bg-blue-700 transition-all shadow-md hover:shadow-lg">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Download Resume (PDF)
         </a>
-        <a href="#experience" class="px-8 py-3 border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-          View My Work
+        <a href="#projects" class="px-7 py-3.5 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-colors shadow-sm">
+          View Projects
+        </a>
+        <a href="#experience" class="px-7 py-3.5 border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+          Work Experience
         </a>
       </div>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="py-24 px-6">
+  <section id="about" class="py-24 px-6 bg-gray-50/70 border-y border-gray-100">
     <div class="max-w-5xl mx-auto fade-in">
-      <h2 class="text-3xl font-bold mb-12 text-center">About Me</h2>
+      <h2 class="text-3xl font-bold mb-12 text-center tracking-tight">About Me</h2>
       <div class="grid md:grid-cols-2 gap-12">
         <div>
-          <h3 class="text-lg font-semibold mb-3 text-blue-600">Education</h3>
+          <h3 class="text-base font-bold uppercase tracking-wider mb-5 text-blue-600">Education</h3>
           <div class="space-y-6">
-            <div class="border-l-2 border-blue-600 pl-4">
+            <div class="border-l-2 border-blue-600 pl-4 bg-white p-4 rounded-r-2xl border border-gray-100 shadow-sm">
               <div class="flex items-center gap-3 mb-1">
                 <img src="/desautelsmcgill_logo.jpg" alt="McGill University" class="h-6 w-auto" />
-                <p class="font-semibold">McGill University</p>
+                <p class="font-semibold text-gray-900">McGill University</p>
               </div>
               <p class="text-sm text-gray-500">Desautels Faculty of Management</p>
-              <p class="text-sm text-gray-600">Master of Management in Analytics</p>
+              <p class="text-sm font-medium text-blue-600 mt-0.5">Master of Management in Analytics (MMA)</p>
               <p class="text-xs text-gray-400 mt-1">2023 &ndash; 2024 &middot; Montreal, QC</p>
             </div>
-            <div class="border-l-2 border-gray-200 pl-4">
+            <div class="border-l-2 border-gray-300 pl-4 bg-white p-4 rounded-r-2xl border border-gray-100 shadow-sm">
               <div class="flex items-center gap-3 mb-1">
                 <img src="/universityofbc_logo.jpg" alt="UBC" class="h-6 w-auto" />
-                <p class="font-semibold">University of British Columbia</p>
+                <p class="font-semibold text-gray-900">University of British Columbia</p>
               </div>
               <p class="text-sm text-gray-600">Bachelor of Management, Finance (Honours)</p>
-              <p class="text-xs text-gray-400 mt-1">2015 &ndash; 2019 &middot; Kelowna, BC</p>
+              <p class="text-xs text-gray-400 mt-1">2015 &ndash; 2019 &middot; Kelowna, BC &middot; 3.7 GPA, Dean's List</p>
             </div>
           </div>
         </div>
@@ -136,239 +150,326 @@
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects" class="py-24 px-6 bg-gray-50">
+  <!-- Featured Projects -->
+  <section id="projects" class="py-24 px-6">
     <div class="max-w-5xl mx-auto fade-in">
-      <h2 class="text-3xl font-bold mb-12 text-center">Featured Work</h2>
+      <div class="text-center mb-14">
+        <span class="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full">Interactive Portfolio</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-3 text-gray-950 tracking-tight">Featured Projects & Live Demos</h2>
+        <p class="text-gray-500 max-w-xl mx-auto mt-2">End-to-end applications solving real analytics, scheduling, and AI challenges.</p>
+      </div>
 
-      <div class="relative rounded-3xl overflow-hidden bg-white border border-blue-100 shadow-xl card-hover">
-        <div class="absolute top-0 right-0 p-8 opacity-10">
-          <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="stroke: #3b82f6;">
-            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-            <polyline points="2 17 12 22 22 17"></polyline>
-            <polyline points="2 12 12 17 22 12"></polyline>
-          </svg>
-        </div>
-        <div class="relative z-10 p-10 md:p-14">
-          <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider rounded-full mb-4">Live Interactive Suite</span>
-          <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">High-Performance App Demos</h3>
-          <p class="text-lg text-gray-600 mb-8 max-w-2xl leading-relaxed">
-            A comprehensive portfolio of internal tools built from scratch. Features a blazing-fast retail analytics dashboard, a fully automated shift scheduler, and a complete inventory management SPA. No templates, just clean code solving complex operational problems.
-          </p>
-          <a href="/demo/index.html" class="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl">
-            Explore the Demo Suite
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
+
+        <!-- Project 1: Retail Analytics Dashboard -->
+        <div class="rounded-3xl border border-gray-200 bg-white p-7 card-hover flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700 uppercase tracking-wider">Live Web App</span>
+              <span class="text-xs text-gray-400">Retail Intelligence</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Retail Analytics & Forecasting Dashboard</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+              A high-performance financial and operational analytics SPA. Renders 2 years of simulated transactional data with zero lag, featuring client-side KPI filtering, product category drilldowns, and customer retention segmentation.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md">Canvas / Chart.js</span>
+              <span class="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md">Client-Side ETL</span>
+              <span class="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md">KPI Modeling</span>
+            </div>
+          </div>
+          <a href="/demo/cafe-dashboard/index.html" class="inline-flex items-center justify-between px-5 py-2.5 bg-blue-50 text-blue-700 font-semibold rounded-xl text-sm hover:bg-blue-600 hover:text-white transition-all group">
+            <span>Launch Interactive Dashboard</span>
+            <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
           </a>
         </div>
+
+        <!-- Project 2: Shift Optimizer -->
+        <div class="rounded-3xl border border-gray-200 bg-white p-7 card-hover flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700 uppercase tracking-wider">Operations Research</span>
+              <span class="text-xs text-gray-400">CP-SAT Optimization</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Shift & Constraint Scheduling Optimizer</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+              Mathematical constraint programming algorithm in Python (OR-Tools CP-SAT). Generates globally optimal weekly shifts across 10 locations and 50+ employees in under 3 minutes, honoring availability, labor laws, and shift fairness.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md">Python OR-Tools</span>
+              <span class="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md">CP-SAT Solver</span>
+              <span class="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md">Streamlit / Web</span>
+            </div>
+          </div>
+          <a href="/demo/schedule-optimizer/index.html" class="inline-flex items-center justify-between px-5 py-2.5 bg-purple-50 text-purple-700 font-semibold rounded-xl text-sm hover:bg-purple-600 hover:text-white transition-all group">
+            <span>Explore Shift Optimizer Demo</span>
+            <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+          </a>
+        </div>
+
+        <!-- Project 3: AI Auto-Analysis Pipeline -->
+        <div class="rounded-3xl border border-gray-200 bg-white p-7 card-hover flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 uppercase tracking-wider">Autonomous AI</span>
+              <span class="text-xs text-gray-400">LLM Multi-Agent</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Enterprise AI Auto-Analysis & Research Pipeline</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+              Autonomous multi-stage LLM data analysis pipeline equipped with a business data manifest to safely query Gold-layer warehouse tables. Synthesizes findings into HTML reports and slide decks with human-in-the-loop validation gateways.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md">LLM Agents</span>
+              <span class="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md">Human-in-the-Loop</span>
+              <span class="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md">Databricks / Gold Tables</span>
+            </div>
+          </div>
+          <a href="#experience" class="inline-flex items-center justify-between px-5 py-2.5 bg-emerald-50 text-emerald-700 font-semibold rounded-xl text-sm hover:bg-emerald-600 hover:text-white transition-all group">
+            <span>View Architecture & Impact</span>
+            <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+          </a>
+        </div>
+
+        <!-- Project 4: Real-Time Inventory & BOM App -->
+        <div class="rounded-3xl border border-gray-200 bg-white p-7 card-hover flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-700 uppercase tracking-wider">Full-Stack ERP</span>
+              <span class="text-xs text-gray-400">Cloudflare D1 SQL</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Real-Time Inventory & Invoice Intelligence SPA</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+              Multi-facility ERP application built on React, Vite, and Cloudflare Workers & D1 SQL. Tracks stock depletion via Bill-of-Materials (BOM) recipe conversion, with an automated PDF parser extracting supplier invoice items directly into the ledger.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md">React & Vite</span>
+              <span class="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md">Cloudflare D1 SQL</span>
+              <span class="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md">PDF Parser (Ozon)</span>
+            </div>
+          </div>
+          <a href="/demo/inventory-app/index.html" class="inline-flex items-center justify-between px-5 py-2.5 bg-amber-50 text-amber-700 font-semibold rounded-xl text-sm hover:bg-amber-600 hover:text-white transition-all group">
+            <span>Launch Inventory App Demo</span>
+            <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Demo Suite Banner -->
+      <div class="rounded-3xl bg-gradient-to-r from-blue-900 to-indigo-900 text-white p-8 md:p-10 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="text-xs font-bold text-blue-300 uppercase tracking-wider">Full Interactive Suite</span>
+          <h3 class="text-2xl font-bold mt-1 text-white">Experience All Operational & Analytics Tools</h3>
+          <p class="text-blue-100 text-sm max-w-xl mt-1">Explore our complete collection of high-performance internal web apps and data tools.</p>
+        </div>
+        <a href="/demo/index.html" class="shrink-0 px-6 py-3.5 bg-white text-blue-900 font-bold rounded-full text-sm hover:bg-blue-50 transition-colors shadow">
+          Explore Demo Suite &rarr;
+        </a>
       </div>
 
     </div>
   </section>
 
   <!-- Experience -->
-  <section id="experience" class="py-24 px-6">
+  <section id="experience" class="py-24 px-6 bg-gray-50/70 border-t border-gray-100">
     <div class="max-w-5xl mx-auto fade-in">
-      <h2 class="text-3xl font-bold mb-12 text-center">Experience</h2>
+      <div class="text-center mb-14">
+        <span class="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full">Track Record</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-3 text-gray-950 tracking-tight">Professional Experience</h2>
+      </div>
+
       <div class="space-y-8">
 
-        <!-- Boba Cafe - Featured -->
-        <div class="rounded-3xl border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-white p-8 card-hover">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6">
+        <!-- 1. Boba Cafe -->
+        <div class="rounded-3xl border-2 border-purple-200 bg-gradient-to-br from-purple-50/70 via-white to-white p-8 sm:p-10 card-hover shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 pb-6 border-b border-purple-100">
             <div class="flex items-center gap-4">
-              <img src="/boba_cafe_logo.png" alt="Boba Cafe" class="w-14 h-14 rounded-2xl object-contain shrink-0" />
+              <img src="/boba_cafe_logo.png" alt="Boba Cafe" class="w-14 h-14 rounded-2xl object-contain bg-white shadow-sm p-1 border border-purple-100 shrink-0" />
               <div>
                 <div class="flex items-center gap-2 mb-1">
-                  <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-purple-600 text-white uppercase tracking-wider">Family Business</span>
+                  <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-purple-600 text-white uppercase tracking-wider">Retail & Operations</span>
                 </div>
                 <h3 class="text-2xl font-bold text-gray-900">Boba Cafe</h3>
-                <p class="text-purple-600 font-medium">Director of Data & Operations &middot; 2021 &ndash; Present</p>
+                <p class="text-purple-700 font-semibold text-sm">Director of Data & Operations &middot; June 2020 &ndash; Present</p>
               </div>
             </div>
             <a href="https://bobacafe.net" target="_blank" rel="noopener noreferrer"
-              class="mt-4 sm:mt-0 inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-full text-sm font-medium hover:bg-purple-700 transition-colors shrink-0">
+              class="mt-4 sm:mt-0 inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-full text-sm font-medium hover:bg-purple-700 transition-colors shrink-0 shadow-sm">
               Visit bobacafe.net
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
           </div>
-          <p class="text-gray-600 mb-6 leading-relaxed">
-            Full-stack technology and operations overhaul for a growing bubble tea chain across ~10 locations in Russia, serving 40–50 part-time employees. Built and deployed multiple production systems end-to-end — entirely solo.
+
+          <p class="text-gray-600 text-sm leading-relaxed mb-6">
+            Architected and deployed the complete data platform, operations research engine, and cloud ERP ecosystem across 10 locations in Europe, serving 50+ staff — built and deployed entirely solo.
           </p>
 
-          <!-- Website & Scheduling -->
-          <div class="mb-4">
-            <h4 class="text-xs font-bold text-purple-600 uppercase tracking-wider mb-3">Website & Scheduling</h4>
-            <div class="grid sm:grid-cols-2 gap-4">
-              <a href="https://bobacafe.net" target="_blank" rel="noopener noreferrer"
-                class="group rounded-2xl bg-white border border-purple-100 p-4 hover:border-purple-300 hover:shadow-sm transition-all">
-                <div class="w-8 h-8 rounded-xl bg-purple-50 flex items-center justify-center mb-3">
-                  <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
-                </div>
-                <p class="font-semibold text-sm mb-1 group-hover:text-purple-600 transition-colors">Customer Website</p>
-                <p class="text-xs text-gray-500">Built bobacafe.net in HTML/React covering store info, product offerings, and location pages</p>
-                <p class="text-xs text-purple-600 font-medium mt-2">bobacafe.net &rarr;</p>
-              </a>
-              <a href="https://bobacafe.net/schedule" target="_blank" rel="noopener noreferrer"
-                class="group rounded-2xl bg-white border border-purple-100 p-4 hover:border-purple-300 hover:shadow-sm transition-all">
-                <div class="w-8 h-8 rounded-xl bg-purple-50 flex items-center justify-center mb-3">
-                  <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                </div>
-                <p class="font-semibold text-sm mb-1 group-hover:text-purple-600 transition-colors">Scheduling Optimizer</p>
-                <p class="text-xs text-gray-500">Constraint programming algorithm (Python, OR-Tools CP-SAT) generating optimal shifts across 10 locations in minutes — replacing a process that took up to 2 weeks manually</p>
-                <p class="text-xs text-purple-600 font-medium mt-2">bobacafe.net/schedule &rarr;</p>
-              </a>
+          <div class="space-y-4">
+            <div class="rounded-2xl bg-white border border-purple-100 p-5 shadow-xs">
+              <h4 class="font-bold text-gray-900 text-sm mb-1.5 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                Staff Scheduling Optimization
+              </h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Developed an optimization algorithm in Python to determine the most optimal weekly shift assignments across <strong class="text-gray-900">10 locations and 50+ staff</strong>, balancing employee availability, labor rules, and store coverage — cutting a <strong class="text-gray-900">2-week manual planning process to under 3 minutes</strong>.
+              </p>
             </div>
-          </div>
 
-          <!-- Operations & Data -->
-          <div>
-            <h4 class="text-xs font-bold text-purple-600 uppercase tracking-wider mb-3">Operations & Data</h4>
-            <div class="grid sm:grid-cols-3 gap-4">
-              <div class="rounded-2xl bg-white border border-purple-100 p-4">
-                <div class="w-8 h-8 rounded-xl bg-purple-50 flex items-center justify-center mb-3">
-                  <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <p class="font-semibold text-sm mb-1">Payroll Automation</p>
-                <p class="text-xs text-gray-500">Google Sheets pipeline (IMPORTRANGE, QUERY) reading directly from the scheduling system, applying pay rates and bonus tracking — saving managers 30 hrs/month (720+ hours to date)</p>
-              </div>
-              <div class="rounded-2xl bg-white border border-purple-100 p-4">
-                <div class="w-8 h-8 rounded-xl bg-purple-50 flex items-center justify-center mb-3">
-                  <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                </div>
-                <p class="font-semibold text-sm mb-1">Theft & Cash Reconciliation</p>
-                <p class="text-xs text-gray-500">Daily cash reconciliation combining POS data with manager-reported envelope counts in PowerBI; AI anomaly detection has directly identified 3 employee theft incidents</p>
-              </div>
-              <div class="rounded-2xl bg-white border border-purple-100 p-4">
-                <div class="w-8 h-8 rounded-xl bg-purple-50 flex items-center justify-center mb-3">
-                  <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-                </div>
-                <p class="font-semibold text-sm mb-1">Telegram Order Bot</p>
-                <p class="text-xs text-gray-500">Google Apps Script bot scanning Gmail every minute during business hours, auto-parsing Yandex Food delivery orders and broadcasting to staff — handling 10+ orders daily</p>
-              </div>
+            <div class="rounded-2xl bg-white border border-purple-100 p-5 shadow-xs">
+              <h4 class="font-bold text-gray-900 text-sm mb-1.5 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                Databricks Cloud Warehouse &amp; BI
+              </h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Architected an automated data warehouse on Databricks with nightly GitHub Actions pipelines syncing POS transaction feeds; engineered automated reporting pipelines delivering product health and category trends across <strong class="text-gray-900">100+ menu items</strong>, saving <strong class="text-gray-900">15+ hours/week</strong> and guiding <strong class="text-gray-900">4 seasonal menu updates/year</strong>.
+              </p>
             </div>
-            <div class="mt-4 rounded-2xl bg-white border border-purple-100 p-4">
-              <div class="w-8 h-8 rounded-xl bg-purple-50 flex items-center justify-center mb-3">
-                <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
-              </div>
-              <p class="font-semibold text-sm mb-1">Data Infrastructure</p>
-              <p class="text-xs text-gray-500">Databricks pipeline pulling raw transaction, daily sales, and product-level data from the POS API — powering store profitability and product health reporting across all locations</p>
+
+            <div class="rounded-2xl bg-white border border-purple-100 p-5 shadow-xs">
+              <h4 class="font-bold text-gray-900 text-sm mb-1.5 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                Cloud ERP &amp; Inventory Automation
+              </h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Built a multi-facility inventory web application on Cloudflare Workers and D1 SQL with automated purchase order tracking and Bill-of-Materials (BOM) recipe depletion; end-to-end automation eliminated the need for an inventory coordinator, saving <strong class="text-gray-900">1 full-time role's worth of labor (~160 hours/month)</strong>.
+              </p>
+            </div>
+
+            <div class="rounded-2xl bg-white border border-purple-100 p-5 shadow-xs">
+              <h4 class="font-bold text-gray-900 text-sm mb-1.5 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                Financial Automation &amp; Anti-Theft
+              </h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Deployed a custom Streamlit payroll app calculating tiered wages and bonuses directly from shift data (saving <strong class="text-gray-900">30+ manager hours/month</strong>); instituted daily POS cash reconciliation with anomaly detection that <strong class="text-gray-900">flagged 3 cash discrepancies for CCTV review</strong>, uncovering internal theft.
+              </p>
             </div>
           </div>
         </div>
 
-        <!-- Cymax -->
-        <div class="rounded-3xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white p-8 card-hover">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-            <div class="flex items-start gap-4">
-              <div class="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center shrink-0">
-                <span class="text-white font-bold text-xl">C</span>
-              </div>
+        <!-- 2. Cymax -->
+        <div id="cymax" class="rounded-3xl border-2 border-blue-200 bg-gradient-to-br from-blue-50/70 via-white to-white p-8 sm:p-10 card-hover shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 pb-6 border-b border-blue-100">
+            <div class="flex items-center gap-4">
+              <img src="/cymax_logo.webp" alt="Cymax Group Technologies" class="h-14 w-auto max-w-[130px] rounded-2xl object-contain bg-white shadow-sm px-2.5 py-1 border border-blue-100 shrink-0" />
               <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-blue-600 text-white uppercase tracking-wider">eCommerce Tech</span>
+                </div>
                 <h3 class="text-2xl font-bold text-gray-900">Cymax Group Technologies</h3>
-                <p class="text-blue-600 font-medium">Data Scientist</p>
-                <p class="text-sm text-gray-400">eCommerce</p>
+                <p class="text-blue-600 font-semibold text-sm">Data Scientist &middot; March 2026 &ndash; Present</p>
               </div>
             </div>
-            <div class="text-sm text-gray-400 mt-2 sm:mt-0 sm:text-right">
-              <p>Mar 2026 &ndash; Present</p>
+            <div class="text-sm font-medium text-gray-500 mt-2 sm:mt-0 sm:text-right">
+              <p>Toronto, ON (Remote)</p>
             </div>
           </div>
-          <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Spearheading machine learning initiatives and deploying Large Language Models (LLMs) to automate complex data analysis and operational reporting.</li>
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Driving AI implementation across data pipelines to reduce manual reporting bottlenecks and increase analytical accuracy.</li>
-          </ul>
+
+          <div class="space-y-4">
+            <div class="rounded-2xl bg-white border border-blue-100 p-5 shadow-xs">
+              <h4 class="font-bold text-gray-900 text-sm mb-1.5 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                Autonomous AI Analysis Pipeline
+              </h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Architected an end-to-end LLM analysis pipeline equipped with an enterprise data manifest to safely query Gold-layer warehouse tables, using custom analytical skills to automatically generate HTML dashboards and slide decks; built step-by-step human-in-the-loop review gateways, accelerating operational ticket turnaround from <strong class="text-gray-900">3–5 business days to 3–5 hours</strong> (~90% cycle time reduction).
+              </p>
+            </div>
+
+            <div class="rounded-2xl bg-white border border-blue-100 p-5 shadow-xs">
+              <h4 class="font-bold text-gray-900 text-sm mb-1.5 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                Multi-Model Pricing &amp; Margin Engine
+              </h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Developed an automated dynamic pricing ML system combining modular regression models predicting price-demand elasticity, return probabilities, cancellation rates, and net profit margins; automated <strong class="text-gray-900">100% of daily repricing decisions across 400,000+ active SKUs</strong> on Amazon, Walmart, and other major marketplaces, eliminating manual pricing intervention while safeguarding profit margins.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <!-- Article - BA -->
-        <div class="bg-white rounded-2xl p-8 card-hover border border-gray-100">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
+        <!-- 3. Article -->
+        <div class="bg-white rounded-3xl p-8 sm:p-10 card-hover border border-gray-200 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 pb-6 border-b border-gray-100">
             <div class="flex items-start gap-4">
               <img src="https://cdn.brandfetch.io/idCic6GDJP/w/400/h/400/theme/dark/icon.jpeg" alt="Article" class="w-12 h-12 rounded-xl object-contain shrink-0" />
               <div>
-                <h3 class="text-xl font-semibold">Business Analyst</h3>
-                <p class="text-blue-600 font-medium">Article</p>
-                <p class="text-sm text-gray-400">eCommerce &middot; Furniture</p>
+                <h3 class="text-2xl font-bold text-gray-900">Article</h3>
+                <p class="text-blue-600 font-semibold text-sm">Business Analyst &amp; Payment Analyst &middot; 2021 &ndash; 2026</p>
+                <p class="text-xs text-gray-400 mt-0.5">eCommerce &middot; Furniture</p>
               </div>
             </div>
-            <div class="text-sm text-gray-400 mt-2 sm:mt-0 sm:text-right">
-              <p>2024 &ndash; 2026</p>
+            <div class="text-sm font-medium text-gray-400 mt-2 sm:mt-0 sm:text-right">
               <p>Toronto, ON</p>
             </div>
           </div>
-          <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Designed and led end-to-end A/B test comparing CGI vs. real photography for email campaigns; presented findings to leadership and recommended switching to CGI assets, saving $800K+ USD annually in marketing production costs with no measurable impact on conversion or revenue</li>
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Built an AI agent using Databricks Genie, enabling 10+ VPs and Senior Directors to query live business data in natural language — eliminating multi-day analyst bottlenecks and increasing data transparency across the organization</li>
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Developed an in-house cross-sell algorithm analyzing attachment rates across 4,000+ active SKUs, replacing a costly third-party vendor (tens of thousands/month) with a daily auto-refreshed Tableau feed</li>
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Reduced org-wide dependence on static dashboards by deploying live Google Sheets via Coefficient, giving business users direct access to raw data without analyst intermediation</li>
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Built and maintained Tableau dashboards for product performance and financial results, used weekly by cross-functional stakeholders</li>
-          </ul>
-        </div>
 
-        <!-- Article - Payment -->
-        <div class="bg-white rounded-2xl p-8 card-hover border border-gray-100">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-            <div class="flex items-start gap-4">
-              <img src="https://cdn.brandfetch.io/idCic6GDJP/w/400/h/400/theme/dark/icon.jpeg" alt="Article" class="w-12 h-12 rounded-xl object-contain shrink-0" />
-              <div>
-                <h3 class="text-xl font-semibold">Payment Analyst</h3>
-                <p class="text-blue-600 font-medium">Article</p>
-                <p class="text-sm text-gray-400">eCommerce &middot; Furniture</p>
+          <div class="space-y-4">
+            <div class="rounded-2xl bg-white border border-gray-100 p-5 shadow-xs">
+              <div class="flex items-center justify-between mb-1.5">
+                <h4 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                  GenAI Enterprise Intelligence &amp; LLMOps
+                </h4>
+                <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700">Business Analyst</span>
               </div>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Built an AI agent using Databricks Genie enabling 10+ VPs and Senior Directors to query live warehouse data in natural language, slashing ad-hoc insight turnaround from <strong class="text-gray-900">2–3 days to instant self-serve queries</strong>; implemented human-in-the-loop observability using <strong class="text-gray-900">MLflow</strong> to track every query and user interaction, systematically auditing failure cases and rolling out continuous schema and prompt improvements to ensure response accuracy.
+              </p>
             </div>
-            <div class="text-sm text-gray-400 mt-2 sm:mt-0 sm:text-right">
-              <p>2021 &ndash; 2024</p>
-              <p>Toronto, ON</p>
+
+            <div class="rounded-2xl bg-white border border-gray-100 p-5 shadow-xs">
+              <div class="flex items-center justify-between mb-1.5">
+                <h4 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                  Experimentation &amp; Cost Optimization
+                </h4>
+                <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700">Business Analyst</span>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Designed and led an end-to-end A/B test evaluating CGI vs. studio photography; presented statistical findings to executive leadership, saving <strong class="text-gray-900">$800K+ USD annually</strong> in marketing production costs with zero impact on conversion.
+              </p>
+            </div>
+
+            <div class="rounded-2xl bg-white border border-gray-100 p-5 shadow-xs">
+              <div class="flex items-center justify-between mb-1.5">
+                <h4 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                  In-House Cross-Sell Algorithm
+                </h4>
+                <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700">Business Analyst</span>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Developed an in-house cross-sell attachment rate algorithm analyzing <strong class="text-gray-900">4,000+ active SKUs</strong>, replacing a third-party vendor to save <strong class="text-gray-900">$20K+/month ($240K+ annually)</strong> with an automated daily Tableau feed.
+              </p>
+            </div>
+
+            <div class="rounded-2xl bg-white border border-gray-100 p-5 shadow-xs">
+              <div class="flex items-center justify-between mb-1.5">
+                <h4 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                  Fraud ML Model Training
+                </h4>
+                <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700">Payment Analyst</span>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Reviewed and labeled <strong class="text-gray-900">500+ high-risk transactions weekly</strong> in Sift Science to train fraud ML models, improving transaction risk classification accuracy and minimizing false-positive order cancellations.
+              </p>
+            </div>
+
+            <div class="rounded-2xl bg-white border border-gray-100 p-5 shadow-xs">
+              <div class="flex items-center justify-between mb-1.5">
+                <h4 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                  Dispute &amp; Chargeback Recovery
+                </h4>
+                <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700">Payment Analyst</span>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Managed dispute evidence workflows across Stripe, Affirm, and PayPal, achieving a <strong class="text-gray-900">~70% dispute recovery rate</strong> and recouping <strong class="text-gray-900">$50K&ndash;$100K+ USD annually</strong>.
+              </p>
             </div>
           </div>
-          <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Reviewed and labeled hundreds of transactions weekly in Sift Science to train fraud detection models, maintaining data quality for Article's fraud prevention pipeline</li>
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Managed 5-10 chargebacks per week across Stripe, Affirm, and PayPal, achieving a ~70% recovery rate through timely order cancellations and evidence submissions — recovering an estimated $50K-$100K+ USD annually</li>
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Built a payment processor fee analysis pipeline benchmarking Article's fee structure across processors; analysis confirmed competitive positioning despite multi-million dollar annual processing volume, informing strategic vendor decisions</li>
-          </ul>
-        </div>
-
-        <!-- Canaccord -->
-        <div class="bg-white rounded-2xl p-8 card-hover border border-gray-100">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-            <div class="flex items-start gap-4">
-              <img src="/canaccord_wealth_management_logo.jpg" alt="Canaccord Wealth Management" class="w-12 h-12 rounded-xl object-contain shrink-0" />
-              <div>
-                <h3 class="text-xl font-semibold">Licensed Investment Advisor Assistant</h3>
-                <p class="text-blue-600 font-medium">Canaccord Genuity Wealth Management</p>
-              </div>
-            </div>
-            <div class="text-sm text-gray-400 mt-2 sm:mt-0 sm:text-right">
-              <p>2020 &ndash; 2021</p>
-              <p>Vancouver, BC</p>
-            </div>
-          </div>
-          <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Owned end-to-end administration of a $5M private placement, preparing and tracking 100+ personalized subscription agreements to ensure full execution before closing date</li>
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Supported a high-volume private banking practice serving hundreds of clients, managing account openings, KYC/AML onboarding, ID validation, and trade order execution for equities</li>
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Processed and triaged high volumes of client communications on behalf of advisors, tracking wires, processing cheque deposits/withdrawals, and coordinating ~12 private placement deals annually</li>
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Onboarded 200+ clients within 2-week windows during deal closes, managing compliance documentation under tight deadlines</li>
-          </ul>
-        </div>
-
-        <!-- Sun Life -->
-        <div class="bg-white rounded-2xl p-8 card-hover border border-gray-100">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-            <div class="flex items-start gap-4">
-              <img src="/sun_life_financial_logo.jpg" alt="Sun Life Financial" class="w-12 h-12 rounded-xl object-contain shrink-0" />
-              <div>
-                <h3 class="text-xl font-semibold">Administrative Assistant</h3>
-                <p class="text-blue-600 font-medium">Sun Life Financial</p>
-              </div>
-            </div>
-            <div class="text-sm text-gray-400 mt-2 sm:mt-0 sm:text-right">
-              <p>2019 &ndash; 2020</p>
-              <p>Vancouver, BC</p>
-            </div>
-          </div>
-          <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Supported 3 financial advisors simultaneously, managing client correspondence, form processing, and document routing to clients and head office</li>
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Coordinated annual review outreach, contacting clients to schedule advisor meetings for portfolio reviews and upsell opportunities</li>
-            <li class="flex gap-2"><span class="text-blue-600 mt-1 shrink-0">&bull;</span>Maintained advisor calendars and managed end-to-end meeting booking pipeline across a multi-advisor practice</li>
-          </ul>
         </div>
 
       </div>
@@ -376,62 +477,97 @@
   </section>
 
   <!-- Skills -->
-  <section id="skills" class="py-24 px-6 bg-gray-50">
+  <section id="skills" class="py-24 px-6 bg-white">
     <div class="max-w-5xl mx-auto fade-in">
-      <h2 class="text-3xl font-bold mb-12 text-center">Skills</h2>
+      <div class="text-center mb-14">
+        <span class="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full">Core Competencies</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-3 text-gray-950 tracking-tight">Technical Skills &amp; Stack</h2>
+      </div>
+
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white rounded-2xl p-6 border border-gray-100">
-          <h3 class="font-semibold text-sm text-gray-400 uppercase tracking-wider mb-4">Languages</h3>
+
+        <div class="bg-gray-50/80 rounded-2xl p-6 border border-gray-100 card-hover">
+          <h3 class="font-bold text-xs text-blue-600 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-600"></span> Applied AI &bull; ML
+          </h3>
           <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Python</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">SQL</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">R</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">JavaScript</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Google Apps Script</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">LLM Agents</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Human-in-the-Loop</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">PyTorch</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Scikit-Learn</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">OR-Tools CP-SAT</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Regression &amp; Demand</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Anomaly Detection</span>
           </div>
         </div>
-        <div class="bg-white rounded-2xl p-6 border border-gray-100">
-          <h3 class="font-semibold text-sm text-gray-400 uppercase tracking-wider mb-4">Platforms</h3>
+
+        <div class="bg-gray-50/80 rounded-2xl p-6 border border-gray-100 card-hover">
+          <h3 class="font-bold text-xs text-blue-600 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-600"></span> Data &bull; Cloud
+          </h3>
           <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Databricks</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">MS Azure</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">React</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Google Colab</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Python</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">SQL</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Databricks</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">MLflow</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Delta Lake / Gold</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Cloudflare D1 SQL</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">MS Azure</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">GitHub Actions</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Git</span>
           </div>
         </div>
-        <div class="bg-white rounded-2xl p-6 border border-gray-100">
-          <h3 class="font-semibold text-sm text-gray-400 uppercase tracking-wider mb-4">Visualization</h3>
+
+        <div class="bg-gray-50/80 rounded-2xl p-6 border border-gray-100 card-hover">
+          <h3 class="font-bold text-xs text-blue-600 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-600"></span> Analytics &bull; BI
+          </h3>
           <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Tableau</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Power BI</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Coefficient</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Google Sheets</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">A/B Testing</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Hypothesis Testing</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Causal Inference</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Tableau</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Power BI</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Excel / Modeling</span>
           </div>
         </div>
-        <div class="bg-white rounded-2xl p-6 border border-gray-100">
-          <h3 class="font-semibold text-sm text-gray-400 uppercase tracking-wider mb-4">Focus Areas</h3>
+
+        <div class="bg-gray-50/80 rounded-2xl p-6 border border-gray-100 card-hover">
+          <h3 class="font-bold text-xs text-blue-600 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-600"></span> Web &bull; Full-Stack
+          </h3>
           <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Gen AI</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Machine Learning</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">A/B Testing</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">Automation</span>
-            <span class="px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-700">OR-Tools</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">React</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Vite</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Tailwind CSS</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Cloudflare Workers</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Streamlit</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">REST APIs</span>
+            <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-800">Git / CI/CD</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="py-24 px-6">
+  <section id="contact" class="py-24 px-6 bg-gray-50/70 border-t border-gray-100">
     <div class="max-w-xl mx-auto text-center fade-in">
-      <h2 class="text-3xl font-bold mb-4">Let's Connect</h2>
-      <p class="text-gray-500 mb-10">Open to opportunities, collaborations, and interesting conversations.</p>
+      <h2 class="text-3xl font-bold mb-3 text-gray-950">Let's Connect</h2>
+      <p class="text-gray-500 mb-10 text-sm sm:text-base">Open to Data Science, Applied AI, and Machine Learning engineering opportunities.</p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="https://www.linkedin.com/in/david-gao-zhongyu" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-colors w-full sm:w-auto text-center">
+        <a href="/David_Gao_Resume.pdf" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-blue-600 text-white rounded-full text-sm font-semibold hover:bg-blue-700 transition-all shadow-md w-full sm:w-auto">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Download Resume (PDF)
+        </a>
+        <a href="https://www.linkedin.com/in/david-gao-zhongyu" target="_blank" rel="noopener noreferrer"
+           class="px-7 py-3.5 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-colors w-full sm:w-auto text-center">
           Connect on LinkedIn
         </a>
-        <a href="mailto:david@davidgao.ca" class="px-8 py-3 border border-gray-300 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-50 transition-colors w-full sm:w-auto text-center">
+        <a href="mailto:david@davidgao.ca"
+           class="px-7 py-3.5 border border-gray-300 text-gray-700 bg-white rounded-full text-sm font-medium hover:bg-gray-50 transition-colors w-full sm:w-auto text-center">
           david@davidgao.ca
         </a>
       </div>
@@ -439,9 +575,9 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-8 px-6 border-t border-gray-100">
+  <footer class="py-8 px-6 border-t border-gray-100 bg-white">
     <div class="max-w-5xl mx-auto text-center text-sm text-gray-400">
-      <p>&copy; 2025 David Gao</p>
+      <p>&copy; 2026 David Gao &middot; Data Scientist &amp; Applied AI Engineer</p>
     </div>
   </footer>
 
