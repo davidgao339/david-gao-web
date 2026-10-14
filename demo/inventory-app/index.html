@@ -3,14 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Boba Inventory</title>
+    <title>Boba Cafe · Inventory &amp; Supply Management</title>
+    <script>
+      try {
+        localStorage.setItem('bobacafe_lang', 'en');
+        localStorage.removeItem('bobacafe_sales_cache');
+        localStorage.removeItem('bobacafe_settings');
+        localStorage.removeItem('bobacafe_suppressed_stores');
+      } catch (e) {}
+    </script>
     <style>
       @media print {
         .no-print { display: none !important; }
         body { background: white; }
       }
     </style>
-    <script type="module" crossorigin src="/demo/inventory-app/assets/index-Bj9Z_Ppj.js"></script>
+    <script type="module" crossorigin src="/demo/inventory-app/assets/index-Dsg0gOUM.js"></script>
     <link rel="stylesheet" crossorigin href="/demo/inventory-app/assets/index-BtxQdN6n.css">
   </head>
   <body>
